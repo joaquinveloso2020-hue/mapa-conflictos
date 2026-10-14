@@ -11,7 +11,8 @@ armado:
   - drone*
   - missile*
   - rocket*
-  - shell*
+  - shelling
+  - shelled
   - bomb*
   - explosion*
   - blast*
@@ -64,8 +65,8 @@ armado:
   - peace talks
   - peace deal
   - peace agreement
-  - captur*
-  - seiz*
+  - captured
+  - seized
   - retak*
   - recaptur*
   - withdraw*
