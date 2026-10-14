@@ -29,9 +29,10 @@ jobs:
       name: github-pages
       url: ${{ steps.despliegue.outputs.page_url }}
     env:
-      DIR_MODELOS: ${{ github.workspace }}/../argos-modelos
+      # Dentro del espacio de trabajo: actions/cache no admite rutas con "..".
+      DIR_MODELOS: ${{ github.workspace }}/.argos-modelos
       ZONA_HORARIA: America/Argentina/Buenos_Aires
-      MAX_DESCARGAS_MODELOS: "8"
+      MAX_DESCARGAS_MODELOS: "16"
     steps:
       - name: Código
         uses: actions/checkout@v7
