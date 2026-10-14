@@ -1,0 +1,9 @@
+# Datos generados por el colector (se publican en Pages, no se guardan en main)
+web/datos/*.json
+estado/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+node_modules/
+*.tmp

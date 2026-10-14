@@ -103,10 +103,11 @@ class Traductor:
 
     @staticmethod
     def _buscar_paquete(base: str) -> str | None:
+        """Carpeta del paquete Argos: model/ + sentencepiece.model o bpe.model (según el modelo)."""
         if not os.path.isdir(base):
             return None
         for raiz, dirs, archivos in os.walk(base):
-            if "sentencepiece.model" in archivos and "model" in dirs:
+            if "model" in dirs and ("sentencepiece.model" in archivos or "bpe.model" in archivos):
                 return raiz
         return None
 
@@ -119,7 +120,6 @@ class Traductor:
             self._cargados[clave] = None
             return None
         import ctranslate2
-        import sentencepiece
         if len([v for v in self._cargados.values() if v]) >= 4:  # limita memoria
             for k in list(self._cargados):
                 if self._cargados[k] and k != ("en", "es"):
@@ -128,12 +128,20 @@ class Traductor:
         try:
             traductor = ctranslate2.Translator(os.path.join(ruta, "model"), device="cpu",
                                                compute_type="int8", intra_threads=self.hilos)
-            sp = sentencepiece.SentencePieceProcessor(model_file=os.path.join(ruta, "sentencepiece.model"))
+            if os.path.exists(os.path.join(ruta, "sentencepiece.model")):
+                tokenizador = _TokenizadorSP(os.path.join(ruta, "sentencepiece.model"))
+            else:
+                tokenizador = _TokenizadorBPE(os.path.join(ruta, "bpe.model"), origen, destino)
+            prefijo = ""
+            meta = os.path.join(ruta, "metadata.json")
+            if os.path.exists(meta):
+                with open(meta, encoding="utf-8") as f:
+                    prefijo = json.load(f).get("target_prefix", "") or ""
         except Exception as e:  # noqa: BLE001
             self.errores.append(f"modelo {origen}->{destino} no se pudo cargar: {str(e)[:100]}")
             self._cargados[clave] = None
             return None
-        self._cargados[clave] = (traductor, sp)
+        self._cargados[clave] = (traductor, tokenizador, prefijo)
         return self._cargados[clave]
 
     def precargar(self, pares: list[tuple[str, str]]) -> list[str]:
@@ -159,7 +167,7 @@ class Traductor:
         modelo = self._cargar(origen, destino)
         if not modelo:
             return [None] * len(textos)
-        traductor, sp = modelo
+        traductor, tokenizador, prefijo = modelo
         # Divide en oraciones para no superar la longitud útil del modelo.
         trozos, mapa = [], []
         for i, t in enumerate(textos):
@@ -170,16 +178,24 @@ class Traductor:
         if not trozos:
             return [""] * len(textos)
         try:
-            tokenizados = sp.encode(trozos, out_type=str)
-            resultados = traductor.translate_batch(tokenizados, beam_size=2, max_batch_size=32,
-                                                   max_decoding_length=256)
-            salidas = [sp.decode(r.hypotheses[0]) for r in resultados]
+            tokenizados = [tokenizador.codificar(t) for t in trozos]
+            # Mismos parámetros que Argos Translate (replace_unknowns, length_penalty, prefijo).
+            resultados = traductor.translate_batch(
+                tokenizados, target_prefix=[[prefijo]] * len(tokenizados) if prefijo else None,
+                replace_unknowns=True, beam_size=2, length_penalty=0.2, max_batch_size=1024,
+                batch_type="tokens", max_decoding_length=256)
+            salidas = []
+            for r in resultados:
+                texto = tokenizador.decodificar(r.hypotheses[0])
+                if prefijo and texto.startswith(prefijo):
+                    texto = texto[len(prefijo):]
+                salidas.append(texto.strip())
         except Exception as e:  # noqa: BLE001
             self.errores.append(f"traducción {origen}->{destino} falló: {str(e)[:100]}")
             return [None] * len(textos)
         unidos: list[list[str]] = [[] for _ in textos]
         for idx, s in zip(mapa, salidas):
-            unidos[idx].append(s.replace("▁", " ").strip())
+            unidos[idx].append(s)
         return [" ".join(p).strip() for p in unidos]
 
     def traducir(self, textos: list[str], origen: str | None, destino: str = "es") -> list[dict]:
@@ -244,6 +260,41 @@ class Traductor:
             return []
         return sorted(d for d in os.listdir(self.dir)
                       if os.path.isdir(os.path.join(self.dir, d)) and self._buscar_paquete(os.path.join(self.dir, d)))
+
+
+class _TokenizadorSP:
+    def __init__(self, ruta: str):
+        import sentencepiece
+        self.sp = sentencepiece.SentencePieceProcessor(model_file=ruta)
+
+    def codificar(self, texto: str) -> list[str]:
+        return self.sp.encode(texto, out_type=str)
+
+    def decodificar(self, piezas: list[str]) -> str:
+        return self.sp.decode_pieces(piezas).replace("▁", " ").replace("_", " ")
+
+
+class _TokenizadorBPE:
+    """Tokenización Moses + BPE (paquetes Argos que traen bpe.model en lugar de SentencePiece)."""
+
+    def __init__(self, ruta: str, origen: str, destino: str):
+        from sacremoses.normalize import MosesPunctNormalizer
+        from sacremoses.tokenize import MosesDetokenizer, MosesTokenizer
+
+        from .apply_bpe import BPE
+        self.normalizador = MosesPunctNormalizer(origen)
+        self.tokenizador = MosesTokenizer(origen)
+        self.destokenizador = MosesDetokenizer(destino)
+        with open(ruta, encoding="utf-8") as f:
+            self.bpe = BPE(f)
+
+    def codificar(self, texto: str) -> list[str]:
+        normal = self.normalizador.normalize(texto)
+        tok = " ".join(self.tokenizador.tokenize(normal))
+        return self.bpe.segment_tokens(tok.strip("\r\n ").split(" "))
+
+    def decodificar(self, piezas: list[str]) -> str:
+        return self.destokenizador.detokenize(" ".join(piezas).replace("@@ ", "").split(" "))
 
 
 def podar_cache(cache: dict, dias: int = 10) -> dict:

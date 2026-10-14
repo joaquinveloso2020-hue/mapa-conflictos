@@ -71,7 +71,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irán, Kuwait, Baréin, Jordania)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Iran war (consultado)", url: "https://en.wikipedia.org/wiki/2026_Iran_war"}
   coincidencias:
-    fuertes: [Strait of Hormuz, Hormuz, Ormuz, IRGC, Revolutionary Guard, Guardia Revolucionaria, Iran war, guerra de Irán, guerra con Irán]
+    fuertes: [IRGC, Revolutionary Guard, Guardia Revolucionaria, Iran war, guerra de Irán, guerra con Irán]
+    lugares: [Strait of Hormuz, Hormuz, Ormuz]
     grupos:
       - [Iran, Iranian, Tehran, Irán, iraní*, Teherán]
       - [strike*, attack*, missile*, drone*, war, ceasefire, truce, bomb*, ataque*, misil*, guerra, tregua, alto el fuego, killed, muertos]
@@ -98,7 +99,8 @@ conflictos:
     - {medio: Amnistía Internacional, fecha: 2026-10-09, titulo: "Gaza ceasefire exists in name only, say more than 100 organizations", url: "https://www.amnesty.org/en/latest/news/2026/10/gaza-ceasefire-exists-in-name-only-say-more-than-100-organizations/"}
     - {medio: Al Jazeera, fecha: 2026-10-09, titulo: "Israeli settler attacks target Palestinian olive harvest in West Bank", url: "https://www.aljazeera.com/news/2026/10/9/israeli-settler-attacks-target-palestinian-olive-harvest-in-west-bank"}
   coincidencias:
-    fuertes: [Gaza, Hamas, Hamás, West Bank, Cisjordania, Ramallah, Jenin, Nablus, Hebron, Rafah, Khan Younis, Jan Yunis, Tulkarem, settler*, colono*, UNRWA, Palestinian*, palestin*]
+    fuertes: [Gaza, Hamas, Hamás, West Bank, Cisjordania, Jenin, Nablus, Rafah, Khan Younis, Jan Yunis, Tulkarem, UNRWA]
+    lugares: [Palestinian*, palestin*, Ramallah, Hebron, settler*, colono*, Israeli army, ejército israelí]
     paises_gdelt: [PSE]
 
 - id: israel-hezbola
@@ -122,8 +124,8 @@ conflictos:
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Lebanon, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/lebanon-40.php"}
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Líbano)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   coincidencias:
-    fuertes: [Hezbollah, Hizbollah, Hezbolá, Hizbulá, UNIFIL, FINUL, Nabatieh, Nabatiye]
-    lugares: [Lebanon, Lebanese, Líbano, libanés, libanes*, Beirut, Tyre, Sidon, Litani, Bekaa]
+    fuertes: [Hezbollah, Hizbollah, Hezbolá, Hizbulá, UNIFIL, FINUL]
+    lugares: [Nabatieh, Nabatiye, Lebanon, Lebanese, Líbano, libanés, libanes*, Beirut, Tyre, Sidon, Litani, Bekaa]
     paises_nombre: [LBN]
     paises_gdelt: [LBN]
 
@@ -149,8 +151,8 @@ conflictos:
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "October 2026 Monthly Forecast (Yemen)", url: "https://www.securitycouncilreport.org/atf/cf/%7B65BFCF9B-6D27-4E9C-8CD3-CF6E4FF96FF9%7D/2026_10_forecast.pdf"}
     - {medio: Axios, fecha: 2026-10-02, titulo: "Saudis plan major offensive against the Houthis, but U.S. won't join for now", url: "https://www.axios.com/2026/10/02/saudis-yemen-houthis-bab-al-mandeb-strait"}
   coincidencias:
-    fuertes: [Houthi, Houthis, hutí, hutíes, Ansar Allah, Ansarallah, Bab al-Mandab, Bab el-Mandeb, Bab el Mandeb, Mokha, Moca, Hodeidah, Hodeida, Taiz, Sanaa, Saná, Marib]
-    lugares: [Yemen, Yemeni, yemení, Aden, Adén, Red Sea, mar Rojo, Jizan, Najran]
+    fuertes: [Houthi, Houthis, hutí, hutíes, Ansar Allah, Ansarallah, Bab al-Mandab, Bab el-Mandeb, Bab el Mandeb]
+    lugares: [Yemen, Yemeni, yemení, Aden, Adén, Red Sea, mar Rojo, Jizan, Najran, Mokha, Moca, Hodeidah, Hodeida, Taiz, Sanaa, Saná, Marib]
     paises_nombre: [YEM]
     paises_gdelt: [YEM, SAU]
 
@@ -175,7 +177,10 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Siria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Syria, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/syria-96.php"}
   coincidencias:
-    fuertes: [Suwayda, Sweida, Sueida, Quneitra, Kobani, SDF, Syrian Democratic Forces, Fuerzas Democráticas Sirias, Druze, drusos, Golan, Golán]
+    fuertes: [Syrian Democratic Forces, Fuerzas Democráticas Sirias]
+    grupos:
+      - [SDF, Suwayda, Sweida, Sueida, Quneitra, Kobani, Druze, drusos, Golan, Golán]
+      - [Syria, Syrian, Siria, sirio*, Damascus, Damasco, Israel, Israeli, israelí*, Kurdish, kurdo*, Suwayda, Sweida, Sueida, Quneitra]
     lugares: [Syria, Syrian, Siria, sirio*, Damascus, Damasco, Aleppo, Alepo, Idlib, Homs, Latakia, Deir ez-Zor, Raqqa, Daraa]
     paises_nombre: [SYR]
     paises_gdelt: [SYR]
@@ -249,8 +254,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Sudán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-10-02, titulo: "Sudan’s army says it captured RSF stronghold in North Kordofan", url: "https://www.aljazeera.com/news/2026/10/2/sudans-army-says-it-captured-rsf-stronghold-in-north-kordofan"}
   coincidencias:
-    fuertes: [Rapid Support Forces, Fuerzas de Apoyo Rápido, Hemedti, El Fasher, El-Fasher, El Obeid, El-Obeid, Kordofan, Kordofán, Darfur, Port Sudan, Puerto Sudán, Omdurman, Burhan]
-    lugares: [Sudan, Sudanese, Sudán, sudanés, sudanes*, Khartoum, Jartum, RSF, SAF, Blue Nile, Nilo Azul]
+    fuertes: [Rapid Support Forces, Fuerzas de Apoyo Rápido, Hemedti, El Fasher, El-Fasher, Kordofan, Kordofán, Darfur]
+    lugares: [Sudan, Sudanese, Sudán, sudanés, sudanes*, Khartoum, Jartum, RSF, SAF, Blue Nile, Nilo Azul, El Obeid, El-Obeid, Port Sudan, Puerto Sudán, Omdurman, Burhan]
     paises_nombre: [SDN]
     paises_gdelt: [SDN]
     quitar: [South Sudan, Sudán del Sur, South Sudanese, sursudanés]
@@ -299,8 +304,8 @@ conflictos:
     - {medio: Al Jazeera, fecha: 2026-09-24, titulo: "Fighting widens across Ethiopia as Tigray clashes escalate", url: "https://www.aljazeera.com/amp/news/2026/9/24/fighting-widens-across-ethiopia-as-tigray-clashes-escalate"}
     - {medio: Al Arabiya, fecha: 2026-10-13, titulo: "Eritrea suffers ‘heavy losses’: Ethiopia militia", url: "https://english.alarabiya.net/News/world/2026/10/13/eritrea-suffers-heavy-losses-ethiopia-militia"}
   coincidencias:
-    fuertes: [Tigray, TPLF, Fano, Afar region, Alamata, Mekelle, Mekele, Weldiya, Amhara]
-    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy]
+    fuertes: [TPLF, Tigray People's Liberation Front, Fano militia, milicias Fano]
+    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy, Tigray, Fano, Afar, Alamata, Mekelle, Mekele, Weldiya, Amhara]
     paises_nombre: [ETH]
     paises_gdelt: [ETH]
 
@@ -350,8 +355,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (RD del Congo, Ruanda, Burundi)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-10-13, titulo: "African Union holds Kigali talks as fighting continues in eastern DRC", url: "https://www.aljazeera.com/news/2026/10/13/african-union-holds-kigali-talks-as-fighting-continues-in-eastern-drc"}
   coincidencias:
-    fuertes: [M23, AFC/M23, Alliance Fleuve Congo, CODECO, Wazalendo, North Kivu, South Kivu, Kivu del Norte, Kivu del Sur, Goma, Bukavu, Ituri, Masisi, Walikale, Uvira, MONUSCO]
-    lugares: [Congo, Congolese, congoleñ*, DRC, RDC, Kinshasa, Tshisekedi, Rwanda, Ruanda, Kagame]
+    fuertes: [M23, AFC/M23, Alliance Fleuve Congo, CODECO, Wazalendo, MONUSCO]
+    lugares: [Congo, Congolese, congoleñ*, DRC, RDC, Kinshasa, Tshisekedi, Rwanda, Ruanda, Kagame, North Kivu, South Kivu, Kivu del Norte, Kivu del Sur, Goma, Bukavu, Ituri, Masisi, Walikale, Uvira]
     paises_nombre: [COD]
     paises_gdelt: [COD]
 
@@ -374,8 +379,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Somalia, Kenia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: FDD's Long War Journal, fecha: 2026-10-08, titulo: "Somalia claims to have killed another senior Shabaab leader", url: "https://www.longwarjournal.org/archives/2026/10/somalia-claims-to-have-killed-another-senior-shabaab-leader.php"}
   coincidencias:
-    fuertes: [al-Shabaab, al Shabaab, Shabaab, al-Shabab, AUSSOM, Mogadishu, Mogadiscio, Baidoa]
-    lugares: [Somalia, Somali, somalí*, Puntland, Jubaland, Kismayo, Mandera, Lamu, Garissa]
+    fuertes: [al-Shabaab, al Shabaab, Shabaab, al-Shabab, AUSSOM]
+    lugares: [Somalia, Somali, somalí*, Puntland, Jubaland, Kismayo, Mandera, Lamu, Garissa, Mogadishu, Mogadiscio, Baidoa]
     paises_nombre: [SOM]
     paises_gdelt: [SOM]
     quitar: [Somaliland, Somalilandia]
@@ -398,7 +403,7 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Somalilandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   coincidencias:
-    fuertes: [Somaliland, Somalilandia, Hargeisa, Berbera]
+    fuertes: [Somaliland, Somalilandia]
 
 - id: sahel
   nombre: "Sahel central: insurgencias yihadistas"
@@ -419,8 +424,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Malí, Burkina Faso, Níger, Benín)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mali offensives (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mali_offensives"}
   coincidencias:
-    fuertes: [JNIM, Jama'at Nusrat al-Islam, Islamic State Sahel, Estado Islámico del Sahel, IS-Sahel, Sahel, Tillaberi, Tillabéri, Africa Corps]
-    lugares: [Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Gao, Timbuktu, Tombuctú]
+    fuertes: [JNIM, Jama'at Nusrat al-Islam, Islamic State Sahel, Estado Islámico del Sahel, IS-Sahel, Africa Corps]
+    lugares: [Sahel, Tillaberi, Tillabéri, Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Gao, Timbuktu, Tombuctú]
     paises_nombre: [MLI, BFA, NER]
     paises_gdelt: [MLI, BFA, NER]
     quitar: [Nigeria, Nigerian, nigeriano, nigeriana]
@@ -444,8 +449,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Nigeria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: The Washington Post, fecha: 2026-10-07, titulo: "Islamic State group-affiliated militants attack military base in Nigeria, killing several soldiers", url: "https://www.washingtonpost.com/world/2026/10/07/nigeria-militants-attack-islamic-state-iswap/8b04303a-c282-11f1-8170-681419af1cc9_story.html"}
   coincidencias:
-    fuertes: [Boko Haram, ISWAP, Borno, Maiduguri, Zamfara, Sambisa]
-    lugares: [Nigeria, Nigerian, nigerian*, Abuja, Kaduna, Kebbi, Benue, Plateau State, Sokoto, Katsina]
+    fuertes: [Boko Haram, ISWAP, Sambisa]
+    lugares: [Borno, Maiduguri, Zamfara, Nigeria, Nigerian, nigerian*, Abuja, Kaduna, Kebbi, Benue, Plateau State, Sokoto, Katsina]
     paises_nombre: [NGA]
     paises_gdelt: [NGA]
 
@@ -467,8 +472,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Camerún)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-09-22, titulo: "Hundreds flee homes in Far North Cameroon after armed group raid kills 15", url: "https://www.aljazeera.com/news/2026/9/22/hundreds-flee-homes-in-far-north-cameroon-after-armed-group-raid-kills-15"}
   coincidencias:
-    fuertes: [Ambazonia, Ambazonian, Anglophone region*, Bamenda, Buea]
-    lugares: [Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North, Extremo Norte]
+    fuertes: [Ambazonia, Ambazonian, Anglophone separatist*, separatistas anglófonos]
+    lugares: [Bamenda, Buea, Anglophone region*, Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North, Extremo Norte]
     paises_nombre: [CMR]
     paises_gdelt: [CMR]
 
@@ -513,8 +518,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Mozambique)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Africa Defense Forum, fecha: 2026-07-01, titulo: "Islamic State Mozambique Terrorists Make IEDs Central to Attack Strategy", url: "https://adf-magazine.com/2026/07/islamic-state-mozambique-terrorists-make-ieds-central-to-attack-strategy/"}
   coincidencias:
-    fuertes: [Cabo Delgado, Islamic State Mozambique, Macomia, Mocímboa, Mocimboa da Praia, Palma, Niassa]
-    lugares: [Mozambique, Mozambican, mozambiqueñ*, Maputo]
+    fuertes: [Islamic State Mozambique, Estado Islámico Mozambique]
+    lugares: [Cabo Delgado, Macomia, Mocímboa, Mocimboa da Praia, Niassa, Mozambique, Mozambican, mozambiqueñ*, Maputo]
     paises_nombre: [MOZ]
     paises_gdelt: [MOZ]
 
@@ -584,8 +589,8 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Pakistán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
-    fuertes: [TTP, Tehrik-i-Taliban, Tehreek-e-Taliban, Balochistan, Baluchistán, Balochistán, Baloch Liberation Army, BLA, Khyber Pakhtunkhwa, Jaiber Pastunjuá, Waziristan, Kohat, Bannu, Quetta]
-    lugares: [Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Peshawar]
+    fuertes: [TTP, Tehrik-i-Taliban, Tehreek-e-Taliban, Baloch Liberation Army, BLA]
+    lugares: [Balochistan, Baluchistán, Balochistán, Khyber Pakhtunkhwa, Jaiber Pastunjuá, Waziristan, Kohat, Bannu, Quetta, Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Peshawar]
     paises_nombre: [PAK]
     paises_gdelt: [PAK]
 
@@ -609,7 +614,8 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (India-Pakistán, Cachemira)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Council on Foreign Relations, fecha: 2026-10-13, titulo: "Global Conflict Tracker: Conflict Between India and Pakistan (consultado)", url: "https://www.cfr.org/global-conflict-tracker/conflict/conflict-between-india-and-pakistan"}
   coincidencias:
-    fuertes: [Kashmir, Cachemira, Line of Control, Línea de Control, Indus Waters, Aguas del Indo, Pahalgam, Srinagar]
+    fuertes: [Line of Control, Línea de Control, Indus Waters, Aguas del Indo]
+    lugares: [Kashmir, Cachemira, Srinagar, Pahalgam]
     grupos:
       - [India, Indian, indio*, New Delhi, Nueva Delhi, Modi]
       - [Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Islamabad]
@@ -631,7 +637,8 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (India)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
-    fuertes: [Manipur, Kangpokpi, Tamenglong, Maoist*, maoísta*, Naxal*, Chhattisgarh, Bastar]
+    fuertes: [Maoist rebel*, Maoist insurgen*, rebeldes maoístas, Naxal*]
+    lugares: [Manipur, Kangpokpi, Tamenglong, Chhattisgarh, Bastar, Maoist*]
 
 - id: filipinas
   nombre: "Filipinas: insurgencias (NPA, BIFF)"
@@ -651,7 +658,8 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Filipinas)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
-    fuertes: [New People's Army, Nuevo Ejército del Pueblo, BIFF, Bangsamoro, Mindanao, Cotabato, Abu Sayyaf]
+    fuertes: [New People's Army, Nuevo Ejército del Pueblo, BIFF, Abu Sayyaf]
+    lugares: [Bangsamoro, Mindanao, Cotabato, NPA]
 
 - id: papua
   nombre: "Indonesia: conflicto en Papúa"
@@ -669,8 +677,8 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Indonesia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
-    fuertes: [West Papua, Papua Barat, TPNPB, Free Papua Movement, Jayawijaya, Intan Jaya, Nduga]
-    lugares: [Papua, Papúa]
+    fuertes: [TPNPB, Free Papua Movement, West Papua Liberation Army]
+    lugares: [Papua, Papúa, West Papua, Papua Barat, Jayawijaya, Intan Jaya, Nduga]
 
 - id: tailandia-sur
   nombre: "Tailandia: insurgencia en el extremo sur"
@@ -688,7 +696,8 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Tailandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
-    fuertes: [Narathiwat, Pattani, Yala province, Barisan Revolusi Nasional, Deep South]
+    fuertes: [Barisan Revolusi Nasional]
+    lugares: [Narathiwat, Pattani, Yala province, Deep South, BRN]
 
 - id: tailandia-camboya
   nombre: "Tailandia–Camboya: disputa fronteriza"
@@ -1104,9 +1113,9 @@ conflictos:
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Mexican drug war, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mexico cartel unrest (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mexico_cartel_unrest"}
   coincidencias:
-    fuertes: [Sinaloa Cartel, Cártel de Sinaloa, CJNG, Jalisco New Generation, Cártel Jalisco, Los Chapitos, La Mayiza, Culiacán, Culiacan]
+    fuertes: [Sinaloa Cartel, Cártel de Sinaloa, CJNG, Jalisco New Generation, Cártel Jalisco, Los Chapitos, La Mayiza]
     grupos:
-      - [Mexico, Mexican, México, mexican*, Sinaloa, Michoacán, Michoacan, Guerrero, Tamaulipas, Jalisco, Sonora, Chihuahua, Guanajuato]
+      - [Mexico, Mexican, México, mexican*, Sinaloa, Culiacán, Culiacan, Michoacán, Michoacan, Guerrero, Tamaulipas, Jalisco, Sonora, Chihuahua, Guanajuato]
       - [cartel*, cártel*, gang*, narco*, killed, muertos, asesinad*, ambush*, emboscada*, gunmen, sicario*, enfrentamiento*, clash*, violence, violencia]
 
 - id: colombia
@@ -1149,8 +1158,8 @@ conflictos:
   fuentes:
     - {medio: Infobae, fecha: 2026-09-16, titulo: "El presidente de Ecuador decretó un nuevo estado de excepción y oficializó el tercer toque de queda del año", url: "https://www.infobae.com/america/america-latina/2026/09/16/el-presidente-de-ecuador-decreto-un-nuevo-estado-de-excepcion-y-oficializo-el-tercer-toque-de-queda-del-ano/"}
   coincidencias:
-    fuertes: [Los Choneros, Los Lobos, Guayaquil]
-    lugares: [Ecuador, Ecuadorian, ecuatorian*, Quito, Noboa, Esmeraldas, Manabí, Los Ríos, El Oro]
+    fuertes: [Los Choneros, Los Lobos]
+    lugares: [Guayaquil, Ecuador, Ecuadorian, ecuatorian*, Quito, Noboa, Esmeraldas, Manabí, Los Ríos, El Oro]
     paises_nombre: [ECU]
     paises_gdelt: [ECU]
 

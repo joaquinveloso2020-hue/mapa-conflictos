@@ -25,6 +25,7 @@
   function relativo(iso) {
     if (!iso) return '';
     const s = (new Date(iso).getTime() - Date.now()) / 1000;
+    if (s > 300) return 'el ' + absoluto(iso); // fecha futura: no se presenta como relativa
     const a = Math.abs(s);
     if (a < 60) return 'hace instantes';
     if (a < 3600) return rtf.format(Math.round(s / 60), 'minute');
@@ -47,6 +48,8 @@
     vista: null, // {tipo:'conflicto'|'pais'|'candidato', id}
     eventoAbierto: null,
     limiteLista: 40,
+    orden: 'recientes',     // 'recientes' | 'fuentes'
+    soloVarias: false,      // ocultar acontecimientos de un solo origen
     mapa: null,
     mapaListo: false,
     generado: null,
@@ -389,6 +392,18 @@
     return `<div class="insignias">${b.join('')}</div>`;
   }
 
+  function textoLugar(l) {
+    if (!l || !l.nombre) return 'Sin ubicación';
+    const pais = l.pais ? nombrePais(l.pais) : '';
+    const nombre = l.precision !== 'pais' && pais && l.nombre !== pais ? `${l.nombre} (${pais})` : l.nombre;
+    return `${nombre} · ${PRECISION[l.precision] || ''}`;
+  }
+
+  function sinTraducir(ev) {
+    const a = E.idx.articulo[ev.articulo_principal] || {};
+    return a.idioma && a.idioma !== 'es' && !a.titulo_es ? (IDIOMAS[a.idioma] || a.idioma) : null;
+  }
+
   function lineaFecha(ev) {
     if (ev.ultima_publicacion) return `Publicado ${relativo(ev.ultima_publicacion)}`;
     return `Detectado ${relativo(ev.ultima_deteccion)} (sin fecha de publicación)`;
@@ -403,10 +418,10 @@
       <h3>${esc(ev.titulo)}</h3>
       ${insignias(ev)}
       <div class="meta">
-        <span>${l.nombre ? esc(l.nombre) + ' · ' + esc(PRECISION[l.precision] || '') : 'Sin ubicación'}</span>
+        <span>${esc(textoLugar(l))}</span>
         <span>${esc(lineaFecha(ev))}</span>
         <span>${ev.n_articulos} artículo(s)</span>
-        ${ev.titulo_traducido ? '<span>Traducción automática</span>' : ''}
+        ${sinTraducir(ev) ? `<span class="nota-trad">Sin traducir (${esc(sinTraducir(ev))})</span>` : ev.titulo_traducido ? '<span>Traducción automática</span>' : ''}
       </div>
     </article>`);
     if (abierto) t.appendChild(detalleEvento(ev));
@@ -457,7 +472,7 @@
       partes.push('<div class="orig">Solo se dispone del titular (sin resumen del medio).</div>');
     }
     const f = [];
-    f.push(a.pub ? `Publicado: ${absoluto(a.pub)}` : 'Sin fecha de publicación');
+    f.push(a.pub ? `Publicado: ${absoluto(a.pub)}` : a.pub_descartada ? `Fecha de publicación descartada (${a.pub_descartada})` : 'Sin fecha de publicación');
     f.push(`Detectado: ${absoluto(a.detectado)}`);
     if (a.visto_gdelt) f.push(`Visto por GDELT: ${absoluto(a.visto_gdelt)}`);
     partes.push(`<div class="fechas">${esc(f.join(' · '))}</div>`);
@@ -488,8 +503,19 @@
 
   function renderNovedades(cont) {
     avisosDatos(cont);
-    const evs = eventosFiltrados();
-    cont.appendChild(el(`<div class="encabezado-lista"><strong>${evs.length} acontecimientos</strong> · últimas ${E.horas} h · más recientes primero</div>`));
+    let evs = eventosFiltrados(E.soloVarias ? (ev) => ev.fuentes_independientes >= 2 : null);
+    if (E.orden === 'fuentes') evs = evs.slice().sort((a, b) => b.fuentes_independientes - a.fuentes_independientes || (b.referencia || '').localeCompare(a.referencia || ''));
+    const barra = el(`<div class="opciones-lista">
+      <div class="segmentado chico" role="radiogroup" aria-label="Orden">
+        <button role="radio" aria-checked="${E.orden === 'recientes'}" data-orden="recientes">Más recientes</button>
+        <button role="radio" aria-checked="${E.orden === 'fuentes'}" data-orden="fuentes">Más fuentes</button>
+      </div>
+      <label class="interruptor"><input type="checkbox" ${E.soloVarias ? 'checked' : ''}> Solo con 2 o más fuentes independientes</label>
+    </div>`);
+    $$('button[data-orden]', barra).forEach((b) => b.onclick = () => { E.orden = b.dataset.orden; E.limiteLista = 40; renderPanel(); });
+    $('input', barra).onchange = (e) => { E.soloVarias = e.target.checked; E.limiteLista = 40; renderPanel(); };
+    cont.appendChild(barra);
+    cont.appendChild(el(`<div class="encabezado-lista"><strong>${evs.length} acontecimientos</strong> · últimas ${E.horas} h · ${E.orden === 'fuentes' ? 'con más fuentes primero' : 'más recientes primero'}</div>`));
     if (!evs.length) cont.appendChild(mensajeVacio('No hay novedades en este período para las categorías elegidas.'));
     evs.slice(0, E.limiteLista).forEach((ev) => cont.appendChild(tarjetaEvento(ev)));
     if (evs.length > E.limiteLista) {

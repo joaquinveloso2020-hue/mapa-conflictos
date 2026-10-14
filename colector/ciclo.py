@@ -25,6 +25,7 @@ log = logging.getLogger("colector")
 ANTIGUEDAD_MAX_DIAS = 4        # artículos publicados antes se ignoran (enfoque actual)
 MAX_SIN_CONFLICTO_CICLO = 400  # artículos armados sin conflicto guardados para descubrimiento
 MOTOR = "Argos Translate (modelos abiertos ejecutados localmente)"
+REGLAS_VERSION = 2              # subir al cambiar config/conflictos.yaml o las reglas de clasificación
 
 
 def _detectar_idioma(texto: str) -> str | None:
@@ -48,7 +49,7 @@ class Ciclo:
         self.sin_red = sin_red
         self.conf = config.cargar(url_sitio)
         self.estado = almacen.cargar(dir_estado)
-        for clave in ("fuentes", "gdelt", "robots", "avisos", "telegram", "candidatos"):
+        for clave in ("fuentes", "gdelt", "robots", "avisos", "telegram", "candidatos", "meta"):
             self.estado.setdefault(clave, {})
         self.sesion = sesion or red.crear_sesion(self.conf.usuario_agente)
         self.geo = Geografia(self.conf.paises)
@@ -125,8 +126,12 @@ class Ciclo:
             k = urls.clave(c["url"])
             if c.get("pub") and c["pub"] < limite_pub:
                 continue
-            if c.get("pub") and c["pub"] > (self.ahora + timedelta(hours=2)).isoformat():
-                c["pub"] = None  # fecha futura: no confiable
+            # Una fecha de publicación posterior a la detección no es confiable (p. ej. zona horaria
+            # mal informada por el sitio): se descarta y se indica, en lugar de mostrarla.
+            tope = min(x for x in (c.get("visto_gdelt"), self.ahora_iso) if x)
+            if c.get("pub") and c["pub"] > (datetime.fromisoformat(tope) + timedelta(minutes=10)).isoformat():
+                c["pub"] = None
+                c["pub_descartada"] = "posterior a la detección"
             if k in arts:
                 a = arts[k]
                 vias = set(a.get("vias", [a.get("via")])) | {c["via"]}
@@ -399,7 +404,35 @@ class Ciclo:
         return resultado
 
     # ------------------------------------------------------------------ ciclo
+    def reprocesar_si_cambiaron_reglas(self) -> int:
+        """Si cambió la versión de las reglas de clasificación, reclasifica lo guardado y rehace
+        los acontecimientos (los avisos ya enviados se conservan en el registro de avisos)."""
+        meta = self.estado.setdefault("meta", {})
+        if meta.get("reglas_version") == REGLAS_VERSION:
+            return 0
+        arts = self.estado["articulos"]
+        quedan = []
+        for k, a in list(arts.items()):
+            res = clasificar(a, self.conf)
+            if res:
+                a["conflictos"] = [r["id"] for r in res]
+                a["clasificacion"] = res
+                a.pop("armado_sin_conflicto", None)
+                quedan.append(k)
+            elif not a.get("armado_sin_conflicto"):
+                del arts[k]
+            else:
+                a["conflictos"] = []
+        self.estado["eventos"] = {}
+        self.enriquecer(quedan)
+        self.agrupar(quedan)
+        meta["reglas_version"] = REGLAS_VERSION
+        self.informe["advertencias"].append(
+            f"Se aplicaron reglas de clasificación nuevas (v{REGLAS_VERSION}): se reclasificaron {len(quedan)} artículos.")
+        return len(quedan)
+
     def ejecutar(self) -> dict:
+        self._etapa("reglas", self.reprocesar_si_cambiaron_reglas)
         if not self.sin_red:
             # Modelos esenciales primero (inglés<->español), antes que los de otros idiomas.
             self._etapa("modelos", self.traductor.precargar, [("en", "es"), ("es", "en")])

@@ -4,14 +4,13 @@ Reglas (en este orden; un artículo puede pertenecer a más de un conflicto, má
   1. Término fuerte del conflicto en el título/resumen (original, inglés o español)   -> puntaje 3
   2. Lugar o actor del conflicto + vocabulario de su categoría                          -> puntaje 2
   3. Todos los grupos de términos del conflicto + vocabulario de su categoría            -> puntaje 2
-  4. (solo GDELT, conflictos armados) país escenario entre los 2 más mencionados por
-     GDELT + temas de conflicto armado de GDELT                                          -> puntaje 1
+Los lugares que GDELT detecta en el artículo NO bastan para asignarlo (en la primera prueba real
+esa regla producía mucho ruido); se usan solo para geolocalizar.
 """
 from __future__ import annotations
 
 import re
 
-from .fuente_gdelt import TEMAS_ARMADOS
 from .texto import _es_sigla, normalizar, quitar_frases
 
 CATEGORIAS_ARMADAS = {"guerra_estados", "guerra_civil", "otro_armado"}
@@ -27,8 +26,6 @@ def textos_de(art: dict) -> tuple[str, str]:
 
 def clasificar(art: dict, conf, maximo: int = 3) -> list[dict]:
     original, norm = textos_de(art)
-    temas_armados = any(t.startswith(TEMAS_ARMADOS) for t in art.get("temas") or [])
-    principales = (art.get("paises_mencionados") or [])[:2]
     vocab_cache: dict[str, bool] = {}
     resultados = []
     for c in conf.conflictos:
@@ -53,9 +50,6 @@ def clasificar(art: dict, conf, maximo: int = 3) -> list[dict]:
                     puntaje, motivo = 2, f"lugar/actor: {lug[0]} + vocabulario"
             if not puntaje and vocab and c.grupos and all(g.hay(orig_q, norm_q) for g in c.grupos):
                 puntaje, motivo = 2, "combinación de términos + vocabulario"
-            if (not puntaje and "gdelt" in (art.get("vias") or [art.get("via")]) and c.categoria in CATEGORIAS_ARMADAS
-                    and temas_armados and any(p in c.paises_gdelt for p in principales)):
-                puntaje, motivo = 1, "GDELT: país escenario + temas de conflicto armado"
         if puntaje:
             resultados.append({"id": c.id, "puntaje": puntaje, "motivo": motivo})
     resultados.sort(key=lambda r: -r["puntaje"])

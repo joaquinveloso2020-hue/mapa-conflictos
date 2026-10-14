@@ -120,6 +120,8 @@ button { font: inherit; color: inherit; }
 .segmentado { display: flex; border: 1px solid var(--borde); border-radius: 8px; overflow: hidden; }
 .segmentado button { flex: 1; border: 0; background: var(--superficie); padding: 7px 4px; cursor: pointer; font-size: 14px; }
 .segmentado button[aria-checked="true"] { background: var(--acento); color: var(--acento-texto); font-weight: 600; }
+.opciones-lista { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.segmentado.chico button { padding: 5px 4px; font-size: 13px; }
 .categorias { display: flex; flex-direction: column; gap: 4px; }
 .categoria { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; padding: 3px 2px; border-radius: 6px; }
 .categoria:hover { background: var(--superficie-2); }
