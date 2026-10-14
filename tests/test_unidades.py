@@ -49,11 +49,26 @@ def test_clasifica_disputas_y_requiere_vocabulario(conf):
     assert "taiwan" in [r["id"] for r in clasificar(c, conf)]
 
 
-def test_regla_gdelt_lugar_mas_temas(conf):
+def test_lugar_gdelt_solo_no_alcanza(conf):
+    """En la prueba real, asignar por país mencionado en GDELT generaba ruido: ya no alcanza."""
     a = {"titulo": "[PRUEBA] Headline without names", "via": "gdelt", "vias": ["gdelt"],
          "temas": ["ARMEDCONFLICT", "KILL"], "paises_mencionados": ["SDN", "TCD"]}
-    res = clasificar(a, conf)
-    assert res and res[0]["id"] == "sudan" and res[0]["puntaje"] == 1
+    assert clasificar(a, conf) == []
+
+
+def test_ruido_observado_en_la_primera_prueba_real(conf):
+    # Titulares (traducidos) que la primera ejecución real asignó mal; no deben asignarse.
+    ruido = [
+        "Huracán Simón tiene en alerta a los horticultores de Culiacán y Navolato",
+        "El Telégrafo - Tráfico colapsado en Guayaquil este 14 de octubre por fallas en semáforos",
+        "Lista de destinos de American Airlines está seguro de que te golpee",
+        "Shell to invest in new gas field off Nigeria",
+    ]
+    for t in ruido:
+        assert clasificar({"titulo": t, "via": "rss"}, conf) == [], t
+    assert clasificar({"titulo": "Houthis Vow More Attacks After Strike on Aramco HQ", "via": "rss"}, conf)[0]["id"] == "yemen"
+    assert clasificar({"titulo": "Ofensiva russa deixa 600 mil ucranianos sem eletricidade", "via": "rss",
+                       "titulo_es": "Ofensiva rusa deja 600.000 ucranianos sin electricidad"}, conf)[0]["id"] == "ucrania-rusia"
 
 
 def test_marcas_titular(conf):
@@ -131,3 +146,13 @@ def test_clave_derivada_del_token_es_estable_y_valida():
     k1, k2 = derivar_clave("123:abc"), derivar_clave("123:abc")
     assert k1 == k2 and k1 != derivar_clave("123:otro")
     assert descifrar(cifrar({"x": 1}, k1), k2) == {"x": 1}
+
+
+def test_tokenizador_bpe_ida_y_vuelta(tmp_path):
+    from colector.traduccion import _TokenizadorBPE
+    codigos = tmp_path / "bpe.model"
+    codigos.write_text("#version: 0.2\nh e\nhe l\nl o</w>\n", encoding="utf-8")
+    t = _TokenizadorBPE(str(codigos), "en", "es")
+    piezas = t.codificar("hello, world")
+    assert "@@" in " ".join(piezas)
+    assert t.decodificar(piezas) == "hello, world"
