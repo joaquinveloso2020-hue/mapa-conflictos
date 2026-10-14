@@ -13,7 +13,8 @@ MAX_ARTICULOS_EVENTO = 10
 CAMPOS_ARTICULO = ("k", "url", "titulo", "titulo_es", "idioma", "resumen", "resumen_es", "traduccion",
                    "fuente_nombre", "dominio", "organizacion", "agencia", "pais_medio", "tipo_fuente",
                    "propiedad", "pub", "detectado", "visto_gdelt", "fecha_hecho", "lugar",
-                   "paises_mencionados", "marcas", "via", "fuente_estatal_de", "fuente_estatal_tipo")
+                   "paises_mencionados", "marcas", "via", "fuente_estatal_de", "fuente_estatal_tipo",
+                   "pub_descartada")
 
 
 def _escribir(directorio: str, nombre: str, datos) -> None:
