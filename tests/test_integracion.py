@@ -250,3 +250,14 @@ def test_traduccion_simulada_y_resumen_atribuido(entorno, monkeypatch):
     a = [x for x in arts.values() if "/n1" in x["url"]][0]
     assert a["titulo_es"].startswith("[en->es]") and a["resumen_es"].startswith("[en->es]")
     assert a["traduccion"]["estado"] == "ok" and a["titulo"].startswith("[PRUEBA]")
+
+
+def test_fecha_de_publicacion_posterior_a_la_deteccion_se_descarta(entorno):
+    s = entorno["sesion"]
+    t0 = datetime(2026, 10, 13, 12, 10, tzinfo=timezone.utc)
+    s.rutas[FEED_A] = Respuesta(200, rss([{"titulo": "[PRUEBA] RSF drone strike kills 5 in El Fasher",
+                                           "url": "https://prueba-a.example/f1", "resumen": "x",
+                                           "pub": rfc822(t0 + timedelta(minutes=90))}]))
+    nuevo_ciclo(entorno, t0).ejecutar()
+    a = [x for x in leer(entorno, "eventos.json")["articulos"].values() if x["url"].endswith("/f1")][0]
+    assert "pub" not in a and a["pub_descartada"] == "posterior a la detección"
