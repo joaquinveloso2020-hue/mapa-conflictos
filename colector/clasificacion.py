@@ -6,6 +6,8 @@ Reglas (en este orden; un artículo puede pertenecer a más de un conflicto, má
   3. Todos los grupos de términos del conflicto + vocabulario de su categoría            -> puntaje 2
 Los lugares que GDELT detecta en el artículo NO bastan para asignarlo (en la primera prueba real
 esa regla producía mucho ruido); se usan solo para geolocalizar.
+Si el titular habla de un desastre natural o un accidente (vocabulario "no_conflicto"), las reglas
+2 y 3 no se aplican: solo un término fuerte lo asigna.
 """
 from __future__ import annotations
 
@@ -24,8 +26,20 @@ def textos_de(art: dict) -> tuple[str, str]:
     return original, normalizar(original)
 
 
+def titulares_de(art: dict) -> tuple[str, str]:
+    texto = " \n ".join(p for p in (art.get("titulo"), art.get("titulo_en"), art.get("titulo_es")) if p)
+    return texto, normalizar(texto)
+
+
+def es_ajeno(art: dict, conf) -> bool:
+    """Titular sobre un desastre natural o un accidente."""
+    buscador = conf.vocabulario.get("no_conflicto")
+    return bool(buscador) and buscador.hay(*titulares_de(art))
+
+
 def clasificar(art: dict, conf, maximo: int = 3) -> list[dict]:
     original, norm = textos_de(art)
+    ajeno = es_ajeno(art, conf)
     vocab_cache: dict[str, bool] = {}
     resultados = []
     for c in conf.conflictos:
@@ -35,7 +49,7 @@ def clasificar(art: dict, conf, maximo: int = 3) -> list[dict]:
         hallados = c.fuertes.encontrar(original, norm) if c.fuertes else []
         if hallados:
             puntaje, motivo = 3, f"término: {hallados[0]}"
-        else:
+        elif not ajeno:
             if c.vocabulario not in vocab_cache:
                 vocab_cache[c.vocabulario] = conf.vocabulario[c.vocabulario].hay(original, norm)
             vocab = vocab_cache[c.vocabulario]
