@@ -13,7 +13,7 @@ import requests
 from . import almacen, config, fuente_gdelt, fuente_rss, red, urls
 from .agrupacion import Agrupador, Origenes, tokens_articulo
 from .cifrado import ErrorCifrado, cifrar, derivar_clave, descifrar
-from .clasificacion import Prefiltro, clasificar, marcas
+from .clasificacion import Prefiltro, clasificar, es_ajeno, marcas
 from .descubrimiento import detectar
 from .geografia import Geografia, ubicar_articulo, ubicar_evento
 from .publicacion import publicar, vistas_eventos
@@ -25,7 +25,7 @@ log = logging.getLogger("colector")
 ANTIGUEDAD_MAX_DIAS = 4        # artículos publicados antes se ignoran (enfoque actual)
 MAX_SIN_CONFLICTO_CICLO = 400  # artículos armados sin conflicto guardados para descubrimiento
 MOTOR = "Argos Translate (modelos abiertos ejecutados localmente)"
-REGLAS_VERSION = 2              # subir al cambiar config/conflictos.yaml o las reglas de clasificación
+REGLAS_VERSION = 3              # subir al cambiar config/conflictos.yaml o las reglas de clasificación
 
 
 def _detectar_idioma(texto: str) -> str | None:
@@ -279,7 +279,8 @@ class Ciclo:
                 continue
             a["conflictos"] = []
             texto = " ".join(x for x in (a.get("titulo"), a.get("titulo_en")) if x)
-            es_armado = bool(a.get("temas")) and armado.hay(texto, normalizar(texto))
+            es_armado = (bool(a.get("temas")) and armado.hay(texto, normalizar(texto))
+                         and not es_ajeno(a, self.conf))
             if es_armado and sin_conflicto < MAX_SIN_CONFLICTO_CICLO:
                 a["armado_sin_conflicto"] = True
                 sin_conflicto += 1
@@ -419,7 +420,7 @@ class Ciclo:
                 a["clasificacion"] = res
                 a.pop("armado_sin_conflicto", None)
                 quedan.append(k)
-            elif not a.get("armado_sin_conflicto"):
+            elif not a.get("armado_sin_conflicto") or es_ajeno(a, self.conf):
                 del arts[k]
             else:
                 a["conflictos"] = []
