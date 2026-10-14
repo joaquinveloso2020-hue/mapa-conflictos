@@ -126,7 +126,7 @@ def parsear_eventos(texto: str, fips_a_iso: dict) -> tuple[dict, dict, int]:
         if tipo == 0 or not pais or lat is None or lon is None:
             continue
         candidato = {
-            "nombre": c[52], "pais": pais, "coord": [round(lon, 4), round(lat, 4)],
+            "nombre": (c[52] or "").split(",")[0].strip() or c[52], "pais": pais, "coord": [round(lon, 4), round(lat, 4)],
             "precision": PRECISION_TIPO.get(tipo, "pais"), "tipo": tipo,
             "fecha_hecho": f"{c[1][:4]}-{c[1][4:6]}-{c[1][6:8]}" if len(c[1]) == 8 else None,
             "codigo": c[26], "_puntaje": (es_raiz, conflictivo, tipo in (3, 4), tipo in (2, 5)),
