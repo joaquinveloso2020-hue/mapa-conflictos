@@ -128,6 +128,7 @@ def cargar(url_sitio: str | None = None) -> Configuracion:
             fips_a_iso.setdefault(codigo, iso3)
 
     vocabulario = {k: Buscador(vocab[k]) for k in ("armado", "disputa", "diplomatico", "economico")}
+    vocabulario["no_conflicto"] = Buscador(vocab.get("no_conflicto") or [])
     marcadores = {k: Buscador(vocab[k]) for k in ("atribucion", "desmentido", "preliminar")}
 
     conflictos = []
