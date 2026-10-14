@@ -1,0 +1,112 @@
+# Ciclo de recopilación cada 15 minutos (independiente del navegador y de tu computadora).
+# Recopila noticias, actualiza el estado interno (rama "estado"), envía avisos de Telegram
+# y publica la web en GitHub Pages.
+name: Actualizar mapa
+
+on:
+  schedule:
+    # Minutos desplazados de :00 porque GitHub demora más las ejecuciones al comienzo de cada hora.
+    - cron: "4,19,34,49 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["web/**", "colector/**", "config/**", "requirements.txt", ".github/workflows/actualizar.yml"]
+
+permissions:
+  contents: write   # guardar la rama "estado"
+  pages: write      # publicar la web
+  id-token: write   # requerido por deploy-pages
+
+concurrency:
+  group: actualizar-mapa
+  cancel-in-progress: false
+
+jobs:
+  ciclo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    env:
+      DIR_MODELOS: ${{ github.workspace }}/../argos-modelos
+      ZONA_HORARIA: America/Argentina/Buenos_Aires
+      MAX_DESCARGAS_MODELOS: "8"
+    steps:
+      - name: Código
+        uses: actions/checkout@v7
+
+      - name: Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Dependencias
+        run: pip install -r requirements.txt
+
+      - name: Configurar Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Recuperar estado anterior
+        run: |
+          mkdir -p estado
+          if git ls-remote --exit-code --heads origin estado >/dev/null 2>&1; then
+            git fetch --quiet --depth=1 origin estado:refs/remotes/origin/estado
+            git archive --format=tar refs/remotes/origin/estado | tar -x -C estado
+            echo "Estado recuperado de la rama 'estado'."
+          else
+            echo "Primera ejecución: no hay estado previo."
+          fi
+
+      - name: Recuperar modelos de traducción
+        id: cache-modelos
+        uses: actions/cache/restore@v6
+        with:
+          path: ${{ env.DIR_MODELOS }}
+          key: argos-v1-${{ github.run_id }}
+          restore-keys: argos-v1-
+
+      - name: Ciclo de recopilación
+        id: ciclo
+        env:
+          URL_SITIO: ${{ steps.pages.outputs.base_url }}/
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CODIGO_VINCULACION: ${{ secrets.TELEGRAM_CODIGO_VINCULACION }}
+          ESTADO_CLAVE: ${{ secrets.ESTADO_CLAVE }}
+          GITHUB_TOKEN: ${{ github.token }}
+          PERSISTIR_CMD: bash scripts/guardar_estado.sh
+        run: python -m colector ciclo --estado estado --salida web/datos
+
+      - name: Guardar modelos de traducción (si cambiaron)
+        if: always()
+        id: lista-modelos
+        run: |
+          mkdir -p "$DIR_MODELOS"
+          echo "huella=$(ls "$DIR_MODELOS" | sort | sha1sum | cut -c1-12)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache/save@v6
+        if: always() && steps.lista-modelos.outputs.huella != ''
+        continue-on-error: true
+        with:
+          path: ${{ env.DIR_MODELOS }}
+          key: argos-v1-${{ steps.lista-modelos.outputs.huella }}
+
+      - name: Preparar sitio
+        if: always()
+        run: |
+          # Si el ciclo no pudo generar datos, se publica el sitio con un estado que lo indica.
+          mkdir -p web/datos
+          test -f web/datos/estado.json || echo '{"generado":null,"ultimo_exito":null,"ciclo_ok":false,"advertencias":["El ciclo no generó datos."],"errores":[]}' > web/datos/estado.json
+          for f in conflictos eventos candidatos; do test -f web/datos/$f.json || echo '{}' > web/datos/$f.json; done
+
+      - name: Subir sitio
+        if: always()
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: web
+
+      - name: Publicar en GitHub Pages
+        if: always()
+        id: despliegue
+        uses: actions/deploy-pages@v5
