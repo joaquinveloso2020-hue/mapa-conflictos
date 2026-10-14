@@ -63,12 +63,23 @@ def test_ruido_observado_en_la_primera_prueba_real(conf):
         "El Telégrafo - Tráfico colapsado en Guayaquil este 14 de octubre por fallas en semáforos",
         "Lista de destinos de American Airlines está seguro de que te golpee",
         "Shell to invest in new gas field off Nigeria",
+        # Segunda revisión con datos reales (14/10/2026)
+        "TRAGEDIJA KOD GRUDA: Mladić (19) iz Širokog Brijega poginuo u teškoj prometnoj nesreći",
+        "Extienden una semana la castración gratuita en Nuestras Malvinas",
+        "Robo de un celular y una tablet dejó a un hombre herido con arma de fuego en Bogotá",
+        "Tormentas severas matan a 1 en Grecia",
+        "Floods kill 20 in Sudan as rains hit Khartoum",
+        "Tribal clashes in Papua New Guinea highlands kill 12",
     ]
     for t in ruido:
         assert clasificar({"titulo": t, "via": "rss"}, conf) == [], t
     assert clasificar({"titulo": "Houthis Vow More Attacks After Strike on Aramco HQ", "via": "rss"}, conf)[0]["id"] == "yemen"
     assert clasificar({"titulo": "Ofensiva russa deixa 600 mil ucranianos sem eletricidade", "via": "rss",
                        "titulo_es": "Ofensiva rusa deja 600.000 ucranianos sin electricidad"}, conf)[0]["id"] == "ucrania-rusia"
+    # Un término fuerte asigna aunque el titular hable de un desastre.
+    assert clasificar({"titulo": "Floods kill 20 in Sudan's Darfur camps", "via": "rss"}, conf)[0]["id"] == "sudan"
+    assert clasificar({"titulo": "Chile evalúa fabricar fragatas británicas mientras crece la tensión por Malvinas",
+                       "via": "rss"}, conf)[0]["id"] == "malvinas"
 
 
 def test_marcas_titular(conf):
