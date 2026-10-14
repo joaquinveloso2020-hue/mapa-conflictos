@@ -6,3 +6,4 @@ cryptography==50.0.2
 ctranslate2==4.8.3
 sentencepiece==0.2.2
 py3langid==0.4.0
+sacremoses==0.1.1
