@@ -305,7 +305,7 @@ conflictos:
     - {medio: Al Arabiya, fecha: 2026-10-13, titulo: "Eritrea suffers ‘heavy losses’: Ethiopia militia", url: "https://english.alarabiya.net/News/world/2026/10/13/eritrea-suffers-heavy-losses-ethiopia-militia"}
   coincidencias:
     fuertes: [TPLF, Tigray People's Liberation Front, Fano militia, milicias Fano]
-    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy, Tigray, Fano, Afar, Alamata, Mekelle, Mekele, Weldiya, Amhara]
+    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy, Tigray, Fano, Afar region, región de Afar, región Afar, Alamata, Mekelle, Mekele, Weldiya, Amhara]
     paises_nombre: [ETH]
     paises_gdelt: [ETH]
 
@@ -425,7 +425,7 @@ conflictos:
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mali offensives (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mali_offensives"}
   coincidencias:
     fuertes: [JNIM, Jama'at Nusrat al-Islam, Islamic State Sahel, Estado Islámico del Sahel, IS-Sahel, Africa Corps]
-    lugares: [Sahel, Tillaberi, Tillabéri, Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Gao, Timbuktu, Tombuctú]
+    lugares: [Sahel, Tillaberi, Tillabéri, Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Timbuktu, Tombuctú]
     paises_nombre: [MLI, BFA, NER]
     paises_gdelt: [MLI, BFA, NER]
     quitar: [Nigeria, Nigerian, nigeriano, nigeriana]
@@ -473,7 +473,7 @@ conflictos:
     - {medio: Al Jazeera, fecha: 2026-09-22, titulo: "Hundreds flee homes in Far North Cameroon after armed group raid kills 15", url: "https://www.aljazeera.com/news/2026/9/22/hundreds-flee-homes-in-far-north-cameroon-after-armed-group-raid-kills-15"}
   coincidencias:
     fuertes: [Ambazonia, Ambazonian, Anglophone separatist*, separatistas anglófonos]
-    lugares: [Bamenda, Buea, Anglophone region*, Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North, Extremo Norte]
+    lugares: [Bamenda, Buea, Anglophone region*, Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North region, Extremo Norte]
     paises_nombre: [CMR]
     paises_gdelt: [CMR]
 
@@ -679,6 +679,7 @@ conflictos:
   coincidencias:
     fuertes: [TPNPB, Free Papua Movement, West Papua Liberation Army]
     lugares: [Papua, Papúa, West Papua, Papua Barat, Jayawijaya, Intan Jaya, Nduga]
+    quitar: [Papua New Guinea, Papúa Nueva Guinea, Papua Nueva Guinea]
 
 - id: tailandia-sur
   nombre: "Tailandia: insurgencia en el extremo sur"
@@ -697,7 +698,7 @@ conflictos:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Tailandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
     fuertes: [Barisan Revolusi Nasional]
-    lugares: [Narathiwat, Pattani, Yala province, Deep South, BRN]
+    lugares: [Narathiwat, Pattani, Yala province, southern Thailand, sur de Tailandia, BRN]
 
 - id: tailandia-camboya
   nombre: "Tailandia–Camboya: disputa fronteriza"
@@ -960,7 +961,7 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Bosnia y Herzegovina)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
   coincidencias:
-    fuertes: [Republika Srpska, Mladic, Mladić, Dodik]
+    fuertes: [Republika Srpska, Dodik]
     grupos:
       - [Bosnia, Bosnian, bosnio*, Sarajevo]
       - [Serbia, Serbian, serbio*, Belgrade, Belgrado, Vucic, Vučić]
@@ -984,8 +985,7 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Kosovo)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
   coincidencias:
-    fuertes: [Kurti, Thaci, Thaçi, KFOR]
-    lugares: [Kosovo, Pristina, Kosovar*]
+    lugares: [Kosovo, Pristina, Kosovar*, Kurti, Thaci, Thaçi, KFOR]
 
 - id: georgia-abjasia-osetia
   nombre: "Georgia: Abjasia y Osetia del Sur"
@@ -1137,7 +1137,7 @@ conflictos:
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Colombian conflict, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
   coincidencias:
     fuertes: [ELN, National Liberation Army, Ejército de Liberación Nacional, FARC dissidents, disidencias de las FARC, disidencia*, Clan del Golfo, Gulf Clan, Catatumbo, Segunda Marquetalia]
-    lugares: [Colombia, Colombian, colombian*, Bogotá, Bogota, Cauca, Antioquia, Norte de Santander, Arauca, Nariño]
+    lugares: [Colombia, Colombian, colombian*, Cauca, Antioquia, Norte de Santander, Arauca, Nariño]
     paises_nombre: [COL]
     paises_gdelt: [COL]
 
@@ -1206,4 +1206,5 @@ conflictos:
     - {medio: Infobae, fecha: 2026-10-13, titulo: "Malvinas: venció el ultimátum de la Argentina al Reino Unido y es inminente el pedido de arbitraje al Tribunal del Mar", url: "https://www.infobae.com/politica/2026/10/13/malvinas-vencio-el-ultimatum-de-la-argentina-al-reino-unido-y-es-inminente-el-pedido-de-arbitraje-al-tribunal-del-mar/"}
     - {medio: Infobae, fecha: 2026-09-30, titulo: "Malvinas: el Reino Unido rechazó el arbitraje que pide Argentina para frenar Sea Lion", url: "https://www.infobae.com/politica/2026/09/30/malvinas-el-reino-unido-rechazo-el-arbitraje-que-pide-argentina-para-frenar-sea-lion-y-advirtio-que-la-ofensiva-afecta-la-relacion-bilateral/"}
   coincidencias:
-    fuertes: [Malvinas, Falklands, Falkland Islands, Islas Malvinas, Sea Lion project, proyecto Sea Lion, Navitas, Port Stanley, Puerto Argentino]
+    lugares: [Malvinas, Islas Malvinas]
+    fuertes: [Falklands, Falkland Islands, Sea Lion project, proyecto Sea Lion, Navitas, Port Stanley, Puerto Argentino]
