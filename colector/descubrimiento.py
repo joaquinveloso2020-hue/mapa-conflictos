@@ -7,7 +7,9 @@ Un candidato NO es un conflicto del registro. Reglas explícitas:
   - Señal B (artículos): artículos con temas o vocabulario de conflicto armado que no coinciden con
     ningún conflicto del registro y cuyo país principal es ese país; se cuentan orígenes independientes.
   - "Detectado": señal A ≥ 6 dominios en ≥ 3 franjas de 15 min, y señal B ≥ 3 orígenes,
-    de los cuales ≥ 1 es de un medio con sede en otro país.
+    de los cuales ≥ 3 (y al menos un 30 %) son de medios con sede en otro país. La exigencia de
+    cobertura internacional evita que la violencia criminal cubierta solo por medios locales
+    (frecuente en países grandes) aparezca como una situación nueva.
   - "Respaldo suficiente para revisión": además, señal B ≥ 5 orígenes en ≥ 2 días distintos.
 Ningún candidato se incorpora solo al registro: una persona debe revisarlo y editar
 config/conflictos.yaml (la web ofrece un borrador).
@@ -58,7 +60,8 @@ def detectar(conf, articulos: dict, gdelt_desc: dict, previos: dict, ahora: date
         dias = {(fecha_referencia(a) or "")[:10] for a in arts}
         a_dom = len(senal_a.get(pais, ()))
         a_franjas = len(franjas_por_pais.get(pais, ()))
-        detectado = a_dom >= 6 and a_franjas >= 3 and len(origenes) >= 3 and len(extranjeros) >= 1
+        internacional = len(extranjeros) >= 3 and len(extranjeros) >= 0.3 * max(len(origenes), 1)
+        detectado = a_dom >= 6 and a_franjas >= 3 and len(origenes) >= 3 and internacional
         if not detectado:
             continue
         respaldo = len(origenes) >= 5 and len(dias) >= 2
