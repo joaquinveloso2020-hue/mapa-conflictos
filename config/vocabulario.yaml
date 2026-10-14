@@ -1,0 +1,342 @@
+# Vocabulario por tipo de conflicto. Se busca en el texto original, en su traducción
+# automática al inglés (pivote) y en la traducción al español. Coincidencia por palabra
+# completa, sin distinguir mayúsculas. Un "*" final indica prefijo (attack* = attack, attacks, attacked...).
+armado:
+  - attack*
+  - strike
+  - strikes
+  - struck
+  - airstrike*
+  - air strike*
+  - drone*
+  - missile*
+  - rocket*
+  - shell*
+  - bomb*
+  - explosion*
+  - blast*
+  - kill*
+  - dead
+  - death*
+  - died
+  - casualt*
+  - wounded
+  - injured
+  - clash*
+  - fighting
+  - fight*
+  - battle*
+  - offensive
+  - counteroffensive
+  - troop*
+  - soldier*
+  - army
+  - armies
+  - military
+  - militia*
+  - rebel*
+  - insurgen*
+  - militant*
+  - jihadist*
+  - gunmen
+  - armed
+  - ambush*
+  - siege*
+  - besieg*
+  - raid*
+  - invasion
+  - invad*
+  - occup*
+  - ceasefire
+  - cease-fire
+  - truce
+  - war
+  - wars
+  - frontline*
+  - front line*
+  - hostage*
+  - abduct*
+  - kidnap*
+  - massacre*
+  - displaced
+  - refugee*
+  - humanitarian
+  - peace talks
+  - peace deal
+  - peace agreement
+  - captur*
+  - seiz*
+  - retak*
+  - recaptur*
+  - withdraw*
+  - artillery
+  - warplane*
+  - gang*
+  - cartel*
+  - violence
+  - curfew
+  - state of emergency
+  - coup
+  - mutiny
+  - shot dead
+  - gunfire
+  - ataque*
+  - atac*
+  - bombarde*
+  - dron*
+  - misil*
+  - cohete*
+  - muerto*
+  - murió
+  - fallecid*
+  - herido*
+  - combate*
+  - enfrentamiento*
+  - ofensiva
+  - tropas
+  - soldado*
+  - ejército
+  - milicia*
+  - rebelde*
+  - insurgente*
+  - yihadista*
+  - emboscada*
+  - asedi*
+  - invasión
+  - ocupación
+  - alto el fuego
+  - tregua
+  - guerra
+  - rehén
+  - rehenes
+  - secuestr*
+  - masacre*
+  - desplazad*
+  - refugiad*
+  - pandilla*
+  - cártel*
+  - violencia
+  - toque de queda
+  - estado de excepción
+  - golpe de estado
+disputa:
+  - sovereignty
+  - territor*
+  - disput*
+  - claim*
+  - border*
+  - boundary
+  - maritime
+  - coast guard
+  - coastguard
+  - island*
+  - shoal
+  - reef
+  - incursion*
+  - patrol*
+  - drill*
+  - exercise*
+  - warship*
+  - vessel*
+  - annex*
+  - ICJ
+  - World Court
+  - arbitration
+  - tribunal
+  - referendum
+  - recogni*
+  - independence
+  - blockade
+  - oil
+  - drilling
+  - fishing
+  - soberanía
+  - territori*
+  - disputa*
+  - reclam*
+  - frontera*
+  - limítrofe
+  - marítim*
+  - guardacostas
+  - isla*
+  - arrecife
+  - incursión
+  - patrulla*
+  - maniobras
+  - ejercicio*
+  - buque*
+  - anexión
+  - CIJ
+  - arbitraje
+  - referéndum
+  - reconocimiento
+  - independencia
+  - bloqueo
+  - petróleo
+  - pesca
+diplomatico:
+  - ambassador*
+  - envoy*
+  - summon*
+  - expel*
+  - expuls*
+  - diplomat*
+  - relations
+  - ties
+  - talks
+  - summit*
+  - protest*
+  - condemn*
+  - warn*
+  - threat*
+  - tension*
+  - sanction*
+  - retaliat*
+  - accus*
+  - spat
+  - row
+  - crisis
+  - recall*
+  - missile*
+  - launch*
+  - drill*
+  - exercise*
+  - airspace
+  - violation*
+  - incursion*
+  - drone*
+  - provocation*
+  - embajador*
+  - enviado*
+  - convoc*
+  - diplomátic*
+  - relaciones
+  - conversaciones
+  - cumbre
+  - protesta*
+  - conden*
+  - advierte
+  - advirtió
+  - amenaz*
+  - tensión
+  - tensiones
+  - acusa*
+  - crisis
+  - misil*
+  - lanzamiento*
+  - maniobras
+  - espacio aéreo
+  - violación
+  - provocación
+economico:
+  - sanction*
+  - tariff*
+  - duty
+  - duties
+  - export control*
+  - embargo*
+  - blacklist*
+  - entity list
+  - asset freeze
+  - frozen assets
+  - price cap
+  - trade war
+  - trade deal
+  - trade talks
+  - trade truce
+  - levy
+  - levies
+  - countermeasure*
+  - retaliat*
+  - import*
+  - export*
+  - restriction*
+  - listings
+  - designat*
+  - rare earth*
+  - chips
+  - semiconductor*
+  - sancion*
+  - arancel*
+  - controles a la exportación
+  - congelamiento
+  - activos congelados
+  - tope de precio*
+  - guerra comercial
+  - acuerdo comercial
+  - represalia*
+  - importacion*
+  - exportacion*
+  - restriccion*
+  - tierras raras
+# Marcadores que indican que un titular informa una afirmación de una parte.
+atribucion:
+  - says
+  - said
+  - claims
+  - claimed
+  - alleges
+  - alleged
+  - according to
+  - accuses
+  - accused
+  - asserts
+  - insists
+  - announces
+  - announced
+  - dice
+  - dijo
+  - afirma
+  - afirmó
+  - asegura
+  - aseguró
+  - según
+  - acusa
+  - acusó
+  - denuncia
+  - denunció
+  - anuncia
+  - anunció
+# Marcadores de desmentido o versión contrapuesta.
+desmentido:
+  - denies
+  - denied
+  - deny
+  - rejects claim*
+  - rejected claim*
+  - refutes
+  - refuted
+  - dismisses
+  - dismissed
+  - false claim*
+  - fake
+  - disputes account
+  - contradicts
+  - niega
+  - negó
+  - desmiente
+  - desmintió
+  - rechaza la versión
+  - rechazó la versión
+  - falso
+  - contradice
+# Marcadores de reporte preliminar o no confirmado.
+preliminar:
+  - breaking
+  - unconfirmed
+  - reportedly
+  - reports say
+  - initial reports
+  - early reports
+  - preliminary
+  - unverified
+  - developing
+  - sources say
+  - urgent
+  - última hora
+  - sin confirmar
+  - al parecer
+  - según informes preliminares
+  - informes iniciales
+  - en desarrollo
+  - urgente

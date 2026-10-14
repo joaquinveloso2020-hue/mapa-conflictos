@@ -1,0 +1,1200 @@
+# Registro de conflictos y situaciones vigentes.
+#
+# Cada entrada está respaldada por fuentes fechadas (campo "fuentes") y tiene fecha de última
+# revisión humana ("revisado"). La inclusión NO se decide por memoria: se verificó con fuentes
+# consultadas el 13/10/2026 (Crisis Group CrisisWatch sept. 2026, Security Council Report oct. 2026,
+# Wikipedia "List of ongoing armed conflicts" y noticias recientes).
+#
+# Un conflicto NO se da por terminado automáticamente por falta de noticias: solo cambia su
+# "estado" con una revisión humana (editar este archivo). Si "revisado" tiene más de 90 días,
+# la web muestra "revisión pendiente".
+#
+# Campos de "coincidencias" (cómo se asignan artículos a cada conflicto):
+#   fuertes:   cualquiera de estos términos asigna el artículo (sin requerir vocabulario).
+#   lugares:   términos de lugar/actor que requieren además vocabulario de la categoría.
+#   grupos:    lista de grupos; TODOS deben aparecer (al menos un término de cada uno) + vocabulario.
+#   paises_nombre: países cuyos nombres (en ~20 idiomas, de Natural Earth) cuentan como "lugares".
+#   paises_gdelt:  países cuya mención geográfica en GDELT + temas de conflicto armado asigna el artículo.
+#   quitar:    frases que se eliminan antes de evaluar "lugares" (p. ej. "South Sudan" para "Sudan").
+# Términos en MAYÚSCULAS de hasta 5 letras (siglas) distinguen mayúsculas.
+
+conflictos:
+
+- id: ucrania-rusia
+  nombre: Guerra Rusia–Ucrania
+  categoria: guerra_estados
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Guerra a gran escala desde la invasión rusa de febrero de 2022 (conflicto iniciado en 2014).
+    En septiembre y octubre de 2026 siguen los combates en Donetsk, los ataques rusos con misiles
+    y drones contra ciudades e infraestructura energética de Ucrania y los ataques ucranianos contra
+    refinerías y aeródromos en Rusia. Las conversaciones con mediación de EE.UU. están estancadas.
+  actores: [Fuerzas Armadas de Rusia, Fuerzas Armadas de Ucrania]
+  paises_escenario: [UKR, RUS]
+  paises_participantes: [BLR]
+  partes:
+    - {nombre: Rusia, paises: [RUS]}
+    - {nombre: Ucrania, paises: [UKR]}
+  zonas: [ne-crimea]
+  fuentes:
+    - {medio: Al Jazeera, fecha: 2026-10-09, titulo: "Ukraine pushes Russia back in Donetsk as military, civilian casualties soar", url: "https://www.aljazeera.com/news/2026/10/9/ukraine-pushes-russia-back-in-donetsk-as-military-civilian-casualties-soar"}
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Ucrania, Rusia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    fuertes: [Zelensky, Zelenskyy, Zelenskiy, Donetsk, Luhansk, Zaporizhzhia, Kharkiv, Kherson, Donbas, Pokrovsk, Kramatorsk, Sloviansk, Lyman, Zaporiyia, Járkov, Jersón, Donbás]
+    lugares: [Kyiv, Kiev, Odesa, Odessa, Dnipro, Sumy, Belgorod, Kursk, Bryansk, Crimea, Crimean, Black Sea Fleet, Ukrainian, Ukrainians, ucranian*]
+    paises_nombre: [UKR]
+    paises_gdelt: [UKR]
+
+- id: iran-guerra
+  nombre: Guerra de Irán (EE.UU. e Israel contra Irán y sus aliados)
+  categoria: guerra_estados
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Desde el 28 de febrero de 2026, ataques de EE.UU. e Israel contra Irán y represalias iraníes
+    contra Israel, bases estadounidenses y países del Golfo, con una crisis en el estrecho de Ormuz.
+    Tras treguas fallidas, a comienzos de septiembre de 2026 hubo nuevos intercambios de ataques y
+    luego una pausa con gestiones diplomáticas sin acuerdo; a mediados de octubre se informan nuevos
+    ataques en Ormuz.
+  actores: [Estados Unidos, Israel, Irán, Guardia Revolucionaria iraní, aliados regionales de Irán]
+  paises_escenario: [IRN, ISR, ARE, KWT, BHR, QAT, OMN, JOR]
+  paises_participantes: [USA, SAU]
+  partes:
+    - {nombre: Estados Unidos, paises: [USA]}
+    - {nombre: Israel, paises: [ISR]}
+    - {nombre: Irán, paises: [IRN]}
+    - {nombre: Estados del Golfo atacados, paises: [SAU, ARE, KWT, BHR]}
+  zonas: [ne-abu-musa-i]
+  fuentes:
+    - {medio: Al Jazeera, fecha: 2026-10-11, titulo: "Hormuz attacks intensify as efforts to end war on Iran stall", url: "https://aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall"}
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irán, Kuwait, Baréin, Jordania)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Iran war (consultado)", url: "https://en.wikipedia.org/wiki/2026_Iran_war"}
+  coincidencias:
+    fuertes: [Strait of Hormuz, Hormuz, Ormuz, IRGC, Revolutionary Guard, Guardia Revolucionaria, Iran war, guerra de Irán, guerra con Irán]
+    grupos:
+      - [Iran, Iranian, Tehran, Irán, iraní*, Teherán]
+      - [strike*, attack*, missile*, drone*, war, ceasefire, truce, bomb*, ataque*, misil*, guerra, tregua, alto el fuego, killed, muertos]
+    paises_gdelt: [IRN, KWT, BHR, QAT, ARE, OMN]
+
+- id: israel-palestina
+  nombre: Israel–Palestina (Gaza y Cisjordania)
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La tregua de octubre de 2025 en Gaza sigue formalmente vigente, pero con ataques israelíes letales
+    (más de 130 muertos en septiembre de 2026, según Crisis Group) y una situación humanitaria grave.
+    En Cisjordania aumentan los ataques de colonos contra palestinos y las incursiones militares israelíes.
+  actores: [Fuerzas de Defensa de Israel, Hamás, otros grupos armados palestinos, colonos israelíes, Autoridad Palestina]
+  paises_escenario: [PSE]
+  paises_participantes: [ISR]
+  partes:
+    - {nombre: Israel, paises: [ISR]}
+    - {nombre: Autoridades palestinas y Hamás, paises: [PSE]}
+  zonas: [ne-east-jerusalem]
+  fuentes:
+    - {medio: Al Jazeera, fecha: 2026-10-13, titulo: "Palestine weekly: Gaza marks year of ‘ceasefire’ with more Israeli killing", url: "https://www.aljazeera.com/news/2026/10/13/palestine-weekly-gaza-marks-year-of-ceasefire-with-more-israeli-killing"}
+    - {medio: Amnistía Internacional, fecha: 2026-10-09, titulo: "Gaza ceasefire exists in name only, say more than 100 organizations", url: "https://www.amnesty.org/en/latest/news/2026/10/gaza-ceasefire-exists-in-name-only-say-more-than-100-organizations/"}
+    - {medio: Al Jazeera, fecha: 2026-10-09, titulo: "Israeli settler attacks target Palestinian olive harvest in West Bank", url: "https://www.aljazeera.com/news/2026/10/9/israeli-settler-attacks-target-palestinian-olive-harvest-in-west-bank"}
+  coincidencias:
+    fuertes: [Gaza, Hamas, Hamás, West Bank, Cisjordania, Ramallah, Jenin, Nablus, Hebron, Rafah, Khan Younis, Jan Yunis, Tulkarem, settler*, colono*, UNRWA, Palestinian*, palestin*]
+    paises_gdelt: [PSE]
+
+- id: israel-hezbola
+  nombre: Israel–Hezbolá (Líbano)
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Israel y Hezbolá combaten desde el 2 de marzo de 2026, tras los ataques contra Irán, e Israel
+    ocupa partes del sur del Líbano. Pese al marco trilateral firmado el 26 de junio, siguen los
+    enfrentamientos; en septiembre Israel tomó el control de la colina de Ali al-Taher, cerca de
+    Nabatieh, y las conversaciones Líbano–Israel se postergaron a octubre.
+  actores: [Fuerzas de Defensa de Israel, Hezbolá, Fuerzas Armadas del Líbano, FINUL (ONU)]
+  paises_escenario: [LBN]
+  paises_participantes: [ISR]
+  partes:
+    - {nombre: Israel, paises: [ISR]}
+    - {nombre: Líbano, paises: [LBN]}
+  zonas: [ne-shebaa-farms]
+  fuentes:
+    - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Lebanon, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/lebanon-40.php"}
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Líbano)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+  coincidencias:
+    fuertes: [Hezbollah, Hizbollah, Hezbolá, Hizbulá, UNIFIL, FINUL, Nabatieh, Nabatiye]
+    lugares: [Lebanon, Lebanese, Líbano, libanés, libanes*, Beirut, Tyre, Sidon, Litani, Bekaa]
+    paises_nombre: [LBN]
+    paises_gdelt: [LBN]
+
+- id: yemen
+  nombre: Guerra en Yemen y ataques hutíes contra Arabia Saudita
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    En septiembre de 2026 se rompió la tregua de 2022: los hutíes tomaron Moca y gran parte de la
+    costa del mar Rojo hasta Bab el-Mandeb, intensificaron sus ataques sobre Taiz y lanzaron misiles
+    y drones contra ciudades saudíes. Arabia Saudita intensifica los bombardeos en apoyo del gobierno
+    reconocido internacionalmente y prepara una ofensiva. También hay ataques a la navegación en el mar Rojo.
+  actores: [Hutíes (Ansar Allah), Gobierno yemení reconocido internacionalmente, Coalición liderada por Arabia Saudita]
+  paises_escenario: [YEM, SAU]
+  paises_participantes: [ARE]
+  partes:
+    - {nombre: Hutíes, paises: []}
+    - {nombre: Arabia Saudita y gobierno yemení, paises: [SAU, YEM]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Yemen, Arabia Saudita)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Security Council Report, fecha: 2026-09-30, titulo: "October 2026 Monthly Forecast (Yemen)", url: "https://www.securitycouncilreport.org/atf/cf/%7B65BFCF9B-6D27-4E9C-8CD3-CF6E4FF96FF9%7D/2026_10_forecast.pdf"}
+    - {medio: Axios, fecha: 2026-10-02, titulo: "Saudis plan major offensive against the Houthis, but U.S. won't join for now", url: "https://www.axios.com/2026/10/02/saudis-yemen-houthis-bab-al-mandeb-strait"}
+  coincidencias:
+    fuertes: [Houthi, Houthis, hutí, hutíes, Ansar Allah, Ansarallah, Bab al-Mandab, Bab el-Mandeb, Bab el Mandeb, Mokha, Moca, Hodeidah, Hodeida, Taiz, Sanaa, Saná, Marib]
+    lugares: [Yemen, Yemeni, yemení, Aden, Adén, Red Sea, mar Rojo, Jizan, Najran]
+    paises_nombre: [YEM]
+    paises_gdelt: [YEM, SAU]
+
+- id: siria
+  nombre: "Siria: enfrentamientos internos e incursiones israelíes"
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Tras la caída de Asad (diciembre de 2024) persisten choques entre fuerzas del gobierno y
+    combatientes drusos en Sueida, tensiones en el noreste con las Fuerzas Democráticas Sirias e
+    incursiones y bombardeos israelíes en Quneitra y Daraa. Las conversaciones de seguridad
+    Israel–Siria con mediación de EE.UU. se interrumpieron en agosto de 2026.
+  actores: [Gobierno sirio, Guardia Nacional drusa, Fuerzas Democráticas Sirias (FDS), Fuerzas de Defensa de Israel]
+  paises_escenario: [SYR]
+  paises_participantes: [ISR, TUR]
+  partes:
+    - {nombre: Gobierno sirio, paises: [SYR]}
+    - {nombre: Israel, paises: [ISR]}
+  zonas: [ne-golan-heights]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Siria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Syria, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/syria-96.php"}
+  coincidencias:
+    fuertes: [Suwayda, Sweida, Sueida, Quneitra, Kobani, SDF, Syrian Democratic Forces, Fuerzas Democráticas Sirias, Druze, drusos, Golan, Golán]
+    lugares: [Syria, Syrian, Siria, sirio*, Damascus, Damasco, Aleppo, Alepo, Idlib, Homs, Latakia, Deir ez-Zor, Raqqa, Daraa]
+    paises_nombre: [SYR]
+    paises_gdelt: [SYR]
+
+- id: irak
+  nombre: "Irak: milicias y ataques en el contexto de la guerra regional"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La coalición liderada por EE.UU. retiró todas sus fuerzas el 30 de septiembre de 2026. Drones de
+    grupos alineados con Irán atacaron el oleoducto saudí Este-Oeste y el gobierno fijó junio de 2027
+    como plazo para el desarme de las milicias.
+  actores: [Gobierno iraquí, Fuerzas de Movilización Popular, Resistencia Islámica en Irak, Estado Islámico (remanentes)]
+  paises_escenario: [IRQ]
+  paises_participantes: [USA, IRN]
+  partes:
+    - {nombre: Gobierno iraquí, paises: [IRQ]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irak)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Iraqi conflict, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
+  coincidencias:
+    fuertes: [Popular Mobilization Forces, PMF, Kataib Hezbollah, Islamic Resistance in Iraq, Resistencia Islámica en Irak]
+    lugares: [Iraq, Iraqi, Irak, iraquí*, Baghdad, Bagdad, Mosul, Erbil, Kirkuk, Basra, Anbar]
+    paises_nombre: [IRQ]
+    paises_gdelt: [IRQ]
+
+- id: libia
+  nombre: "Libia: división política y violencia armada"
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Persiste la división entre las autoridades del este y del oeste. En septiembre de 2026 hubo ataques
+    con drones contra instalaciones energéticas en Trípoli y Zauiya y una disputa sobre el acuerdo
+    electoral respaldado por la ONU.
+  actores: [Gobierno de Unidad Nacional (Trípoli), Cámara de Representantes y Ejército Nacional Libio (este), milicias]
+  paises_escenario: [LBY]
+  paises_participantes: []
+  partes:
+    - {nombre: Autoridades libias, paises: [LBY]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Libia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Libyan crisis, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
+  coincidencias:
+    fuertes: [Haftar, Dbeibah, Libyan National Army]
+    lugares: [Libya, Libyan, Libia, libio*, Tripoli, Trípoli, Benghazi, Bengasi, Zawiya, Misrata, Sirte]
+    paises_nombre: [LBY]
+    paises_gdelt: [LBY]
+
+- id: sudan
+  nombre: Guerra civil en Sudán
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Guerra entre el ejército sudanés (SAF) y las Fuerzas de Apoyo Rápido (RSF) desde abril de 2023,
+    con una crisis humanitaria de enorme escala. En septiembre y octubre de 2026 continúan los combates
+    terrestres y con drones en Kordofán y Nilo Azul; el ejército afirma haber tomado un bastión de las
+    RSF en Kordofán del Norte.
+  actores: [Fuerzas Armadas Sudanesas (SAF), Fuerzas de Apoyo Rápido (RSF), SPLM-N]
+  paises_escenario: [SDN]
+  paises_participantes: []
+  partes:
+    - {nombre: Ejército sudanés, paises: [SDN]}
+    - {nombre: Fuerzas de Apoyo Rápido, paises: []}
+  zonas: [ne-halayib-triangle]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Sudán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-10-02, titulo: "Sudan’s army says it captured RSF stronghold in North Kordofan", url: "https://www.aljazeera.com/news/2026/10/2/sudans-army-says-it-captured-rsf-stronghold-in-north-kordofan"}
+  coincidencias:
+    fuertes: [Rapid Support Forces, Fuerzas de Apoyo Rápido, Hemedti, El Fasher, El-Fasher, El Obeid, El-Obeid, Kordofan, Kordofán, Darfur, Port Sudan, Puerto Sudán, Omdurman, Burhan]
+    lugares: [Sudan, Sudanese, Sudán, sudanés, sudanes*, Khartoum, Jartum, RSF, SAF, Blue Nile, Nilo Azul]
+    paises_nombre: [SDN]
+    paises_gdelt: [SDN]
+    quitar: [South Sudan, Sudán del Sur, South Sudanese, sursudanés]
+
+- id: sudan-del-sur
+  nombre: "Sudán del Sur: violencia política y armada"
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    El presidente Kiir disolvió el gobierno de unidad; hay enfrentamientos entre facciones del SPLM-IO
+    en Unity y Ecuatoria Central, combates en Alto Nilo y violencia comunitaria en Abyei (septiembre de 2026).
+  actores: [Fuerzas de Defensa del Pueblo de Sudán del Sur (SSPDF), SPLM-IO y sus facciones, milicias locales]
+  paises_escenario: [SSD]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Sudán del Sur, paises: [SSD]}
+  zonas: [ne-abyei, ne-ilemi-triangle]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Sudán del Sur)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Jonglei offensive (consultado)", url: "https://en.wikipedia.org/wiki/2026_Jonglei_offensive"}
+  coincidencias:
+    fuertes: [SPLA-IO, SPLM-IO, SSPDF, Jonglei, Abyei, Riek Machar]
+    lugares: [South Sudan, Sudán del Sur, South Sudanese, sursudanés, Juba, Upper Nile, Alto Nilo, Salva Kiir]
+    paises_gdelt: [SSD]
+
+- id: etiopia-norte
+  nombre: Guerra en el norte de Etiopía (Tigray, Afar y Amhara)
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Desde septiembre de 2026 hay una guerra a gran escala entre las fuerzas federales y el Frente
+    Popular de Liberación de Tigray (TPLF) junto con otros grupos rebeldes, con combates en Tigray,
+    Afar y Amhara y ataques con drones. Continúa además la insurgencia Fano en Amhara. Crisis Group
+    advierte sobre una posible participación de Eritrea.
+  actores: [Fuerzas federales de Etiopía, TPLF, AFNM, ARDUF, milicias Fano]
+  paises_escenario: [ETH]
+  paises_participantes: [ERI]
+  partes:
+    - {nombre: Gobierno de Etiopía, paises: [ETH]}
+    - {nombre: Eritrea, paises: [ERI]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Etiopía, Eritrea)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-09-24, titulo: "Fighting widens across Ethiopia as Tigray clashes escalate", url: "https://www.aljazeera.com/amp/news/2026/9/24/fighting-widens-across-ethiopia-as-tigray-clashes-escalate"}
+    - {medio: Al Arabiya, fecha: 2026-10-13, titulo: "Eritrea suffers ‘heavy losses’: Ethiopia militia", url: "https://english.alarabiya.net/News/world/2026/10/13/eritrea-suffers-heavy-losses-ethiopia-militia"}
+  coincidencias:
+    fuertes: [Tigray, TPLF, Fano, Afar region, Alamata, Mekelle, Mekele, Weldiya, Amhara]
+    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy]
+    paises_nombre: [ETH]
+    paises_gdelt: [ETH]
+
+- id: etiopia-eritrea-egipto
+  nombre: "Etiopía: ruptura con Eritrea y tensión con Egipto"
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Ruptura diplomática entre Etiopía y Eritrea en el contexto de la guerra en Tigray. Etiopía acusa
+    a Egipto de respaldar a los rebeldes; hubo expulsiones de diplomáticos egipcios y etíopes el 1 y 2
+    de octubre de 2026, según Crisis Group.
+  actores: [Gobierno de Etiopía, Gobierno de Eritrea, Gobierno de Egipto]
+  paises_escenario: [ETH, ERI, EGY]
+  paises_participantes: []
+  partes:
+    - {nombre: Etiopía, paises: [ETH]}
+    - {nombre: Eritrea, paises: [ERI]}
+    - {nombre: Egipto, paises: [EGY]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África (Eritrea) y Oriente Medio y Norte de África (Egipto), septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+  coincidencias:
+    fuertes: [Isaias Afwerki, Assab, Asmara]
+    grupos:
+      - [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Abiy]
+      - [Eritrea, Eritrean, eritreo*, Egypt, Egyptian, Egipto, egipci*, Cairo, Sisi]
+
+- id: rd-congo
+  nombre: Este de la RD del Congo (M23/AFC y otros grupos armados)
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Combates entre el M23/AFC —que la ONU señala como respaldado por Ruanda— y fuerzas congoleñas y
+    aliadas en Kivu del Norte y del Sur, además de violencia de CODECO y CRP en Ituri. En agosto de 2026
+    se acordó una hoja de ruta de paz, pero en octubre continúan los combates mientras la Unión Africana
+    impulsa conversaciones.
+  actores: [Fuerzas Armadas de la RD del Congo (FARDC), M23/AFC, Wazalendo, CODECO, ADF]
+  paises_escenario: [COD]
+  paises_participantes: [RWA, BDI, UGA]
+  partes:
+    - {nombre: RD del Congo, paises: [COD]}
+    - {nombre: Ruanda, paises: [RWA]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (RD del Congo, Ruanda, Burundi)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-10-13, titulo: "African Union holds Kigali talks as fighting continues in eastern DRC", url: "https://www.aljazeera.com/news/2026/10/13/african-union-holds-kigali-talks-as-fighting-continues-in-eastern-drc"}
+  coincidencias:
+    fuertes: [M23, AFC/M23, Alliance Fleuve Congo, CODECO, Wazalendo, North Kivu, South Kivu, Kivu del Norte, Kivu del Sur, Goma, Bukavu, Ituri, Masisi, Walikale, Uvira, MONUSCO]
+    lugares: [Congo, Congolese, congoleñ*, DRC, RDC, Kinshasa, Tshisekedi, Rwanda, Ruanda, Kagame]
+    paises_nombre: [COD]
+    paises_gdelt: [COD]
+
+- id: somalia
+  nombre: "Somalia: insurgencia de al-Shabaab"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    El gobierno federal mantiene operaciones contra al-Shabaab en Shabelle Medio y Bajo, mientras el
+    grupo ataca a fuerzas de seguridad también en Kenia (Mandera, Lamu, Garissa). Hay además disputas
+    armadas y políticas entre el gobierno federal y estados miembros.
+  actores: [Gobierno Federal de Somalia, al-Shabaab, Estado Islámico en Somalia, misión de la Unión Africana (AUSSOM)]
+  paises_escenario: [SOM, KEN]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Somalia, paises: [SOM]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Somalia, Kenia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: FDD's Long War Journal, fecha: 2026-10-08, titulo: "Somalia claims to have killed another senior Shabaab leader", url: "https://www.longwarjournal.org/archives/2026/10/somalia-claims-to-have-killed-another-senior-shabaab-leader.php"}
+  coincidencias:
+    fuertes: [al-Shabaab, al Shabaab, Shabaab, al-Shabab, AUSSOM, Mogadishu, Mogadiscio, Baidoa]
+    lugares: [Somalia, Somali, somalí*, Puntland, Jubaland, Kismayo, Mandera, Lamu, Garissa]
+    paises_nombre: [SOM]
+    paises_gdelt: [SOM]
+    quitar: [Somaliland, Somalilandia]
+
+- id: somalilandia
+  nombre: Somalilandia (estatus disputado con Somalia)
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Somalilandia, autoadministrada y reclamada por Somalia, busca reconocimiento internacional; en
+    septiembre de 2026 su presidente visitó EE.UU. en esa campaña, según Crisis Group.
+  actores: [Gobierno de Somalilandia, Gobierno Federal de Somalia]
+  paises_escenario: [SOL, SOM]
+  paises_participantes: []
+  partes:
+    - {nombre: Somalia, paises: [SOM]}
+    - {nombre: Somalilandia, paises: [SOL]}
+  zonas: [ne-somaliland]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Somalilandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+  coincidencias:
+    fuertes: [Somaliland, Somalilandia, Hargeisa, Berbera]
+
+- id: sahel
+  nombre: "Sahel central: insurgencias yihadistas"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    JNIM (vinculado a al-Qaeda) y el Estado Islámico-Sahel atacan posiciones militares y a civiles en
+    Malí, Burkina Faso, Níger y el norte de Benín. En septiembre de 2026 JNIM tomó Dioura (Malí) y atacó
+    la base aérea de Sévaré; en Níger hubo ataques del EI-Sahel en Tillabéri y Tahoua.
+  actores: [JNIM, Estado Islámico-Sahel, Fuerzas Armadas de Malí, Burkina Faso y Níger, Africa Corps (Rusia), FLA]
+  paises_escenario: [MLI, BFA, NER, BEN]
+  paises_participantes: [RUS]
+  partes:
+    - {nombre: Juntas militares del Sahel, paises: [MLI, BFA, NER]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Malí, Burkina Faso, Níger, Benín)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mali offensives (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mali_offensives"}
+  coincidencias:
+    fuertes: [JNIM, Jama'at Nusrat al-Islam, Islamic State Sahel, Estado Islámico del Sahel, IS-Sahel, Sahel, Tillaberi, Tillabéri, Africa Corps]
+    lugares: [Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Gao, Timbuktu, Tombuctú]
+    paises_nombre: [MLI, BFA, NER]
+    paises_gdelt: [MLI, BFA, NER]
+    quitar: [Nigeria, Nigerian, nigeriano, nigeriana]
+
+- id: nigeria
+  nombre: "Nigeria: yihadismo, bandidaje y violencia intercomunal"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Secuestros masivos de grupos armados en Kaduna, Zamfara y Níger; violencia entre pastores y
+    agricultores en Kebbi, Benue y Plateau; actividad de Boko Haram e ISWAP en Borno. En octubre de 2026
+    militantes vinculados al Estado Islámico atacaron una base militar.
+  actores: [Fuerzas Armadas de Nigeria, Boko Haram, ISWAP, grupos de bandidos armados]
+  paises_escenario: [NGA]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Nigeria, paises: [NGA]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Nigeria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: The Washington Post, fecha: 2026-10-07, titulo: "Islamic State group-affiliated militants attack military base in Nigeria, killing several soldiers", url: "https://www.washingtonpost.com/world/2026/10/07/nigeria-militants-attack-islamic-state-iswap/8b04303a-c282-11f1-8170-681419af1cc9_story.html"}
+  coincidencias:
+    fuertes: [Boko Haram, ISWAP, Borno, Maiduguri, Zamfara, Sambisa]
+    lugares: [Nigeria, Nigerian, nigerian*, Abuja, Kaduna, Kebbi, Benue, Plateau State, Sokoto, Katsina]
+    paises_nombre: [NGA]
+    paises_gdelt: [NGA]
+
+- id: camerun
+  nombre: "Camerún: conflicto anglófono y yihadismo en el Extremo Norte"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Ataques de Boko Haram e ISWAP con desplazamientos en el Extremo Norte, y bloqueos y asesinatos
+    vinculados a separatistas en las regiones anglófonas del Noroeste y Suroeste (septiembre de 2026).
+  actores: [Fuerzas de seguridad de Camerún, separatistas anglófonos, Boko Haram, ISWAP]
+  paises_escenario: [CMR]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Camerún, paises: [CMR]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Camerún)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-09-22, titulo: "Hundreds flee homes in Far North Cameroon after armed group raid kills 15", url: "https://www.aljazeera.com/news/2026/9/22/hundreds-flee-homes-in-far-north-cameroon-after-armed-group-raid-kills-15"}
+  coincidencias:
+    fuertes: [Ambazonia, Ambazonian, Anglophone region*, Bamenda, Buea]
+    lugares: [Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North, Extremo Norte]
+    paises_nombre: [CMR]
+    paises_gdelt: [CMR]
+
+- id: rca
+  nombre: "República Centroafricana: grupos armados"
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Ataques de hombres armados en Vakaga, deserciones de soldados, secuestros del Ejército de
+    Resistencia del Señor en Mbomou y abusos de fuerzas de seguridad cerca de Bangui (septiembre de 2026).
+  actores: [Fuerzas Armadas Centroafricanas, grupos armados (UPC, 3R y otros), LRA, Africa Corps (Rusia), MINUSCA (ONU)]
+  paises_escenario: [CAF]
+  paises_participantes: [RUS]
+  partes:
+    - {nombre: Gobierno centroafricano, paises: [CAF]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (República Centroafricana)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Africanews, fecha: 2026-07-08, titulo: "MINUSCA steps up security after attack on northern CAR base", url: "https://www.africanews.com/2026/07/08/minusca-steps-up-security-after-attack-on-northern-car-base/"}
+  coincidencias:
+    fuertes: [MINUSCA, Lord's Resistance Army, Ejército de Resistencia del Señor]
+    lugares: [Central African Republic, República Centroafricana, Centrafrique, centroafrican*, Bangui]
+    paises_nombre: [CAF]
+    paises_gdelt: [CAF]
+
+- id: mozambique
+  nombre: "Mozambique: insurgencia en Cabo Delgado"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    El Estado Islámico-Mozambique atacó un alojamiento en Niassa y realizó secuestros en Macomia,
+    Muidumbe y Nangade (Cabo Delgado) en septiembre de 2026.
+  actores: [Fuerzas de Mozambique, fuerzas de Ruanda, Estado Islámico-Mozambique]
+  paises_escenario: [MOZ]
+  paises_participantes: [RWA]
+  partes:
+    - {nombre: Gobierno de Mozambique, paises: [MOZ]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Mozambique)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
+    - {medio: Africa Defense Forum, fecha: 2026-07-01, titulo: "Islamic State Mozambique Terrorists Make IEDs Central to Attack Strategy", url: "https://adf-magazine.com/2026/07/islamic-state-mozambique-terrorists-make-ieds-central-to-attack-strategy/"}
+  coincidencias:
+    fuertes: [Cabo Delgado, Islamic State Mozambique, Macomia, Mocímboa, Mocimboa da Praia, Palma, Niassa]
+    lugares: [Mozambique, Mozambican, mozambiqueñ*, Maputo]
+    paises_nombre: [MOZ]
+    paises_gdelt: [MOZ]
+
+- id: myanmar
+  nombre: Guerra civil en Myanmar
+  categoria: guerra_civil
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La junta militar lanzó una contraofensiva contra el Ejército de Arakán en torno a Sittwe y Kyaukphyu;
+    sus bombardeos aéreos en Rakhine y Sagaing mataron a numerosos civiles (septiembre de 2026). El
+    Ejército para la Independencia Kachin emboscó una flotilla del régimen rumbo a Bhamo.
+  actores: [Junta militar (Tatmadaw), Ejército de Arakán, Ejército para la Independencia Kachin (KIA), Fuerzas de Defensa del Pueblo, otras organizaciones armadas étnicas]
+  paises_escenario: [MMR]
+  paises_participantes: []
+  partes:
+    - {nombre: Junta militar de Myanmar, paises: [MMR]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Myanmar)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-09-28, titulo: "Myanmar military launches air strike on Rakhine market, killing at least 33", url: "https://www.aljazeera.com/news/2026/9/28/myanmar-army-air-strike-kills-dozens-in-rakhine-state"}
+  coincidencias:
+    fuertes: [Tatmadaw, Arakan Army, Ejército de Arakán, Min Aung Hlaing, People's Defence Force, Kachin Independence Army]
+    lugares: [Myanmar, Burma, Birmania, birman*, Rakhine, Sagaing, Kachin, Naypyidaw, Naypyitaw, Yangon, Mandalay, Shan State]
+    paises_nombre: [MMR]
+    paises_gdelt: [MMR]
+
+- id: pakistan-afganistan
+  nombre: Enfrentamientos Pakistán–Afganistán
+  categoria: guerra_estados
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Tras atentados en Jaiber Pastunjuá, Pakistán lanzó en septiembre de 2026 sus primeros bombardeos en
+    tres meses contra supuestos refugios de militantes en Afganistán (Kunar, Paktika), y los talibanes
+    respondieron. A comienzos de octubre continuaban los ataques; Kabul y la ONU informaron víctimas civiles.
+  actores: [Fuerzas Armadas de Pakistán, gobierno talibán de Afganistán]
+  paises_escenario: [PAK, AFG]
+  paises_participantes: []
+  partes:
+    - {nombre: Pakistán, paises: [PAK]}
+    - {nombre: Afganistán (talibanes), paises: [AFG]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Afganistán, Pakistán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-10-01, titulo: "Pakistan launches deadly air attacks on Afghanistan", url: "https://www.aljazeera.com/news/2026/10/1/afghanistan-says-nine-killed-in-pakistani-air-raids-on-kunar-helmand"}
+  coincidencias:
+    fuertes: [Durand Line, Línea Durand, Torkham, Chaman]
+    grupos:
+      - [Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Islamabad]
+      - [Afghanistan, Afghan, Afganistán, afgan*, Taliban, talibán, talibanes, Kabul, Kunar, Paktika, Khost, Helmand]
+
+- id: pakistan-insurgencias
+  nombre: "Pakistán: insurgencias en Jaiber Pastunjuá y Baluchistán"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Ataques de militantes en Jaiber Pastunjuá —entre ellos un atentado suicida en Kohat que mató a 16
+    policías y 15 civiles en septiembre de 2026— y violencia separatista en Baluchistán.
+  actores: [Fuerzas de seguridad de Pakistán, Tehrik-i-Taliban Pakistan (TTP), Ejército de Liberación de Baluchistán (BLA)]
+  paises_escenario: [PAK]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Pakistán, paises: [PAK]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Pakistán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+  coincidencias:
+    fuertes: [TTP, Tehrik-i-Taliban, Tehreek-e-Taliban, Balochistan, Baluchistán, Balochistán, Baloch Liberation Army, BLA, Khyber Pakhtunkhwa, Jaiber Pastunjuá, Waziristan, Kohat, Bannu, Quetta]
+    lugares: [Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Peshawar]
+    paises_nombre: [PAK]
+    paises_gdelt: [PAK]
+
+- id: india-pakistan
+  nombre: "India–Pakistán: Cachemira"
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Disputa por Cachemira con tensiones recurrentes. En septiembre de 2026 hubo amenazas cruzadas por el
+    Tratado de las Aguas del Indo y por una colisión naval en el mar Arábigo; la asamblea de Jammu y
+    Cachemira pidió restablecer su condición de estado.
+  actores: [Gobierno de India, Gobierno de Pakistán, grupos militantes en Cachemira]
+  paises_escenario: [IND, PAK]
+  paises_participantes: [CHN]
+  partes:
+    - {nombre: India, paises: [IND]}
+    - {nombre: Pakistán, paises: [PAK]}
+  zonas: [ne-jammu-and-kashmir, ne-azad-kashmir, ne-gilgit-baltistan, ne-siachen-glacier, ne-aksai-chin, ne-shaksam-valley]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (India-Pakistán, Cachemira)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Council on Foreign Relations, fecha: 2026-10-13, titulo: "Global Conflict Tracker: Conflict Between India and Pakistan (consultado)", url: "https://www.cfr.org/global-conflict-tracker/conflict/conflict-between-india-and-pakistan"}
+  coincidencias:
+    fuertes: [Kashmir, Cachemira, Line of Control, Línea de Control, Indus Waters, Aguas del Indo, Pahalgam, Srinagar]
+    grupos:
+      - [India, Indian, indio*, New Delhi, Nueva Delhi, Modi]
+      - [Pakistan, Pakistani, Pakistán, paquistaní*, pakistaní*, Islamabad]
+
+- id: india-interno
+  nombre: "India: violencia en Manipur e insurgencias"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Violencia entre comunidades naga y kuki en los distritos de Kangpokpi y Tamenglong (Manipur) y
+    operaciones de seguridad contra insurgentes, incluida la insurgencia maoísta (septiembre de 2026).
+  actores: [Fuerzas de seguridad de India, grupos armados naga y kuki, insurgentes maoístas (naxalitas)]
+  paises_escenario: [IND]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de India, paises: [IND]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (India)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+  coincidencias:
+    fuertes: [Manipur, Kangpokpi, Tamenglong, Maoist*, maoísta*, Naxal*, Chhattisgarh, Bastar]
+
+- id: filipinas
+  nombre: "Filipinas: insurgencias (NPA, BIFF)"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Continúan los choques con el Nuevo Ejército del Pueblo (NPA) y los Combatientes Islámicos por la
+    Libertad de Bangsamoro (BIFF) en Mindanao, Leyte y Bícol; elecciones con violencia esporádica en
+    la región de Bangsamoro (septiembre de 2026).
+  actores: [Fuerzas Armadas de Filipinas, Nuevo Ejército del Pueblo, BIFF, grupos vinculados al Estado Islámico]
+  paises_escenario: [PHL]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Filipinas, paises: [PHL]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Filipinas)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+  coincidencias:
+    fuertes: [New People's Army, Nuevo Ejército del Pueblo, BIFF, Bangsamoro, Mindanao, Cotabato, Abu Sayyaf]
+
+- id: papua
+  nombre: "Indonesia: conflicto en Papúa"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Violencia separatista en Papúa, incluida una emboscada en Jayawijaya en septiembre de 2026.
+  actores: [Fuerzas de seguridad de Indonesia, Ejército de Liberación Nacional de Papúa Occidental (TPNPB)]
+  paises_escenario: [IDN]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Indonesia, paises: [IDN]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Indonesia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+  coincidencias:
+    fuertes: [West Papua, Papua Barat, TPNPB, Free Papua Movement, Jayawijaya, Intan Jaya, Nduga]
+    lugares: [Papua, Papúa]
+
+- id: tailandia-sur
+  nombre: "Tailandia: insurgencia en el extremo sur"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Militantes del BRN atacaron a miembros del Cuerpo de Defensa Voluntaria en Narathiwat (septiembre de 2026).
+  actores: [Fuerzas de seguridad de Tailandia, Barisan Revolusi Nasional (BRN)]
+  paises_escenario: [THA]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Tailandia, paises: [THA]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Tailandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+  coincidencias:
+    fuertes: [Narathiwat, Pattani, Yala province, Barisan Revolusi Nasional, Deep South]
+
+- id: tailandia-camboya
+  nombre: "Tailandia–Camboya: disputa fronteriza"
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Tras los combates fronterizos de 2025 y el alto el fuego de diciembre de 2025, ambos gobiernos
+    intercambiaron acusaciones en septiembre de 2026 en la ONU y en un proceso de conciliación de la
+    Convención del Mar sobre el templo de Preah Vihear y el límite marítimo.
+  actores: [Gobierno de Tailandia, Gobierno de Camboya]
+  paises_escenario: [THA, KHM]
+  paises_participantes: []
+  partes:
+    - {nombre: Tailandia, paises: [THA]}
+    - {nombre: Camboya, paises: [KHM]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Tailandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Al Jazeera, fecha: 2026-01-06, titulo: "Thai army says Cambodia claims new border strike was accident amid truce", url: "https://www.aljazeera.com/news/2026/1/6/thai-army-says-cambodia-claims-new-border-strike-was-accident-amid-truce"}
+  coincidencias:
+    fuertes: [Preah Vihear, Ta Muen Thom, Ta Moan Thom]
+    grupos:
+      - [Thailand, Thai, Tailandia, tailandés, tailandes*, Bangkok]
+      - [Cambodia, Cambodian, Camboya, camboyan*, Phnom Penh, Hun Manet]
+
+- id: taiwan
+  nombre: Estrecho de Taiwán
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    China mantiene grandes despliegues aéreos y navales alrededor de Taiwán, que reclama como parte
+    de su territorio; la guardia costera taiwanesa expulsó buques chinos cerca de Kinmen (septiembre de 2026).
+  actores: [Gobierno de China, Ejército Popular de Liberación, Gobierno de Taiwán]
+  paises_escenario: [TWN, CHN]
+  paises_participantes: [USA]
+  partes:
+    - {nombre: China, paises: [CHN]}
+    - {nombre: Taiwán, paises: [TWN]}
+  zonas: [ne-taiwan]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Estrecho de Taiwán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Council on Foreign Relations, fecha: 2026-10-13, titulo: "Global Conflict Tracker: Confrontation Over Taiwan (consultado)", url: "https://www.cfr.org/global-conflict-tracker"}
+  coincidencias:
+    fuertes: [Taiwan Strait, estrecho de Taiwán, Kinmen, Matsu, PLA aircraft, Lai Ching-te]
+    lugares: [Taiwán, Taiwan, Taiwanese, taiwanés, Taipei, Taipéi]
+    quitar: [Taipei Times]
+
+- id: mar-china-meridional
+  nombre: Mar de China Meridional
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Disputas de soberanía marítima con incidentes frecuentes: en septiembre de 2026 la guardia costera
+    china embistió un buque filipino frente a Palawan y ambos países se acusaron por el reabastecimiento
+    en el bajo Second Thomas; Filipinas informa casi el doble de presencia china en aguas en disputa.
+  actores: [China, Filipinas, Vietnam, Malasia, Brunéi, Taiwán]
+  paises_escenario: [PHL, CHN, VNM]
+  paises_participantes: [MYS, BRN, TWN, USA]
+  partes:
+    - {nombre: China, paises: [CHN]}
+    - {nombre: Filipinas, paises: [PHL]}
+    - {nombre: Vietnam, paises: [VNM]}
+  zonas: [ne-spratly-is, ne-paracel-is, ne-scarborough-reef]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Mar de China Meridional)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Hong Kong Free Press, fecha: 2026-10-09, titulo: "Philippines flags near-doubling of Chinese presence in disputed waters", url: "https://hongkongfp.com/2026/10/09/philippines-flags-near-doubling-of-chinese-presence-in-disputed-waters/"}
+  coincidencias:
+    fuertes: [South China Sea, mar de China Meridional, West Philippine Sea, Scarborough, Second Thomas, Ayungin, Spratly, Spratlys, Paracel, Sabina Shoal, Whitsun Reef, Mischief Reef]
+
+- id: china-japon
+  nombre: "China–Japón: tensiones diplomáticas y mar de China Oriental"
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Deterioro de relaciones desde las declaraciones de la primera ministra Takaichi sobre Taiwán
+    (noviembre de 2025). Pekín mantiene actividad naval y de guardacostas cerca de las islas
+    Senkaku/Diaoyu y presión comercial y diplomática sobre Tokio (septiembre de 2026).
+  actores: [Gobierno de China, Gobierno de Japón]
+  paises_escenario: [CHN, JPN]
+  paises_participantes: []
+  partes:
+    - {nombre: China, paises: [CHN]}
+    - {nombre: Japón, paises: [JPN]}
+  zonas: [ne-pinnacle-is]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (China/Japón)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Taipei Times, fecha: 2026-10-06, titulo: "Takaichi vows to build stable China relations", url: "https://www.taipeitimes.com/News/world/archives/2026/10/06/2003865487"}
+  coincidencias:
+    fuertes: [Senkaku, Diaoyu, East China Sea, mar de China Oriental]
+    grupos:
+      - [China, Chinese, chino*, china, Beijing, Pekín, Xi Jinping]
+      - [Japan, Japanese, Japón, japonés, japones*, Tokyo, Tokio, Takaichi]
+
+- id: corea
+  nombre: Península de Corea
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Corea del Norte lanzó misiles balísticos desde su costa este en septiembre y octubre de 2026; tres
+    oficiales surcoreanos resultaron heridos por una mina en la zona desmilitarizada que Seúl y la ONU
+    atribuyeron a Pyongyang. Seúl, Tokio y Washington realizaron maniobras conjuntas.
+  actores: [Corea del Norte, Corea del Sur, Estados Unidos, Japón]
+  paises_escenario: [PRK, KOR]
+  paises_participantes: [USA, JPN]
+  partes:
+    - {nombre: Corea del Norte, paises: [PRK]}
+    - {nombre: Corea del Sur, paises: [KOR]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Península de Corea)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: Euronews, fecha: 2026-10-04, titulo: "North Korea fires intermediate-range missile, claiming evasive flight and AI features", url: "https://www.euronews.com/2026/10/04/north-korea-fires-intermediate-range-missile-claiming-evasive-flight-and-ai-features"}
+  coincidencias:
+    fuertes: [DMZ, zona desmilitarizada, Panmunjom]
+    lugares: [North Korea, North Korean, Corea del Norte, norcorean*, Pyongyang, Kim Jong Un, Kim Jong-un]
+
+- id: eeuu-china
+  nombre: "EE.UU.–China: comercio, tecnología y Taiwán"
+  categoria: sanciones_economico
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Rivalidad comercial y tecnológica con aranceles y controles a la exportación. En septiembre de 2026
+    Trump recibió a Xi en Washington: extendieron por dos meses la tregua comercial, acordaron reducir
+    aranceles sobre bienes por unos 60.000 millones de dólares y crear un diálogo sobre IA, aunque
+    persisten desacuerdos sobre Taiwán, Irán y tecnología.
+  actores: [Gobierno de EE.UU., Gobierno de China]
+  paises_escenario: [USA, CHN]
+  paises_participantes: []
+  partes:
+    - {nombre: Estados Unidos, paises: [USA]}
+    - {nombre: China, paises: [CHN]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (China–EE.UU.)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
+    - {medio: TIME, fecha: 2026-09-29, titulo: "U.S. and China to Cut Tariffs on $60 Billion of Goods", url: "https://time.com/article/2026/09/29/us-china-reciprocal-tariffs-cut-trade-goods-60-billion/"}
+  coincidencias:
+    grupos:
+      - [China, Chinese, chino*, china, Beijing, Pekín, Xi Jinping]
+      - [U.S., US, United States, American, Washington, Trump, EE.UU., EEUU, Estados Unidos, estadounidense*]
+      - [tariff*, arancel*, export control*, controles a la exportación, trade truce, trade war, tregua comercial, guerra comercial, rare earth*, tierras raras, chip*, semiconductor*, entity list]
+
+- id: aranceles-eeuu
+  nombre: Aranceles de EE.UU. y disputas comerciales
+  categoria: sanciones_economico
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    EE.UU. mantiene aranceles amplios sobre importaciones de numerosos socios comerciales mediante
+    distintas facultades legales (como la Sección 232) tras los cambios judiciales sobre la ley IEEPA;
+    en octubre de 2026 el Departamento de Comercio preparaba nuevos aranceles de la Sección 232.
+  actores: [Gobierno de EE.UU., socios comerciales afectados]
+  paises_escenario: [USA]
+  paises_participantes: []
+  partes:
+    - {nombre: Estados Unidos, paises: [USA]}
+  zonas: []
+  fuentes:
+    - {medio: Tax Foundation, fecha: 2026-10-13, titulo: "Trump Tariffs Tracker: Rates, Revenue, and Impact (consultado)", url: "https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/"}
+    - {medio: Customs & International Trade Law Blog, fecha: 2026-10-06, titulo: "Commerce Restricts Polysilicon Stockpiling Ahead of December 4 Section 232 Tariffs", url: "https://customsandinternationaltradelaw.com/2026/10/06/polysilicon-stockpiling-section-232-tariffs"}
+  coincidencias:
+    fuertes: [Section 232, Sección 232, Section 122, Section 301, reciprocal tariff*, aranceles recíprocos]
+    grupos:
+      - [U.S., US, United States, American, Washington, Trump, EE.UU., EEUU, Estados Unidos, estadounidense*]
+      - [tariff*, arancel*]
+
+- id: sanciones-rusia
+  nombre: Sanciones contra Rusia
+  categoria: sanciones_economico
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La Unión Europea, EE.UU., el Reino Unido y otros países mantienen y amplían sanciones por la guerra
+    en Ucrania. En octubre de 2026 los embajadores de la UE acordaron un paquete récord de 1.646
+    designaciones y en septiembre Trump firmó una ley de sanciones.
+  actores: [Unión Europea, Estados Unidos, Reino Unido, Rusia]
+  paises_escenario: [RUS]
+  paises_participantes: [UE, USA, GBR]
+  partes:
+    - {nombre: Rusia, paises: [RUS]}
+    - {nombre: Países que sancionan, paises: [USA, GBR]}
+  zonas: []
+  fuentes:
+    - {medio: Ukrainska Pravda, fecha: 2026-10-07, titulo: "New EU sanctions against Russia: ambassadors agree on record package of 1,646 listings", url: "https://www.pravda.com.ua/eng/news/2026/10/07/8056914/"}
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Rusia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    grupos:
+      - [Russia, Russian, Rusia, ruso*, rusa*, Moscow, Moscú, Kremlin, Kremlin's, Rosneft, Lukoil, shadow fleet, flota fantasma]
+      - [sanction*, sancion*, price cap, tope de precio*, asset freeze, frozen assets, activos congelados, listings, designat*]
+
+- id: iran-nuclear-sanciones
+  nombre: "Irán: programa nuclear y sanciones"
+  categoria: sanciones_economico
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    El OIEA remitió el expediente de Irán al Consejo de Seguridad de la ONU (septiembre de 2026) y no
+    prosperó la renovación del Panel de Expertos del Comité 1737. Se mantienen sanciones de EE.UU. y
+    otros países.
+  actores: [Irán, OIEA, Consejo de Seguridad de la ONU, Estados Unidos, Unión Europea]
+  paises_escenario: [IRN]
+  paises_participantes: [USA, UE, GBR]
+  partes:
+    - {nombre: Irán, paises: [IRN]}
+    - {nombre: Estados Unidos, paises: [USA]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - {medio: Security Council Report, fecha: 2026-09-30, titulo: "October 2026 Monthly Forecast (estado de situación: Irán)", url: "https://www.securitycouncilreport.org/atf/cf/%7B65BFCF9B-6D27-4E9C-8CD3-CF6E4FF96FF9%7D/2026_10_forecast.pdf"}
+  coincidencias:
+    fuertes: [IAEA, OIEA, uranium enrichment, enriquecimiento de uranio, snapback, Fordow, Natanz, Grossi]
+    grupos:
+      - [Iran, Iranian, Tehran, Irán, iraní*, Teherán]
+      - [sanction*, sancion*, nuclear]
+
+- id: rusia-otan
+  nombre: "Rusia–OTAN: incidentes aéreos y con drones"
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Incidentes de espacio aéreo y drones rusos con Polonia, Estonia y Alemania; la OTAN derribó un dron
+    ruso que entró en Lituania desde Bielorrusia (septiembre de 2026, según Crisis Group).
+  actores: [Rusia, Bielorrusia, OTAN y sus Estados miembros]
+  paises_escenario: [RUS, BLR, POL, EST, LTU, LVA, DEU]
+  paises_participantes: []
+  partes:
+    - {nombre: Rusia, paises: [RUS]}
+    - {nombre: Bielorrusia, paises: [BLR]}
+    - {nombre: Estados de la OTAN, paises: [POL, EST, LTU, LVA, DEU]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Rusia, Bielorrusia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    grupos:
+      - [Russia, Russian, Rusia, ruso*, rusa*, Moscow, Moscú, Belarus, Bielorrusia]
+      - [NATO, OTAN, Poland, Polish, Polonia, Estonia, Lithuania, Lituania, Latvia, Letonia, Baltic, báltico*, Germany, Alemania]
+      - [drone*, dron*, airspace, espacio aéreo, incursion*, incursión, violation*, violación, shot down, derrib*, jets, fighter*]
+
+- id: bosnia-serbia
+  nombre: "Bosnia y Herzegovina–Serbia: crisis diplomática"
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La asistencia de ministros serbios al funeral del criminal de guerra condenado Ratko Mladić llevó
+    a Bosnia y Herzegovina a expulsar a dos diplomáticos serbios y retirar a la mayor parte del personal
+    de su embajada en Belgrado (septiembre de 2026).
+  actores: [Gobierno de Bosnia y Herzegovina, Gobierno de Serbia, Republika Srpska]
+  paises_escenario: [BIH, SRB]
+  paises_participantes: []
+  partes:
+    - {nombre: Bosnia y Herzegovina, paises: [BIH]}
+    - {nombre: Serbia, paises: [SRB]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Bosnia y Herzegovina)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    fuertes: [Republika Srpska, Mladic, Mladić, Dodik]
+    grupos:
+      - [Bosnia, Bosnian, bosnio*, Sarajevo]
+      - [Serbia, Serbian, serbio*, Belgrade, Belgrado, Vucic, Vučić]
+
+- id: kosovo-serbia
+  nombre: "Kosovo–Serbia: estatus de Kosovo"
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Serbia no reconoce la independencia de Kosovo. En septiembre de 2026 el Parlamento aprobó el
+    gobierno de Albin Kurti, el proceso para elegir presidente quedó trabado y el tribunal especial de
+    La Haya condenó a Hashim Thaçi y otros exlíderes del ELK, lo que provocó protestas.
+  actores: [Gobierno de Kosovo, Gobierno de Serbia, serbios de Kosovo]
+  paises_escenario: [KOS, SRB]
+  paises_participantes: []
+  partes:
+    - {nombre: Kosovo, paises: [KOS]}
+    - {nombre: Serbia, paises: [SRB]}
+  zonas: [ne-kosovo]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Kosovo)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    fuertes: [Kurti, Thaci, Thaçi, KFOR]
+    lugares: [Kosovo, Pristina, Kosovar*]
+
+- id: georgia-abjasia-osetia
+  nombre: "Georgia: Abjasia y Osetia del Sur"
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Regiones separatistas reconocidas por Rusia y reclamadas por Georgia. En septiembre de 2026 Osetia
+    del Sur eligió un presidente de facto, y Tiflis condenó la votación.
+  actores: [Gobierno de Georgia, autoridades de facto de Abjasia y Osetia del Sur, Rusia]
+  paises_escenario: [GEO]
+  paises_participantes: [RUS]
+  partes:
+    - {nombre: Georgia, paises: [GEO]}
+    - {nombre: Rusia, paises: [RUS]}
+  zonas: [ne-abkhazia, ne-south-ossetia]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Georgia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    fuertes: [Abkhazia, Abjasia, South Ossetia, Osetia del Sur, Tskhinvali, Sukhumi]
+
+- id: chipre
+  nombre: "Chipre: división de la isla"
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    La isla sigue dividida; en septiembre de 2026 los líderes grecochipriota y turcochipriota se
+    reunieron sin avances concretos y el secretario general de la ONU se reunió con ambos.
+  actores: [República de Chipre, administración turcochipriota, Turquía, Grecia, ONU]
+  paises_escenario: [CYP, CYN]
+  paises_participantes: [TUR, GRC]
+  partes:
+    - {nombre: Chipre, paises: [CYP]}
+    - {nombre: Turquía y administración turcochipriota, paises: [TUR, CYN]}
+  zonas: [ne-n-cyprus]
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Chipre)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+  coincidencias:
+    fuertes: [Northern Cyprus, Turkish Cypriot, turcochipriota*, Erhürman, Christodoulides, Cyprus talks, reunificación de Chipre]
+
+- id: sahara-occidental
+  nombre: Sáhara Occidental
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Las negociaciones no avanzan desde las rondas de Madrid y Washington de febrero de 2026; las
+    hostilidades entre Marruecos y el Frente Polisario siguen en intensidad baja a media. El mandato de
+    la MINURSO vence el 31 de octubre de 2026.
+  actores: [Marruecos, Frente Polisario, Argelia, ONU (MINURSO)]
+  paises_escenario: [ESH, MAR]
+  paises_participantes: [DZA]
+  partes:
+    - {nombre: Marruecos, paises: [MAR]}
+    - {nombre: Frente Polisario, paises: []}
+  zonas: [ne-w-sahara, ne-w-sahara-2]
+  fuentes:
+    - {medio: Security Council Report, fecha: 2026-09-30, titulo: "October 2026 Monthly Forecast (Western Sahara)", url: "https://www.securitycouncilreport.org/atf/cf/%7B65BFCF9B-6D27-4E9C-8CD3-CF6E4FF96FF9%7D/2026_10_forecast.pdf"}
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Sáhara Occidental)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+  coincidencias:
+    fuertes: [Western Sahara, Sáhara Occidental, Sahara Occidental, Polisario, MINURSO, Sahrawi, saharaui*, Tindouf, Laayoune, El Aaiún]
+
+- id: argelia-eau
+  nombre: "Argelia–Emiratos Árabes Unidos: ruptura diplomática"
+  categoria: tension_diplomatica
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Argelia rompió relaciones diplomáticas con los Emiratos Árabes Unidos el 10 de septiembre de 2026,
+    según Crisis Group.
+  actores: [Gobierno de Argelia, Gobierno de EAU]
+  paises_escenario: [DZA, ARE]
+  paises_participantes: []
+  partes:
+    - {nombre: Argelia, paises: [DZA]}
+    - {nombre: Emiratos Árabes Unidos, paises: [ARE]}
+  zonas: []
+  fuentes:
+    - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Argelia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+  coincidencias:
+    grupos:
+      - [Algeria, Algerian, Argelia, argelin*, Algiers, Argel, Tebboune]
+      - [UAE, Emirates, Emirati, Emiratos, emiratí*, Abu Dhabi, Abu Dabi]
+
+- id: haiti
+  nombre: "Haití: violencia de pandillas"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Las pandillas armadas controlan amplias zonas del país. El Consejo de Seguridad de la ONU renovó por
+    seis meses la Fuerza de Supresión de Pandillas (resolución 2829 de 2026), que busca recuperar áreas
+    controladas por grupos armados.
+  actores: [Pandillas armadas (Viv Ansanm y otras), Policía Nacional de Haití, Fuerza de Supresión de Pandillas]
+  paises_escenario: [HTI]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Haití, paises: [HTI]}
+  zonas: []
+  fuentes:
+    - {medio: ONU – Cobertura de reuniones, fecha: 2026-10-01, titulo: "Adopting Resolution 2829 (2026), Security Council Renews Haiti Gang Suppression Force for Six Months", url: "https://press.un.org/en/2026/sc16466.doc.htm"}
+    - {medio: The Haitian Times, fecha: 2026-07-22, titulo: "UN-backed anti-gang force seeks two more years to reduce gang control in Haiti", url: "https://haitiantimes.com/2026/07/22/gsf-seeks-two-year-extension-gang-control-haiti/"}
+  coincidencias:
+    fuertes: [Viv Ansanm, Gang Suppression Force, Fuerza de Supresión de Pandillas]
+    lugares: [Haiti, Haitian, Haití, haitian*, Port-au-Prince, Puerto Príncipe]
+    paises_nombre: [HTI]
+    paises_gdelt: [HTI]
+
+- id: mexico
+  nombre: "México: violencia del crimen organizado"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Violencia de cárteles y enfrentamientos con fuerzas de seguridad, incluida la disputa interna del
+    Cártel de Sinaloa; la presión de EE.UU. sobre los cárteles agrega tensión bilateral.
+  actores: [Cártel de Sinaloa y sus facciones, Cártel Jalisco Nueva Generación, fuerzas de seguridad de México]
+  paises_escenario: [MEX]
+  paises_participantes: [USA]
+  partes:
+    - {nombre: Gobierno de México, paises: [MEX]}
+  zonas: []
+  fuentes:
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Mexican drug war, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mexico cartel unrest (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mexico_cartel_unrest"}
+  coincidencias:
+    fuertes: [Sinaloa Cartel, Cártel de Sinaloa, CJNG, Jalisco New Generation, Cártel Jalisco, Los Chapitos, La Mayiza, Culiacán, Culiacan]
+    grupos:
+      - [Mexico, Mexican, México, mexican*, Sinaloa, Michoacán, Michoacan, Guerrero, Tamaulipas, Jalisco, Sonora, Chihuahua, Guanajuato]
+      - [cartel*, cártel*, gang*, narco*, killed, muertos, asesinad*, ambush*, emboscada*, gunmen, sicario*, enfrentamiento*, clash*, violence, violencia]
+
+- id: colombia
+  nombre: "Colombia: conflicto armado (ELN, disidencias, Clan del Golfo)"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Atentados y combates del ELN, disidencias de las FARC y el Clan del Golfo. En septiembre de 2026 el
+    gobierno buscó activar el TIAR contra esos grupos.
+  actores: [Fuerzas Armadas de Colombia, ELN, disidencias de las FARC (EMC, Segunda Marquetalia), Clan del Golfo]
+  paises_escenario: [COL]
+  paises_participantes: [VEN]
+  partes:
+    - {nombre: Gobierno de Colombia, paises: [COL]}
+  zonas: []
+  fuentes:
+    - {medio: Infobae, fecha: 2026-09-23, titulo: "Colombia busca activar el TIAR contra ELN, disidencias de las Farc y Clan del Golfo", url: "https://www.infobae.com/colombia/2026/09/23/colombia-busca-activar-el-tiar-contra-eln-disidencias-de-las-farc-y-clan-del-golfo/"}
+    - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Colombian conflict, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
+  coincidencias:
+    fuertes: [ELN, National Liberation Army, Ejército de Liberación Nacional, FARC dissidents, disidencias de las FARC, disidencia*, Clan del Golfo, Gulf Clan, Catatumbo, Segunda Marquetalia]
+    lugares: [Colombia, Colombian, colombian*, Bogotá, Bogota, Cauca, Antioquia, Norte de Santander, Arauca, Nariño]
+    paises_nombre: [COL]
+    paises_gdelt: [COL]
+
+- id: ecuador
+  nombre: "Ecuador: violencia del crimen organizado"
+  categoria: otro_armado
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Escalada de violencia criminal: en septiembre de 2026 el presidente decretó un nuevo estado de
+    excepción en diez provincias y el tercer toque de queda del año.
+  actores: [Fuerzas de seguridad de Ecuador, bandas criminales (Los Choneros, Los Lobos y otras)]
+  paises_escenario: [ECU]
+  paises_participantes: []
+  partes:
+    - {nombre: Gobierno de Ecuador, paises: [ECU]}
+  zonas: []
+  fuentes:
+    - {medio: Infobae, fecha: 2026-09-16, titulo: "El presidente de Ecuador decretó un nuevo estado de excepción y oficializó el tercer toque de queda del año", url: "https://www.infobae.com/america/america-latina/2026/09/16/el-presidente-de-ecuador-decreto-un-nuevo-estado-de-excepcion-y-oficializo-el-tercer-toque-de-queda-del-ano/"}
+  coincidencias:
+    fuertes: [Los Choneros, Los Lobos, Guayaquil]
+    lugares: [Ecuador, Ecuadorian, ecuatorian*, Quito, Noboa, Esmeraldas, Manabí, Los Ríos, El Oro]
+    paises_nombre: [ECU]
+    paises_gdelt: [ECU]
+
+- id: esequibo
+  nombre: Guayana Esequiba (Venezuela–Guyana)
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Venezuela reclama el territorio al oeste del río Esequibo, administrado por Guyana. La Corte
+    Internacional de Justicia celebró audiencias en mayo de 2026 y el fallo está pendiente; en septiembre
+    Guyana pidió en la ONU que Venezuela respete la decisión.
+  actores: [Gobierno de Venezuela, Gobierno de Guyana, Corte Internacional de Justicia]
+  paises_escenario: [GUY, VEN]
+  paises_participantes: []
+  partes:
+    - {nombre: Venezuela, paises: [VEN]}
+    - {nombre: Guyana, paises: [GUY]}
+  zonas: [ne-west-of-essequibo-river]
+  fuentes:
+    - {medio: France 24 (AFP), fecha: 2026-09-24, titulo: "Guyana urges Venezuela at UN to respect ICJ's ruling on Essequibo region", url: "https://www.france24.com/en/live-news/20260924-guyana-urges-venezuela-at-un-to-respect-icj-s-ruling-on-essequibo-region"}
+    - {medio: JURIST, fecha: 2026-05-01, titulo: "ICJ opens oral hearings as Guyana asks court to affirm century-old boundary with Venezuela", url: "https://www.jurist.org/news/2026/05/icj-opens-oral-hearings-as-guyana-asks-court-to-affirm-century-old-boundary-with-venezuela/"}
+  coincidencias:
+    fuertes: [Essequibo, Esequibo, Guayana Esequiba]
+
+- id: malvinas
+  nombre: Islas Malvinas (Argentina–Reino Unido)
+  categoria: disputa_territorial
+  estado: activo
+  revisado: 2026-10-13
+  resumen: >-
+    Argentina reclama la soberanía de las islas administradas por el Reino Unido. En septiembre de 2026
+    el Reino Unido rechazó el arbitraje pedido por Argentina para frenar el proyecto petrolero Sea Lion;
+    el 13 de octubre venció el plazo argentino y se informó que es inminente un pedido de arbitraje ante
+    el Tribunal Internacional del Derecho del Mar.
+  actores: [Gobierno de Argentina, Gobierno del Reino Unido, gobierno de las islas]
+  paises_escenario: [FLK, ARG, GBR]
+  paises_participantes: []
+  partes:
+    - {nombre: Argentina, paises: [ARG]}
+    - {nombre: Reino Unido, paises: [GBR, FLK]}
+  zonas: [ne-falkland-is, ne-s-georgia, ne-s-sandwich-is]
+  fuentes:
+    - {medio: Infobae, fecha: 2026-10-13, titulo: "Malvinas: venció el ultimátum de la Argentina al Reino Unido y es inminente el pedido de arbitraje al Tribunal del Mar", url: "https://www.infobae.com/politica/2026/10/13/malvinas-vencio-el-ultimatum-de-la-argentina-al-reino-unido-y-es-inminente-el-pedido-de-arbitraje-al-tribunal-del-mar/"}
+    - {medio: Infobae, fecha: 2026-09-30, titulo: "Malvinas: el Reino Unido rechazó el arbitraje que pide Argentina para frenar Sea Lion", url: "https://www.infobae.com/politica/2026/09/30/malvinas-el-reino-unido-rechazo-el-arbitraje-que-pide-argentina-para-frenar-sea-lion-y-advirtio-que-la-ofensiva-afecta-la-relacion-bilateral/"}
+  coincidencias:
+    fuertes: [Malvinas, Falklands, Falkland Islands, Islas Malvinas, Sea Lion project, proyecto Sea Lion, Navitas, Port Stanley, Puerto Argentino]

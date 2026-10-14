@@ -1,0 +1,175 @@
+# Fuentes consultadas en cada ciclo.
+#
+# tipo:        medio | agencia | oficial (gobierno) | organismo (internacional/ONG)
+# propiedad:   privada | publica (servicio público con independencia editorial) | estatal
+#              (controlado por un gobierno) | estatal_financiado (financiado por un Estado)
+# extracto:    si es true se muestra un extracto breve del resumen que publica la fuente en su
+#              RSS (traducido y atribuido). Si es false solo se muestra el titular y el enlace.
+# licencia:    lo verificado sobre condiciones de uso. "rss_editor" = RSS público ofrecido por el
+#              editor para sindicación; solo se muestra titular, extracto breve y enlace al original.
+# Antes de descargar, el colector respeta robots.txt de cada sitio y usa peticiones condicionales
+# (ETag / Last-Modified). Una fuente que falla no detiene el ciclo: se marca en el estado público.
+
+usuario_agente: "MapaConflictosBot/1.0 (+{url_sitio}; recopilacion personal de titulares)"
+
+gdelt:
+  activo: true
+  # Archivos de 15 minutos de GDELT 2.0: Eventos (lugar del hecho) y GKG (título, temas, lugares),
+  # en inglés y traducidos ("translingual"). Términos: uso libre con cita a GDELT y enlace.
+  url_base: "http://data.gdeltproject.org/gdeltv2/"
+  ventana_horas: 3          # se revisan los archivos de las últimas 3 h (ventanas solapadas)
+  max_archivos_por_ciclo: 8 # tope de archivos nuevos por ciclo (por flujo) para acotar el tiempo
+  max_registros_traducir: 600
+  cita: "The GDELT Project (https://www.gdeltproject.org/)"
+
+rss:
+  # ---------------- Organismos internacionales ----------------
+  - {id: onu-noticias-es, nombre: Noticias ONU, url: "https://news.un.org/feed/subscribe/es/news/all/rss.xml", tipo: organismo, pais: null, idioma: es, propiedad: publica, extracto: true, licencia: "ONU: material de noticias reutilizable con crédito (un.org/en/about-us/copyright)"}
+  - {id: onu-noticias-paz-en, nombre: UN News – Peace and Security, url: "https://news.un.org/feed/subscribe/en/news/topic/peace-and-security/feed/rss.xml", tipo: organismo, pais: null, idioma: en, propiedad: publica, extracto: true, licencia: "ONU: material de noticias reutilizable con crédito"}
+  - {id: reliefweb, nombre: ReliefWeb (OCHA), url: "https://reliefweb.int/updates/rss.xml", tipo: organismo, pais: null, idioma: en, propiedad: publica, extracto: false, licencia: rss_editor}
+  - {id: otan, nombre: OTAN – Noticias, url: "https://www.nato.int/cps/rss/en/natohq/rssFeed.xsl/rssFeed.xml", tipo: organismo, pais: null, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: oiea, nombre: OIEA – Noticias, url: "https://www.iaea.org/feeds/topnews", tipo: organismo, pais: null, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: consejo-ue, nombre: Consejo de la UE – Comunicados, url: "https://www.consilium.europa.eu/en/rss/pressreleases.ashx", tipo: organismo, pais: null, idioma: en, propiedad: publica, extracto: true, licencia: "UE: reutilización autorizada con atribución (Decisión 2011/833/UE)"}
+  # ---------------- Gobiernos (declaraciones oficiales) ----------------
+  - {id: eeuu-estado, nombre: Departamento de Estado de EE.UU., url: "https://www.state.gov/rss-feed/press-releases/feed/", tipo: oficial, pais: USA, idioma: en, propiedad: estatal, extracto: true, licencia: "Gobierno federal de EE.UU.: dominio público"}
+  - {id: reino-unido-fcdo, nombre: Cancillería del Reino Unido (FCDO), url: "https://www.gov.uk/government/organisations/foreign-commonwealth-development-office.atom", tipo: oficial, pais: GBR, idioma: en, propiedad: estatal, extracto: true, licencia: "Open Government Licence v3.0"}
+  - {id: reino-unido-ofsi, nombre: Reino Unido – Implementación de Sanciones (OFSI), url: "https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation.atom", tipo: oficial, pais: GBR, idioma: en, propiedad: estatal, extracto: true, licencia: "Open Government Licence v3.0"}
+  - {id: kremlin, nombre: Presidencia de Rusia (Kremlin), url: "http://en.kremlin.ru/events/president/news/feed", tipo: oficial, pais: RUS, idioma: en, propiedad: estatal, extracto: true, licencia: "Creative Commons Atribución 4.0 (según el sitio)"}
+  # ---------------- Medios en español ----------------
+  - {id: bbc-mundo, nombre: BBC Mundo, url: "https://feeds.bbci.co.uk/mundo/rss.xml", tipo: medio, pais: GBR, idioma: es, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: dw-es, nombre: DW Español, url: "https://rss.dw.com/rdf/rss-sp-all", tipo: medio, pais: DEU, idioma: es, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: france24-es, nombre: France 24 Español, url: "https://www.france24.com/es/rss", tipo: medio, pais: FRA, idioma: es, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: elpais-internacional, nombre: El País – Internacional, url: "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/internacional/portada", tipo: medio, pais: ESP, idioma: es, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: europapress-internacional, nombre: Europa Press – Internacional, url: "https://www.europapress.es/rss/rss.aspx?ch=00069", tipo: medio, pais: ESP, idioma: es, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: infobae-america, nombre: Infobae – América, url: "https://www.infobae.com/arc/outboundfeeds/rss/category/america/", tipo: medio, pais: ARG, idioma: es, propiedad: privada, extracto: true, licencia: rss_editor}
+  # ---------------- Medios en inglés ----------------
+  - {id: bbc-world, nombre: BBC News – World, url: "https://feeds.bbci.co.uk/news/world/rss.xml", tipo: medio, pais: GBR, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: aljazeera-en, nombre: Al Jazeera English, url: "https://www.aljazeera.com/xml/rss/all.xml", tipo: medio, pais: QAT, idioma: en, propiedad: estatal_financiado, extracto: true, licencia: rss_editor}
+  - {id: france24-en, nombre: France 24 English, url: "https://www.france24.com/en/rss", tipo: medio, pais: FRA, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: dw-en, nombre: DW – World, url: "https://rss.dw.com/rdf/rss-en-world", tipo: medio, pais: DEU, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: guardian-world, nombre: The Guardian – World, url: "https://www.theguardian.com/world/rss", tipo: medio, pais: GBR, idioma: en, propiedad: privada, extracto: false, licencia: rss_editor}
+  - {id: npr-world, nombre: NPR – World, url: "https://feeds.npr.org/1004/rss.xml", tipo: medio, pais: USA, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: kyiv-independent, nombre: The Kyiv Independent, url: "https://kyivindependent.com/rss/", tipo: medio, pais: UKR, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: meduza-en, nombre: Meduza (English), url: "https://meduza.io/rss/en/all", tipo: medio, pais: LVA, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: tass-en, nombre: TASS (English), url: "https://tass.com/rss/v2.xml", tipo: agencia, pais: RUS, idioma: en, propiedad: estatal, extracto: true, licencia: rss_editor}
+  - {id: times-of-israel, nombre: The Times of Israel, url: "https://www.timesofisrael.com/feed/", tipo: medio, pais: ISR, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: middle-east-eye, nombre: Middle East Eye, url: "https://www.middleeasteye.net/rss", tipo: medio, pais: GBR, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: dawn, nombre: Dawn (Pakistán), url: "https://www.dawn.com/feeds/home", tipo: medio, pais: PAK, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: the-hindu-intl, nombre: The Hindu – Internacional, url: "https://www.thehindu.com/news/international/feeder/default.rss", tipo: medio, pais: IND, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: africanews, nombre: Africanews, url: "https://www.africanews.com/feed/rss", tipo: medio, pais: COG, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: sudan-tribune, nombre: Sudan Tribune, url: "https://sudantribune.com/feed/", tipo: medio, pais: FRA, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: addis-standard, nombre: Addis Standard, url: "https://addisstandard.com/feed/", tipo: medio, pais: ETH, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: premium-times, nombre: Premium Times (Nigeria), url: "https://www.premiumtimesng.com/feed", tipo: medio, pais: NGA, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: irrawaddy, nombre: The Irrawaddy, url: "https://www.irrawaddy.com/feed", tipo: medio, pais: MMR, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: yonhap-en, nombre: Yonhap (English), url: "https://en.yna.co.kr/RSS/news.xml", tipo: agencia, pais: KOR, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: taipei-times, nombre: Taipei Times, url: "https://www.taipeitimes.com/xml/index.rss", tipo: medio, pais: TWN, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: anadolu-en, nombre: Anadolu Agency (English), url: "https://www.aa.com.tr/en/rss/default?cat=world", tipo: agencia, pais: TUR, idioma: en, propiedad: estatal, extracto: true, licencia: rss_editor}
+  - {id: mercopress, nombre: MercoPress, url: "https://en.mercopress.com/rss/", tipo: medio, pais: URY, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: insightcrime, nombre: InSight Crime, url: "https://insightcrime.org/feed/", tipo: medio, pais: COL, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: haitian-times, nombre: The Haitian Times, url: "https://haitiantimes.com/feed/", tipo: medio, pais: USA, idioma: en, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: abc-au-world, nombre: ABC News Australia – World, url: "https://www.abc.net.au/news/feed/52278/rss.xml", tipo: medio, pais: AUS, idioma: en, propiedad: publica, extracto: true, licencia: rss_editor}
+  # ---------------- Otros idiomas ----------------
+  - {id: france24-fr, nombre: France 24 Français, url: "https://www.france24.com/fr/rss", tipo: medio, pais: FRA, idioma: fr, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: rfi-afrique, nombre: RFI Afrique, url: "https://www.rfi.fr/fr/afrique/rss", tipo: medio, pais: FRA, idioma: fr, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: lemonde-international, nombre: Le Monde – International, url: "https://www.lemonde.fr/international/rss_full.xml", tipo: medio, pais: FRA, idioma: fr, propiedad: privada, extracto: false, licencia: rss_editor}
+  - {id: bbc-arabic, nombre: BBC Arabic, url: "https://feeds.bbci.co.uk/arabic/rss.xml", tipo: medio, pais: GBR, idioma: ar, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: france24-ar, nombre: France 24 Arabic, url: "https://www.france24.com/ar/rss", tipo: medio, pais: FRA, idioma: ar, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-russian, nombre: BBC News Русская служба, url: "https://feeds.bbci.co.uk/russian/rss.xml", tipo: medio, pais: GBR, idioma: ru, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-ukrainian, nombre: BBC News Україна, url: "https://feeds.bbci.co.uk/ukrainian/rss.xml", tipo: medio, pais: GBR, idioma: uk, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: pravda-ua, nombre: Ukrainska Pravda, url: "https://www.pravda.com.ua/rss/", tipo: medio, pais: UKR, idioma: uk, propiedad: privada, extracto: true, licencia: rss_editor}
+  - {id: bbc-persian, nombre: BBC Persian, url: "https://feeds.bbci.co.uk/persian/rss.xml", tipo: medio, pais: GBR, idioma: fa, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-turkce, nombre: BBC Türkçe, url: "https://feeds.bbci.co.uk/turkce/rss.xml", tipo: medio, pais: GBR, idioma: tr, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-chinese, nombre: BBC 中文, url: "https://feeds.bbci.co.uk/zhongwen/simp/rss.xml", tipo: medio, pais: GBR, idioma: zh, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-hindi, nombre: BBC Hindi, url: "https://feeds.bbci.co.uk/hindi/rss.xml", tipo: medio, pais: GBR, idioma: hi, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-urdu, nombre: BBC Urdu, url: "https://feeds.bbci.co.uk/urdu/rss.xml", tipo: medio, pais: GBR, idioma: ur, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-brasil, nombre: BBC News Brasil, url: "https://feeds.bbci.co.uk/portuguese/rss.xml", tipo: medio, pais: GBR, idioma: pt, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: bbc-swahili, nombre: BBC Swahili, url: "https://feeds.bbci.co.uk/swahili/rss.xml", tipo: medio, pais: GBR, idioma: sw, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: tagesschau-ausland, nombre: tagesschau – Ausland, url: "https://www.tagesschau.de/ausland/index~rss2.xml", tipo: medio, pais: DEU, idioma: de, propiedad: publica, extracto: true, licencia: rss_editor}
+  - {id: nhk-intl, nombre: NHK – 国際, url: "https://www3.nhk.or.jp/rss/news/cat6.xml", tipo: medio, pais: JPN, idioma: ja, propiedad: publica, extracto: true, licencia: rss_editor}
+
+# Medios cuyas notas se agrupan como una misma organización (para no contar copias como fuentes
+# independientes). Clave: organización; valor: dominios.
+grupos_dominios:
+  BBC: [bbc.co.uk, bbc.com, bbci.co.uk]
+  Al Jazeera: [aljazeera.com, aljazeera.net]
+  France 24: [france24.com]
+  RFI: [rfi.fr]
+  DW: [dw.com]
+  TASS: [tass.com, tass.ru]
+  RIA Novosti: [ria.ru]
+  RT: [rt.com, actualidad.rt.com]
+  Xinhua: [news.cn, xinhuanet.com, english.news.cn]
+  CGTN: [cgtn.com]
+  Anadolu: [aa.com.tr]
+  Reuters: [reuters.com]
+  Associated Press: [apnews.com]
+  AFP: [afp.com]
+  EFE: [efe.com, swissinfo.ch]
+  Yonhap: [yna.co.kr]
+  The Guardian: [theguardian.com]
+  CNN: [cnn.com, cnnespanol.cnn.com]
+  Infobae: [infobae.com]
+  El País: [elpais.com]
+
+# Agencias de noticias: si un artículo atribuye su contenido a una agencia, la agencia cuenta
+# como el origen (no el medio que la reproduce).
+agencias:
+  Reuters: ["Reuters", "(Reuters)"]
+  Associated Press: ["Associated Press", "(AP)", "AP Photo", "— AP", "- AP"]
+  AFP: ["AFP", "Agence France-Presse", "(AFP)"]
+  EFE: ["EFE", "(EFE)", "Agencia EFE"]
+  dpa: ["dpa", "(dpa)"]
+  ANSA: ["ANSA", "(ANSA)"]
+  Europa Press: ["Europa Press", "(Europa Press)"]
+  Xinhua: ["Xinhua"]
+  TASS: ["TASS"]
+  RIA Novosti: ["RIA Novosti"]
+  Anadolu: ["Anadolu Agency", "Anadolu"]
+  Interfax: ["Interfax"]
+  Ukrinform: ["Ukrinform"]
+  IRNA: ["IRNA"]
+  WAFA: ["WAFA"]
+  Kyodo: ["Kyodo"]
+  Yonhap: ["Yonhap"]
+  PTI: ["(PTI)", "Press Trust of India"]
+  APP: ["(APP)", "Associated Press of Pakistan"]
+
+# Dominios oficiales o estatales por país (identifican "declaraciones de parte" y medios estatales
+# de una parte cuando el artículo llega por GDELT).
+dominios_oficiales:
+  RUS: [kremlin.ru, mid.ru, mil.ru, government.ru]
+  UKR: [president.gov.ua, mil.gov.ua, mfa.gov.ua, kmu.gov.ua]
+  ISR: [gov.il, idf.il, mfa.gov.il, pmo.gov.il]
+  IRN: [president.ir, mfa.ir, leader.ir]
+  USA: [state.gov, defense.gov, war.gov, whitehouse.gov, treasury.gov]
+  CHN: [fmprc.gov.cn, mfa.gov.cn, mod.gov.cn, gov.cn]
+  PAK: [ispr.gov.pk, mofa.gov.pk]
+  IND: [mea.gov.in, pib.gov.in]
+  GBR: [gov.uk]
+  SAU: [mofa.gov.sa]
+  TWN: [mofa.gov.tw, mnd.gov.tw]
+  JPN: [mofa.go.jp, mod.go.jp]
+  KOR: [mofa.go.kr]
+  ARG: [cancilleria.gob.ar, casarosada.gob.ar]
+dominios_estatales:
+  RUS: [tass.ru, tass.com, ria.ru, rt.com, sputnikglobe.com, sputniknews.com, rg.ru]
+  CHN: [news.cn, xinhuanet.com, chinadaily.com.cn, cgtn.com, globaltimes.cn, people.com.cn, ecns.cn]
+  IRN: [irna.ir, presstv.ir, tasnimnews.com, farsnews.ir, mehrnews.com, en.irna.ir]
+  TUR: [aa.com.tr, trtworld.com, trt.net.tr]
+  UKR: [ukrinform.ua, ukrinform.net]
+  PSE: [wafa.ps, english.wafa.ps]
+  SAU: [spa.gov.sa, arabnews.com]
+  PAK: [app.com.pk, ptv.com.pk]
+  IND: [ddnews.gov.in]
+  PRK: [kcna.kp, rodong.rep.kp]
+  SYR: [sana.sy]
+  VEN: [telesurtv.net, vtv.gob.ve]
+  QAT: [aljazeera.com, aljazeera.net]
+  EGY: [ahram.org.eg]
+  BLR: [belta.by]
+  MAR: [mapexpress.ma]
+  DZA: [aps.dz]
+  ETH: [ena.et]
+  ERI: [shabait.com]
+  RWA: [newtimes.co.rw]
+  AFG: [bakhtarnews.af]

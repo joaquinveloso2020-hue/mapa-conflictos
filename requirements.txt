@@ -1,0 +1,8 @@
+# Dependencias del colector (Python 3.12). Versiones fijadas y probadas.
+requests==2.34.2
+feedparser==6.0.14
+PyYAML==6.0.3
+cryptography==50.0.2
+ctranslate2==4.8.3
+sentencepiece==0.2.2
+py3langid==0.4.0

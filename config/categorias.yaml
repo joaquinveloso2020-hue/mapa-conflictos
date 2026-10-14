@@ -1,0 +1,42 @@
+# Categorías del mapa. Los colores identifican la categoría; NO expresan gravedad.
+# Paleta categórica Okabe-Ito validada con el validador de paletas (modo claro, todos los pares):
+# pasa banda de luminosidad, croma y piso de visión normal; separación CVD en banda de advertencia
+# (verde/rosa 7,6), por lo que el mapa usa codificación secundaria: bordes, leyenda con texto,
+# etiqueta de categoría en tooltips/fichas y textura rayada para "varias categorías".
+# El lienzo del mapa se mantiene claro también en modo oscuro (la paleta no está validada para fondo oscuro).
+categorias:
+  guerra_estados:
+    nombre: Guerra entre Estados
+    descripcion: Hostilidades armadas entre fuerzas de dos o más Estados (o autoridades de facto que controlan un Estado).
+    color: "#D55E00"
+    vocabulario: armado
+  guerra_civil:
+    nombre: Guerra civil o conflicto armado interno
+    descripcion: Enfrentamientos entre un gobierno y grupos armados organizados que disputan el control del Estado o de parte del territorio.
+    color: "#CC79A7"
+    vocabulario: armado
+  otro_armado:
+    nombre: Otro conflicto armado
+    descripcion: Insurgencias yihadistas, violencia de grupos armados no estatales, crimen organizado armado y conflictos con actores no estatales.
+    color: "#E69F00"
+    vocabulario: armado
+  disputa_territorial:
+    nombre: Disputa territorial
+    descripcion: Reclamos de soberanía sobre territorios, fronteras o espacios marítimos.
+    color: "#0072B2"
+    vocabulario: disputa
+  tension_diplomatica:
+    nombre: Tensión diplomática
+    descripcion: Crisis o deterioro de relaciones entre Estados sin guerra abierta (expulsiones, amenazas, incidentes militares).
+    color: "#56B4E9"
+    vocabulario: diplomatico
+  sanciones_economico:
+    nombre: Sanciones o conflicto económico
+    descripcion: Sanciones internacionales, aranceles, controles a la exportación y disputas comerciales entre Estados.
+    color: "#009E73"
+    vocabulario: economico
+# Países involucrados en conflictos de más de una categoría: textura rayada gris (sin jerarquía
+# entre categorías; no se elige "la más grave").
+patron_varias: rayado_gris
+# Candidatos detectados automáticamente (sin verificar): se dibujan con borde punteado gris.
+color_candidato: "#8C8C8C"
