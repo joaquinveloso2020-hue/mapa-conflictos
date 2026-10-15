@@ -319,7 +319,7 @@
     const foco = ['match', ['get', 'foco'], 0, 0.2, 2, 1.25, 1];
     const hover = ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 1];
     const k = base && base.estado.modo === 'satelite' ? 0.8 : 1;
-    return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.3 * k, foco, hover], 4, ['*', 0.2 * k, foco, hover], 7, ['*', 0.1 * k, foco, hover]];
+    return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.3 * k, foco, hover], 4, ['*', 0.18 * k, foco, hover], 7, ['*', 0.07 * k, foco, hover]];
   }
 
   function agregarCapas() {
@@ -350,7 +350,8 @@
     m.addLayer({ id: 'paises-resaltado', type: 'line', source: 'paises', filter: ['==', ['get', 'id'], '__ninguno__'],
       paint: { 'line-color': P.resaltado, 'line-width': 2.2 } }, 'ancla-zonas');
     // Zona en disputa de soberanía (Natural Earth): trama clara y contorno punteado.
-    m.addLayer({ id: 'zonas-relleno', type: 'fill', source: 'zonas', minzoom: 2.8, paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': 0.75 } }, 'ancla-zonas');
+    m.addLayer({ id: 'zonas-relleno', type: 'fill', source: 'zonas', minzoom: 2.8,
+      paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 6, 0.4, 9, 0.25] } }, 'ancla-zonas');
     m.addLayer({ id: 'zonas-borde', type: 'line', source: 'zonas', minzoom: 2.8,
       paint: { 'line-color': P.bordeZona, 'line-width': 1.2, 'line-dasharray': [1, 2] } }, 'ancla-zonas');
     m.addLayer({ id: 'candidatos-borde', type: 'line', source: 'paises', filter: ['in', ['get', 'id'], ['literal', []]],
@@ -411,7 +412,7 @@
       paint: { 'line-color': P.limiteRegion, 'line-width': ['interpolate', ['linear'], ['zoom'], 3.5, 0.3, 6.5, 0.8] } }, 'ancla-zonas');
     // Zona afectada según una fuente fechada: trama diagonal discreta con borde fino.
     m.addLayer({ id: 'regiones-doc', type: 'fill', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': 0.8 } }, 'ancla-zonas');
+      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.8, 6, 0.4, 9, 0.22] } }, 'ancla-zonas');
     m.addLayer({ id: 'regiones-doc-borde', type: 'line', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
       paint: { 'line-color': P.bordeDoc, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.5, 6, 1.1] } }, 'ancla-zonas');
     m.addLayer({ id: 'mares-doc', type: 'fill', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
