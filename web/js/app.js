@@ -17,6 +17,7 @@
   const METODO = {
     gdelt_evento: 'Lugar del hecho según la codificación automática de eventos de GDELT',
     titular: 'Lugar nombrado en el titular',
+    gkg_titular: 'Lugar nombrado en el titular e identificado por el geocodificador de GDELT',
     pais_mencionado: 'Solo se conoce el país (mencionado en el texto)',
     pais_del_conflicto: 'Ubicación no especificada: se asigna al país del conflicto',
     pais: 'Solo se conoce el país',
@@ -39,11 +40,12 @@
   // ------------------------------------------------------------------ estado
   const E = {
     datos: { estado: null, conflictos: null, eventos: null, candidatos: null },
-    geo: { paises: null, zonas: null },
+    geo: { paises: null, zonas: null, regiones: null, mares: null, ciudades: null },
     idx: {},
+    reg: { info: {}, cajas: {}, porPais: {}, deEvento: {}, conteo: {}, listo: false }, // regiones admin-1
     horas: 24,
     categorias: new Set(),
-    capas: { paises: true, eventos: true, zonas: true, candidatos: false, base: false },
+    capas: { paises: true, eventos: true, zonas: true, regiones: true, afectadas: true, candidatos: false, base: false },
     pestana: 'novedades',
     vista: null, // {tipo:'conflicto'|'pais'|'candidato', id}
     eventoAbierto: null,
@@ -62,6 +64,14 @@
   // ------------------------------------------------------------------ datos
   async function cargarJSON(ruta) {
     const r = await fetch(ruta + (ruta.includes('?') ? '&' : '?') + 'v=' + Math.floor(Date.now() / 60000), { cache: 'no-store' });
+    if (!r.ok) throw new Error(ruta + ': HTTP ' + r.status);
+    return r.json();
+  }
+
+  // Archivos geográficos estáticos: se permite la caché del navegador (cambian solo con el código).
+  const VERSION_GEO = '2';
+  async function cargarEstatico(ruta) {
+    const r = await fetch(ruta + '?g=' + VERSION_GEO);
     if (!r.ok) throw new Error(ruta + ': HTTP ' + r.status);
     return r.json();
   }
@@ -99,11 +109,12 @@
   }
 
   // ------------------------------------------------------------------ mapa
-  function patron(fondo, linea, tam = 8, grosor = 2) {
+  function patron(fondo, linea, tam = 8, grosor = 2, inverso = false) {
     const c = document.createElement('canvas');
     c.width = c.height = tam;
     const x = c.getContext('2d');
     if (fondo) { x.fillStyle = fondo; x.fillRect(0, 0, tam, tam); }
+    if (inverso) { x.translate(tam, 0); x.scale(-1, 1); } // diagonal en el otro sentido
     x.strokeStyle = linea; x.lineWidth = grosor;
     x.beginPath(); x.moveTo(0, tam); x.lineTo(tam, 0); x.moveTo(-tam / 2, tam / 2); x.lineTo(tam / 2, -tam / 2);
     x.moveTo(tam / 2, tam * 1.5); x.lineTo(tam * 1.5, tam / 2); x.stroke();
@@ -138,14 +149,17 @@
       customAttribution: 'Noticias: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">The GDELT Project</a> y feeds RSS · Geografía: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>',
     }), 'bottom-left');
     E.mapa = mapa;
+    window.mapaDeConflictos = E; // acceso para depuración desde la consola del navegador
     mapa.on('load', () => {
       const attrib = document.querySelector('.maplibregl-ctrl-attrib');
       if (attrib) attrib.classList.remove('maplibregl-compact-show');
       mapa.fitBounds([[-150, -48], [160, 70]], { padding: rellenoMapa(), duration: 0 });
       mapa.addImage('rayado', patron('#e3e3e3', '#5f5f5f', 8, 2.2), { pixelRatio: 1 });
       mapa.addImage('rayado-zona', patron(null, 'rgba(11,61,102,0.75)', 10, 1.6), { pixelRatio: 1 });
+      mapa.addImage('rayado-doc', patron(null, 'rgba(20,20,20,0.7)', 6, 1.2, true), { pixelRatio: 1 });
       agregarCapas();
       E.mapaListo = true;
+      agregarCapasDetalle();
       actualizarMapa();
       interacciones();
     });
@@ -235,6 +249,86 @@
 
   const vacio = () => ({ type: 'FeatureCollection', features: [] });
 
+  function agregarCapasDetalle() {
+    const m = E.mapa;
+    if (!E.mapaListo || !E.reg.listo || m.getSource('regiones')) return;
+    const colorEstado = ['match', ['feature-state', 'cat']];
+    for (const [k, v] of Object.entries(E.datos.conflictos.categorias)) colorEstado.push(k, v.color);
+    colorEstado.push('#5f5f5f');
+    const n = ['coalesce', ['feature-state', 'n'], 0];
+    m.addSource('regiones', { type: 'geojson', data: E.geo.regiones, promoteId: 'id' });
+    m.addSource('regiones-et', { type: 'geojson', data: { type: 'FeatureCollection', features: Object.values(E.reg.info).filter((r) => r.et)
+      .map((r) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: r.et }, properties: { id: r.id, n: r.n } })) } });
+    m.addSource('mares', { type: 'geojson', data: E.geo.mares || vacio() });
+    m.addSource('ciudades', { type: 'geojson', data: E.geo.ciudades || vacio() });
+    // Intensidad por cantidad de acontecimientos en la región (más intenso = más acontecimientos).
+    m.addLayer({ id: 'regiones-actividad', type: 'fill', source: 'regiones',
+      paint: { 'fill-color': colorEstado, 'fill-opacity': ['case', ['>', n, 0], ['step', n, 0.5, 3, 0.66, 6, 0.8, 12, 0.92], 0] } }, 'paises-participante');
+    m.addLayer({ id: 'regiones-actividad-borde', type: 'line', source: 'regiones', filter: ['==', ['get', 'id'], '__ninguna__'],
+      paint: { 'line-color': '#262626', 'line-width': 0.9, 'line-opacity': 0.75 } }, 'paises-participante');
+    m.addLayer({ id: 'regiones-limites', type: 'line', source: 'regiones', minzoom: 2.6,
+      paint: { 'line-color': '#8f959b', 'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.25, 7, 0.9], 'line-opacity': 0.8 } }, 'paises-borde');
+    m.addLayer({ id: 'regiones-doc', type: 'fill', source: 'regiones', filter: ['in', ['get', 'id'], ['literal', []]],
+      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': 0.85 } }, 'zonas-relleno');
+    m.addLayer({ id: 'regiones-doc-borde', type: 'line', source: 'regiones', filter: ['in', ['get', 'id'], ['literal', []]],
+      paint: { 'line-color': '#3a3a3a', 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.6, 6, 1.4] } }, 'zonas-relleno');
+    m.addLayer({ id: 'mares-doc', type: 'fill', source: 'mares', filter: ['in', ['get', 'id'], ['literal', []]],
+      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': 0.55 } }, 'zonas-relleno');
+    m.addLayer({ id: 'mares-doc-borde', type: 'line', source: 'mares', filter: ['in', ['get', 'id'], ['literal', []]],
+      paint: { 'line-color': '#24435f', 'line-width': 1.1, 'line-dasharray': [2, 2] } }, 'zonas-relleno');
+    m.addLayer({ id: 'regiones-sel', type: 'line', source: 'regiones', filter: ['in', ['get', 'id'], ['literal', []]],
+      paint: { 'line-color': '#000', 'line-width': 2.6 } }, 'zonas-relleno');
+    m.addLayer({ id: 'mares-texto', type: 'symbol', source: 'mares', filter: ['in', ['get', 'id'], ['literal', []]], minzoom: 2.4,
+      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': 11, 'text-max-width': 7, 'symbol-placement': 'point' },
+      paint: { 'text-color': '#24435f', 'text-halo-color': 'rgba(255,255,255,0.8)', 'text-halo-width': 1.2 } }, 'eventos-pais');
+    m.addLayer({ id: 'ciudades-punto', type: 'circle', source: 'ciudades', minzoom: 3.2,
+      filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 4, 2, 5, 3]],
+      paint: { 'circle-radius': ['case', ['==', ['get', 'cap'], 1], 3, 2.2], 'circle-color': '#2b2b2b', 'circle-stroke-color': '#fff', 'circle-stroke-width': 1 } }, 'eventos-pais');
+    m.addLayer({ id: 'ciudades-texto', type: 'symbol', source: 'ciudades', minzoom: 3.2,
+      filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 4, 2, 5, 3]],
+      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': ['interpolate', ['linear'], ['zoom'], 3, 10, 8, 13],
+        'text-anchor': 'left', 'text-offset': [0.5, 0], 'text-max-width': 8, 'text-padding': 3, 'text-optional': true },
+      paint: { 'text-color': '#2b2b2b', 'text-halo-color': 'rgba(255,255,255,0.9)', 'text-halo-width': 1.2 } }, 'eventos-pais');
+    m.addLayer({ id: 'regiones-etiquetas', type: 'symbol', source: 'regiones-et', minzoom: 4.3,
+      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': ['interpolate', ['linear'], ['zoom'], 4.3, 9.5, 8, 12],
+        'text-max-width': 7, 'text-padding': 6, 'text-letter-spacing': 0.04, 'text-transform': 'uppercase' },
+      paint: { 'text-color': '#5c5f63', 'text-halo-color': 'rgba(255,255,255,0.85)', 'text-halo-width': 1.1 } }, 'ciudades-punto');
+    actualizarMapa();
+  }
+
+  // Colorea las regiones según los acontecimientos del período y marca las documentadas.
+  function actualizarRegiones(evs) {
+    const m = E.mapa;
+    if (!m.getSource('regiones')) return;
+    const conteo = conteoRegiones(evs);
+    E.reg.conteo = conteo;
+    m.removeFeatureState({ source: 'regiones' });
+    for (const [id, c] of Object.entries(conteo)) {
+      m.setFeatureState({ source: 'regiones', id }, { n: c.n, cat: c.cats.size === 1 ? [...c.cats][0] : 'varias' });
+    }
+    m.setFilter('regiones-actividad-borde', ['in', ['get', 'id'], ['literal', Object.keys(conteo)]]);
+    const ids = new Set(), mares = new Set();
+    for (const { grupo } of regionesDocumentadas()) { grupo.ids.forEach((i) => ids.add(i)); grupo.mares.forEach((x) => mares.add(x)); }
+    m.setFilter('regiones-doc', ['in', ['get', 'id'], ['literal', [...ids]]]);
+    m.setFilter('regiones-doc-borde', ['in', ['get', 'id'], ['literal', [...ids]]]);
+    ['mares-doc', 'mares-doc-borde', 'mares-texto'].forEach((l) => m.setFilter(l, ['in', ['get', 'id'], ['literal', [...mares]]]));
+    resaltarSeleccion();
+  }
+
+  // Contorno grueso de las regiones del conflicto o de la región que se está viendo.
+  function resaltarSeleccion() {
+    const m = E.mapa;
+    if (!m || !m.getLayer('regiones-sel')) return;
+    let ids = [];
+    const v = E.vista;
+    if (v && v.tipo === 'region') ids = [v.id];
+    else if (v && v.tipo === 'conflicto') {
+      const c = E.idx.conflicto[v.id];
+      (c && c.regiones || []).forEach((g) => ids.push(...g.ids));
+    }
+    m.setFilter('regiones-sel', ['in', ['get', 'id'], ['literal', ids]]);
+  }
+
   function puntosEtiquetas() {
     const et = E.datos.conflictos.etiquetas_paises || {};
     return { type: 'FeatureCollection', features: Object.entries(et).map(([iso, c]) => ({
@@ -273,6 +367,7 @@
       }
     }
     m.getSource('eventos').setData({ type: 'FeatureCollection', features: puntos });
+    actualizarRegiones(evs);
     const et = E.datos.conflictos.etiquetas_paises || {};
     m.getSource('eventos-pais').setData({ type: 'FeatureCollection', features: Object.entries(porPais)
       .filter(([iso]) => et[iso]).map(([iso, ids]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: et[iso] },
@@ -292,8 +387,15 @@
     vis(['eventos-punto', 'grupos', 'grupos-texto', 'eventos-pais', 'eventos-pais-texto'], E.capas.eventos);
     vis(['zonas-relleno', 'zonas-borde'], E.capas.zonas);
     vis(['candidatos-borde', 'candidatos-punto', 'candidatos-texto'], E.capas.candidatos);
-    const op = E.capas.base ? 0.45 : 0.72;
+    vis(['regiones-actividad', 'regiones-actividad-borde'], E.capas.regiones);
+    vis(['regiones-doc', 'regiones-doc-borde', 'mares-doc', 'mares-doc-borde', 'mares-texto'], E.capas.afectadas);
+    vis(['ciudades-punto', 'ciudades-texto'], !E.capas.base);
+    // Con las regiones activas, el color del país se atenúa para que se lea el detalle regional.
+    // Con zoom bajo se mantiene el color por país; al acercar se atenúa para leer las regiones.
+    const op = E.capas.base ? 0.4 : E.capas.regiones && E.reg.listo ? ['interpolate', ['linear'], ['zoom'], 2.2, 0.72, 3.6, 0.3] : 0.72;
     if (m.getLayer('paises-escenario')) m.setPaintProperty('paises-escenario', 'fill-opacity', op);
+    if (m.getLayer('paises-varias')) m.setPaintProperty('paises-varias', 'fill-opacity',
+      E.capas.regiones && E.reg.listo ? ['interpolate', ['linear'], ['zoom'], 2.2, 0.9, 3.6, 0.22] : 0.9);
   }
 
   function alternarBase(on) {
@@ -327,7 +429,7 @@
     const capasPais = ['paises-escenario', 'paises-varias', 'paises-participante', 'tierra'];
     let hover = null;
     m.on('mousemove', (e) => {
-      const f = m.queryRenderedFeatures(e.point, { layers: ['eventos-punto', 'grupos', 'eventos-pais', 'candidatos-punto', 'zonas-relleno', ...capasPais].filter((l) => m.getLayer(l)) });
+      const f = m.queryRenderedFeatures(e.point, { layers: ['eventos-punto', 'grupos', 'eventos-pais', 'candidatos-punto', 'zonas-relleno', 'mares-doc', 'regiones-actividad', ...capasPais].filter((l) => m.getLayer(l)) });
       m.getCanvas().style.cursor = f.length ? 'pointer' : '';
       if (!f.length) { popup.remove(); if (hover) { m.setFilter('paises-resaltado', ['==', ['get', 'id'], '__ninguno__']); hover = null; } return; }
       const x = f[0];
@@ -344,6 +446,13 @@
         if (c) html = `<div class="popup-titulo">${esc(c.nombre)}</div><div class="popup-sub">Detectado automáticamente · sin verificar</div>`;
       } else if (x.layer.id === 'zonas-relleno') {
         html = `<div class="popup-titulo">${esc(x.properties.nombre)}</div><div class="popup-sub">Zona en disputa de soberanía (no indica control militar ni frentes). Fuente: Natural Earth, consultado ${esc(fechaCorta(x.properties.fecha_consulta))}.</div>`;
+      } else if (x.layer.id === 'mares-doc') {
+        html = popupMar(x.properties.id, x.properties.n);
+      } else if (x.layer.id === 'regiones-actividad') {
+        const id = x.properties.id;
+        html = popupRegion(id);
+        const pais = (E.reg.info[id] || {}).p;
+        if (pais && hover !== pais) { hover = pais; m.setFilter('paises-resaltado', ['==', ['get', 'id'], pais]); }
       } else {
         const id = x.properties.id;
         const cs = (E.idx.paisConflictos[id] || []).filter((r) => E.categorias.has(E.idx.conflicto[r.id].categoria));
@@ -356,7 +465,7 @@
     });
     m.on('mouseout', () => popup.remove());
     m.on('click', (e) => {
-      const capas = ['grupos', 'eventos-punto', 'eventos-pais', 'candidatos-punto', 'zonas-relleno', ...capasPais].filter((l) => m.getLayer(l) && m.getLayoutProperty(l, 'visibility') !== 'none');
+      const capas = ['grupos', 'eventos-punto', 'eventos-pais', 'candidatos-punto', 'zonas-relleno', 'mares-doc', 'regiones-actividad', ...capasPais].filter((l) => m.getLayer(l) && m.getLayoutProperty(l, 'visibility') !== 'none');
       const f = m.queryRenderedFeatures(e.point, { layers: capas });
       if (!f.length) return;
       const x = f[0];
@@ -372,11 +481,34 @@
         new maplibregl.Popup({ offset: 8 }).setLngLat(e.lngLat).setHTML(`<div class="popup-titulo">${esc(x.properties.nombre)}</div><div class="popup-sub">Zona en disputa de soberanía según ${esc(x.properties.fuente)}; consultado ${esc(fechaCorta(x.properties.fecha_consulta))}. No indica control militar ni líneas de frente.</div>`).addTo(m);
         const otra = f.find((g) => capasPais.includes(g.layer.id));
         if (otra && (E.idx.paisConflictos[otra.properties.id] || []).length) abrirVista({ tipo: 'pais', id: otra.properties.id });
+      } else if (x.layer.id === 'mares-doc') {
+        new maplibregl.Popup({ offset: 8, maxWidth: '300px' }).setLngLat(e.lngLat).setHTML(popupMar(x.properties.id, x.properties.n, true)).addTo(m);
+      } else if (x.layer.id === 'regiones-actividad') {
+        abrirVista({ tipo: 'region', id: x.properties.id });
       } else {
         const id = x.properties.id;
         if ((E.idx.paisConflictos[id] || []).length) abrirVista({ tipo: 'pais', id });
       }
     });
+  }
+
+  function gruposDeRegion(id) { return regionesDocumentadas().filter(({ grupo }) => grupo.ids.includes(id)); }
+  function gruposDeMar(id) { return regionesDocumentadas().filter(({ grupo }) => grupo.mares.includes(id)); }
+  function popupRegion(id) {
+    const r = E.reg.info[id] || {};
+    const c = E.reg.conteo[id];
+    const docs = gruposDeRegion(id);
+    let html = `<div class="popup-titulo">${esc(r.n || id)} <span style="font-weight:400">(${esc(nombrePais(r.p))})</span></div><div class="popup-sub">`;
+    html += c ? `${c.n} acontecimiento(s) ubicados aquí en ${E.horas} h` : `Sin acontecimientos ubicados aquí en ${E.horas} h`;
+    if (docs.length) html += '<br>' + docs.slice(0, 2).map(({ conflicto, grupo }) => `${esc(grupo.nota)} (${esc(conflicto.nombre)})`).join('<br>');
+    return html + '<br><em>Clic para ver la región</em></div>';
+  }
+  function popupMar(id, nombre, conFuentes) {
+    const docs = gruposDeMar(id);
+    let html = `<div class="popup-titulo">${esc(nombre)}</div><div class="popup-sub">`;
+    html += docs.map(({ conflicto, grupo }) => `<strong>${esc(conflicto.nombre)}</strong>: ${esc(grupo.nota)}`
+      + (conFuentes ? '<br>Fuente: ' + grupo.fuentes.map((f) => `<a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.medio)}, ${esc(fechaCorta(f.fecha))}</a>`).join('; ') : '')).join('<br>');
+    return html + '<br><em>Área marítima de Natural Earth: indica dónde se informaron incidentes, no su ubicación exacta.</em></div>';
   }
 
   // ------------------------------------------------------------------ panel
@@ -549,8 +681,9 @@
   function renderVista(cont) {
     const v = E.vista;
     const volver = el('<button class="volver">← Volver</button>');
-    volver.onclick = () => { E.vista = null; E.eventoAbierto = null; renderPanel(); };
+    volver.onclick = () => { E.vista = null; E.eventoAbierto = null; renderPanel(); resaltarSeleccion(); };
     cont.appendChild(volver);
+    if (v.tipo === 'region') return fichaRegion(cont, v.id);
     if (v.tipo === 'conflicto') return fichaConflicto(cont, E.idx.conflicto[v.id]);
     if (v.tipo === 'pais') return fichaPais(cont, v.id);
     if (v.tipo === 'candidato') return fichaCandidato(cont, (E.datos.candidatos.candidatos || []).find((c) => c.id === v.id));
@@ -569,6 +702,7 @@
       <section><h4>Quiénes participan</h4><ul>${c.actores.map((a) => `<li>${esc(a)}</li>`).join('')}</ul></section>
       <section><h4>Países</h4><p><strong>Escenario:</strong> ${esc(c.paises_escenario.map(nombrePais).join(', ') || '—')}</p>
         ${c.paises_participantes.length ? `<p><strong>Participan o están involucrados:</strong> ${esc((c.participantes_grupos || []).includes('UE') ? 'Unión Europea (27 países)' + (c.paises_participantes.filter((p) => !['AUT','BEL','BGR','HRV','CYP','CZE','DNK','EST','FIN','FRA','DEU','GRC','HUN','IRL','ITA','LVA','LTU','LUX','MLT','NLD','POL','PRT','ROU','SVK','SVN','ESP','SWE'].includes(p)).map((p) => ', ' + nombrePais(p)).join('')) : c.paises_participantes.map(nombrePais).join(', '))}</p>` : ''}</section>
+      <section class="zonas-conflicto"></section>
       <section><h4>Últimas noticias (${E.horas} h)</h4><div class="lista-eventos"></div></section>
       <section><h4>Fuentes del registro</h4><ul class="fuentes-registro">${c.fuentes.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.titulo)}</a> — ${esc(s.medio)}, ${esc(fechaCorta(s.fecha))}</li>`).join('')}</ul></section>
       <p class="meta" style="font-size:12px;color:var(--texto-3)">Actividad en el sistema: ${st.eventos_72h || 0} acontecimiento(s) en 72 h${st.ultima_noticia ? ', última noticia ' + esc(relativo(st.ultima_noticia)) : ''}. La falta de noticias no implica que el conflicto haya terminado.</p>
@@ -576,6 +710,67 @@
     const lista = $('.lista-eventos', f);
     if (!evs.length) lista.appendChild(mensajeVacio('Sin acontecimientos nuevos detectados en este período.'));
     evs.slice(0, 60).forEach((ev) => lista.appendChild(tarjetaEvento(ev, false)));
+    seccionZonas($('.zonas-conflicto', f), c, evs);
+    cont.appendChild(f);
+  }
+
+  // Zonas específicas: regiones documentadas por el registro y regiones con más acontecimientos.
+  function seccionZonas(sec, c, evs) {
+    let html = '<h4>Zonas del conflicto</h4>';
+    const grupos = c.regiones || [];
+    if (grupos.length) {
+      html += grupos.map((g) => `<div class="grupo-zona">
+        <p><strong>${esc(g.nota)}</strong></p>
+        ${g.ids.length ? `<div class="chips">${g.ids.map(chipRegion).join('')}</div>` : ''}
+        ${g.mares.length ? `<p class="meta-zona">Áreas marítimas: ${esc(g.nombres_mares.join(', '))}</p>` : ''}
+        ${g.precision ? `<p class="meta-zona">${esc(g.precision)}</p>` : ''}
+        <p class="meta-zona">Según ${g.fuentes.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.medio)}</a> (${esc(fechaCorta(s.fecha))})`).join('; ')}</p>
+      </div>`).join('');
+    } else {
+      html += '<p class="meta-zona">El registro todavía no documenta regiones específicas con una fuente para esta situación.</p>';
+    }
+    const conteo = Object.entries(conteoRegiones(evs)).sort((a, b) => b[1].n - a[1].n);
+    if (E.reg.listo) {
+      html += conteo.length
+        ? `<p style="margin-top:10px"><strong>Regiones con más acontecimientos (${E.horas} h)</strong></p><div class="chips">${conteo.slice(0, 10).map(([id, x]) => chipRegion(id).replace('</button>', ` · ${x.n}</button>`)).join('')}</div>`
+          + '<p class="meta-zona">Calculado automáticamente con la ubicación de cada acontecimiento (solo los ubicados en una ciudad o provincia).</p>'
+        : `<p class="meta-zona" style="margin-top:8px">Ningún acontecimiento de las últimas ${E.horas} h tiene ubicación precisa (ciudad o provincia).</p>`;
+    }
+    html += '<p class="meta-zona">Las regiones son divisiones administrativas (Natural Earth): indican dónde se informaron hechos, no control territorial ni frentes.</p>';
+    sec.innerHTML = html;
+    activarChips(sec);
+  }
+
+  function fichaRegion(cont, id) {
+    const r = E.reg.info[id];
+    if (!r) return cont.appendChild(mensajeVacio(E.reg.listo ? 'Región no encontrada.' : 'Cargando regiones…'));
+    const evs = eventosFiltrados((ev) => E.reg.deEvento[ev.id] === id);
+    const docs = gruposDeRegion(id);
+    const porConflicto = {};
+    evs.forEach((ev) => { porConflicto[ev.conflicto] = (porConflicto[ev.conflicto] || 0) + 1; });
+    const f = el(`<div class="ficha">
+      <span class="categoria-ficha"><i style="background:#8c8c8c"></i>Región · ${esc(nombrePais(r.p))}</span>
+      <h2>${esc(r.n)}</h2>
+      <p class="meta-zona">División administrativa de primer nivel${r.t ? ' (' + esc(TIPOS_REGION[r.t] || r.t) + ')' : ''} según Natural Earth. No indica quién controla el territorio.</p>
+      <section><h4>Situación documentada en el registro</h4><div class="docs"></div></section>
+      <section><h4>Acontecimientos ubicados aquí (${E.horas} h)</h4>
+        <p class="resumen-region"></p><div class="lista-eventos"></div></section>
+      <p><button class="btn btn-sec ver-pais">Ver todo ${esc(nombrePais(r.p))}</button></p>
+    </div>`);
+    const d = $('.docs', f);
+    d.innerHTML = docs.length ? docs.map(({ conflicto, grupo }) => `<div class="grupo-zona" style="--cat:${colorCat(conflicto.categoria)}">
+        <p><strong>${esc(grupo.nota)}</strong> — <a href="#" data-conflicto="${esc(conflicto.id)}">${esc(conflicto.nombre)}</a></p>
+        ${grupo.precision ? `<p class="meta-zona">${esc(grupo.precision)}</p>` : ''}
+        <p class="meta-zona">Según ${grupo.fuentes.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.titulo)}</a> — ${esc(s.medio)}, ${esc(fechaCorta(s.fecha))}`).join('; ')}</p></div>`).join('')
+      : '<p class="meta-zona">El registro no documenta esta región para ningún conflicto visible. Puede tener acontecimientos ubicados automáticamente.</p>';
+    $$('[data-conflicto]', d).forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); abrirVista({ tipo: 'conflicto', id: a.dataset.conflicto }); }));
+    $('.resumen-region', f).textContent = evs.length
+      ? Object.entries(porConflicto).sort((a, b) => b[1] - a[1]).map(([cid, n]) => `${E.idx.conflicto[cid].nombre}: ${n}`).join(' · ')
+      : '';
+    const le = $('.lista-eventos', f);
+    if (!evs.length) le.appendChild(mensajeVacio('Sin acontecimientos con ubicación precisa en esta región en el período. Puede haber noticias ubicadas solo a nivel país.'));
+    evs.slice(0, 60).forEach((ev) => le.appendChild(tarjetaEvento(ev)));
+    $('.ver-pais', f).onclick = () => abrirVista({ tipo: 'pais', id: r.p });
     cont.appendChild(f);
   }
 
@@ -594,6 +789,12 @@
       lc.appendChild(t);
     }
     const evs = eventosFiltrados((ev) => (ev.lugar || {}).pais === iso);
+    const conteo = Object.entries(conteoRegiones(evs)).sort((a, b) => b[1].n - a[1].n);
+    if (conteo.length) {
+      const sec = el(`<section><h4>Regiones con acontecimientos (${E.horas} h)</h4><div class="chips">${conteo.slice(0, 12).map(([id, x]) => chipRegion(id).replace('</button>', ` · ${x.n}</button>`)).join('')}</div></section>`);
+      activarChips(sec);
+      $('.lista-conf', f).parentElement.after(sec);
+    }
     const le = $('.lista-eventos', f);
     if (!evs.length) le.appendChild(mensajeVacio('Sin acontecimientos con ubicación en este país en el período.'));
     evs.slice(0, 60).forEach((ev) => le.appendChild(tarjetaEvento(ev)));
@@ -653,7 +854,15 @@
     E.vista = v; E.eventoAbierto = null;
     renderPanel();
     panelNormal();
-    if (v.tipo === 'conflicto') encuadrar(E.idx.conflicto[v.id].paises_escenario);
+    resaltarSeleccion();
+    if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
+    else if (v.tipo === 'conflicto') {
+      // Si el registro documenta regiones, se encuadran esas zonas; si no, los países escenario.
+      const c = E.idx.conflicto[v.id];
+      const cajas = (c.regiones || []).flatMap((g) => g.ids.map((i) => E.reg.cajas[i])).filter(Boolean);
+      if (cajas.length) encuadrarCaja(cajas.reduce((b, x) => [Math.min(b[0], x[0]), Math.min(b[1], x[1]), Math.max(b[2], x[2]), Math.max(b[3], x[3])]), 5.5);
+      else encuadrar(c.paises_escenario);
+    }
     else if (v.tipo === 'pais') encuadrar([v.id]);
     else if (v.tipo === 'candidato') { const c = (E.datos.candidatos.candidatos || []).find((x) => x.id === v.id); if (c) encuadrar([c.pais]); }
   }
@@ -680,6 +889,10 @@
       bboxes[f.properties.id] = b;
     }
   }
+  function encuadrarCaja(b, maxZoom) {
+    if (!E.mapaListo || !b) return;
+    E.mapa.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: rellenoMapa(), maxZoom: maxZoom || 6, duration: 700 });
+  }
   function encuadrar(paises) {
     if (!E.mapaListo || !paises || !paises.length) return;
     let b = null;
@@ -698,12 +911,101 @@
     E.mapa.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding, maxZoom: 5.5, duration: 700 });
   }
 
+  // ------------------------------------------------- regiones (admin-1)
+  // Las regiones son divisiones administrativas de Natural Earth: se usan para contar dónde caen
+  // los acontecimientos geolocalizados y para mostrar las regiones afectadas que documenta el
+  // registro. No representan control territorial ni frentes.
+  function cajaGeom(coords) {
+    let b = [180, 90, -180, -90];
+    const recorrer = (c) => { if (typeof c[0] === 'number') { if (c[0] < b[0]) b[0] = c[0]; if (c[1] < b[1]) b[1] = c[1]; if (c[0] > b[2]) b[2] = c[0]; if (c[1] > b[3]) b[3] = c[1]; } else c.forEach(recorrer); };
+    recorrer(coords);
+    return b;
+  }
+  function enAnillo(anillo, x, y) {
+    let dentro = false;
+    for (let i = 0, j = anillo.length - 1; i < anillo.length; j = i++) {
+      const [xi, yi] = anillo[i], [xj, yj] = anillo[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) dentro = !dentro;
+    }
+    return dentro;
+  }
+  function enGeometria(g, x, y) {
+    const polis = g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
+    return polis.some((p) => enAnillo(p[0], x, y) && !p.slice(1).some((h) => enAnillo(h, x, y)));
+  }
+  function indexarRegiones() {
+    const R = E.reg;
+    R.info = {}; R.cajas = {}; R.porPais = {};
+    for (const f of E.geo.regiones.features) {
+      const p = f.properties;
+      R.info[p.id] = { id: p.id, n: p.n, p: p.p, t: p.t, et: p.lx != null ? [p.lx, p.ly] : null, geom: f.geometry };
+      R.cajas[p.id] = cajaGeom(f.geometry.coordinates);
+      (R.porPais[p.p] = R.porPais[p.p] || []).push(p.id);
+    }
+    R.listo = true;
+    asignarRegiones();
+  }
+  function regionDePunto(pais, x, y) {
+    const R = E.reg;
+    const candidatos = (pais && R.porPais[pais]) || [];
+    for (const id of candidatos) {
+      const b = R.cajas[id];
+      if (x >= b[0] && x <= b[2] && y >= b[1] && y <= b[3] && enGeometria(R.info[id].geom, x, y)) return id;
+    }
+    return null;
+  }
+  function asignarRegiones() {
+    if (!E.reg.listo || !E.datos.eventos) return;
+    const d = {};
+    for (const ev of E.datos.eventos.eventos) {
+      const l = ev.lugar || {};
+      if (l.coord && l.precision !== 'pais') {
+        const id = regionDePunto(l.pais, l.coord[0], l.coord[1]);
+        if (id) d[ev.id] = id;
+      }
+    }
+    E.reg.deEvento = d;
+  }
+  // Grupos de regiones documentadas (registro) de los conflictos visibles.
+  function regionesDocumentadas(filtroConflicto) {
+    const salida = [];
+    for (const c of E.datos.conflictos.conflictos) {
+      if (c.estado !== 'activo' || !E.categorias.has(c.categoria)) continue;
+      if (filtroConflicto && c.id !== filtroConflicto) continue;
+      for (const g of c.regiones || []) salida.push({ conflicto: c, grupo: g });
+    }
+    return salida;
+  }
+  function conteoRegiones(evs) {
+    const conteo = {};
+    for (const ev of evs) {
+      const id = E.reg.deEvento[ev.id];
+      if (!id) continue;
+      const c = conteo[id] = conteo[id] || { n: 0, cats: new Set(), conflictos: {} };
+      c.n++;
+      const cat = E.idx.conflicto[ev.conflicto].categoria;
+      c.cats.add(cat);
+      c.conflictos[ev.conflicto] = (c.conflictos[ev.conflicto] || 0) + 1;
+    }
+    return conteo;
+  }
+  const nombreRegion = (id) => (E.reg.info[id] ? E.reg.info[id].n : id);
+  const TIPOS_REGION = { Province: 'provincia', State: 'estado', Region: 'región', Oblast: 'óblast', Governorate: 'gobernación',
+    District: 'distrito', Department: 'departamento', Prefecture: 'prefectura', County: 'condado', Republic: 'república',
+    Territory: 'territorio', Emirate: 'emirato', City: 'ciudad', 'Federal City': 'ciudad federal', 'Autonomous Region': 'región autónoma',
+    'Autonomous Province': 'provincia autónoma', 'Capital District': 'distrito capital', 'Federal District': 'distrito federal',
+    'Independent Component City': 'ciudad', 'Highly Urbanized City': 'ciudad', 'Autonomous Okrug': 'distrito autónomo', Municipality: 'municipio' };
+  const chipRegion = (id) => `<button class="chip" data-region="${esc(id)}">${esc(nombreRegion(id))}</button>`;
+  function activarChips(raiz) {
+    $$('[data-region]', raiz).forEach((b) => b.addEventListener('click', (e) => { e.stopPropagation(); abrirVista({ tipo: 'region', id: b.dataset.region }); }));
+  }
+
   // ------------------------------------------------------------ búsqueda
   function iniciarBusqueda() {
     const input = $('#buscar'), lista = $('#sugerencias');
     let opciones = [], sel = -1;
     const cerrar = () => { lista.hidden = true; input.setAttribute('aria-expanded', 'false'); sel = -1; };
-    const elegir = (o) => { cerrar(); input.value = ''; if (o.tipo === 'conflicto') abrirVista({ tipo: 'conflicto', id: o.id }); else abrirVista({ tipo: 'pais', id: o.id }); $('#controles').classList.remove('abierto'); };
+    const elegir = (o) => { cerrar(); input.value = ''; abrirVista({ tipo: o.tipo, id: o.id }); $('#controles').classList.remove('abierto'); };
     input.addEventListener('input', () => {
       const q = norm(input.value);
       if (q.length < 2) return cerrar();
@@ -711,7 +1013,10 @@
         .map((c) => ({ tipo: 'conflicto', id: c.id, texto: c.nombre, sub: nombreCat(c.categoria) }));
       const paises = Object.entries(E.datos.conflictos.paises).filter(([, n]) => norm(n).includes(q))
         .map(([iso, n]) => ({ tipo: 'pais', id: iso, texto: n, sub: (E.idx.paisConflictos[iso] || []).length ? (E.idx.paisConflictos[iso].length + ' conflicto(s)') : 'país' }));
-      opciones = [...confs.slice(0, 8), ...paises.sort((a, b) => (b.sub === 'país' ? 0 : 1) - (a.sub === 'país' ? 0 : 1)).slice(0, 8)];
+      const regiones = Object.values(E.reg.info).filter((r) => norm(r.n).includes(q))
+        .map((r) => ({ tipo: 'region', id: r.id, texto: r.n, sub: 'región de ' + nombrePais(r.p), n: (E.reg.conteo[r.id] || {}).n || 0 }))
+        .sort((a, b) => b.n - a.n);
+      opciones = [...confs.slice(0, 8), ...paises.sort((a, b) => (b.sub === 'país' ? 0 : 1) - (a.sub === 'país' ? 0 : 1)).slice(0, 6), ...regiones.slice(0, 6)];
       lista.innerHTML = opciones.length ? opciones.map((o, i) => `<li role="option" id="op-${i}" aria-selected="false">${esc(o.texto)}<span class="tipo">${esc(o.sub)}</span></li>`).join('') : '<li role="option" aria-disabled="true">Sin resultados</li>';
       lista.hidden = false; input.setAttribute('aria-expanded', 'true');
       $$('li[id]', lista).forEach((li, i) => li.addEventListener('mousedown', (e) => { e.preventDefault(); elegir(opciones[i]); }));
@@ -752,9 +1057,12 @@
       <div class="item"><svg width="18" height="18"><circle cx="9" cy="9" r="5.5" fill="#fff" stroke="#D55E00" stroke-width="3"/></svg>Ubicado en una provincia o región</div>
       <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="#fff" stroke="#2d2d2d" stroke-width="2"/><text x="11" y="15" font-size="10" text-anchor="middle" fill="#1b1b1a">3</text></svg>Solo se conoce el país (no es un lugar exacto)</div>
       <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="#3d3d3b" stroke="#fff" stroke-width="2"/><text x="11" y="15" font-size="10" text-anchor="middle" fill="#fff">12</text></svg>Grupo de acontecimientos (acercá el mapa)</div>
+      <div class="item"><svg width="30" height="14"><rect width="10" height="14" fill="#D55E00" fill-opacity=".5"/><rect x="10" width="10" height="14" fill="#D55E00" fill-opacity=".72"/><rect x="20" width="10" height="14" fill="#D55E00" fill-opacity=".92"/></svg>Provincia o región con acontecimientos (más intenso = más acontecimientos en el período)</div>
+      <div class="item"><svg width="18" height="14"><defs><pattern id="ld" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#1d1d1d" stroke-width="1.2"/></pattern></defs><rect width="18" height="14" fill="url(#ld)" stroke="#1d1d1d" stroke-width="1.3"/></svg>Región afectada según una fuente fechada del registro</div>
+      <div class="item"><svg width="18" height="14"><rect width="18" height="14" fill="url(#ld)" fill-opacity=".6" stroke="#24435f" stroke-dasharray="2 2"/></svg>Área marítima con incidentes según el registro</div>
       <div class="item"><svg width="18" height="14"><defs><pattern id="lz" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#0b3d66" stroke-width="1.4"/></pattern></defs><rect width="18" height="14" fill="url(#lz)" stroke="#0b3d66" stroke-dasharray="3 2"/></svg>Zona en disputa de soberanía (Natural Earth)</div>
       <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="#fff" stroke="#5a5a5a" stroke-width="2"/><text x="11" y="15" font-size="11" text-anchor="middle" fill="#3a3a3a">?</text></svg>Situación detectada automáticamente (sin verificar)</div>
-      <p class="nota">Los colores identifican categorías, no gravedad. Los puntos más grandes tienen dos o más fuentes independientes.</p>`;
+      <p class="nota">Los colores identifican categorías, no gravedad. Los puntos más grandes tienen dos o más fuentes independientes. Las regiones son divisiones administrativas: muestran dónde se informaron hechos, no control territorial ni frentes de combate.</p>`;
   }
 
   function iniciarControles() {
@@ -812,11 +1120,26 @@
     p.style.cursor = 'pointer';
   }
 
+  // Capas de detalle (regiones, mares, ciudades): se cargan después para no demorar el primer mapa.
+  async function cargarDetalle() {
+    try {
+      const [regiones, mares, ciudades] = await Promise.all([cargarEstatico('geo/regiones.geojson'),
+        cargarEstatico('geo/mares.geojson').catch(() => null), cargarEstatico('geo/ciudades.geojson').catch(() => null)]);
+      E.geo.regiones = regiones; E.geo.mares = mares; E.geo.ciudades = ciudades;
+      indexarRegiones();
+      agregarCapasDetalle();
+      if (E.vista) renderPanel();
+    } catch (e) {
+      avisoCapas('No se pudieron cargar las regiones del mapa. Se muestra el mapa por países.');
+    }
+  }
+
   async function refrescar() {
     try {
       const est = await cargarJSON('datos/estado.json');
       if (est.generado !== E.generado) {
         await cargarDatos();
+        asignarRegiones();
         renderCategorias(); actualizarMapa(); renderPanel();
       } else {
         E.datos.estado = est;
@@ -829,7 +1152,7 @@
   async function iniciar() {
     iniciarControles();
     try {
-      const [paises, zonas] = await Promise.all([cargarJSON('geo/paises.geojson'), cargarJSON('geo/zonas.geojson')]);
+      const [paises, zonas] = await Promise.all([cargarEstatico('geo/paises.geojson'), cargarEstatico('geo/zonas.geojson')]);
       E.geo = { paises, zonas };
       calcularBboxes();
       await cargarDatos();
@@ -841,6 +1164,7 @@
     }
     renderEstado(); renderCategorias(); renderLeyenda(); iniciarBusqueda(); renderPanel();
     if (window.maplibregl) iniciarMapa();
+    cargarDetalle();
     if (esMovil()) estadoPanel('contraido'); else estadoPanel('normal');
     setInterval(refrescar, 5 * 60 * 1000);
     setInterval(renderEstado, 60 * 1000);
