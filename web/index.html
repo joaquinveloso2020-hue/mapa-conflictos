@@ -10,91 +10,101 @@
   <link rel="stylesheet" href="vendor/maplibre-gl.css">
   <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body>
+<body data-panel="normal">
   <a class="saltar" href="#panel">Ir al panel de novedades</a>
-  <header class="barra">
-    <div class="marca">
-      <h1>Mapa de conflictos</h1>
-      <span class="sub">Situación actual y novedades recientes</span>
-    </div>
-    <div id="estado-actualizacion" class="pastilla pastilla-neutra" role="status" aria-live="polite">Cargando datos…</div>
-    <button id="btn-filtros" class="btn btn-sec solo-movil" aria-expanded="false" aria-controls="controles">Filtros</button>
-    <button id="btn-ayuda" class="btn btn-sec">Cómo funciona</button>
-  </header>
 
   <main class="principal">
     <div id="mapa" class="mapa" aria-label="Mapa mundial de conflictos"></div>
 
-    <section id="controles" class="controles" aria-label="Búsqueda, filtros y capas">
+    <!-- Búsqueda, período y capas: una sola tarjeta compacta -->
+    <header id="controles" class="cabecera">
+      <div class="marca-linea">
+        <span class="logo" aria-hidden="true"></span>
+        <h1>Mapa de conflictos</h1>
+        <button id="estado-actualizacion" class="estado estado-neutro" type="button" title="Estado de la actualización">Cargando…</button>
+        <button id="btn-ayuda" class="icono" type="button" aria-label="Cómo funciona" title="Cómo funciona">?</button>
+      </div>
       <div class="busqueda">
-        <label for="buscar" class="vh">Buscar país o conflicto</label>
-        <input id="buscar" type="search" placeholder="Buscar país o conflicto…" autocomplete="off"
+        <svg class="lupa" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+        <label for="buscar" class="vh">Buscar país, conflicto o región</label>
+        <input id="buscar" type="search" placeholder="Buscar país, conflicto o región" autocomplete="off"
                role="combobox" aria-expanded="false" aria-controls="sugerencias" aria-autocomplete="list">
         <ul id="sugerencias" class="sugerencias" role="listbox" hidden></ul>
       </div>
-
-      <fieldset class="grupo">
-        <legend>Período</legend>
+      <div class="fila-filtros">
         <div class="segmentado" role="radiogroup" aria-label="Período">
-          <button role="radio" aria-checked="true" data-horas="24">Últimas 24 h</button>
-          <button role="radio" aria-checked="false" data-horas="72">Últimas 72 h</button>
+          <button type="button" role="radio" aria-checked="true" data-horas="24">24 h</button>
+          <button type="button" role="radio" aria-checked="false" data-horas="72">72 h</button>
         </div>
-      </fieldset>
-
-      <fieldset class="grupo">
-        <legend>Categorías</legend>
-        <div id="filtro-categorias" class="categorias"></div>
-      </fieldset>
-
-      <fieldset class="grupo">
-        <legend>Capas</legend>
-        <label class="interruptor"><input type="checkbox" data-capa="paises" checked> Países coloreados</label>
-        <label class="interruptor"><input type="checkbox" data-capa="eventos" checked> Acontecimientos</label>
-        <label class="interruptor"><input type="checkbox" data-capa="regiones" checked> Regiones con acontecimientos</label>
-        <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked> Regiones afectadas según fuentes</label>
-        <label class="interruptor"><input type="checkbox" data-capa="zonas" checked> Zonas en disputa</label>
-        <label class="interruptor"><input type="checkbox" data-capa="candidatos"> Situaciones detectadas (sin verificar)</label>
-        <label class="interruptor"><input type="checkbox" data-capa="base"> Mapa base detallado</label>
-      </fieldset>
-
-      <details class="grupo leyenda" open>
-        <summary>Leyenda</summary>
+        <button id="btn-capas" class="boton-suave" type="button" aria-expanded="false" aria-controls="popover-capas">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>Capas
+        </button>
+        <button id="btn-leyenda" class="boton-suave" type="button" aria-expanded="false" aria-controls="popover-leyenda">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.2"/><circle cx="6" cy="17" r="2.2"/><path d="M11 7h9M11 17h9"/></svg>Símbolos
+        </button>
+      </div>
+      <div id="popover-capas" class="popover" hidden>
+        <p class="popover-titulo">Qué ver en el mapa</p>
+        <label class="interruptor"><input type="checkbox" data-capa="paises" checked><span>Países con conflictos</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="eventos" checked><span>Novedades (puntos)</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="regiones" checked><span>Regiones con novedades<small>Al acercar el mapa</small></span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked><span>Regiones afectadas según fuentes<small>Rayadas; al acercar o al elegir un conflicto</small></span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="zonas" checked><span>Zonas en disputa</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="candidatos"><span>Situaciones detectadas<small>Automáticas, sin verificar</small></span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="base"><span>Mapa base detallado<small>Rutas y ciudades (OpenFreeMap)</small></span></label>
+      </div>
+      <div id="popover-leyenda" class="popover" hidden>
+        <p class="popover-titulo">Símbolos</p>
         <div id="leyenda"></div>
-      </details>
-    </section>
+      </div>
+    </header>
+
+    <!-- Categorías: leyenda y filtro a la vez -->
+    <nav id="leyenda-categorias" class="leyenda-cat" aria-label="Categorías: tocá para mostrar u ocultar"></nav>
+
+    <button id="btn-panel" class="tirador-panel" type="button" aria-expanded="true" aria-controls="panel" title="Ocultar el panel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+    </button>
 
     <aside id="panel" class="panel" aria-label="Novedades y fichas" tabindex="-1">
-      <button id="asa" class="asa solo-movil" aria-label="Expandir o contraer el panel"><span></span></button>
+      <button id="asa" class="asa solo-movil" type="button" aria-label="Expandir o contraer el panel"><span></span></button>
       <nav class="pestanas" role="tablist">
-        <button role="tab" aria-selected="true" data-pestana="novedades" id="tab-novedades">Novedades</button>
-        <button role="tab" aria-selected="false" data-pestana="conflictos" id="tab-conflictos">Conflictos</button>
-        <button role="tab" aria-selected="false" data-pestana="fuentes" id="tab-fuentes">Fuentes y estado</button>
+        <button type="button" role="tab" aria-selected="true" data-pestana="novedades" id="tab-novedades">Novedades</button>
+        <button type="button" role="tab" aria-selected="false" data-pestana="conflictos" id="tab-conflictos">Conflictos</button>
+        <button type="button" role="tab" aria-selected="false" data-pestana="fuentes" id="tab-fuentes">Estado</button>
       </nav>
       <div id="contenido-panel" class="contenido-panel" role="tabpanel"></div>
     </aside>
   </main>
 
   <dialog id="dialogo-ayuda" class="dialogo" aria-labelledby="titulo-ayuda">
-    <form method="dialog" class="cerrar-dialogo"><button class="btn btn-sec" aria-label="Cerrar">Cerrar</button></form>
+    <form method="dialog" class="cerrar-dialogo"><button class="icono" aria-label="Cerrar">✕</button></form>
     <h2 id="titulo-ayuda">Cómo funciona este mapa</h2>
     <div class="texto-ayuda">
       <h3>Qué muestra</h3>
       <p>Conflictos y tensiones <strong>vigentes</strong> según un registro respaldado por fuentes fechadas, y las novedades de las últimas 24 o 72 horas. No es un archivo histórico.</p>
+      <h3>Cómo usarlo</h3>
+      <ul>
+        <li>Tocá un país, un punto o una región para ver sus novedades. Al elegir un conflicto, el mapa se enfoca en él.</li>
+        <li>Las categorías de abajo son la leyenda y también el filtro: tocá una para mostrarla u ocultarla.</li>
+        <li>Acercá el mapa para ver provincias, ciudades y regiones afectadas. El botón con el globo vuelve a la vista mundial.</li>
+        <li>Los puntos y grupos que laten tienen novedades de las últimas 3 horas.</li>
+      </ul>
       <h3>Categorías y colores</h3>
-      <p>Los colores identifican <strong>categorías</strong>, no gravedad. Un país con conflictos de varias categorías se muestra rayado. Los países escenario se rellenan; los que solo participan, con borde.</p>
+      <p>Los colores identifican <strong>categorías</strong>, no gravedad. Si un país es escenario de conflictos de varias categorías, se colorea con la categoría que tiene más novedades en el período; su ficha muestra todas.</p>
       <h3>Conflicto, acontecimiento y artículo</h3>
       <p>Un <strong>conflicto</strong> es una situación del registro (puede abarcar varios países). Un <strong>acontecimiento</strong> es un hecho concreto. Un <strong>artículo</strong> es una nota publicada. Varias notas del mismo hecho se agrupan; las copias de un mismo cable de agencia cuentan una sola vez.</p>
       <h3>Etiquetas de verificación</h3>
       <ul>
-        <li><strong>Reporte preliminar</strong>: un solo origen independiente, o un titular que se presenta como preliminar o no confirmado.</li>
-        <li><strong>Varias fuentes independientes</strong>: dos o más orígenes distintos (agencias y reproducciones se cuentan una vez). No equivale a “confirmado”.</li>
+        <li><strong>Preliminar</strong>: un solo origen independiente, o un titular que se presenta como preliminar o no confirmado.</li>
+        <li><strong>N fuentes</strong>: dos o más orígenes distintos (agencias y reproducciones se cuentan una vez). No equivale a “confirmado”.</li>
         <li><strong>Declaración de parte</strong>: solo hay fuentes oficiales o medios estatales de una parte del conflicto. Se informa como declaración de esa parte, no como hecho comprobado.</li>
         <li><strong>Versiones contrapuestas</strong>: hay desmentidos o declaraciones de partes enfrentadas.</li>
         <li><strong>Afirmación atribuida</strong>: los titulares informan lo que alguien dice (“según…”, “afirma…”).</li>
       </ul>
-      <h3>Ubicación</h3>
-      <p>Se distingue el <strong>lugar del hecho</strong> (codificación automática de eventos de GDELT o ciudad nombrada en el titular), los <strong>países mencionados</strong> y el <strong>país del medio</strong>. Si solo se conoce el país, el indicador es un anillo a nivel país: no señala un lugar exacto. Las zonas en disputa provienen de Natural Earth y <strong>no</strong> indican control militar ni frentes de combate.</p>
-      <p><strong>Zonas específicas.</strong> Al acercar el mapa se ven las provincias o regiones (divisiones administrativas de Natural Earth) de los países con conflictos armados. Hay dos capas: <strong>regiones con acontecimientos</strong>, calculada automáticamente según dónde se ubican las noticias del período (más intenso = más acontecimientos), y <strong>regiones afectadas según fuentes</strong> (rayadas), que el registro documenta con una fuente fechada (por ejemplo, CrisisWatch o el ISW) e incluye áreas marítimas. Ninguna de las dos indica quién controla el territorio ni dónde están los frentes. Tocá una región para ver sus noticias y las fuentes.</p>
+      <h3>Ubicación y zonas</h3>
+      <p>Se distingue el <strong>lugar del hecho</strong> (codificación de eventos de GDELT o lugar nombrado en el titular), los <strong>países mencionados</strong> y el <strong>país del medio</strong>. Si solo se conoce el país, el indicador es un círculo gris a nivel país: no señala un lugar exacto.</p>
+      <p>Las <strong>regiones con novedades</strong> se calculan solas según dónde se ubican las noticias del período (más intenso = más novedades). Las <strong>regiones afectadas según fuentes</strong> (rayadas) las documenta el registro con una fuente fechada, como CrisisWatch o el ISW, e incluyen áreas marítimas. Las <strong>zonas en disputa</strong> provienen de Natural Earth. Ninguna indica quién controla el territorio ni dónde están los frentes.</p>
       <h3>Fechas</h3>
       <p>Se separan la <strong>fecha de publicación</strong> (cuando la fuente la informa), la <strong>fecha de detección</strong> (cuando el sistema la encontró) y la <strong>fecha del hecho</strong> (solo si está disponible, con precisión de día). Para filtrar se usa la publicación y, si falta, la detección.</p>
       <h3>Traducción y resúmenes</h3>
@@ -104,7 +114,7 @@
     </div>
   </dialog>
 
-  <noscript><p class="aviso">Esta página necesita JavaScript para mostrar el mapa.</p></noscript>
+  <noscript><p class="aviso-js">Esta página necesita JavaScript para mostrar el mapa.</p></noscript>
   <script src="vendor/maplibre-gl.js"></script>
   <script src="js/app.js"></script>
 </body>
