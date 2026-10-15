@@ -271,7 +271,7 @@
     if (attrib) attrib.classList.remove('maplibregl-compact-show');
     const P = paleta();
     mapa.addImage('rayado-zona', patron(null, P.rayadoZona, 9, 1.2), { pixelRatio: 1 });
-    mapa.addImage('rayado-doc', patron(null, P.rayadoDoc, 7, 1.1, true), { pixelRatio: 1 });
+    mapa.addImage('rayado-doc', patron(null, P.rayadoDoc, 10, 1, true), { pixelRatio: 1 });
     instalarIconos();
     agregarCapas();
     E.mapaListo = true;
@@ -297,10 +297,11 @@
       return { top: Math.min(caja.bottom + 10, window.innerHeight * 0.3), bottom: Math.min(alto + 54, window.innerHeight * 0.62), left: 14, right: 14 };
     }
     const derecha = panelVisible() ? 384 + 40 : 40;
-    // En pantallas anchas el mapa usa el espacio a la derecha de la cabecera, sin dejar una franja vacía arriba.
-    const ancho = window.innerWidth - derecha;
-    if (ancho > 900) return { top: 36, bottom: 60, left: caja.right + 24, right: derecha + 16 };
-    return { top: caja.bottom + 14, bottom: 80, left: 30, right: derecha + 16 };
+    // Se usa el área libre más amplia: a la derecha de la cabecera o debajo de ella.
+    const lateral = { top: 36, bottom: 64, left: caja.right + 24, right: derecha + 16 };
+    const debajo = { top: caja.bottom + 14, bottom: 80, left: 30, right: derecha + 16 };
+    const lado = (r) => Math.min(window.innerWidth - r.left - r.right, window.innerHeight - r.top - r.bottom);
+    return lado(lateral) >= lado(debajo) ? lateral : debajo;
   }
 
   function avisoCapas(texto) {
@@ -334,7 +335,8 @@
     m.addSource('resaltado', { type: 'geojson', data: vacio() });
     m.addSource('candidatos', { type: 'geojson', data: vacio() });
     const color = expresionColor('cat');
-    const apagado = ['case', ['==', ['get', 'foco'], 0], 0.18, 0.85];
+    // Los bordes propios (simplificados) se desvanecen al acercar: ahí mandan los límites precisos de la base.
+    const apagado = ['interpolate', ['linear'], ['zoom'], 5.5, ['case', ['==', ['get', 'foco'], 0], 0.18, 0.85], 7, 0];
     // País involucrado: relleno tenue (escenario) o borde punteado (participa sin ser escenario).
     m.addLayer({ id: 'paises-escenario', type: 'fill', source: 'paises', filter: ['==', ['get', 'rol'], 'escenario'],
       paint: { 'fill-color': color, 'fill-opacity': opacidadPaises(), 'fill-antialias': false } }, 'ancla-tinte');
@@ -348,12 +350,13 @@
       layout: { 'line-join': 'round' },
       paint: { 'line-color': color, 'line-width': ['interpolate', ['linear'], ['zoom'], 1.5, 1.1, 5, 2], 'line-dasharray': [2, 1.5], 'line-opacity': apagado } }, 'ancla-zonas');
     m.addLayer({ id: 'paises-resaltado', type: 'line', source: 'paises', filter: ['==', ['get', 'id'], '__ninguno__'],
-      paint: { 'line-color': P.resaltado, 'line-width': 2.2 } }, 'ancla-zonas');
+      paint: { 'line-color': P.resaltado, 'line-width': 2.2, 'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 1, 8, 0.3] } }, 'ancla-zonas');
     // Zona en disputa de soberanía (Natural Earth): trama clara y contorno punteado.
     m.addLayer({ id: 'zonas-relleno', type: 'fill', source: 'zonas', minzoom: 2.8,
-      paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 6, 0.4, 9, 0.25] } }, 'ancla-zonas');
+      paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 5.5, 0.4, 8, 0.22] } }, 'ancla-tinte');
     m.addLayer({ id: 'zonas-borde', type: 'line', source: 'zonas', minzoom: 2.8,
-      paint: { 'line-color': P.bordeZona, 'line-width': 1.2, 'line-dasharray': [1, 2] } }, 'ancla-zonas');
+      paint: { 'line-color': P.bordeZona, 'line-width': 1.2, 'line-dasharray': [1, 2],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0.4] } }, 'ancla-zonas');
     m.addLayer({ id: 'candidatos-borde', type: 'line', source: 'paises', filter: ['in', ['get', 'id'], ['literal', []]],
       paint: { 'line-color': '#8a8a8a', 'line-width': 1.8, 'line-dasharray': [2, 2] } }, 'ancla-zonas');
     // Nombres de países (propios, en español): con zoom bajo, los grandes y los de conflictos; al acercar, todos.
@@ -412,9 +415,10 @@
       paint: { 'line-color': P.limiteRegion, 'line-width': ['interpolate', ['linear'], ['zoom'], 3.5, 0.3, 6.5, 0.8] } }, 'ancla-zonas');
     // Zona afectada según una fuente fechada: trama diagonal discreta con borde fino.
     m.addLayer({ id: 'regiones-doc', type: 'fill', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.8, 6, 0.4, 9, 0.22] } }, 'ancla-zonas');
+      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 5.5, 0.35, 8, 0.18] } }, 'ancla-tinte');
     m.addLayer({ id: 'regiones-doc-borde', type: 'line', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'line-color': P.bordeDoc, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.5, 6, 1.1] } }, 'ancla-zonas');
+      paint: { 'line-color': P.bordeDoc, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.5, 6, 1.1],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0.35] } }, 'ancla-zonas');
     m.addLayer({ id: 'mares-doc', type: 'fill', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
       paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': 0.45 } }, 'ancla-zonas');
     m.addLayer({ id: 'mares-doc-borde', type: 'line', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
@@ -448,7 +452,7 @@
     pintar('regiones-sel', 'line-color', P.resaltado);
     pintar('mares-doc-borde', 'line-color', P.bordeZona);
     pintar('regiones-etiquetas', 'text-color', P.region); pintar('regiones-etiquetas', 'text-halo-color', B.halo);
-    if (m.hasImage('rayado-doc')) m.updateImage('rayado-doc', patron(null, P.rayadoDoc, 7, 1.1, true));
+    if (m.hasImage('rayado-doc')) m.updateImage('rayado-doc', patron(null, P.rayadoDoc, 10, 1, true));
     if (m.hasImage('rayado-zona')) m.updateImage('rayado-zona', patron(null, P.rayadoZona, 9, 1.2));
     visibilidad();
     renderLeyenda();
