@@ -6,7 +6,10 @@ Genera:
   web/geo/regiones.geojson        provincias/estados (admin-1) de los países escenario de los
                                   conflictos armados del registro (simplificados)
   web/geo/mares.geojson           áreas marítimas con nombre que el registro puede citar
-  web/geo/ciudades.geojson        ciudades principales para dar contexto al acercar el mapa
+  web/geo/ciudades.geojson        ciudades con nombre en español y zoom mínimo de aparición
+  web/geo/limites.geojson         límites terrestres entre países (las costas las da el relieve)
+  web/geo/mares-et.geojson        puntos de etiqueta de océanos y mares (nombres en español)
+  web/fonts/Noto Sans */          glifos de la tipografía Noto Sans (licencia OFL) para las etiquetas
   colector/recursos/regiones.json índice de nombres -> código admin-1 para validar el registro
 
 Las regiones son divisiones administrativas: el mapa las usa para (a) contar los acontecimientos
@@ -35,8 +38,15 @@ BASE_URL = "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/maste
 CAPAS = {
     "provincias": "ne_10m_admin_1_states_provinces.geojson",
     "mares": "ne_10m_geography_marine_polys.geojson",
-    "ciudades": "ne_10m_populated_places_simple.geojson",
+    "ciudades": "ne_10m_populated_places.geojson",
+    "limites": "ne_50m_admin_0_boundary_lines_land.geojson",
 }
+# Glifos de Noto Sans (SIL Open Font License) generados con maplibre/font-maker por Protomaps.
+FUENTES_URL = "https://raw.githubusercontent.com/protomaps/basemaps-assets/main/fonts/"
+FUENTES = ["Noto Sans Regular", "Noto Sans Medium", "Noto Sans Italic"]
+RANGOS = ["0-255", "256-511", "512-767", "7680-7935", "8192-8447"]
+# Clases de áreas marítimas con etiqueta (Natural Earth, capa marine_polys).
+CLASES_MAR = {"ocean", "sea", "gulf", "bay", "strait", "channel", "sound", "lagoon", "fjord", "inlet"}
 CATEGORIAS_ARMADAS = {"guerra_estados", "guerra_civil", "otro_armado"}
 # Código de país del proyecto -> código adm0_a3 de la capa admin-1 de Natural Earth.
 A_NE = {"PSE": "PSX", "SSD": "SDS", "ESH": "SAH"}
@@ -183,20 +193,68 @@ def main() -> None:
               ensure_ascii=False)
     simplificar(tmp_mar, os.path.join(RAIZ, "web/geo/mares.geojson"), "25%", "id,n")
 
+    # ---- Etiquetas de océanos y mares ---------------------------------------
+    import math
+    etiquetas_mar = []
+    for f in json.load(open(rutas["mares"], encoding="utf-8"))["features"]:
+        p = f["properties"]
+        if (p.get("featurecla") or "").lower() not in CLASES_MAR or (p.get("scalerank") or 9) > 4:
+            continue
+        nombre = (p.get("name_es") or p.get("name") or "").strip()
+        if not nombre:
+            continue
+        p2 = {"n": nombre[0].upper() + nombre[1:], "z": p.get("min_label") or 3,
+              "o": 1 if (p.get("featurecla") or "").lower() == "ocean" else 0}
+        etiquetas_mar.append({"type": "Feature", "geometry": f["geometry"], "properties": p2})
+    tmp_et = os.path.join(tmp, "mares_et.geojson")
+    json.dump({"type": "FeatureCollection", "features": etiquetas_mar}, open(tmp_et, "w", encoding="utf-8"),
+              ensure_ascii=False)
+    subprocess.run(["npx", "--yes", "mapshaper@0.6", tmp_et, "-points", "inner", "-o", "format=geojson",
+                    "precision=0.01", os.path.join(RAIZ, "web/geo/mares-et.geojson")], check=True)
+    print(f"Etiquetas de mares: {len(etiquetas_mar)}", file=sys.stderr)
+
     # ---- Ciudades -----------------------------------------------------------
+    # Nombre en español de Natural Earth y zoom mínimo sugerido (MIN_ZOOM) para mostrarlas
+    # progresivamente; las de mayor población tienen prioridad cuando se superponen.
     datos = json.load(open(rutas["ciudades"], encoding="utf-8"))
     ciudades = []
     for f in datos["features"]:
         p = f["properties"]
-        capital = (p.get("featurecla") or "").startswith("Admin-0 capital")
-        if not (capital or (p.get("scalerank") or 10) <= 3):
+        capital = (p.get("FEATURECLA") or "").startswith("Admin-0 capital")
+        zmin = p.get("MIN_ZOOM") or 9
+        if not (capital or zmin <= 6):
             continue
+        poblacion = max(p.get("POP_MAX") or 0, 1)
         ciudades.append({"type": "Feature",
-                         "geometry": {"type": "Point", "coordinates": [round(p["longitude"], 3), round(p["latitude"], 3)]},
-                         "properties": {"n": p.get("name"), "r": p.get("scalerank"), "cap": 1 if capital else 0}})
+                         "geometry": {"type": "Point", "coordinates": [round(p["LONGITUDE"], 3), round(p["LATITUDE"], 3)]},
+                         "properties": {"n": (p.get("NAME_ES") or p.get("NAME") or "").strip(), "z": zmin,
+                                        "cap": 1 if capital else 0, "k": round(10 - math.log10(poblacion), 2)}})
+    ciudades.sort(key=lambda c: c["properties"]["k"])
     with open(os.path.join(RAIZ, "web/geo/ciudades.geojson"), "w", encoding="utf-8") as f:
         json.dump({"type": "FeatureCollection", "features": ciudades}, f, ensure_ascii=False, separators=(",", ":"))
     print(f"Ciudades: {len(ciudades)}", file=sys.stderr)
+
+    # ---- Límites terrestres entre países --------------------------------------
+    # Solo las líneas de frontera en tierra: las costas ya se ven en el relieve. Las fronteras
+    # en disputa o indefinidas se marcan para dibujarlas punteadas.
+    datos = json.load(open(rutas["limites"], encoding="utf-8"))
+    for f in datos["features"]:
+        clase = (f["properties"].get("FEATURECLA") or "").lower()
+        f["properties"] = {"d": 1 if any(x in clase for x in ("disputed", "indefinite", "line of control")) else 0}
+    tmp_lim = os.path.join(tmp, "limites.geojson")
+    json.dump(datos, open(tmp_lim, "w", encoding="utf-8"))
+    simplificar(tmp_lim, os.path.join(RAIZ, "web/geo/limites.geojson"), "35%", "d", precision="0.01")
+
+    # ---- Tipografía -----------------------------------------------------------
+    for fuente in FUENTES:
+        carpeta = os.path.join(RAIZ, "web/fonts", fuente)
+        os.makedirs(carpeta, exist_ok=True)
+        for rango in RANGOS:
+            destino = os.path.join(carpeta, rango + ".pbf")
+            if not os.path.exists(destino):
+                urllib.request.urlretrieve(FUENTES_URL + urllib.request.quote(fuente) + "/" + rango + ".pbf", destino)
+    urllib.request.urlretrieve(FUENTES_URL + "OFL.txt", os.path.join(RAIZ, "web/fonts/OFL-Noto-Sans.txt"))
+    print("Tipografía Noto Sans lista", file=sys.stderr)
 
     with open(os.path.join(RAIZ, "colector/recursos/regiones.json"), "w", encoding="utf-8") as f:
         json.dump({"fuente": "Natural Earth 1:10m admin-1 y áreas marítimas (dominio público)",

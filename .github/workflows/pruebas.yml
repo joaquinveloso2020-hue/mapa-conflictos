@@ -31,8 +31,14 @@ jobs:
             web/geo/regiones.geojson
             web/geo/mares.geojson
             web/geo/ciudades.geojson
+            web/geo/limites.geojson
+            web/geo/mares-et.geojson
+            web/fonts/Noto Sans Regular
+            web/fonts/Noto Sans Medium
+            web/fonts/Noto Sans Italic
+            web/fonts/OFL-Noto-Sans.txt
             colector/recursos/regiones.json
-          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+          key: regiones-v2-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
 
       - name: Generar capas de regiones (Natural Earth)
         id: gen-regiones
@@ -48,8 +54,14 @@ jobs:
             web/geo/regiones.geojson
             web/geo/mares.geojson
             web/geo/ciudades.geojson
+            web/geo/limites.geojson
+            web/geo/mares-et.geojson
+            web/fonts/Noto Sans Regular
+            web/fonts/Noto Sans Medium
+            web/fonts/Noto Sans Italic
+            web/fonts/OFL-Noto-Sans.txt
             colector/recursos/regiones.json
-          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+          key: regiones-v2-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
 
       - run: python -m colector validar
       - run: python -m pytest -q

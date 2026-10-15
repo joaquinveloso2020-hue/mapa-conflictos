@@ -34,18 +34,22 @@
     const t = document.documentElement.dataset.theme;
     return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   };
-  // Paletas del mapa (claro y oscuro). Los colores de categoría no cambian.
+  // Colores de las capas propias (marcadores, tramas, etiquetas de regiones). Los colores de
+  // categoría vienen de los datos; la base cartográfica tiene su propia paleta en cartografia.js.
   const PALETAS = {
-    claro: { agua: '#d6e2ec', tierra: '#f7f6f2', borde: '#b3b9c0', limite: '#c4c9cf', etiqueta: '#3c424a', halo: 'rgba(255,255,255,0.9)',
-      ciudad: '#2a2e33', region: '#737a83', grupo: '#2e3238', grupoTexto: '#ffffff', grupoBorde: 'rgba(255,255,255,0.95)',
-      anillo: '#6b727b', anilloFondo: 'rgba(255,255,255,0.8)', anilloTexto: '#2e3238', puntoBorde: '#ffffff', resaltado: '#111111',
-      mar: '#2c4a66', rayadoDoc: 'rgba(30,30,30,0.38)', rayadoZona: 'rgba(11,61,102,0.55)', bordeDoc: 'rgba(40,40,40,0.65)', bordeZona: '#0b3d66' },
-    oscuro: { agua: '#0d141b', tierra: '#1e2329', borde: '#3d454e', limite: '#2f363e', etiqueta: '#c9cfd6', halo: 'rgba(13,20,27,0.92)',
-      ciudad: '#d7dce2', region: '#8c949d', grupo: '#e8ecf0', grupoTexto: '#14181d', grupoBorde: 'rgba(20,24,29,0.9)',
-      anillo: '#99a2ac', anilloFondo: 'rgba(30,35,41,0.88)', anilloTexto: '#e8ecf0', puntoBorde: '#14181d', resaltado: '#ffffff',
-      mar: '#93b8da', rayadoDoc: 'rgba(235,238,242,0.34)', rayadoZona: 'rgba(130,185,235,0.6)', bordeDoc: 'rgba(200,206,214,0.7)', bordeZona: '#7fb2e0' },
+    claro: { grupo: '#2b3038', grupoTexto: '#ffffff', grupoBorde: 'rgba(255,255,255,0.95)',
+      pastilla: 'rgba(255,255,255,0.95)', pastillaBorde: 'rgba(50,54,62,0.5)', pastillaTexto: '#22262c',
+      puntoBorde: '#ffffff', aproxRelleno: 'rgba(255,255,255,0.96)', resaltado: '#111111',
+      region: '#4b463f', limiteRegion: 'rgba(45,42,37,0.35)',
+      rayadoDoc: 'rgba(20,20,20,0.55)', bordeDoc: 'rgba(20,20,20,0.7)', rayadoZona: 'rgba(255,255,255,0.8)', bordeZona: 'rgba(255,255,255,0.95)' },
+    oscuro: { grupo: '#eef0f3', grupoTexto: '#15191e', grupoBorde: 'rgba(15,19,24,0.9)',
+      pastilla: 'rgba(28,33,40,0.94)', pastillaBorde: 'rgba(220,225,232,0.45)', pastillaTexto: '#eef0f3',
+      puntoBorde: '#10151b', aproxRelleno: 'rgba(20,25,31,0.95)', resaltado: '#ffffff',
+      region: '#c9c3b8', limiteRegion: 'rgba(230,225,215,0.28)',
+      rayadoDoc: 'rgba(240,240,240,0.45)', bordeDoc: 'rgba(240,240,240,0.65)', rayadoZona: 'rgba(170,205,240,0.75)', bordeZona: 'rgba(190,220,250,0.9)' },
   };
-  const paleta = () => PALETAS[temaOscuro() ? 'oscuro' : 'claro'];
+  // Sobre la imagen satelital se usan los colores claros sobre oscuro.
+  const paleta = () => PALETAS[temaOscuro() || (base && base.estado.modo === 'satelite') ? 'oscuro' : 'claro'];
 
   function relativo(iso) {
     if (!iso) return '';
@@ -69,7 +73,7 @@
     reg: { info: {}, cajas: {}, porPais: {}, deEvento: {}, conteo: {}, listo: false }, // regiones admin-1
     horas: 24,
     categorias: new Set(),
-    capas: { paises: true, eventos: true, zonas: true, regiones: true, afectadas: true, candidatos: false, base: false },
+    capas: { paises: true, eventos: true, zonas: true, regiones: false, afectadas: true, candidatos: false },
     pestana: 'novedades',
     vista: null, // {tipo:'conflicto'|'pais'|'region'|'candidato', id}
     eventoAbierto: null,
@@ -139,6 +143,11 @@
   const esReciente = (ev) => ev.referencia && Date.now() - new Date(ev.referencia).getTime() < HORAS_RECIENTE * 3600e3;
 
   // ------------------------------------------------------------------ mapa
+  // La base cartográfica (relieve, costas, límites, ciudades, globo) está en cartografia.js;
+  // acá se agregan encima los datos del proyecto: países involucrados, zonas y novedades.
+  const ZOOM_GRUPOS = 9; // hasta este zoom se agrupan las novedades cercanas
+  let base = null;
+
   function patron(fondo, linea, tam = 8, grosor = 2, inverso = false) {
     const c = document.createElement('canvas');
     c.width = c.height = tam;
@@ -151,6 +160,44 @@
     return x.getImageData(0, 0, tam, tam);
   }
 
+  // Íconos de los marcadores (se dibujan en un lienzo para que las etiquetas los esquiven).
+  function lienzo(ancho, alto, dibujar) {
+    const pr = 2, c = document.createElement('canvas');
+    c.width = Math.ceil(ancho * pr); c.height = Math.ceil(alto * pr);
+    const x = c.getContext('2d'); x.scale(pr, pr); dibujar(x);
+    return { imagen: x.getImageData(0, 0, c.width, c.height), pixelRatio: pr };
+  }
+  const circulo = (r, relleno, borde, grosor) => lienzo((r + grosor) * 2 + 2, (r + grosor) * 2 + 2, (x) => {
+    const c = r + grosor + 1;
+    x.beginPath(); x.arc(c, c, r, 0, Math.PI * 2); x.fillStyle = relleno; x.fill();
+    x.lineWidth = grosor; x.strokeStyle = borde; x.stroke();
+  });
+  const pastilla = (ancho, alto, relleno, borde) => lienzo(ancho + 2, alto + 2, (x) => {
+    const r = alto / 2;
+    x.beginPath(); x.moveTo(1 + r, 1); x.lineTo(1 + ancho - r, 1); x.arc(1 + ancho - r, 1 + r, r, -Math.PI / 2, Math.PI / 2);
+    x.lineTo(1 + r, 1 + alto); x.arc(1 + r, 1 + r, r, Math.PI / 2, -Math.PI / 2); x.closePath();
+    x.fillStyle = relleno; x.fill(); x.lineWidth = 1; x.strokeStyle = borde; x.stroke();
+  });
+  function iconos() {
+    const Q = paleta(), res = {};
+    for (const [k, v] of Object.entries(E.datos.conflictos.categorias)) {
+      res['p-' + k] = circulo(5.2, v.color, Q.puntoBorde, 1.7);     // lugar del hecho (ciudad)
+      res['a-' + k] = circulo(4.8, Q.aproxRelleno, v.color, 2.6);   // ubicación aproximada (provincia)
+    }
+    [10.5, 13, 15.5].forEach((r, i) => { res['grupo' + (i + 1)] = circulo(r, Q.grupo, Q.grupoBorde, 1.6); });
+    [20, 26, 32].forEach((a, i) => { res['pastilla' + (i + 1)] = pastilla(a, 16, Q.pastilla, Q.pastillaBorde); });
+    res.candidato = circulo(9, Q.pastilla, Q.pastillaBorde, 1.6);
+    return res;
+  }
+  function instalarIconos() {
+    const m = E.mapa;
+    for (const [id, im] of Object.entries(iconos())) {
+      if (m.hasImage(id)) m.updateImage(id, im.imagen); else m.addImage(id, im.imagen, { pixelRatio: im.pixelRatio });
+    }
+  }
+  // El tamaño de grupos y pastillas depende solo de la cantidad de dígitos: no indica gravedad.
+  const digitos = (v) => ['case', ['<', v, 10], '1', ['<', v, 100], '2', '3'];
+
   function expresionColor(prop) {
     const e = ['match', ['get', prop]];
     for (const [k, v] of Object.entries(E.datos.conflictos.categorias)) e.push(k, v.color);
@@ -162,165 +209,196 @@
   class ControlMundo {
     onAdd() {
       this._c = el(`<div class="maplibregl-ctrl maplibregl-ctrl-group boton-mundo"><button type="button" title="Ver todo el mundo" aria-label="Ver todo el mundo"><span class="maplibregl-ctrl-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg></span></button></div>`);
-      $('button', this._c).addEventListener('click', vistaMundo);
+      $('button', this._c).addEventListener('click', () => vistaMundo(true));
       return this._c;
     }
     onRemove() { this._c.remove(); }
   }
-  function vistaMundo() { if (E.mapaListo) E.mapa.fitBounds(VISTA_MUNDO, { padding: rellenoMapa(), duration: 900 }); }
 
-  function iniciarMapa() {
-    const base = location.href.replace(/[#?].*$/, '').replace(/[^/]*$/, '');
-    const P = paleta();
-    const mapa = new maplibregl.Map({
-      container: 'mapa',
-      style: {
-        version: 8,
-        glyphs: base + 'fonts/{fontstack}/{range}.pbf',
-        sources: {},
-        layers: [{ id: 'fondo', type: 'background', paint: { 'background-color': P.agua } }],
-      },
-      center: [20, 20], zoom: 1.4, minZoom: 0.8, maxZoom: 11,
-      attributionControl: false, dragRotate: false, pitchWithRotate: false,
-      renderWorldCopies: true,
-    });
-    mapa.touchZoomRotate.disableRotation();
+  // Movimiento de cámara suave (o inmediato si se pidió reducir el movimiento).
+  function volar(camara, duracion = 1700) {
+    if (!E.mapaListo || !camara) return;
+    if (movimientoReducido()) E.mapa.jumpTo(camara);
+    else E.mapa.flyTo(Object.assign({ duration: duracion, curve: 1.35, essential: true }, camara));
+  }
+  // Vista inicial: el globo entero (o el planisferio si el globo está desactivado).
+  function camaraMundo() {
+    const r = rellenoMapa();
+    const w = window.innerWidth - r.left - r.right, h = window.innerHeight - r.top - r.bottom;
+    if (base && base.estado.globo) {
+      const lado = Math.max(200, Math.min(w, h));
+      const zoom = Math.log2(((esMovil() ? 0.98 : 1.08) * lado * Math.PI) / 512);
+      return { center: esMovil() ? [30, 22] : [28, 24], zoom, padding: r };
+    }
+    return camaraParaCaja([VISTA_MUNDO[0][0], VISTA_MUNDO[0][1], VISTA_MUNDO[1][0], VISTA_MUNDO[1][1]], 3);
+  }
+  function vistaMundo(animar) {
+    if (!E.mapaListo) return;
+    const c = camaraMundo();
+    if (animar) volar(c, 1400); else E.mapa.jumpTo(c);
+  }
+
+  const PREFS = 'mapa-conflictos:mapa';
+  function leerPrefs() {
+    try { return Object.assign({ modo: 'relieve', globo: true, detalle: true }, JSON.parse(localStorage.getItem(PREFS) || '{}')); }
+    catch (e) { return { modo: 'relieve', globo: true, detalle: true }; }
+  }
+  function guardarPrefs() {
+    if (!base) return;
+    try { localStorage.setItem(PREFS, JSON.stringify({ modo: base.estado.modo, globo: base.estado.globo, detalle: base.estado.detalle })); } catch (e) { /* sin almacenamiento */ }
+  }
+
+  async function iniciarMapa() {
+    const url = location.href.replace(/[#?].*$/, '').replace(/[^/]*$/, '');
+    const pref = leerPrefs();
+    try {
+      base = await Cartografia.crear({ contenedor: 'mapa', base: url, oscuro: temaOscuro, paises: E.geo.paises,
+        alAviso: avisoCapas, modo: pref.modo, globo: pref.globo, detalle: pref.detalle });
+    } catch (e) {
+      avisoCapas('No se pudo iniciar el mapa en este navegador (se necesita WebGL). El panel de novedades sigue disponible.');
+      return;
+    }
+    const mapa = base.mapa;
+    E.mapa = mapa;
+    window.mapaDeConflictos = E; // acceso para depuración desde la consola del navegador
     mapa.addControl(new ControlMundo(), 'bottom-right');
     mapa.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
     mapa.addControl(new maplibregl.AttributionControl({
       compact: true,
-      customAttribution: 'Noticias: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">The GDELT Project</a> y feeds RSS · Geografía: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>',
-    }), 'bottom-left');
-    E.mapa = mapa;
-    window.mapaDeConflictos = E; // acceso para depuración desde la consola del navegador
-    mapa.on('load', () => {
-      const attrib = document.querySelector('.maplibregl-ctrl-attrib');
-      if (attrib) attrib.classList.remove('maplibregl-compact-show');
-      mapa.fitBounds(VISTA_MUNDO, { padding: rellenoMapa(), duration: 0 });
-      mapa.addImage('rayado-zona', patron(null, P.rayadoZona, 10, 1.6), { pixelRatio: 1 });
-      mapa.addImage('rayado-doc', patron(null, P.rayadoDoc, 7, 1.1, true), { pixelRatio: 1 });
-      agregarCapas();
-      E.mapaListo = true;
-      agregarCapasDetalle();
-      actualizarMapa();
-      interacciones();
-      iniciarPulso();
-    });
-    mapa.on('error', (e) => {
-      if (e && e.sourceId === 'ofm') {
-        const cb = $('input[data-capa="base"]');
-        if (cb && cb.checked) {
-          cb.checked = false; E.capas.base = false; alternarBase(false);
-          avisoCapas('No se pudo cargar el mapa base detallado (OpenFreeMap). Se sigue usando el mapa simple.');
-        }
-      }
-    });
+      customAttribution: 'Noticias: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">The GDELT Project</a> y feeds RSS',
+    }), 'bottom-right');
+    const attrib = document.querySelector('.maplibregl-ctrl-attrib');
+    if (attrib) attrib.classList.remove('maplibregl-compact-show');
+    const P = paleta();
+    mapa.addImage('rayado-zona', patron(null, P.rayadoZona, 9, 1.2), { pixelRatio: 1 });
+    mapa.addImage('rayado-doc', patron(null, P.rayadoDoc, 10, 1, true), { pixelRatio: 1 });
+    instalarIconos();
+    agregarCapas();
+    E.mapaListo = true;
+    vistaMundo(false);
+    agregarCapasDetalle();
+    actualizarMapa();
+    interacciones();
+    iniciarPulso();
+    sincronizarCapas();
     const mq = matchMedia('(prefers-color-scheme: dark)');
-    if (mq.addEventListener) mq.addEventListener('change', aplicarPaleta);
+    if (mq.addEventListener) mq.addEventListener('change', () => { base.aplicarTema(); aplicarTemaMapa(); });
   }
 
   const esMovil = () => matchMedia('(max-width: 760px)').matches;
   const panelVisible = () => document.body.dataset.escritorio !== 'oculto';
+  // Márgenes del área útil del mapa (fuera de la cabecera, el panel y la leyenda).
   function rellenoMapa() {
     const cab = $('#controles');
-    const abajoCab = cab ? cab.getBoundingClientRect().bottom : 140;
+    const caja = cab ? cab.getBoundingClientRect() : { bottom: 140, right: 360 };
     if (esMovil()) {
       const p = $('#panel');
       const alto = p ? p.getBoundingClientRect().height : window.innerHeight * 0.44;
-      return { top: Math.min(abajoCab + 8, window.innerHeight * 0.3), bottom: Math.min(alto + 48, window.innerHeight * 0.62), left: 16, right: 16 };
+      return { top: Math.min(caja.bottom + 10, window.innerHeight * 0.3), bottom: Math.min(alto + 54, window.innerHeight * 0.62), left: 14, right: 14 };
     }
-    return { top: abajoCab + 12, bottom: 64, left: 40, right: panelVisible() ? 384 + 56 : 56 };
+    const derecha = panelVisible() ? 384 + 40 : 40;
+    // Se usa el área libre más amplia: a la derecha de la cabecera o debajo de ella.
+    const lateral = { top: 36, bottom: 64, left: caja.right + 24, right: derecha + 16 };
+    const debajo = { top: caja.bottom + 14, bottom: 80, left: 30, right: derecha + 16 };
+    const lado = (r) => Math.min(window.innerWidth - r.left - r.right, window.innerHeight - r.top - r.bottom);
+    return lado(lateral) >= lado(debajo) ? lateral : debajo;
   }
 
   function avisoCapas(texto) {
     let a = $('#aviso-capas');
     if (!a) { a = el('<p id="aviso-capas" class="alerta aviso"></p>'); $('#popover-capas').prepend(a); }
     a.textContent = texto;
+    const s = $('#estado-base');
+    if (s && base) s.textContent = base.textoEstado();
   }
 
   const vacio = () => ({ type: 'FeatureCollection', features: [] });
 
-  // Opacidad de los países: color pleno al ver el mundo y atenuado al acercar (para leer las regiones);
-  // en modo foco, los países ajenos al conflicto elegido se atenúan.
+  // Relleno de los países escenario: tenue para que se siga viendo la geografía, y más tenue al acercar.
+  // En modo foco se refuerzan los países del conflicto elegido y se apagan los demás.
   function opacidadPaises() {
-    const foco = ['case', ['==', ['get', 'foco'], 0], 0.16, 1];
-    const hover = ['case', ['boolean', ['feature-state', 'hover'], false], 1.3, 1];
-    const base = E.capas.base ? 0.4 : temaOscuro() ? 0.56 : 0.58;
-    const cerca = E.capas.regiones && E.reg.listo ? 0.26 : base;
-    return ['interpolate', ['linear'], ['zoom'], 2.2, ['*', base, foco, hover], 3.8, ['*', cerca, foco, hover]];
+    const foco = ['match', ['get', 'foco'], 0, 0.2, 2, 1.25, 1];
+    const hover = ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 1];
+    const k = base && base.estado.modo === 'satelite' ? 0.8 : 1;
+    return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.24 * k, foco, hover], 4, ['*', 0.15 * k, foco, hover], 7, ['*', 0.06 * k, foco, hover]];
   }
 
   function agregarCapas() {
-    const m = E.mapa, P = paleta();
+    const m = E.mapa, P = paleta(), F = base.fuentes, B = base.paleta();
     m.addSource('paises', { type: 'geojson', data: E.geo.paises, promoteId: 'id' });
     m.addSource('zonas', { type: 'geojson', data: E.geo.zonas });
     m.addSource('etiquetas', { type: 'geojson', data: vacio() });
     // 'rec' cuenta las novedades de las últimas horas también dentro de cada grupo (para que el grupo lata).
-    m.addSource('eventos', { type: 'geojson', data: vacio(), cluster: true, clusterRadius: 46, clusterMaxZoom: 7,
+    m.addSource('eventos', { type: 'geojson', data: vacio(), cluster: true, clusterRadius: 44, clusterMaxZoom: ZOOM_GRUPOS,
       clusterProperties: { rec: ['+', ['get', 'rec']] } });
     m.addSource('eventos-pais', { type: 'geojson', data: vacio() });
     m.addSource('resaltado', { type: 'geojson', data: vacio() });
     m.addSource('candidatos', { type: 'geojson', data: vacio() });
     const color = expresionColor('cat');
-    m.addLayer({ id: 'tierra', type: 'fill', source: 'paises', paint: { 'fill-color': P.tierra } });
+    // Los bordes propios (simplificados) se desvanecen al acercar: ahí mandan los límites precisos de la base.
+    const apagado = ['interpolate', ['linear'], ['zoom'], 5.5, ['case', ['==', ['get', 'foco'], 0], 0.18, 0.85], 7, 0];
+    // País involucrado: relleno tenue (escenario) o borde punteado (participa sin ser escenario).
     m.addLayer({ id: 'paises-escenario', type: 'fill', source: 'paises', filter: ['==', ['get', 'rol'], 'escenario'],
-      paint: { 'fill-color': color, 'fill-opacity': opacidadPaises() } });
+      paint: { 'fill-color': color, 'fill-opacity': opacidadPaises(), 'fill-antialias': false } }, 'ancla-tinte');
+    m.addLayer({ id: 'paises-toque', type: 'fill', source: 'paises', filter: ['!=', ['get', 'rol'], null],
+      paint: { 'fill-color': '#000', 'fill-opacity': 0 } }, 'ancla-tinte');
+    m.addLayer({ id: 'paises-escenario-borde', type: 'line', source: 'paises', filter: ['==', ['get', 'rol'], 'escenario'],
+      layout: { 'line-join': 'round' },
+      paint: { 'line-color': color, 'line-opacity': apagado,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 1.5, ['case', ['==', ['get', 'foco'], 2], 1.6, 0.8], 6, ['case', ['==', ['get', 'foco'], 2], 2.6, 1.4]] } }, 'ancla-zonas');
     m.addLayer({ id: 'paises-participante', type: 'line', source: 'paises', filter: ['==', ['get', 'rol'], 'participante'],
-      paint: { 'line-color': color, 'line-width': ['interpolate', ['linear'], ['zoom'], 1.5, 1, 4, 2.2], 'line-offset': 0.5,
-        'line-opacity': ['case', ['==', ['get', 'foco'], 0], 0.15, 0.75] } });
-    m.addLayer({ id: 'paises-borde', type: 'line', source: 'paises',
-      paint: { 'line-color': P.borde, 'line-width': ['interpolate', ['linear'], ['zoom'], 1, 0.35, 6, 1] } });
+      layout: { 'line-join': 'round' },
+      paint: { 'line-color': color, 'line-width': ['interpolate', ['linear'], ['zoom'], 1.5, 1.1, 5, 2], 'line-dasharray': [2, 1.5], 'line-opacity': apagado } }, 'ancla-zonas');
     m.addLayer({ id: 'paises-resaltado', type: 'line', source: 'paises', filter: ['==', ['get', 'id'], '__ninguno__'],
-      paint: { 'line-color': P.resaltado, 'line-width': 1.8 } });
-    m.addLayer({ id: 'zonas-relleno', type: 'fill', source: 'zonas', minzoom: 2.8, paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': 0.9 } });
-    m.addLayer({ id: 'zonas-borde', type: 'line', source: 'zonas', minzoom: 2.8, paint: { 'line-color': P.bordeZona, 'line-width': 1.1, 'line-dasharray': [3, 2] } });
+      paint: { 'line-color': P.resaltado, 'line-width': 2.2, 'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 1, 8, 0.3] } }, 'ancla-zonas');
+    // Zona en disputa de soberanía (Natural Earth): trama clara y contorno punteado.
+    m.addLayer({ id: 'zonas-relleno', type: 'fill', source: 'zonas', minzoom: 2.8,
+      paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 5.5, 0.4, 8, 0.22] } }, 'ancla-tinte');
+    m.addLayer({ id: 'zonas-borde', type: 'line', source: 'zonas', minzoom: 2.8,
+      paint: { 'line-color': P.bordeZona, 'line-width': 1.2, 'line-dasharray': [1, 2],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0.4] } }, 'ancla-zonas');
     m.addLayer({ id: 'candidatos-borde', type: 'line', source: 'paises', filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'line-color': '#7a7a7a', 'line-width': 2, 'line-dasharray': [2, 2] } });
-    m.addLayer({ id: 'candidatos-punto', type: 'circle', source: 'candidatos',
-      paint: { 'circle-radius': 10, 'circle-color': P.anilloFondo, 'circle-stroke-color': P.anillo, 'circle-stroke-width': 1.6 } });
-    m.addLayer({ id: 'candidatos-texto', type: 'symbol', source: 'candidatos',
-      layout: { 'text-field': '?', 'text-font': ['Open Sans Semibold'], 'text-size': 12, 'text-allow-overlap': true },
-      paint: { 'text-color': P.anilloTexto } });
-    // Etiquetas: con zoom bajo, solo los países con conflictos; al acercar, todos.
-    const etiqueta = { 'text-field': ['get', 'nombre'], 'text-font': ['Open Sans Semibold'], 'text-max-width': 8, 'text-padding': 4 };
-    m.addLayer({ id: 'etiquetas-conflicto', type: 'symbol', source: 'etiquetas', minzoom: 1.9, maxzoom: 3.8,
-      filter: ['==', ['get', 'conflicto'], 1],
-      layout: { ...etiqueta, 'text-size': ['interpolate', ['linear'], ['zoom'], 2, 10, 3.8, 12] },
-      paint: { 'text-color': P.etiqueta, 'text-halo-color': P.halo, 'text-halo-width': 1.3 } });
-    m.addLayer({ id: 'etiquetas-paises', type: 'symbol', source: 'etiquetas', minzoom: 3.8,
-      layout: { ...etiqueta, 'text-size': ['interpolate', ['linear'], ['zoom'], 3.8, 12, 7, 14] },
-      paint: { 'text-color': P.etiqueta, 'text-halo-color': P.halo, 'text-halo-width': 1.3 } });
-    // Novedades ubicadas solo a nivel país: círculo gris discreto (no es un lugar exacto).
-    m.addLayer({ id: 'eventos-pais', type: 'circle', source: 'eventos-pais', minzoom: 2.5,
-      paint: { 'circle-radius': ['interpolate', ['linear'], ['get', 'n'], 1, 9, 20, 13, 80, 18],
-        'circle-color': P.anilloFondo, 'circle-stroke-color': P.anillo, 'circle-stroke-width': 1.3 } });
-    m.addLayer({ id: 'eventos-pais-texto', type: 'symbol', source: 'eventos-pais', minzoom: 2.5,
-      layout: { 'text-field': ['to-string', ['get', 'n']], 'text-font': ['Open Sans Semibold'], 'text-size': 10.5, 'text-allow-overlap': true },
-      paint: { 'text-color': P.anilloTexto } });
+      paint: { 'line-color': '#8a8a8a', 'line-width': 1.8, 'line-dasharray': [2, 2] } }, 'ancla-zonas');
+    // Nombres de países (propios, en español): con zoom bajo, los grandes y los de conflictos; al acercar, todos.
+    m.addLayer({ id: 'etiquetas-paises', type: 'symbol', source: 'etiquetas', maxzoom: 9,
+      filter: ['any', ['==', ['get', 'conflicto'], 1], ['>=', ['get', 'tam'], ['step', ['zoom'], 3, 2.4, 2, 3.4, 1, 4.4, 0]]],
+      layout: { 'text-field': ['upcase', ['get', 'nombre']], 'text-font': F.medio, 'text-letter-spacing': 0.08, 'text-max-width': 7,
+        'text-size': ['interpolate', ['linear'], ['zoom'], 1, ['+', 9, ['*', 0.6, ['get', 'tam']]], 5, ['+', 11.5, ['*', 0.9, ['get', 'tam']]]],
+        'text-variable-anchor': ['bottom', 'top', 'left', 'right'], 'text-radial-offset': 0.45, 'text-justify': 'auto', 'text-padding': 3,
+        'symbol-sort-key': ['-', 10, ['+', ['*', 4, ['get', 'conflicto']], ['get', 'tam']]] },
+      paint: { 'text-color': B.etiqueta, 'text-halo-color': B.halo, 'text-halo-width': 1.5,
+        'text-opacity': ['case', ['==', ['get', 'foco'], 0], 0.45, 1] } });
+    // Noticias del país sin lugar preciso: pastilla neutra debajo del nombre (no es un lugar exacto).
+    // No se superpone a los grupos ni a los puntos: si no hay lugar, se oculta hasta acercar (primero las de más noticias).
+    m.addLayer({ id: 'eventos-pais', type: 'symbol', source: 'eventos-pais', minzoom: 1.6,
+      layout: { 'icon-image': ['concat', 'pastilla', digitos(['get', 'n'])], 'icon-anchor': 'top', 'icon-offset': [0, 7],
+        'icon-allow-overlap': false, 'icon-padding': 2, 'text-field': ['to-string', ['get', 'n']], 'text-font': F.medio, 'text-size': 10.5,
+        'text-anchor': 'top', 'text-offset': [0, 0.86], 'text-allow-overlap': false, 'symbol-sort-key': ['-', 0, ['get', 'n']] },
+      paint: { 'text-color': P.pastillaTexto } });
     // Pulso de las novedades recientes (debajo de los puntos y de los grupos que las contienen).
     m.addLayer({ id: 'eventos-pulso', type: 'circle', source: 'eventos', filter: ['>', ['get', 'rec'], 0],
-      paint: { 'circle-radius': radioPulso(0), 'circle-color': ['case', ['has', 'point_count'], P.grupo, color], 'circle-opacity': 0, 'circle-stroke-width': 0 } });
-    m.addLayer({ id: 'grupos', type: 'circle', source: 'eventos', filter: ['has', 'point_count'],
-      paint: { 'circle-color': P.grupo, 'circle-opacity': 0.88, 'circle-stroke-color': P.grupoBorde, 'circle-stroke-width': 1.5,
-        'circle-radius': ['step', ['get', 'point_count'], 12, 10, 15, 50, 19] } });
-    m.addLayer({ id: 'grupos-texto', type: 'symbol', source: 'eventos', filter: ['has', 'point_count'],
-      layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Open Sans Semibold'], 'text-size': 11.5, 'text-allow-overlap': true },
+      paint: { 'circle-radius': radioPulso(0), 'circle-color': ['case', ['has', 'point_count'], P.grupo, color], 'circle-opacity': 0,
+        'circle-stroke-width': 0, 'circle-pitch-alignment': 'map' } });
+    // Grupos de novedades cercanas: neutros; el número es una cantidad de noticias, no una medida de gravedad.
+    m.addLayer({ id: 'grupos', type: 'symbol', source: 'eventos', filter: ['has', 'point_count'],
+      layout: { 'icon-image': ['concat', 'grupo', digitos(['get', 'point_count'])], 'icon-allow-overlap': true,
+        'text-field': ['get', 'point_count_abbreviated'], 'text-font': F.medio, 'text-size': 11, 'text-allow-overlap': true },
       paint: { 'text-color': P.grupoTexto } });
-    m.addLayer({ id: 'eventos-punto', type: 'circle', source: 'eventos', filter: ['!', ['has', 'point_count']],
-      paint: {
-        'circle-radius': ['interpolate', ['linear'], ['zoom'], 1, ['case', ['>=', ['get', 'fuentes'], 2], 5.5, 4.5], 7, ['case', ['>=', ['get', 'fuentes'], 2], 8, 6.5]],
-        'circle-color': ['case', ['==', ['get', 'precision'], 'provincia'], P.tierra, color],
-        'circle-stroke-color': ['case', ['==', ['get', 'precision'], 'provincia'], color, P.puntoBorde],
-        'circle-stroke-width': ['case', ['==', ['get', 'precision'], 'provincia'], 2.6, 1.4],
-      } });
+    // Lugar del hecho: punto lleno (ciudad) o anillo (solo se conoce la provincia o región).
+    m.addLayer({ id: 'eventos-punto', type: 'symbol', source: 'eventos', filter: ['!', ['has', 'point_count']],
+      layout: { 'icon-image': ['concat', ['case', ['==', ['get', 'precision'], 'provincia'], 'a-', 'p-'], ['get', 'cat']],
+        'icon-allow-overlap': true, 'symbol-sort-key': ['case', ['==', ['get', 'precision'], 'provincia'], 1, 0] } });
     m.addLayer({ id: 'resaltado-anillo', type: 'circle', source: 'resaltado',
       paint: { 'circle-radius': 13, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': P.resaltado, 'circle-stroke-width': 2.4 } });
+    m.addLayer({ id: 'candidatos-punto', type: 'symbol', source: 'candidatos',
+      layout: { 'icon-image': 'candidato', 'icon-allow-overlap': true, 'text-field': '?', 'text-font': F.medio, 'text-size': 12, 'text-allow-overlap': true },
+      paint: { 'text-color': P.pastillaTexto } });
   }
 
   function agregarCapasDetalle() {
     const m = E.mapa;
     if (!E.mapaListo || !E.reg.listo || m.getSource('regiones')) return;
-    const P = paleta();
+    const P = paleta(), F = base.fuentes;
     const colorEstado = ['match', ['feature-state', 'cat']];
     for (const [k, v] of Object.entries(E.datos.conflictos.categorias)) colorEstado.push(k, v.color);
     colorEstado.push('#7a7f86');
@@ -329,81 +407,64 @@
     m.addSource('regiones-et', { type: 'geojson', data: { type: 'FeatureCollection', features: Object.values(E.reg.info).filter((r) => r.et)
       .map((r) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: r.et }, properties: { id: r.id, n: r.n } })) } });
     m.addSource('mares', { type: 'geojson', data: E.geo.mares || vacio() });
-    m.addSource('ciudades', { type: 'geojson', data: E.geo.ciudades || vacio() });
-    // Intensidad por cantidad de novedades en la región (más intenso = más novedades). Aparece al acercar.
-    m.addLayer({ id: 'regiones-actividad', type: 'fill', source: 'regiones', minzoom: 2.6,
-      paint: { 'fill-color': colorEstado, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 2.6, 0,
-        3.4, ['case', ['>', n, 0], ['step', n, 0.5, 3, 0.66, 6, 0.8, 12, 0.92], 0]] } }, 'paises-participante');
-    m.addLayer({ id: 'regiones-limites', type: 'line', source: 'regiones', minzoom: 2.8,
-      paint: { 'line-color': P.limite, 'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.3, 7, 0.9] } }, 'paises-borde');
+    // Zona de toque invisible para pasar el mouse o tocar una provincia.
+    m.addLayer({ id: 'regiones-toque', type: 'fill', source: 'regiones', minzoom: 3.5, paint: { 'fill-color': '#000', 'fill-opacity': 0 } }, 'ancla-tinte');
+    // Opcional: regiones con novedades, todas con el mismo tono tenue (no es una escala de gravedad).
+    m.addLayer({ id: 'regiones-actividad', type: 'fill', source: 'regiones', minzoom: 3.5, layout: { visibility: 'none' },
+      paint: { 'fill-color': colorEstado, 'fill-opacity': ['case', ['>', n, 0], 0.28, 0] } }, 'ancla-tinte');
+    m.addLayer({ id: 'regiones-limites', type: 'line', source: 'regiones', minzoom: 3.5, maxzoom: 6.5,
+      paint: { 'line-color': P.limiteRegion, 'line-width': ['interpolate', ['linear'], ['zoom'], 3.5, 0.3, 6.5, 0.8] } }, 'ancla-zonas');
+    // Zona afectada según una fuente fechada: trama diagonal discreta con borde fino.
     m.addLayer({ id: 'regiones-doc', type: 'fill', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': 0.85 } }, 'zonas-relleno');
+      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.75, 5.5, 0.35, 8, 0.18] } }, 'ancla-tinte');
     m.addLayer({ id: 'regiones-doc-borde', type: 'line', source: 'regiones', minzoom: 3, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'line-color': P.bordeDoc, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.5, 6, 1.1] } }, 'zonas-relleno');
+      paint: { 'line-color': P.bordeDoc, 'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.5, 6, 1.1],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 7, 1, 9, 0.35] } }, 'ancla-zonas');
     m.addLayer({ id: 'mares-doc', type: 'fill', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'fill-pattern': 'rayado-doc', 'fill-opacity': 0.35 } }, 'zonas-relleno');
+      paint: { 'fill-pattern': 'rayado-zona', 'fill-opacity': 0.45 } }, 'ancla-zonas');
     m.addLayer({ id: 'mares-doc-borde', type: 'line', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'line-color': P.mar, 'line-width': 1, 'line-dasharray': [2, 2] } }, 'zonas-relleno');
+      paint: { 'line-color': P.bordeZona, 'line-width': 1, 'line-dasharray': [2, 2] } }, 'ancla-zonas');
     m.addLayer({ id: 'regiones-sel', type: 'line', source: 'regiones', filter: ['in', ['get', 'id'], ['literal', []]],
-      paint: { 'line-color': P.resaltado, 'line-width': 2.4 } }, 'zonas-relleno');
-    m.addLayer({ id: 'mares-texto', type: 'symbol', source: 'mares', minzoom: 2.4, filter: ['in', ['get', 'id'], ['literal', []]],
-      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': 11, 'text-max-width': 7 },
-      paint: { 'text-color': P.mar, 'text-halo-color': P.halo, 'text-halo-width': 1.2 } }, 'eventos-pais');
-    m.addLayer({ id: 'ciudades-punto', type: 'circle', source: 'ciudades', minzoom: 3.4,
-      filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 4.5, 2, 5.5, 3]],
-      paint: { 'circle-radius': ['case', ['==', ['get', 'cap'], 1], 2.8, 2], 'circle-color': P.ciudad, 'circle-stroke-color': P.halo, 'circle-stroke-width': 1 } }, 'eventos-pais');
-    m.addLayer({ id: 'ciudades-texto', type: 'symbol', source: 'ciudades', minzoom: 3.4,
-      filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 4.5, 2, 5.5, 3]],
-      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': ['interpolate', ['linear'], ['zoom'], 3.4, 10, 8, 13],
-        'text-anchor': 'left', 'text-offset': [0.5, 0], 'text-max-width': 8, 'text-padding': 3, 'text-optional': true },
-      paint: { 'text-color': P.ciudad, 'text-halo-color': P.halo, 'text-halo-width': 1.2 } }, 'eventos-pais');
-    m.addLayer({ id: 'regiones-etiquetas', type: 'symbol', source: 'regiones-et', minzoom: 4.6,
-      layout: { 'text-field': ['get', 'n'], 'text-font': ['Open Sans Semibold'], 'text-size': ['interpolate', ['linear'], ['zoom'], 4.6, 9.5, 8, 12],
-        'text-max-width': 7, 'text-padding': 8, 'text-letter-spacing': 0.05, 'text-transform': 'uppercase' },
-      paint: { 'text-color': P.region, 'text-halo-color': P.halo, 'text-halo-width': 1.1 } }, 'ciudades-punto');
+      paint: { 'line-color': P.resaltado, 'line-width': 2.4 } }, 'ancla-zonas');
+    m.addLayer({ id: 'regiones-etiquetas', type: 'symbol', source: 'regiones-et', minzoom: 4.8,
+      layout: { 'text-field': ['get', 'n'], 'text-font': F.regular, 'text-size': ['interpolate', ['linear'], ['zoom'], 4.8, 10, 8, 12.5],
+        'text-max-width': 7, 'text-padding': 8, 'text-letter-spacing': 0.06, 'text-transform': 'uppercase' },
+      paint: { 'text-color': P.region, 'text-halo-color': base.paleta().halo, 'text-halo-width': 1.2 } }, 'ancla-etiquetas');
     actualizarMapa();
-  }
-
-  // Cambia los colores del mapa al pasar de tema claro a oscuro (o al revés).
-  function aplicarPaleta() {
-    const m = E.mapa;
-    if (!E.mapaListo) return;
-    const P = paleta();
-    const pintar = (capa, prop, valor) => m.getLayer(capa) && m.setPaintProperty(capa, prop, valor);
-    pintar('fondo', 'background-color', P.agua);
-    pintar('tierra', 'fill-color', P.tierra);
-    pintar('paises-borde', 'line-color', P.borde);
-    pintar('paises-resaltado', 'line-color', P.resaltado);
-    ['etiquetas-conflicto', 'etiquetas-paises'].forEach((c) => { pintar(c, 'text-color', P.etiqueta); pintar(c, 'text-halo-color', P.halo); });
-    pintar('eventos-pais', 'circle-color', P.anilloFondo); pintar('eventos-pais', 'circle-stroke-color', P.anillo);
-    pintar('eventos-pais-texto', 'text-color', P.anilloTexto);
-    pintar('candidatos-punto', 'circle-color', P.anilloFondo); pintar('candidatos-punto', 'circle-stroke-color', P.anillo);
-    pintar('candidatos-texto', 'text-color', P.anilloTexto);
-    pintar('grupos', 'circle-color', P.grupo); pintar('grupos', 'circle-stroke-color', P.grupoBorde); pintar('grupos-texto', 'text-color', P.grupoTexto);
-    const color = expresionColor('cat');
-    pintar('eventos-punto', 'circle-color', ['case', ['==', ['get', 'precision'], 'provincia'], P.tierra, color]);
-    pintar('eventos-punto', 'circle-stroke-color', ['case', ['==', ['get', 'precision'], 'provincia'], color, P.puntoBorde]);
-    pintar('resaltado-anillo', 'circle-stroke-color', P.resaltado);
-    pintar('zonas-borde', 'line-color', P.bordeZona);
-    pintar('regiones-limites', 'line-color', P.limite);
-    pintar('regiones-doc-borde', 'line-color', P.bordeDoc);
-    pintar('regiones-sel', 'line-color', P.resaltado);
-    pintar('mares-doc-borde', 'line-color', P.mar);
-    pintar('mares-texto', 'text-color', P.mar); pintar('mares-texto', 'text-halo-color', P.halo);
-    pintar('ciudades-punto', 'circle-color', P.ciudad); pintar('ciudades-punto', 'circle-stroke-color', P.halo);
-    pintar('ciudades-texto', 'text-color', P.ciudad); pintar('ciudades-texto', 'text-halo-color', P.halo);
-    pintar('regiones-etiquetas', 'text-color', P.region); pintar('regiones-etiquetas', 'text-halo-color', P.halo);
-    if (m.hasImage('rayado-doc')) m.updateImage('rayado-doc', patron(null, P.rayadoDoc, 7, 1.1, true));
-    if (m.hasImage('rayado-zona')) m.updateImage('rayado-zona', patron(null, P.rayadoZona, 10, 1.6));
-    if (m.getLayer('ofm-agua')) pintar('ofm-agua', 'fill-color', P.agua);
     visibilidad();
   }
 
-  function puntosEtiquetas(conConflicto) {
+  // Cambia los colores propios del mapa al pasar de tema claro a oscuro (o a la vista satelital).
+  function aplicarTemaMapa() {
+    const m = E.mapa;
+    if (!E.mapaListo) return;
+    const P = paleta(), B = base.paleta();
+    const pintar = (capa, prop, valor) => m.getLayer(capa) && m.setPaintProperty(capa, prop, valor);
+    instalarIconos();
+    pintar('paises-resaltado', 'line-color', P.resaltado);
+    pintar('etiquetas-paises', 'text-color', B.etiqueta); pintar('etiquetas-paises', 'text-halo-color', B.halo);
+    pintar('eventos-pais', 'text-color', P.pastillaTexto); pintar('candidatos-punto', 'text-color', P.pastillaTexto);
+    pintar('grupos', 'text-color', P.grupoTexto);
+    pintar('eventos-pulso', 'circle-color', ['case', ['has', 'point_count'], P.grupo, expresionColor('cat')]);
+    pintar('resaltado-anillo', 'circle-stroke-color', P.resaltado);
+    pintar('zonas-borde', 'line-color', P.bordeZona);
+    pintar('regiones-limites', 'line-color', P.limiteRegion);
+    pintar('regiones-doc-borde', 'line-color', P.bordeDoc);
+    pintar('regiones-sel', 'line-color', P.resaltado);
+    pintar('mares-doc-borde', 'line-color', P.bordeZona);
+    pintar('regiones-etiquetas', 'text-color', P.region); pintar('regiones-etiquetas', 'text-halo-color', B.halo);
+    if (m.hasImage('rayado-doc')) m.updateImage('rayado-doc', patron(null, P.rayadoDoc, 10, 1, true));
+    if (m.hasImage('rayado-zona')) m.updateImage('rayado-zona', patron(null, P.rayadoZona, 9, 1.2));
+    visibilidad();
+    renderLeyenda();
+  }
+
+  function puntosEtiquetas(conConflicto, enFoco) {
     const et = E.datos.conflictos.etiquetas_paises || {};
     return { type: 'FeatureCollection', features: Object.entries(et).map(([iso, c]) => ({
       type: 'Feature', geometry: { type: 'Point', coordinates: c },
-      properties: { id: iso, nombre: nombrePais(iso), conflicto: conConflicto.has(iso) ? 1 : 0 } })) };
+      properties: { id: iso, nombre: nombrePais(iso), conflicto: conConflicto.has(iso) ? 1 : 0, tam: tamPais[iso] || 0,
+        foco: !enFoco || enFoco.has(iso) ? 1 : 0 } })) };
   }
 
   // Cantidad de novedades del período por categoría (para la leyenda-filtro).
@@ -418,6 +479,7 @@
   }
 
   function actualizarMapa() {
+    renderCategorias();
     if (!E.mapaListo) return;
     const m = E.mapa;
     const foco = focoActual();
@@ -448,24 +510,25 @@
       const id = f.properties.id;
       let rol = esc[id] ? 'escenario' : part[id] ? 'participante' : null;
       let cat = rol ? elegirCat(id, esc[id] || part[id]) : null;
+      let nivelFoco = 1;
       if (cf) {
-        if (cf.paises_escenario.includes(id)) { rol = 'escenario'; cat = cf.categoria; }
-        else if (cf.paises_participantes.includes(id)) { rol = 'participante'; cat = cf.categoria; }
+        nivelFoco = 0;
+        if (cf.paises_escenario.includes(id)) { rol = 'escenario'; cat = cf.categoria; nivelFoco = 2; }
+        else if (cf.paises_participantes.includes(id)) { rol = 'participante'; cat = cf.categoria; nivelFoco = 1; }
       }
-      if (cf ? enFoco.has(id) : rol) conConflicto.add(id);
-      return { type: 'Feature', geometry: f.geometry, properties: { id, nombre: f.properties.nombre, rol, cat, foco: !cf || enFoco.has(id) ? 1 : 0 } };
+      if (cf ? enFoco.has(id) : rol === 'escenario') conConflicto.add(id);
+      return { type: 'Feature', geometry: f.geometry, properties: { id, nombre: f.properties.nombre, rol, cat, foco: nivelFoco } };
     });
     m.getSource('paises').setData({ type: 'FeatureCollection', features });
-    m.getSource('etiquetas').setData(puntosEtiquetas(conConflicto));
+    m.getSource('etiquetas').setData(puntosEtiquetas(conConflicto, enFoco));
     // Novedades.
     const puntos = [], porPais = {};
     for (const ev of evs) {
       const l = ev.lugar || {};
       const c = E.idx.conflicto[ev.conflicto];
       if (l.coord) {
-        const f = { type: 'Feature', geometry: { type: 'Point', coordinates: l.coord },
-          properties: { id: ev.id, cat: c.categoria, precision: l.precision, fuentes: ev.fuentes_independientes, rec: esReciente(ev) ? 1 : 0 } };
-        puntos.push(f);
+        puntos.push({ type: 'Feature', geometry: { type: 'Point', coordinates: l.coord },
+          properties: { id: ev.id, cat: c.categoria, precision: l.precision, rec: esReciente(ev) ? 1 : 0 } });
       } else if (l.pais) {
         (porPais[l.pais] = porPais[l.pais] || []).push(ev.id);
       }
@@ -489,12 +552,11 @@
     const rango = (capa, min) => m.getLayer(capa) && m.setLayerZoomRange(capa, cf ? 0 : min, 24);
     rango('zonas-relleno', 2.8); rango('zonas-borde', 2.8);
     rango('regiones-doc', 3); rango('regiones-doc-borde', 3);
-    rango('mares-doc', 2.4); rango('mares-doc-borde', 2.4); rango('mares-texto', 2.4);
+    rango('mares-doc', 2.4); rango('mares-doc-borde', 2.4);
     visibilidad();
-    renderCategorias();
   }
 
-  // Colorea las regiones según las novedades del período y marca las documentadas.
+  // Marca las regiones documentadas y cuenta las novedades de cada región.
   function actualizarRegiones(evs) {
     const m = E.mapa;
     if (!m.getSource('regiones')) return;
@@ -508,16 +570,16 @@
     for (const { grupo } of regionesDocumentadas(focoActual())) { grupo.ids.forEach((i) => ids.add(i)); grupo.mares.forEach((x) => mares.add(x)); }
     m.setFilter('regiones-doc', ['in', ['get', 'id'], ['literal', [...ids]]]);
     m.setFilter('regiones-doc-borde', ['in', ['get', 'id'], ['literal', [...ids]]]);
-    ['mares-doc', 'mares-doc-borde', 'mares-texto'].forEach((l) => m.setFilter(l, ['in', ['get', 'id'], ['literal', [...mares]]]));
+    ['mares-doc', 'mares-doc-borde'].forEach((l) => m.setFilter(l, ['in', ['get', 'id'], ['literal', [...mares]]]));
     resaltarSeleccion();
   }
 
-  // Contorno de la región que se está viendo.
+  // Contorno de la región o el país que se está viendo.
   function resaltarSeleccion() {
     const m = E.mapa;
-    if (!m || !m.getLayer('regiones-sel')) return;
+    if (!m || !E.mapaListo) return;
     const v = E.vista;
-    m.setFilter('regiones-sel', ['in', ['get', 'id'], ['literal', v && v.tipo === 'region' ? [v.id] : []]]);
+    if (m.getLayer('regiones-sel')) m.setFilter('regiones-sel', ['in', ['get', 'id'], ['literal', v && v.tipo === 'region' ? [v.id] : []]]);
     m.setFilter('paises-resaltado', ['==', ['get', 'id'], v && v.tipo === 'pais' ? v.id : '__ninguno__']);
   }
 
@@ -525,18 +587,18 @@
     const m = E.mapa;
     if (!E.mapaListo) return;
     const vis = (ids, on) => ids.forEach((id) => m.getLayer(id) && m.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'));
-    vis(['paises-escenario', 'paises-participante'], E.capas.paises);
-    vis(['eventos-punto', 'grupos', 'grupos-texto', 'eventos-pais', 'eventos-pais-texto', 'eventos-pulso', 'resaltado-anillo'], E.capas.eventos);
+    vis(['paises-escenario', 'paises-escenario-borde', 'paises-participante', 'paises-toque'], E.capas.paises);
+    vis(['eventos-punto', 'grupos', 'eventos-pais', 'eventos-pulso', 'resaltado-anillo'], E.capas.eventos);
     vis(['zonas-relleno', 'zonas-borde'], E.capas.zonas);
-    vis(['candidatos-borde', 'candidatos-punto', 'candidatos-texto'], E.capas.candidatos && !focoActual());
+    vis(['candidatos-borde', 'candidatos-punto'], E.capas.candidatos && !focoActual());
     vis(['regiones-actividad'], E.capas.regiones);
-    vis(['regiones-doc', 'regiones-doc-borde', 'mares-doc', 'mares-doc-borde', 'mares-texto'], E.capas.afectadas);
-    vis(['ciudades-punto', 'ciudades-texto'], !E.capas.base);
+    vis(['regiones-doc', 'regiones-doc-borde', 'mares-doc', 'mares-doc-borde'], E.capas.afectadas);
+    if (m.getLayer('regiones-limites')) m.setLayerZoomRange('regiones-limites', 3.5, base && base.estado.detalle && !base.estado.falloDetalle && base.estado.modo !== 'simple' ? 6.5 : 24);
     if (m.getLayer('paises-escenario')) m.setPaintProperty('paises-escenario', 'fill-opacity', opacidadPaises());
   }
 
   // Radio del pulso: el del punto o grupo más un extra que crece con la animación.
-  const radioPulso = (extra) => ['+', ['case', ['has', 'point_count'], ['step', ['get', 'point_count'], 12, 10, 15, 50, 19], 6], extra];
+  const radioPulso = (extra) => ['+', ['case', ['has', 'point_count'], ['step', ['get', 'point_count'], 11, 10, 13.5, 100, 16], 6], extra];
 
   // Pulso suave en las novedades de las últimas horas (se desactiva si se pidió reducir el movimiento).
   function iniciarPulso() {
@@ -545,11 +607,11 @@
     let ultimo = 0;
     const paso = (t) => {
       requestAnimationFrame(paso);
-      if (document.hidden || t - ultimo < 50 || !E.mapa.getLayer('eventos-pulso')) return;
+      if (document.hidden || t - ultimo < 60 || !E.mapa.getLayer('eventos-pulso') || !E.capas.eventos) return;
       ultimo = t;
-      const p = ((t - t0) % 2200) / 2200;
-      E.mapa.setPaintProperty('eventos-pulso', 'circle-radius', radioPulso(12 * p));
-      E.mapa.setPaintProperty('eventos-pulso', 'circle-opacity', 0.38 * (1 - p));
+      const p = ((t - t0) % 2400) / 2400;
+      E.mapa.setPaintProperty('eventos-pulso', 'circle-radius', radioPulso(11 * p));
+      E.mapa.setPaintProperty('eventos-pulso', 'circle-opacity', 0.32 * (1 - p));
     };
     requestAnimationFrame(paso);
   }
@@ -563,29 +625,13 @@
     E.mapa.getSource('resaltado').setData(coord ? { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: coord }, properties: {} }] } : vacio());
   }
 
-  function alternarBase(on) {
-    const m = E.mapa;
-    if (!E.mapaListo) return;
-    const P = paleta();
-    const capas = ['ofm-agua', 'ofm-limites', 'ofm-rutas', 'ofm-lugares'];
-    if (!on) { capas.forEach((id) => m.getLayer(id) && m.removeLayer(id)); if (m.getSource('ofm')) m.removeSource('ofm'); visibilidad(); return; }
-    if (!m.getSource('ofm')) {
-      m.addSource('ofm', { type: 'vector', url: 'https://tiles.openfreemap.org/planet',
-        attribution: '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> © <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> Datos de <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>' });
-    }
-    const antes = 'paises-borde';
-    m.addLayer({ id: 'ofm-agua', type: 'fill', source: 'ofm', 'source-layer': 'water', paint: { 'fill-color': P.agua } }, antes);
-    m.addLayer({ id: 'ofm-limites', type: 'line', source: 'ofm', 'source-layer': 'boundary', minzoom: 3,
-      filter: ['==', ['get', 'admin_level'], 4], paint: { 'line-color': P.limite, 'line-width': 0.7, 'line-dasharray': [3, 2] } }, antes);
-    m.addLayer({ id: 'ofm-rutas', type: 'line', source: 'ofm', 'source-layer': 'transportation', minzoom: 5,
-      filter: ['in', ['get', 'class'], ['literal', ['motorway', 'trunk', 'primary']]],
-      paint: { 'line-color': temaOscuro() ? '#5b5440' : '#c9b99a', 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.5, 10, 2] } }, antes);
-    m.addLayer({ id: 'ofm-lugares', type: 'symbol', source: 'ofm', 'source-layer': 'place', minzoom: 4.5,
-      filter: ['in', ['get', 'class'], ['literal', ['city', 'town']]],
-      layout: { 'text-field': ['coalesce', ['get', 'name:es'], ['get', 'name:latin'], ['get', 'name']], 'text-font': ['Open Sans Semibold'],
-        'text-size': ['interpolate', ['linear'], ['zoom'], 5, 10, 10, 13], 'text-max-width': 8 },
-      paint: { 'text-color': P.ciudad, 'text-halo-color': P.halo, 'text-halo-width': 1.2 } }, 'eventos-pais');
-    visibilidad();
+  // Refleja en el menú "Capas" el estado de la base (modo, globo, detalle, fallos).
+  function sincronizarCapas() {
+    if (!base) return;
+    $$('input[name="base"]').forEach((r) => { r.checked = r.value === base.estado.modo; });
+    const g = $('input[data-opcion="globo"]'); if (g) g.checked = base.estado.globo;
+    const d = $('input[data-opcion="detalle"]'); if (d) { d.checked = base.estado.detalle; d.disabled = base.estado.modo === 'simple'; }
+    const s = $('#estado-base'); if (s) s.textContent = base.textoEstado();
   }
 
   // ------------------------------------------------------------- interacción
@@ -597,11 +643,19 @@
       <div class="popup-sub">${esc(lugarCorto(l))} · ${esc(relativo(ev.referencia))}</div>`;
   }
 
+  // Lista en el panel las novedades de un mismo lugar (o de un grupo que no se separa al acercar).
+  function abrirLugar(ids) {
+    const evs = ids.map((i) => E.idx.evento[i]).filter(Boolean)
+      .sort((a, b) => (b.referencia || '').localeCompare(a.referencia || ''));
+    if (evs.length === 1) return abrirEvento(evs[0].id);
+    if (evs.length) abrirVista({ tipo: 'lugar', ids: evs.map((e) => e.id), id: evs[0].id });
+  }
+
   function interacciones() {
     const m = E.mapa;
     const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, maxWidth: '290px' });
-    const capasPais = ['paises-escenario', 'paises-participante', 'tierra'];
-    const capasHover = ['eventos-punto', 'grupos', 'eventos-pais', 'candidatos-punto', 'zonas-relleno', 'mares-doc', 'regiones-actividad', ...capasPais];
+    const capasPais = ['paises-toque'];
+    const capasHover = ['candidatos-punto', 'eventos-punto', 'grupos', 'eventos-pais', 'zonas-relleno', 'mares-doc', 'regiones-toque', ...capasPais];
     let paisHover = null;
     const marcarPais = (id) => {
       if (paisHover === id) return;
@@ -610,23 +664,28 @@
       if (id) m.setFeatureState({ source: 'paises', id }, { hover: true });
     };
     const puedeHover = () => matchMedia('(hover: hover)').matches;
+    const activas = () => capasHover.filter((l) => m.getLayer(l) && m.getLayoutProperty(l, 'visibility') !== 'none');
     m.on('mousemove', (e) => {
-      const f = m.queryRenderedFeatures(e.point, { layers: capasHover.filter((l) => m.getLayer(l)) });
-      m.getCanvas().style.cursor = f.length && f[0].layer.id !== 'tierra' ? 'pointer' : '';
+      const f = m.queryRenderedFeatures(e.point, { layers: activas() });
+      m.getCanvas().style.cursor = f.length ? 'pointer' : '';
       if (!f.length) { popup.remove(); marcarPais(null); resaltarEvento(null); return; }
       const x = f[0];
       let html = '';
       const pais = f.find((g) => capasPais.includes(g.layer.id));
-      marcarPais(pais && pais.properties.rol ? pais.properties.id : null);
+      marcarPais(pais ? pais.properties.id : null);
       if (x.layer.id === 'eventos-punto') {
+        const mismos = f.filter((g) => g.layer.id === 'eventos-punto');
         const ev = E.idx.evento[x.properties.id];
-        if (ev) { html = contenidoPopupEvento(ev); resaltarEvento(ev.id); }
+        if (ev) {
+          html = contenidoPopupEvento(ev) + (mismos.length > 1 ? `<div class="popup-sub">Y ${mismos.length - 1} más en este lugar · clic para verlas</div>` : '');
+          resaltarEvento(ev.id);
+        }
       } else {
         resaltarEvento(null);
         if (x.layer.id === 'grupos') {
-          html = `<div class="popup-titulo">${x.properties.point_count} novedades</div><div class="popup-sub">Hacé clic para acercar</div>`;
+          html = `<div class="popup-titulo">${x.properties.point_count} novedades cercanas</div><div class="popup-sub">${m.getZoom() >= ZOOM_GRUPOS - 0.5 ? 'Clic para verlas en el panel' : 'Clic para acercar'} · el número es una cantidad, no una medida de gravedad</div>`;
         } else if (x.layer.id === 'eventos-pais') {
-          html = `<div class="popup-titulo">${x.properties.n} novedad(es) en ${esc(nombrePais(x.properties.pais))}</div><div class="popup-sub">Ubicación conocida solo a nivel país: el círculo no indica un lugar exacto.</div>`;
+          html = `<div class="popup-titulo">${x.properties.n} novedad(es) en ${esc(nombrePais(x.properties.pais))}</div><div class="popup-sub">Ubicadas solo a nivel país: no indican un lugar exacto.</div>`;
         } else if (x.layer.id === 'candidatos-punto') {
           const c = (E.datos.candidatos.candidatos || []).find((v) => v.id === x.properties.id);
           if (c) html = `<div class="popup-titulo">${esc(c.nombre)}</div><div class="popup-sub">Detectado automáticamente · sin verificar</div>`;
@@ -634,9 +693,9 @@
           html = `<div class="popup-titulo">${esc(x.properties.nombre)}</div><div class="popup-sub">Zona en disputa de soberanía (Natural Earth). No indica control militar ni frentes.</div>`;
         } else if (x.layer.id === 'mares-doc') {
           html = popupMar(x.properties.id, x.properties.n);
-        } else if (x.layer.id === 'regiones-actividad') {
+        } else if (x.layer.id === 'regiones-toque') {
           html = popupRegion(x.properties.id);
-        } else if (pais && pais.properties.rol) {
+        } else if (pais) {
           const id = pais.properties.id;
           const cs = (E.idx.paisConflictos[id] || []).filter((r) => E.categorias.has(E.idx.conflicto[r.id].categoria));
           html = `<div class="popup-titulo">${esc(nombrePais(id))}</div>` + (cs.length
@@ -650,14 +709,25 @@
     m.on('mouseout', () => { popup.remove(); marcarPais(null); resaltarEvento(null); });
     m.on('click', (e) => {
       popup.remove();
-      const capas = capasHover.filter((l) => m.getLayer(l) && m.getLayoutProperty(l, 'visibility') !== 'none');
-      const f = m.queryRenderedFeatures(e.point, { layers: capas });
+      // Área de toque algo mayor que el ícono (más cómodo en pantallas táctiles).
+      const t = esMovil() ? 10 : 4;
+      const caja = [[e.point.x - t, e.point.y - t], [e.point.x + t, e.point.y + t]];
+      const f = m.queryRenderedFeatures(caja, { layers: activas() });
       if (!f.length) return;
       const x = f[0];
       if (x.layer.id === 'grupos') {
-        m.getSource('eventos').getClusterExpansionZoom(x.properties.cluster_id).then((z) => m.easeTo({ center: x.geometry.coordinates, zoom: z + 0.3, duration: 600 }));
+        const fuente = m.getSource('eventos');
+        fuente.getClusterExpansionZoom(x.properties.cluster_id).then((z) => {
+          if (z > ZOOM_GRUPOS || m.getZoom() >= ZOOM_GRUPOS - 0.5) {
+            // Novedades en el mismo lugar o muy juntas: se listan en vez de seguir acercando.
+            fuente.getClusterLeaves(x.properties.cluster_id, 300, 0).then((hojas) => abrirLugar(hojas.map((h) => h.properties.id)));
+          } else {
+            volar({ center: x.geometry.coordinates, zoom: Math.min(z + 0.4, ZOOM_GRUPOS + 0.5) }, 900);
+          }
+        });
       } else if (x.layer.id === 'eventos-punto') {
-        abrirEvento(x.properties.id);
+        const ids = [...new Set(f.filter((g) => g.layer.id === 'eventos-punto').map((g) => g.properties.id))];
+        if (ids.length > 1) abrirLugar(ids); else abrirEvento(ids[0]);
       } else if (x.layer.id === 'eventos-pais') {
         abrirVista({ tipo: 'pais', id: x.properties.pais });
       } else if (x.layer.id === 'candidatos-punto') {
@@ -666,7 +736,7 @@
         new maplibregl.Popup({ offset: 8 }).setLngLat(e.lngLat).setHTML(`<div class="popup-titulo">${esc(x.properties.nombre)}</div><div class="popup-sub">Zona en disputa de soberanía según ${esc(x.properties.fuente)}; consultado ${esc(fechaCorta(x.properties.fecha_consulta))}. No indica control militar ni líneas de frente.</div>`).addTo(m);
       } else if (x.layer.id === 'mares-doc') {
         new maplibregl.Popup({ offset: 8, maxWidth: '300px' }).setLngLat(e.lngLat).setHTML(popupMar(x.properties.id, x.properties.n, true)).addTo(m);
-      } else if (x.layer.id === 'regiones-actividad') {
+      } else if (x.layer.id === 'regiones-toque') {
         abrirVista({ tipo: 'region', id: x.properties.id });
       } else {
         const pais = f.find((g) => capasPais.includes(g.layer.id));
@@ -753,7 +823,7 @@
       const nuevo = tarjetaEvento(ev, mostrarConflicto);
       t.replaceWith(nuevo);
       nuevo.focus({ preventScroll: true });
-      if (E.eventoAbierto && l.coord) E.mapa.flyTo({ center: l.coord, zoom: Math.max(E.mapa.getZoom(), 5), padding: rellenoMapa(), speed: 1.2 });
+      if (E.eventoAbierto && l.coord && E.mapaListo) volar({ center: l.coord, zoom: Math.max(E.mapa.getZoom(), 5.5), padding: rellenoMapa() }, 1300);
     };
     t.addEventListener('click', alternar);
     t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); alternar(e); } });
@@ -893,6 +963,19 @@
     if (v.tipo === 'conflicto') return fichaConflicto(cont, E.idx.conflicto[v.id]);
     if (v.tipo === 'pais') return fichaPais(cont, v.id);
     if (v.tipo === 'candidato') return fichaCandidato(cont, (E.datos.candidatos.candidatos || []).find((c) => c.id === v.id));
+    if (v.tipo === 'lugar') return fichaLugar(cont, v);
+  }
+
+  // Varias novedades ubicadas en el mismo lugar (o tan cerca que no se separan al acercar).
+  function fichaLugar(cont, v) {
+    const evs = v.ids.map((i) => E.idx.evento[i]).filter(Boolean);
+    const lugares = [...new Set(evs.map((ev) => lugarCorto(ev.lugar)))];
+    const f = el(`<div class="ficha"><span class="categoria-ficha"><i style="background:#8c8c8c"></i>Lugar</span>
+      <h2>${esc(lugares.length === 1 ? lugares[0] : lugares.slice(0, 3).join(' · '))}</h2>
+      <p class="meta-zona">${evs.length} novedades ubicadas aquí o muy cerca en ${E.horas} h. La cantidad no indica gravedad.</p>
+      <div class="lista-eventos"></div></div>`);
+    listaConMas($('.lista-eventos', f), evs);
+    cont.appendChild(f);
   }
 
   function cerrarVista() {
@@ -1081,7 +1164,8 @@
     renderPanel();
     panelNormal();
     actualizarMapa();
-    if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
+    if (v.tipo === 'lugar') { /* la cámara ya está sobre el lugar */ }
+    else if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
     else if (v.tipo === 'conflicto') {
       // Si el registro documenta regiones, se encuadran esas zonas; si no, los países escenario.
       const c = E.idx.conflicto[v.id];
@@ -1113,17 +1197,31 @@
 
   // ------------------------------------------------------------ geometría
   const bboxes = {};
+  const tamPais = {}; // 0–3 según la superficie aproximada: decide desde qué zoom se muestra el nombre
   function calcularBboxes() {
     for (const f of E.geo.paises.features) {
       let b = [180, 90, -180, -90];
       const recorrer = (c) => { if (typeof c[0] === 'number') { b = [Math.min(b[0], c[0]), Math.min(b[1], c[1]), Math.max(b[2], c[0]), Math.max(b[3], c[1])]; } else c.forEach(recorrer); };
       recorrer(f.geometry.coordinates);
       bboxes[f.properties.id] = b;
+      const area = Math.min(b[2] - b[0], 120) * (b[3] - b[1]) * Math.cos(((b[1] + b[3]) / 2) * Math.PI / 180);
+      tamPais[f.properties.id] = area > 900 ? 3 : area > 160 ? 2 : area > 25 ? 1 : 0;
     }
+  }
+  // Cámara que encuadra una caja [oeste, sur, este, norte] en el área útil del mapa.
+  // (Se calcula a mano: cameraForBounds falla con la proyección de globo en esta versión.)
+  function camaraParaCaja(b, maxZoom) {
+    const r = rellenoMapa();
+    const w = Math.max(120, window.innerWidth - r.left - r.right), h = Math.max(120, window.innerHeight - r.top - r.bottom);
+    const y = (lat) => Math.log(Math.tan(Math.PI / 4 + (Math.max(-85, Math.min(85, lat)) * Math.PI) / 360));
+    const lat = (v) => (Math.atan(Math.sinh(v)) * 180) / Math.PI;
+    const dx = Math.max((b[2] - b[0]) / 360, 1e-4), dy = Math.max((y(b[3]) - y(b[1])) / (2 * Math.PI), 1e-4);
+    const zoom = Math.log2(Math.min(w / (512 * dx), h / (512 * dy))) - 0.1;
+    return { center: [(b[0] + b[2]) / 2, lat((y(b[1]) + y(b[3])) / 2)], zoom: Math.max(1, Math.min(zoom, maxZoom || 6)), padding: r };
   }
   function encuadrarCaja(b, maxZoom) {
     if (!E.mapaListo || !b) return;
-    E.mapa.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: rellenoMapa(), maxZoom: maxZoom || 6, duration: movimientoReducido() ? 0 : 1000 });
+    volar(camaraParaCaja(b, maxZoom));
   }
   function encuadrar(paises) {
     if (!E.mapaListo || !paises || !paises.length) return;
@@ -1136,7 +1234,7 @@
     if (!b) return;
     if (b[2] - b[0] > 250) {
       const et = (E.datos.conflictos.etiquetas_paises || {})[paises[0]];
-      if (et) E.mapa.flyTo({ center: et, zoom: 2.4, padding: rellenoMapa() });
+      if (et) volar({ center: et, zoom: 2.4, padding: rellenoMapa() });
       return;
     }
     encuadrarCaja(b, 5.5);
@@ -1289,22 +1387,18 @@
   }
   function cambioFiltros() { E.limiteLista = 40; actualizarMapa(); renderPanel(); }
 
+  // Leyenda simple: qué es cada tipo de elemento. Las cantidades no son niveles de gravedad.
   function renderLeyenda() {
     const P = paleta();
+    const c = '#D55E00';
     $('#leyenda').innerHTML = `
-      <div class="item"><svg width="22" height="16"><circle cx="11" cy="8" r="5.5" fill="#D55E00" stroke="${P.puntoBorde}" stroke-width="1.4"/></svg>Novedad ubicada en una ciudad</div>
-      <div class="item"><svg width="22" height="16"><circle cx="11" cy="8" r="5" fill="${P.tierra}" stroke="#D55E00" stroke-width="2.6"/></svg>Ubicada en una provincia o región</div>
-      <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="${P.anilloFondo}" stroke="${P.anillo}" stroke-width="1.3"/><text x="11" y="15" font-size="10" text-anchor="middle" fill="${P.anilloTexto}">3</text></svg>Solo se conoce el país: no es un lugar exacto (al acercar)</div>
-      <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="${P.grupo}" opacity=".9"/><text x="11" y="15" font-size="10" text-anchor="middle" fill="${P.grupoTexto}">12</text></svg>Grupo de novedades: hacé clic para acercar</div>
-      <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="10" fill="#D55E00" opacity=".22"/><circle cx="11" cy="11" r="5" fill="#D55E00"/></svg>Late: hay novedades de las últimas ${HORAS_RECIENTE} horas</div>
-      <div class="item"><svg width="22" height="14"><rect width="22" height="14" rx="3" fill="#0072B2" fill-opacity=".66"/></svg>País escenario (color = categoría)</div>
-      <div class="item"><svg width="22" height="14"><rect x="1.5" y="1.5" width="19" height="11" rx="2" fill="none" stroke="#0072B2" stroke-width="2.2"/></svg>Borde: el país participa sin ser escenario</div>
-      <div class="item"><svg width="30" height="14"><rect width="10" height="14" fill="#D55E00" fill-opacity=".5"/><rect x="10" width="10" height="14" fill="#D55E00" fill-opacity=".72"/><rect x="20" width="10" height="14" fill="#D55E00" fill-opacity=".92"/></svg>Región con novedades (más intenso = más)</div>
-      <div class="item"><svg width="22" height="14"><defs><pattern id="ld" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="${P.bordeDoc}" stroke-width="1.2"/></pattern></defs><rect width="22" height="14" fill="url(#ld)" stroke="${P.bordeDoc}" stroke-width="1.2"/></svg>Región afectada según una fuente fechada</div>
-      <div class="item"><svg width="22" height="14"><rect width="22" height="14" fill="url(#ld)" fill-opacity=".6" stroke="${P.mar}" stroke-dasharray="2 2"/></svg>Área marítima con incidentes informados</div>
-      <div class="item"><svg width="22" height="14"><defs><pattern id="lz" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="${P.bordeZona}" stroke-width="1.4"/></pattern></defs><rect width="22" height="14" fill="url(#lz)" stroke="${P.bordeZona}" stroke-dasharray="3 2"/></svg>Zona en disputa de soberanía</div>
-      <div class="item"><svg width="22" height="22"><circle cx="11" cy="11" r="9" fill="${P.anilloFondo}" stroke="${P.anillo}" stroke-width="1.6"/><text x="11" y="15" font-size="11" text-anchor="middle" fill="${P.anilloTexto}">?</text></svg>Situación detectada automáticamente (sin verificar)</div>
-      <p class="nota">Los colores identifican categorías, no gravedad. Los puntos más grandes tienen dos o más fuentes independientes. Las regiones y zonas no indican control territorial ni frentes de combate.</p>`;
+      <div class="item"><svg width="26" height="16" aria-hidden="true"><rect x="1" y="1" width="24" height="14" rx="3" fill="${c}" fill-opacity=".3" stroke="${c}" stroke-width="1.4"/></svg><span><b>País involucrado</b> · relleno: escenario; <span class="raya">borde punteado</span>: participa</span></div>
+      <div class="item"><svg width="26" height="16" aria-hidden="true"><defs><pattern id="ld" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="${P.rayadoDoc}" stroke-width="1.2"/></pattern></defs><rect x="1" y="1" width="24" height="14" fill="url(#ld)" stroke="${P.bordeDoc}"/></svg><span><b>Zona afectada</b> según una fuente fechada (provincia o área marítima)</span></div>
+      <div class="item"><svg width="26" height="16" aria-hidden="true"><circle cx="9" cy="8" r="5" fill="${c}" stroke="${P.puntoBorde}" stroke-width="1.6"/><circle cx="20" cy="8" r="4.2" fill="${P.aproxRelleno}" stroke="${c}" stroke-width="2.4"/></svg><span><b>Lugar de una noticia</b> · punto: ciudad; anillo: provincia o región</span></div>
+      <div class="item"><svg width="26" height="22" aria-hidden="true"><circle cx="13" cy="11" r="10" fill="${P.grupo}" stroke="${P.grupoBorde}" stroke-width="1.5"/><text x="13" y="15" font-size="10" font-weight="600" text-anchor="middle" fill="${P.grupoTexto}">12</text></svg><span><b>Grupo</b> de noticias cercanas (cantidad, no gravedad)</span></div>
+      <div class="item"><svg width="26" height="18" aria-hidden="true"><rect x="2" y="1" width="22" height="16" rx="8" fill="${P.pastilla}" stroke="${P.pastillaBorde}"/><text x="13" y="13" font-size="10" font-weight="600" text-anchor="middle" fill="${P.pastillaTexto}">7</text></svg><span>Noticias del país <b>sin lugar preciso</b> (al alejar, se ocultan si taparían otros símbolos)</span></div>
+      <div class="item"><svg width="26" height="16" aria-hidden="true"><rect x="1" y="1" width="24" height="14" fill="none" stroke="${temaOscuro() ? '#bcdcfa' : '#3a6f9e'}" stroke-width="1.4" stroke-dasharray="1.5 2.5"/></svg><span><b>Zona en disputa</b> de soberanía</span></div>
+      <p class="nota">Los colores son categorías, no gravedad. Las zonas no indican control territorial ni frentes de combate. Los puntos que laten tienen noticias de las últimas ${HORAS_RECIENTE} horas.</p>`;
   }
 
   function cerrarPopovers(excepto) {
@@ -1327,9 +1421,25 @@
     }));
     $$('input[data-capa]').forEach((cb) => cb.addEventListener('change', () => {
       E.capas[cb.dataset.capa] = cb.checked;
-      if (cb.dataset.capa === 'base') alternarBase(cb.checked); else visibilidad();
+      visibilidad();
     }));
-    ['#btn-capas', '#btn-leyenda'].forEach((s) => $(s).addEventListener('click', (e) => { e.stopPropagation(); alternarPopover($(s)); }));
+    $$('input[name="base"]').forEach((r) => r.addEventListener('change', () => {
+      if (!base || !r.checked) return;
+      base.establecerBase(r.value); aplicarTemaMapa(); sincronizarCapas(); guardarPrefs();
+    }));
+    const g = $('input[data-opcion="globo"]');
+    if (g) g.addEventListener('change', () => { if (base) { base.establecerGlobo(g.checked); guardarPrefs(); } });
+    const d = $('input[data-opcion="detalle"]');
+    if (d) d.addEventListener('change', () => { if (base) { base.establecerDetalle(d.checked); visibilidad(); sincronizarCapas(); guardarPrefs(); } });
+    $('#btn-capas').addEventListener('click', (e) => { e.stopPropagation(); alternarPopover($('#btn-capas')); });
+    const bs = $('#btn-simbolos');
+    bs.addEventListener('click', () => {
+      const abrir = $('#leyenda-simbolos').hidden;
+      $('#leyenda-simbolos').hidden = !abrir;
+      bs.setAttribute('aria-expanded', String(abrir));
+      try { localStorage.setItem('mapa-conflictos:simbolos', abrir ? '1' : '0'); } catch (e) { /* sin almacenamiento */ }
+    });
+    try { if (localStorage.getItem('mapa-conflictos:simbolos') === '1' && !esMovil()) bs.click(); } catch (e) { /* sin almacenamiento */ }
     document.addEventListener('click', (e) => { if (!e.target.closest('.popover, [aria-controls^="popover-"]')) cerrarPopovers(); });
     $$('.pestanas button').forEach((b) => b.addEventListener('click', () => {
       E.pestana = b.dataset.pestana; E.limiteLista = 40;
@@ -1357,6 +1467,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key !== 'Escape' || $('#dialogo-ayuda').open) return;
       if ($$('.popover').some((p) => !p.hidden)) { cerrarPopovers(); return; }
+      if (!$('#leyenda-simbolos').hidden && esMovil()) { $('#btn-simbolos').click(); return; }
       if (E.vista) { cerrarVista(); return; }
       if (E.eventoAbierto) { E.eventoAbierto = null; renderPanel(); }
     });
@@ -1395,9 +1506,9 @@
   // Capas de detalle (regiones, mares, ciudades): se cargan después para no demorar el primer mapa.
   async function cargarDetalle() {
     try {
-      const [regiones, mares, ciudades] = await Promise.all([cargarEstatico('geo/regiones.geojson'),
-        cargarEstatico('geo/mares.geojson').catch(() => null), cargarEstatico('geo/ciudades.geojson').catch(() => null)]);
-      E.geo.regiones = regiones; E.geo.mares = mares; E.geo.ciudades = ciudades;
+      const [regiones, mares] = await Promise.all([cargarEstatico('geo/regiones.geojson'),
+        cargarEstatico('geo/mares.geojson').catch(() => null)]);
+      E.geo.regiones = regiones; E.geo.mares = mares;
       indexarRegiones();
       agregarCapasDetalle();
       if (E.vista) renderPanel();
@@ -1436,9 +1547,9 @@
       return;
     }
     renderEstado(); renderCategorias(); renderLeyenda(); iniciarBusqueda(); renderPanel();
-    if (window.maplibregl) iniciarMapa();
-    cargarDetalle();
     if (esMovil()) estadoPanel('contraido'); else estadoPanel('normal');
+    if (window.maplibregl && window.Cartografia) await iniciarMapa();
+    cargarDetalle();
     const mq = matchMedia('(prefers-color-scheme: dark)');
     if (mq.addEventListener) mq.addEventListener('change', renderLeyenda);
     setInterval(refrescar, 5 * 60 * 1000);
