@@ -113,6 +113,26 @@ def main(salida: str) -> None:
         "estado": "detectado", "primera_deteccion": ahora.isoformat(), "ultima_deteccion": ahora.isoformat(),
         "reglas": "[PRUEBA] Señales ficticias.", "articulos": [], "etiqueta": conf.paises["BOL"]["etiqueta"]}]},
         open(os.path.join(datos, "candidatos.json"), "w"), ensure_ascii=False)
+    elecciones = []
+    for dias, pais, cargos, tipos, prec in [(3, "CHL", "Presidente (2.ª vuelta)", ["ejecutivo"], "dia"),
+                                            (12, "DEU", "Parlamento", ["legislativo"], "dia"),
+                                            (40, "KEN", "Presidente y Asamblea Nacional", ["ejecutivo", "legislativo"], "dia"),
+                                            (70, "UKR", "Referendo", ["referendo"], "mes"),
+                                            (200, "IND", "Presidente", ["ejecutivo"], "dia")]:
+        f = (ahora + timedelta(days=dias)).date()
+        if prec == "mes":
+            f = f.replace(day=1)
+        elecciones.append({"id": f"prueba-{pais}", "pais": pais, "pais_nombre": conf.paises[pais]["nombre"], "pais_en": pais,
+                           "territorio": False, "fecha": f.isoformat(), "fin": None, "precision": prec, "anio": f.year,
+                           "texto_fecha": None, "cargos": f"[PRUEBA] {cargos}", "cargos_en": "[PRUEBA]", "tipos": tipos,
+                           "indirecta": False, "articulo": "https://ejemplo.invalid/eleccion",
+                           "calendario": "https://ejemplo.invalid/calendario", "fuentes": ["https://ejemplo.invalid/fuente"]})
+    elecciones.append({**elecciones[0], "id": "prueba-sin-fecha", "pais": "ITA", "pais_nombre": "Italia", "fecha": None,
+                       "precision": "anio", "cargos": "[PRUEBA] Parlamento", "tipos": ["legislativo"]})
+    json.dump({"generado": ahora.isoformat(), "horizonte_dias": 365, "actualizado": ahora.isoformat(),
+               "fuente": {"nombre": "[PRUEBA] calendario ficticio", "licencia": "CC BY-SA 4.0", "paginas": []},
+               "sin_ubicar": [], "elecciones": elecciones},
+              open(os.path.join(datos, "elecciones.json"), "w"), ensure_ascii=False)
     json.dump({"generado": ahora.isoformat(), "ultimo_exito": (ahora - timedelta(minutes=9)).isoformat(),
                "ciclo_ok": True, "duracion_s": 123, "advertencias": ["[PRUEBA] 2 de 58 feeds RSS fallaron en este ciclo."],
                "errores": [], "fuentes": [{"id": f["id"], "nombre": f["nombre"], "tipo": f["tipo"], "idioma": f["idioma"],
