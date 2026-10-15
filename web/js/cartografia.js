@@ -3,9 +3,10 @@
  * Capas de la base, de abajo hacia arriba:
  *  1. Base propia, siempre disponible y sin servicios externos: océano, tierra, límites entre
  *     países, ciudades y nombres de mares de Natural Earth (dominio público) servidos por este sitio.
- *  2. Relieve: "Blue Marble – relieve sombreado y batimetría" de NASA GIBS (sin clave ni registro;
- *     NASA pide reconocer el uso de GIBS). Alternativa opcional: "Blue Marble Next Generation"
- *     como vista satelital. Resolución máxima ~500 m: se desvanece al acercar mucho.
+ *  2. Relieve de NASA GIBS (sin clave ni registro; NASA pide reconocer el uso de GIBS):
+ *     con zoom bajo, "Blue Marble – relieve sombreado y batimetría" (500 m); al acercar, el
+ *     relieve sombreado en color de ASTER GDEM (≈30 m, producto de METI y NASA, de uso libre).
+ *     Alternativa opcional: "Blue Marble Next Generation" como vista satelital.
  *  3. Detalle al acercar (zoom ≥ 6): teselas vectoriales de OpenFreeMap (datos de OpenStreetMap;
  *     sin clave ni límite de uso; atribución obligatoria): costas precisas, ríos, rutas y ciudades.
  *
@@ -14,12 +15,14 @@
 (function () {
   'use strict';
 
-  const GIBS = (capa) => `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${capa}/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg`;
-  const ATRIB_GIBS = 'Relieve e imágenes: <a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api" target="_blank" rel="noopener">NASA GIBS</a> (Blue Marble)';
+  const GIBS = (capa, nivel = 8) => `https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/${capa}/default/GoogleMapsCompatible_Level${nivel}/{z}/{y}/{x}.jpeg`;
+  const ENLACE_GIBS = '<a href="https://www.earthdata.nasa.gov/engage/open-data-services-software/earthdata-developer-portal/gibs-api" target="_blank" rel="noopener">NASA GIBS</a>';
+  const ATRIB_GIBS = 'Relieve e imágenes: ' + ENLACE_GIBS + ' (Blue Marble)';
+  const ATRIB_ASTER = 'Relieve: ' + ENLACE_GIBS + ' (ASTER GDEM, producto de METI y NASA)';
   const OFM_URL = 'https://tiles.openfreemap.org/planet';
   const Z_DETALLE = 6;   // desde este zoom se piden teselas de OpenFreeMap (las de zoom bajo pesan mucho)
   const Z_CIUDADES = 6.5; // desde aquí las ciudades y límites salen de OpenFreeMap
-  const Z_RELIEVE = 8.5;  // el relieve empieza a desvanecerse (resolución máxima de la imagen)
+  const Z_CERCA = 5.5;    // desde aquí el relieve de Blue Marble da paso al de ASTER (más detallado)
 
   // Paletas sobrias: mar azul profundo, tierra en tonos naturales; los colores de conflicto
   // quedan como acentos (los define app.js).
@@ -32,6 +35,7 @@
       etiqueta: '#23211d', halo: 'rgba(255,253,247,0.92)', ciudad: '#2a2824', puntoCiudad: '#2f2b26', puntoBorde: '#ffffff',
       mar: '#c4d8ea', marHalo: 'rgba(14,36,56,0.5)', region: '#5c574f',
       relieve: { 'raster-saturation': -0.28, 'raster-contrast': -0.04, 'raster-brightness-min': 0.02, 'raster-brightness-max': 0.97 },
+      relieveCerca: { 'raster-saturation': -0.38, 'raster-contrast': -0.1, 'raster-brightness-min': 0.2, 'raster-brightness-max': 1 },
       satelite: { 'raster-saturation': -0.1, 'raster-contrast': 0, 'raster-brightness-min': 0, 'raster-brightness-max': 1 },
     },
     oscuro: {
@@ -42,6 +46,7 @@
       etiqueta: '#ece8df', halo: 'rgba(8,12,18,0.9)', ciudad: '#e4e0d7', puntoCiudad: '#e9e5dc', puntoBorde: '#10151b',
       mar: '#7fa6c8', marHalo: 'rgba(4,10,18,0.6)', region: '#a39d92',
       relieve: { 'raster-saturation': -0.4, 'raster-contrast': 0.05, 'raster-brightness-min': 0, 'raster-brightness-max': 0.58 },
+      relieveCerca: { 'raster-saturation': -0.5, 'raster-contrast': 0, 'raster-brightness-min': 0, 'raster-brightness-max': 0.5 },
       satelite: { 'raster-saturation': -0.2, 'raster-contrast': 0.05, 'raster-brightness-min': 0, 'raster-brightness-max': 0.8 },
     },
   };
@@ -114,6 +119,7 @@
           'base-ciudades': { type: 'geojson', data: ciudades },
           'base-mares': { type: 'geojson', data: maresEt },
           relieve: { type: 'raster', tiles: [GIBS('BlueMarble_ShadedRelief_Bathymetry')], tileSize: 256, maxzoom: 8, attribution: ATRIB_GIBS },
+          relieveCerca: { type: 'raster', tiles: [GIBS('ASTER_GDEM_Color_Shaded_Relief', 12)], tileSize: 256, maxzoom: 12, attribution: ATRIB_ASTER },
           satelite: { type: 'raster', tiles: [GIBS('BlueMarble_NextGeneration')], tileSize: 256, maxzoom: 8, attribution: ATRIB_GIBS },
           ofm: { type: 'vector', url: OFM_URL },
         },
@@ -136,7 +142,7 @@
         estado.falloDetalle = true; if (listo) actualizar();
         op.alAviso && op.alAviso('No se pudo cargar el detalle de OpenFreeMap (ríos, rutas y costas precisas). Se usa la base propia.');
       }
-      if ((e.sourceId === 'relieve' || e.sourceId === 'satelite') && !estado.falloRelieve && ++estado.erroresRelieve >= 6) {
+      if (['relieve', 'relieveCerca', 'satelite'].includes(e.sourceId) && !estado.falloRelieve && ++estado.erroresRelieve >= 6) {
         estado.falloRelieve = true;
         if (estado.modo === 'satelite') estado.modo = 'relieve';
         if (listo) actualizar();
@@ -164,12 +170,13 @@
       { id: 'ofm-urbano', type: 'fill', source: 'ofm', 'source-layer': 'landuse', minzoom: 9,
         filter: ['in', ['get', 'class'], ['literal', ['residential', 'commercial', 'industrial', 'retail']]],
         paint: { 'fill-color': P.urbano, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 9, 0, 11, 0.8] } },
-      { id: 'relieve', type: 'raster', source: 'relieve', paint: Object.assign({ 'raster-fade-duration': 200 }, P.relieve) },
+      { id: 'relieve', type: 'raster', source: 'relieve', maxzoom: 7, paint: Object.assign({ 'raster-fade-duration': 200 }, P.relieve) },
+      { id: 'relieve-cerca', type: 'raster', source: 'relieveCerca', minzoom: Z_CERCA, paint: Object.assign({ 'raster-fade-duration': 200 }, P.relieveCerca) },
       { id: 'satelite', type: 'raster', source: 'satelite', layout: { visibility: 'none' }, paint: Object.assign({ 'raster-fade-duration': 200 }, P.satelite) },
       { id: 'ancla-tinte', type: 'background', layout: { visibility: 'none' } },
       // Agua con costas precisas al acercar (tapa los bordes simplificados de los países).
       { id: 'ofm-agua', type: 'fill', source: 'ofm', 'source-layer': 'water', minzoom: Z_DETALLE,
-        paint: { 'fill-color': P.oceano, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], Z_DETALLE, 0, 7.5, 1] } },
+        paint: { 'fill-color': P.oceano, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], Z_DETALLE, 0, 6.8, 1] } },
       { id: 'ofm-rios', type: 'line', source: 'ofm', 'source-layer': 'waterway', minzoom: 7,
         filter: ['any', ['==', ['get', 'class'], 'river'], ['all', ['>=', ['zoom'], 11], ['in', ['get', 'class'], ['literal', ['canal', 'stream']]]]],
         paint: { 'line-color': P.rio, 'line-width': ['interpolate', ['linear'], ['zoom'], 7, 0.6, 12, 2.2] } },
@@ -249,17 +256,15 @@
       const detalle = usarDetalle();
       const raster = estado.modo === 'relieve' && !estado.falloRelieve;
       visible('relieve', raster);
+      visible('relieve-cerca', raster);
       visible('satelite', estado.modo === 'satelite');
       CAPAS_OFM.forEach((id) => visible(id, detalle));
       if (detalle && estado.modo === 'satelite') ['ofm-cobertura', 'ofm-urbano', 'ofm-agua'].forEach((id) => visible(id, false));
       visible('base-costa', estado.modo === 'simple' || (!raster && estado.modo !== 'satelite'));
-      // Con el detalle activo, desde zoom 8 la tierra es el fondo y el agua la dibuja OpenFreeMap;
-      // sin detalle, el fondo es siempre mar y la tierra sale de los polígonos propios.
-      mapa.setPaintProperty('fondo', 'background-color', detalle && estado.modo !== 'satelite'
-        ? ['step', ['zoom'], Q.oceano, 8, Q.tierraCerca] : Q.oceano);
-      mapa.setLayerZoomRange('base-tierra', 0, detalle && estado.modo !== 'satelite' ? 8 : 24);
-      const desvanecer = detalle ? ['interpolate', ['linear'], ['zoom'], Z_RELIEVE, 1, 9.5, 0] : 1;
-      mapa.setPaintProperty('relieve', 'raster-opacity', desvanecer);
+      mapa.setPaintProperty('fondo', 'background-color', Q.oceano);
+      // Al acercar, el relieve de Blue Marble (500 m) da paso al de ASTER (≈30 m).
+      mapa.setPaintProperty('relieve', 'raster-opacity', ['interpolate', ['linear'], ['zoom'], Z_CERCA, 1, 6.8, 0]);
+      mapa.setPaintProperty('relieve-cerca', 'raster-opacity', ['interpolate', ['linear'], ['zoom'], Z_CERCA, 0, 6.5, 1]);
       mapa.setPaintProperty('satelite', 'raster-opacity', 1);
       ['base-limites', 'base-limites-disputa'].forEach((id) => mapa.setLayerZoomRange(id, 0, detalle ? Z_CIUDADES : 24));
       mapa.setLayerZoomRange('base-ciudades', 0, detalle ? Z_CIUDADES : 24);
@@ -275,6 +280,7 @@
         'ice', Q.hielo, 'wetland', Q.humedal, Q.tierraCerca]);
       pintar('ofm-urbano', 'fill-color', Q.urbano);
       Object.entries(Q.relieve).forEach(([k, v]) => pintar('relieve', k, v));
+      Object.entries(Q.relieveCerca).forEach(([k, v]) => pintar('relieve-cerca', k, v));
       Object.entries(Q.satelite).forEach(([k, v]) => pintar('satelite', k, v));
       pintar('ofm-agua', 'fill-color', Q.oceano);
       pintar('ofm-rios', 'line-color', Q.rio);
@@ -302,7 +308,7 @@
       textoEstado() {
         if (estado.modo === 'simple') return 'Mapa simple: solo datos propios, sin servicios externos.';
         const partes = [];
-        partes.push(estado.falloRelieve ? 'Relieve de NASA no disponible (se usa el mapa simple).' : estado.modo === 'satelite' ? 'Imagen satelital: NASA Blue Marble.' : 'Relieve: NASA Blue Marble.');
+        partes.push(estado.falloRelieve ? 'Relieve de NASA no disponible (se usa el mapa simple).' : estado.modo === 'satelite' ? 'Imagen satelital: NASA Blue Marble.' : 'Relieve: NASA (Blue Marble y ASTER GDEM).');
         if (!estado.detalle) partes.push('Detalle al acercar desactivado.');
         else partes.push(estado.falloDetalle ? 'Detalle de OpenFreeMap no disponible.' : 'Detalle al acercar: OpenFreeMap.');
         return partes.join(' ');
