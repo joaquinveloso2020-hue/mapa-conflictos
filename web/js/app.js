@@ -320,7 +320,7 @@
     const foco = ['match', ['get', 'foco'], 0, 0.2, 2, 1.25, 1];
     const hover = ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 1];
     const k = base && base.estado.modo === 'satelite' ? 0.8 : 1;
-    return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.3 * k, foco, hover], 4, ['*', 0.18 * k, foco, hover], 7, ['*', 0.07 * k, foco, hover]];
+    return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.24 * k, foco, hover], 4, ['*', 0.15 * k, foco, hover], 7, ['*', 0.06 * k, foco, hover]];
   }
 
   function agregarCapas() {
@@ -369,10 +369,11 @@
       paint: { 'text-color': B.etiqueta, 'text-halo-color': B.halo, 'text-halo-width': 1.5,
         'text-opacity': ['case', ['==', ['get', 'foco'], 0], 0.45, 1] } });
     // Noticias del país sin lugar preciso: pastilla neutra debajo del nombre (no es un lugar exacto).
+    // No se superpone a los grupos ni a los puntos: si no hay lugar, se oculta hasta acercar (primero las de más noticias).
     m.addLayer({ id: 'eventos-pais', type: 'symbol', source: 'eventos-pais', minzoom: 1.6,
       layout: { 'icon-image': ['concat', 'pastilla', digitos(['get', 'n'])], 'icon-anchor': 'top', 'icon-offset': [0, 7],
-        'icon-allow-overlap': true, 'text-field': ['to-string', ['get', 'n']], 'text-font': F.medio, 'text-size': 10.5,
-        'text-anchor': 'top', 'text-offset': [0, 0.86], 'text-allow-overlap': true },
+        'icon-allow-overlap': false, 'icon-padding': 2, 'text-field': ['to-string', ['get', 'n']], 'text-font': F.medio, 'text-size': 10.5,
+        'text-anchor': 'top', 'text-offset': [0, 0.86], 'text-allow-overlap': false, 'symbol-sort-key': ['-', 0, ['get', 'n']] },
       paint: { 'text-color': P.pastillaTexto } });
     // Pulso de las novedades recientes (debajo de los puntos y de los grupos que las contienen).
     m.addLayer({ id: 'eventos-pulso', type: 'circle', source: 'eventos', filter: ['>', ['get', 'rec'], 0],
@@ -1395,7 +1396,7 @@
       <div class="item"><svg width="26" height="16" aria-hidden="true"><defs><pattern id="ld" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="4" stroke="${P.rayadoDoc}" stroke-width="1.2"/></pattern></defs><rect x="1" y="1" width="24" height="14" fill="url(#ld)" stroke="${P.bordeDoc}"/></svg><span><b>Zona afectada</b> según una fuente fechada (provincia o área marítima)</span></div>
       <div class="item"><svg width="26" height="16" aria-hidden="true"><circle cx="9" cy="8" r="5" fill="${c}" stroke="${P.puntoBorde}" stroke-width="1.6"/><circle cx="20" cy="8" r="4.2" fill="${P.aproxRelleno}" stroke="${c}" stroke-width="2.4"/></svg><span><b>Lugar de una noticia</b> · punto: ciudad; anillo: provincia o región</span></div>
       <div class="item"><svg width="26" height="22" aria-hidden="true"><circle cx="13" cy="11" r="10" fill="${P.grupo}" stroke="${P.grupoBorde}" stroke-width="1.5"/><text x="13" y="15" font-size="10" font-weight="600" text-anchor="middle" fill="${P.grupoTexto}">12</text></svg><span><b>Grupo</b> de noticias cercanas (cantidad, no gravedad)</span></div>
-      <div class="item"><svg width="26" height="18" aria-hidden="true"><rect x="2" y="1" width="22" height="16" rx="8" fill="${P.pastilla}" stroke="${P.pastillaBorde}"/><text x="13" y="13" font-size="10" font-weight="600" text-anchor="middle" fill="${P.pastillaTexto}">7</text></svg><span>Noticias del país <b>sin lugar preciso</b></span></div>
+      <div class="item"><svg width="26" height="18" aria-hidden="true"><rect x="2" y="1" width="22" height="16" rx="8" fill="${P.pastilla}" stroke="${P.pastillaBorde}"/><text x="13" y="13" font-size="10" font-weight="600" text-anchor="middle" fill="${P.pastillaTexto}">7</text></svg><span>Noticias del país <b>sin lugar preciso</b> (al alejar, se ocultan si taparían otros símbolos)</span></div>
       <div class="item"><svg width="26" height="16" aria-hidden="true"><rect x="1" y="1" width="24" height="14" fill="none" stroke="${temaOscuro() ? '#bcdcfa' : '#3a6f9e'}" stroke-width="1.4" stroke-dasharray="1.5 2.5"/></svg><span><b>Zona en disputa</b> de soberanía</span></div>
       <p class="nota">Los colores son categorías, no gravedad. Las zonas no indican control territorial ni frentes de combate. Los puntos que laten tienen noticias de las últimas ${HORAS_RECIENTE} horas.</p>`;
   }
