@@ -4,7 +4,7 @@ name: Pruebas
 on:
   push:
     branches: [main]
-    paths: ["colector/**", "config/**", "tests/**", "requirements*.txt"]
+    paths: ["colector/**", "config/**", "tests/**", "scripts/**", "requirements*.txt"]
   pull_request:
   workflow_dispatch:
 
@@ -22,5 +22,34 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements-dev.txt
+
+      - name: Recuperar capas de regiones
+        id: cache-regiones
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+
+      - name: Generar capas de regiones (Natural Earth)
+        id: gen-regiones
+        if: steps.cache-regiones.outputs.cache-hit != 'true'
+        run: python scripts/preparar_regiones.py && echo "listas=1" >> "$GITHUB_OUTPUT"
+
+      - name: Guardar capas de regiones
+        if: steps.gen-regiones.outputs.listas == '1'
+        continue-on-error: true
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+
       - run: python -m colector validar
       - run: python -m pytest -q
