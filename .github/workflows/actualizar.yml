@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["web/**", "colector/**", "config/**", "requirements.txt", ".github/workflows/actualizar.yml"]
+    paths: ["web/**", "colector/**", "config/**", "scripts/**", "requirements.txt", ".github/workflows/actualizar.yml"]
 
 permissions:
   contents: write   # guardar la rama "estado"
@@ -29,9 +29,10 @@ jobs:
       name: github-pages
       url: ${{ steps.despliegue.outputs.page_url }}
     env:
-      DIR_MODELOS: ${{ github.workspace }}/../argos-modelos
+      # Dentro del espacio de trabajo: actions/cache no admite rutas con "..".
+      DIR_MODELOS: ${{ github.workspace }}/.argos-modelos
       ZONA_HORARIA: America/Argentina/Buenos_Aires
-      MAX_DESCARGAS_MODELOS: "8"
+      MAX_DESCARGAS_MODELOS: "16"
     steps:
       - name: Código
         uses: actions/checkout@v7
@@ -44,6 +45,35 @@ jobs:
 
       - name: Dependencias
         run: pip install -r requirements.txt
+
+      - name: Recuperar capas de regiones
+        id: cache-regiones
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+
+      - name: Generar capas de regiones (Natural Earth)
+        id: gen-regiones
+        if: steps.cache-regiones.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: python scripts/preparar_regiones.py && echo "listas=1" >> "$GITHUB_OUTPUT"
+
+      - name: Guardar capas de regiones
+        if: steps.gen-regiones.outputs.listas == '1'
+        continue-on-error: true
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
 
       - name: Configurar Pages
         id: pages

@@ -63,12 +63,23 @@ def test_ruido_observado_en_la_primera_prueba_real(conf):
         "El Telégrafo - Tráfico colapsado en Guayaquil este 14 de octubre por fallas en semáforos",
         "Lista de destinos de American Airlines está seguro de que te golpee",
         "Shell to invest in new gas field off Nigeria",
+        # Segunda revisión con datos reales (14/10/2026)
+        "TRAGEDIJA KOD GRUDA: Mladić (19) iz Širokog Brijega poginuo u teškoj prometnoj nesreći",
+        "Extienden una semana la castración gratuita en Nuestras Malvinas",
+        "Robo de un celular y una tablet dejó a un hombre herido con arma de fuego en Bogotá",
+        "Tormentas severas matan a 1 en Grecia",
+        "Floods kill 20 in Sudan as rains hit Khartoum",
+        "Tribal clashes in Papua New Guinea highlands kill 12",
     ]
     for t in ruido:
         assert clasificar({"titulo": t, "via": "rss"}, conf) == [], t
     assert clasificar({"titulo": "Houthis Vow More Attacks After Strike on Aramco HQ", "via": "rss"}, conf)[0]["id"] == "yemen"
     assert clasificar({"titulo": "Ofensiva russa deixa 600 mil ucranianos sem eletricidade", "via": "rss",
                        "titulo_es": "Ofensiva rusa deja 600.000 ucranianos sin electricidad"}, conf)[0]["id"] == "ucrania-rusia"
+    # Un término fuerte asigna aunque el titular hable de un desastre.
+    assert clasificar({"titulo": "Floods kill 20 in Sudan's Darfur camps", "via": "rss"}, conf)[0]["id"] == "sudan"
+    assert clasificar({"titulo": "Chile evalúa fabricar fragatas británicas mientras crece la tensión por Malvinas",
+                       "via": "rss"}, conf)[0]["id"] == "malvinas"
 
 
 def test_marcas_titular(conf):
@@ -156,3 +167,37 @@ def test_tokenizador_bpe_ida_y_vuelta(tmp_path):
     piezas = t.codificar("hello, world")
     assert "@@" in " ".join(piezas)
     assert t.decodificar(piezas) == "hello, world"
+
+
+def test_lugar_gkg_desambigua_homonimos(conf):
+    """El titular dice 'Pokrovsk': el diccionario solo tiene el de Rusia; GDELT ya ubicó el de Ucrania."""
+    from colector.geografia import Geografia, ubicar_articulo
+    g = Geografia(conf.paises)
+    art = {"titulo_es": "El ejército ucraniano destruyó 68 ocupantes en dirección Pokrovsk", "paises_mencionados": ["UKR"],
+           "lugares_mencionados": [{"nombre": "Pokrovs'k, Donets'ka Oblast', Ukraine", "pais": "UKR", "tipo": 4,
+                                    "coord": [37.18, 48.28]}]}
+    lugar = ubicar_articulo(art, None, {"UKR", "RUS"}, g)
+    assert lugar["pais"] == "UKR" and lugar["metodo"] == "gkg_titular" and lugar["precision"] == "ciudad"
+    # Sin datos de GDELT no se adivina: queda a nivel país.
+    sin_gkg = ubicar_articulo({k: v for k, v in art.items() if k != "lugares_mencionados"}, None, {"UKR", "RUS"}, g)
+    assert sin_gkg["precision"] == "pais" and sin_gkg["pais"] == "UKR"
+
+
+def test_regiones_documentadas_del_registro(conf):
+    """Cada grupo de regiones del registro se resuelve a divisiones admin-1 y tiene fuente fechada."""
+    import os
+
+    import pytest
+
+    from colector.config import DIR_RECURSOS, _indice_regiones, _resolver_regiones
+    if not os.path.exists(os.path.join(DIR_RECURSOS, "regiones.json")):
+        pytest.skip("Falta colector/recursos/regiones.json (python scripts/preparar_regiones.py)")
+    c = conf.conflicto("ucrania-rusia")
+    assert c.regiones and all(g["fuentes"] and g["fuentes"][0]["fecha"] for g in c.regiones)
+    assert "UKR-327" in c.regiones[0]["ids"]  # Donetsk
+    assert "regiones" in c.publico()
+    indice = _indice_regiones()
+    with pytest.raises(ValueError):
+        _resolver_regiones("x", [{"nota": "n", "lugares": {"UKR": ["Lugar inventado"]}, "fuente": {"fecha": "2026-01-01"}}], indice)
+    with pytest.raises(ValueError):
+        _resolver_regiones("x", [{"nota": "n", "lugares": {"UKR": ["Donetsk"]}}], indice)  # sin fuente

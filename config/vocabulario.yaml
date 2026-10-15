@@ -145,6 +145,9 @@ disputa:
   - arbitration
   - tribunal
   - referendum
+  - tension
+  - tensions
+  - military
   - recogni*
   - independence
   - blockade
@@ -170,6 +173,9 @@ disputa:
   - CIJ
   - arbitraje
   - referéndum
+  - tensión
+  - tensiones
+  - militar*
   - reconocimiento
   - independencia
   - bloqueo
@@ -270,6 +276,71 @@ economico:
   - exportacion*
   - restriccion*
   - tierras raras
+# Desastres naturales y accidentes: si el TITULAR los menciona, no basta un lugar o una
+# combinación de términos para asignar el artículo a un conflicto (sí un término fuerte), y no
+# cuenta como señal de actividad armada para los candidatos.
+no_conflicto:
+  - severe storm*
+  - tropical storm*
+  - storm surge
+  - rainstorm*
+  - thunderstorm*
+  - snowstorm*
+  - windstorm*
+  - flood
+  - floods
+  - flooding
+  - flash flood*
+  - earthquake*
+  - quake
+  - tsunami
+  - landslide*
+  - mudslide*
+  - wildfire*
+  - bushfire*
+  - forest fire*
+  - cyclone*
+  - typhoon*
+  - hurricane*
+  - tornado*
+  - heatwave
+  - heat wave
+  - drought
+  - avalanche*
+  - volcan*
+  - eruption
+  - road accident*
+  - traffic accident*
+  - car crash*
+  - bus crash*
+  - train crash*
+  - plane crash*
+  - derail*
+  - drown*
+  - building collapse
+  - tormenta tropical
+  - tormenta severa
+  - tormentas severas
+  - tormenta eléctrica
+  - tormentas eléctricas
+  - inundaci*
+  - terremoto*
+  - sismo*
+  - deslave*
+  - alud
+  - aludes
+  - deslizamiento*
+  - incendio forestal
+  - incendios forestales
+  - ciclón
+  - tifón
+  - huracán
+  - ola de calor
+  - sequía
+  - erupción
+  - accidente*
+  - descarril*
+  - ahogad*
 # Marcadores que indican que un titular informa una afirmación de una parte.
 atribucion:
   - says

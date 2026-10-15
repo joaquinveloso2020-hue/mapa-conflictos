@@ -50,6 +50,8 @@
         <legend>Capas</legend>
         <label class="interruptor"><input type="checkbox" data-capa="paises" checked> Países coloreados</label>
         <label class="interruptor"><input type="checkbox" data-capa="eventos" checked> Acontecimientos</label>
+        <label class="interruptor"><input type="checkbox" data-capa="regiones" checked> Regiones con acontecimientos</label>
+        <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked> Regiones afectadas según fuentes</label>
         <label class="interruptor"><input type="checkbox" data-capa="zonas" checked> Zonas en disputa</label>
         <label class="interruptor"><input type="checkbox" data-capa="candidatos"> Situaciones detectadas (sin verificar)</label>
         <label class="interruptor"><input type="checkbox" data-capa="base"> Mapa base detallado</label>
@@ -92,6 +94,7 @@
       </ul>
       <h3>Ubicación</h3>
       <p>Se distingue el <strong>lugar del hecho</strong> (codificación automática de eventos de GDELT o ciudad nombrada en el titular), los <strong>países mencionados</strong> y el <strong>país del medio</strong>. Si solo se conoce el país, el indicador es un anillo a nivel país: no señala un lugar exacto. Las zonas en disputa provienen de Natural Earth y <strong>no</strong> indican control militar ni frentes de combate.</p>
+      <p><strong>Zonas específicas.</strong> Al acercar el mapa se ven las provincias o regiones (divisiones administrativas de Natural Earth) de los países con conflictos armados. Hay dos capas: <strong>regiones con acontecimientos</strong>, calculada automáticamente según dónde se ubican las noticias del período (más intenso = más acontecimientos), y <strong>regiones afectadas según fuentes</strong> (rayadas), que el registro documenta con una fuente fechada (por ejemplo, CrisisWatch o el ISW) e incluye áreas marítimas. Ninguna de las dos indica quién controla el territorio ni dónde están los frentes. Tocá una región para ver sus noticias y las fuentes.</p>
       <h3>Fechas</h3>
       <p>Se separan la <strong>fecha de publicación</strong> (cuando la fuente la informa), la <strong>fecha de detección</strong> (cuando el sistema la encontró) y la <strong>fecha del hecho</strong> (solo si está disponible, con precisión de día). Para filtrar se usa la publicación y, si falta, la detección.</p>
       <h3>Traducción y resúmenes</h3>

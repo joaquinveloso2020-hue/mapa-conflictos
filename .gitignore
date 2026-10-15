@@ -7,3 +7,8 @@ __pycache__/
 .venv/
 node_modules/
 *.tmp
+# Capas generadas por scripts/preparar_regiones.py (se generan en GitHub Actions)
+web/geo/regiones.geojson
+web/geo/mares.geojson
+web/geo/ciudades.geojson
+colector/recursos/regiones.json

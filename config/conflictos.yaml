@@ -37,6 +37,27 @@ conflictos:
     - {nombre: Rusia, paises: [RUS]}
     - {nombre: Ucrania, paises: [UKR]}
   zonas: [ne-crimea]
+  regiones:
+    - nota: "Combates terrestres informados"
+      lugares: {UKR: [Donetsk, Kharkiv, Zaporizhzhia, Sumy]}
+      fuentes:
+        - {medio: Institute for the Study of War / Critical Threats, fecha: 2026-10-02, titulo: "Russian Offensive Campaign Assessment, October 2, 2026", url: "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-2-2026-6ac053ceab44c"}
+        - {medio: Institute for the Study of War / Critical Threats, fecha: 2026-09-01, titulo: "Russian Offensive Campaign Assessment, September 1, 2026", url: "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-september-1-2026"}
+    - nota: "Ataques rusos con misiles y drones informados"
+      lugares: {UKR: [Kiev City, Kyiv, Chernihiv, Dnipropetrovsk, Poltava, Odesa, Zhytomyr]}
+      fuentes:
+        - {medio: Institute for the Study of War / Critical Threats, fecha: 2026-09-01, titulo: "Russian Offensive Campaign Assessment, September 1, 2026", url: "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-september-1-2026"}
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+    - nota: "Ataques ucranianos con drones o misiles en Rusia informados"
+      lugares: {RUS: [Belgorod, Oryol, Leningrad, Volgograd, Samara, Voronezh, Nizhny Novgorod, Krasnodar, Moskovskaya Oblast]}
+      fuentes:
+        - {medio: Institute for the Study of War / Critical Threats, fecha: 2026-09-01, titulo: "Russian Offensive Campaign Assessment, September 1, 2026", url: "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-september-1-2026"}
+        - {medio: Institute for the Study of War / Critical Threats, fecha: 2026-10-02, titulo: "Russian Offensive Campaign Assessment, October 2, 2026", url: "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-october-2-2026-6ac053ceab44c"}
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
+    - nota: "Ataques o incidentes armados en el mar informados"
+      mares: [mar-negro]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
   fuentes:
     - {medio: Al Jazeera, fecha: 2026-10-09, titulo: "Ukraine pushes Russia back in Donetsk as military, civilian casualties soar", url: "https://www.aljazeera.com/news/2026/10/9/ukraine-pushes-russia-back-in-donetsk-as-military-civilian-casualties-soar"}
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Ucrania, Rusia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
@@ -66,6 +87,16 @@ conflictos:
     - {nombre: Irán, paises: [IRN]}
     - {nombre: Estados del Golfo atacados, paises: [SAU, ARE, KWT, BHR]}
   zonas: [ne-abu-musa-i]
+  regiones:
+    - nota: "Ataques en el estrecho de Ormuz (se muestran las áreas marítimas que lo rodean)"
+      mares: [golfo-persico, golfo-de-oman]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+        - {medio: Al Jazeera, fecha: 2026-10-11, titulo: "Hormuz attacks intensify as efforts to end war on Iran stall", url: "https://aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall"}
+    - nota: "Ataques informados"
+      lugares: {KWT: [Al Asimah]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: Al Jazeera, fecha: 2026-10-11, titulo: "Hormuz attacks intensify as efforts to end war on Iran stall", url: "https://aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall"}
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irán, Kuwait, Baréin, Jordania)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
@@ -94,6 +125,11 @@ conflictos:
     - {nombre: Israel, paises: [ISR]}
     - {nombre: Autoridades palestinas y Hamás, paises: [PSE]}
   zonas: [ne-east-jerusalem]
+  regiones:
+    - nota: "Ataques y violencia informados"
+      lugares: {PSE: [Gaza Strip, West Bank]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: Al Jazeera, fecha: 2026-10-13, titulo: "Palestine weekly: Gaza marks year of ‘ceasefire’ with more Israeli killing", url: "https://www.aljazeera.com/news/2026/10/13/palestine-weekly-gaza-marks-year-of-ceasefire-with-more-israeli-killing"}
     - {medio: Amnistía Internacional, fecha: 2026-10-09, titulo: "Gaza ceasefire exists in name only, say more than 100 organizations", url: "https://www.amnesty.org/en/latest/news/2026/10/gaza-ceasefire-exists-in-name-only-say-more-than-100-organizations/"}
@@ -120,6 +156,11 @@ conflictos:
     - {nombre: Israel, paises: [ISR]}
     - {nombre: Líbano, paises: [LBN]}
   zonas: [ne-shebaa-farms]
+  regiones:
+    - nota: "Combates y ataques informados"
+      lugares: {LBN: [An Nabatiyah, South Lebanon]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Lebanon, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/lebanon-40.php"}
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Líbano)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
@@ -146,6 +187,20 @@ conflictos:
     - {nombre: Hutíes, paises: []}
     - {nombre: Arabia Saudita y gobierno yemení, paises: [SAU, YEM]}
   zonas: []
+  regiones:
+    - nota: "Combates y ataques informados en Yemen"
+      lugares: {YEM: ['Ta`izz', Lahij, Al Jawf, "Ma'rib", "Al Bayda'"]}
+      precision: "Taiz: provincia que contiene Moca"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - nota: "Ataques hutíes con misiles y drones informados en Arabia Saudita"
+      lugares: {SAU: [Jizan, Najran, '`Asir', Ar Riyad, Makkah, Al Madinah]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
+    - nota: "Costa del mar Rojo y Bab el-Mandeb"
+      mares: [mar-rojo, bab-el-mandeb]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Yemen, Arabia Saudita)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "October 2026 Monthly Forecast (Yemen)", url: "https://www.securitycouncilreport.org/atf/cf/%7B65BFCF9B-6D27-4E9C-8CD3-CF6E4FF96FF9%7D/2026_10_forecast.pdf"}
@@ -173,6 +228,12 @@ conflictos:
     - {nombre: Gobierno sirio, paises: [SYR]}
     - {nombre: Israel, paises: [ISR]}
   zonas: [ne-golan-heights]
+  regiones:
+    - nota: "Choques y ataques informados"
+      lugares: {SYR: [Aleppo, "As Suwayda'", Quneitra, 'Dar`a']}
+      precision: "Alepo: provincia que contiene Kobani"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Siria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Security Council Report, fecha: 2026-09-30, titulo: "Syria, October 2026 Monthly Forecast", url: "https://www.securitycouncilreport.org/monthly-forecast/2026-10/syria-96.php"}
@@ -200,6 +261,11 @@ conflictos:
   partes:
     - {nombre: Gobierno iraquí, paises: [IRQ]}
   zonas: []
+  regiones:
+    - nota: "Ataques o violencia informados en la región del Kurdistán"
+      lugares: {IRQ: [Arbil, Dihok, As-Sulaymaniyah]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Irak)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Iraqi conflict, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
@@ -224,6 +290,12 @@ conflictos:
   partes:
     - {nombre: Autoridades libias, paises: [LBY]}
   zonas: []
+  regiones:
+    - nota: "Ataques informados"
+      lugares: {LBY: [Az Zawiyah, Murzuq]}
+      precision: "Trípoli no tiene una división propia en la capa usada; Murzuq contiene Al-Qatrun"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Oriente Medio y Norte de África, septiembre de 2026 (Libia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-middle-east-and-north-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Libyan crisis, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
@@ -250,6 +322,11 @@ conflictos:
     - {nombre: Ejército sudanés, paises: [SDN]}
     - {nombre: Fuerzas de Apoyo Rápido, paises: []}
   zonas: [ne-halayib-triangle]
+  regiones:
+    - nota: "Combates terrestres y con drones informados"
+      lugares: {SDN: [North Kordofan, South Kordofan, Blue Nile, Gezira, Southern Darfur]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Sudán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-10-02, titulo: "Sudan’s army says it captured RSF stronghold in North Kordofan", url: "https://www.aljazeera.com/news/2026/10/2/sudans-army-says-it-captured-rsf-stronghold-in-north-kordofan"}
@@ -274,6 +351,12 @@ conflictos:
   partes:
     - {nombre: Gobierno de Sudán del Sur, paises: [SSD]}
   zonas: [ne-abyei, ne-ilemi-triangle]
+  regiones:
+    - nota: "Enfrentamientos informados"
+      lugares: {SSD: [Unity, Central Equatoria, Upper Nile, Jonglei]}
+      precision: "Jonglei: estado que contenía el Área Administrativa del Gran Pibor"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Sudán del Sur)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Jonglei offensive (consultado)", url: "https://en.wikipedia.org/wiki/2026_Jonglei_offensive"}
@@ -299,13 +382,18 @@ conflictos:
     - {nombre: Gobierno de Etiopía, paises: [ETH]}
     - {nombre: Eritrea, paises: [ERI]}
   zonas: []
+  regiones:
+    - nota: "Combates informados"
+      lugares: {ETH: [Tigray, Afar, Amhara]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Etiopía, Eritrea)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-09-24, titulo: "Fighting widens across Ethiopia as Tigray clashes escalate", url: "https://www.aljazeera.com/amp/news/2026/9/24/fighting-widens-across-ethiopia-as-tigray-clashes-escalate"}
     - {medio: Al Arabiya, fecha: 2026-10-13, titulo: "Eritrea suffers ‘heavy losses’: Ethiopia militia", url: "https://english.alarabiya.net/News/world/2026/10/13/eritrea-suffers-heavy-losses-ethiopia-militia"}
   coincidencias:
     fuertes: [TPLF, Tigray People's Liberation Front, Fano militia, milicias Fano]
-    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy, Tigray, Fano, Afar, Alamata, Mekelle, Mekele, Weldiya, Amhara]
+    lugares: [Ethiopia, Ethiopian, Etiopía, etíope*, Addis Ababa, Adís Abeba, Abiy, Tigray, Fano, Afar region, región de Afar, región Afar, Alamata, Mekelle, Mekele, Weldiya, Amhara]
     paises_nombre: [ETH]
     paises_gdelt: [ETH]
 
@@ -351,6 +439,12 @@ conflictos:
     - {nombre: RD del Congo, paises: [COD]}
     - {nombre: Ruanda, paises: [RWA]}
   zonas: []
+  regiones:
+    - nota: "Combates informados"
+      lugares: {COD: [Nord-Kivu, Sud-Kivu]}
+      precision: "Ituri no se muestra: la capa usada solo tiene la antigua provincia Orientale, mucho más grande"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (RD del Congo, Ruanda, Burundi)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-10-13, titulo: "African Union holds Kigali talks as fighting continues in eastern DRC", url: "https://www.aljazeera.com/news/2026/10/13/african-union-holds-kigali-talks-as-fighting-continues-in-eastern-drc"}
@@ -375,6 +469,12 @@ conflictos:
   partes:
     - {nombre: Gobierno de Somalia, paises: [SOM]}
   zonas: []
+  regiones:
+    - nota: "Combates y ataques informados"
+      lugares: {SOM: [Bay, Gedo, Shabeellaha Dhexe, Shabeellaha Hoose], KEN: [North-Eastern]}
+      precision: "Kenia: antigua provincia Nororiental, que contiene los condados de Mandera y Garissa"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Somalia, Kenia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: FDD's Long War Journal, fecha: 2026-10-08, titulo: "Somalia claims to have killed another senior Shabaab leader", url: "https://www.longwarjournal.org/archives/2026/10/somalia-claims-to-have-killed-another-senior-shabaab-leader.php"}
@@ -420,12 +520,18 @@ conflictos:
   partes:
     - {nombre: Juntas militares del Sahel, paises: [MLI, BFA, NER]}
   zonas: []
+  regiones:
+    - nota: "Ataques y combates informados"
+      lugares: {MLI: [Mopti, Ségou, Kidal, Koulikoro], BFA: [Sourou, Houet], NER: [Tillabéri, Tahoua, Diffa], BEN: [Alibori]}
+      precision: "Burkina Faso: provincias que contienen Kassoum y Bobo-Dioulasso"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Malí, Burkina Faso, Níger, Benín)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "2026 Mali offensives (consultado)", url: "https://en.wikipedia.org/wiki/2026_Mali_offensives"}
   coincidencias:
     fuertes: [JNIM, Jama'at Nusrat al-Islam, Islamic State Sahel, Estado Islámico del Sahel, IS-Sahel, Africa Corps]
-    lugares: [Sahel, Tillaberi, Tillabéri, Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Gao, Timbuktu, Tombuctú]
+    lugares: [Sahel, Tillaberi, Tillabéri, Mali, Malian, Malí, maliense*, Bamako, Burkina Faso, Burkinabe, Ouagadougou, Uagadugú, Niger, Nigerien, Níger, nigerino*, Niamey, Benin, Benín, Mopti, Sévaré, Kidal, Timbuktu, Tombuctú]
     paises_nombre: [MLI, BFA, NER]
     paises_gdelt: [MLI, BFA, NER]
     quitar: [Nigeria, Nigerian, nigeriano, nigeriana]
@@ -445,6 +551,11 @@ conflictos:
   partes:
     - {nombre: Gobierno de Nigeria, paises: [NGA]}
   zonas: []
+  regiones:
+    - nota: "Ataques, secuestros y violencia armada informados"
+      lugares: {NGA: [Kaduna, Katsina, Zamfara, Niger, Kebbi, Benue, Plateau, Borno]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Nigeria)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: The Washington Post, fecha: 2026-10-07, titulo: "Islamic State group-affiliated militants attack military base in Nigeria, killing several soldiers", url: "https://www.washingtonpost.com/world/2026/10/07/nigeria-militants-attack-islamic-state-iswap/8b04303a-c282-11f1-8170-681419af1cc9_story.html"}
@@ -468,12 +579,17 @@ conflictos:
   partes:
     - {nombre: Gobierno de Camerún, paises: [CMR]}
   zonas: []
+  regiones:
+    - nota: "Ataques y violencia armada informados"
+      lugares: {CMR: [Extrême-Nord, Nord-Ouest, Sud-Ouest, Littoral]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Camerún)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Al Jazeera, fecha: 2026-09-22, titulo: "Hundreds flee homes in Far North Cameroon after armed group raid kills 15", url: "https://www.aljazeera.com/news/2026/9/22/hundreds-flee-homes-in-far-north-cameroon-after-armed-group-raid-kills-15"}
   coincidencias:
     fuertes: [Ambazonia, Ambazonian, Anglophone separatist*, separatistas anglófonos]
-    lugares: [Bamenda, Buea, Anglophone region*, Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North, Extremo Norte]
+    lugares: [Bamenda, Buea, Anglophone region*, Cameroon, Cameroonian, Camerún, camerunés, Yaoundé, Far North region, Extremo Norte]
     paises_nombre: [CMR]
     paises_gdelt: [CMR]
 
@@ -491,6 +607,11 @@ conflictos:
   partes:
     - {nombre: Gobierno centroafricano, paises: [CAF]}
   zonas: []
+  regiones:
+    - nota: "Ataques informados"
+      lugares: {CAF: [Vakaga, Mbomou]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (República Centroafricana)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Africanews, fecha: 2026-07-08, titulo: "MINUSCA steps up security after attack on northern CAR base", url: "https://www.africanews.com/2026/07/08/minusca-steps-up-security-after-attack-on-northern-car-base/"}
@@ -514,6 +635,11 @@ conflictos:
   partes:
     - {nombre: Gobierno de Mozambique, paises: [MOZ]}
   zonas: []
+  regiones:
+    - nota: "Ataques y secuestros informados"
+      lugares: {MOZ: [Cabo Delgado, Niassa]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – África, septiembre de 2026 (Mozambique)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-africa.pdf"}
     - {medio: Africa Defense Forum, fecha: 2026-07-01, titulo: "Islamic State Mozambique Terrorists Make IEDs Central to Attack Strategy", url: "https://adf-magazine.com/2026/07/islamic-state-mozambique-terrorists-make-ieds-central-to-attack-strategy/"}
@@ -538,6 +664,11 @@ conflictos:
   partes:
     - {nombre: Junta militar de Myanmar, paises: [MMR]}
   zonas: []
+  regiones:
+    - nota: "Combates y bombardeos informados"
+      lugares: {MMR: [Rakhine, Sagaing, Kayah, Kachin]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Myanmar)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Al Jazeera, fecha: 2026-09-28, titulo: "Myanmar military launches air strike on Rakhine market, killing at least 33", url: "https://www.aljazeera.com/news/2026/9/28/myanmar-army-air-strike-kills-dozens-in-rakhine-state"}
@@ -563,6 +694,11 @@ conflictos:
     - {nombre: Pakistán, paises: [PAK]}
     - {nombre: Afganistán (talibanes), paises: [AFG]}
   zonas: []
+  regiones:
+    - nota: "Ataques y enfrentamientos informados en Afganistán"
+      lugares: {AFG: [Kunar, Paktika, Khost, Kandahar, Nuristan]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Afganistán, Pakistán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Al Jazeera, fecha: 2026-10-01, titulo: "Pakistan launches deadly air attacks on Afghanistan", url: "https://www.aljazeera.com/news/2026/10/1/afghanistan-says-nine-killed-in-pakistani-air-raids-on-kunar-helmand"}
@@ -586,6 +722,12 @@ conflictos:
   partes:
     - {nombre: Gobierno de Pakistán, paises: [PAK]}
   zonas: []
+  regiones:
+    - nota: "Ataques de militantes informados"
+      lugares: {PAK: [K.P., F.A.T.A., Baluchistan]}
+      precision: "Divisiones anteriores a la fusión de las áreas tribales con Jaiber Pastunjuá (2018)"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Pakistán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
@@ -634,6 +776,11 @@ conflictos:
   partes:
     - {nombre: Gobierno de India, paises: [IND]}
   zonas: []
+  regiones:
+    - nota: "Violencia entre comunidades y operaciones de seguridad informadas"
+      lugares: {IND: [Manipur]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (India)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
@@ -655,6 +802,11 @@ conflictos:
   partes:
     - {nombre: Gobierno de Filipinas, paises: [PHL]}
   zonas: []
+  regiones:
+    - nota: "Choques armados informados"
+      lugares: {PHL: [Maguindanao, Agusan del Norte, Agusan del Sur, Leyte]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Filipinas)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
@@ -674,11 +826,18 @@ conflictos:
   partes:
     - {nombre: Gobierno de Indonesia, paises: [IDN]}
   zonas: []
+  regiones:
+    - nota: "Violencia separatista informada"
+      lugares: {IDN: [Papua]}
+      precision: "Provincia anterior a la división de 2022 (incluye Papúa de las Tierras Altas)"
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Indonesia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
     fuertes: [TPNPB, Free Papua Movement, West Papua Liberation Army]
     lugares: [Papua, Papúa, West Papua, Papua Barat, Jayawijaya, Intan Jaya, Nduga]
+    quitar: [Papua New Guinea, Papúa Nueva Guinea, Papua Nueva Guinea]
 
 - id: tailandia-sur
   nombre: "Tailandia: insurgencia en el extremo sur"
@@ -693,11 +852,16 @@ conflictos:
   partes:
     - {nombre: Gobierno de Tailandia, paises: [THA]}
   zonas: []
+  regiones:
+    - nota: "Ataques informados"
+      lugares: {THA: [Narathiwat, Pattani, Yala]}
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Tailandia)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   coincidencias:
     fuertes: [Barisan Revolusi Nasional]
-    lugares: [Narathiwat, Pattani, Yala province, Deep South, BRN]
+    lugares: [Narathiwat, Pattani, Yala province, southern Thailand, sur de Tailandia, BRN]
 
 - id: tailandia-camboya
   nombre: "Tailandia–Camboya: disputa fronteriza"
@@ -739,6 +903,11 @@ conflictos:
     - {nombre: China, paises: [CHN]}
     - {nombre: Taiwán, paises: [TWN]}
   zonas: [ne-taiwan]
+  regiones:
+    - nota: "Actividad militar y de guardacostas informada"
+      mares: [estrecho-de-taiwan]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Estrecho de Taiwán)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Council on Foreign Relations, fecha: 2026-10-13, titulo: "Global Conflict Tracker: Confrontation Over Taiwan (consultado)", url: "https://www.cfr.org/global-conflict-tracker"}
@@ -764,6 +933,12 @@ conflictos:
     - {nombre: Filipinas, paises: [PHL]}
     - {nombre: Vietnam, paises: [VNM]}
   zonas: [ne-spratly-is, ne-paracel-is, ne-scarborough-reef]
+  regiones:
+    - nota: "Incidentes marítimos informados"
+      lugares: {PHL: [Palawan]}
+      mares: [mar-de-china-meridional]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (Mar de China Meridional)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Hong Kong Free Press, fecha: 2026-10-09, titulo: "Philippines flags near-doubling of Chinese presence in disputed waters", url: "https://hongkongfp.com/2026/10/09/philippines-flags-near-doubling-of-chinese-presence-in-disputed-waters/"}
@@ -786,6 +961,11 @@ conflictos:
     - {nombre: China, paises: [CHN]}
     - {nombre: Japón, paises: [JPN]}
   zonas: [ne-pinnacle-is]
+  regiones:
+    - nota: "Actividad naval y de guardacostas informada"
+      mares: [mar-de-china-oriental]
+      fuentes:
+        - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Asia, septiembre de 2026 (China/Japón)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-asia.pdf"}
     - {medio: Taipei Times, fecha: 2026-10-06, titulo: "Takaichi vows to build stable China relations", url: "https://www.taipeitimes.com/News/world/archives/2026/10/06/2003865487"}
@@ -960,7 +1140,7 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Bosnia y Herzegovina)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
   coincidencias:
-    fuertes: [Republika Srpska, Mladic, Mladić, Dodik]
+    fuertes: [Republika Srpska, Dodik]
     grupos:
       - [Bosnia, Bosnian, bosnio*, Sarajevo]
       - [Serbia, Serbian, serbio*, Belgrade, Belgrado, Vucic, Vučić]
@@ -984,8 +1164,7 @@ conflictos:
   fuentes:
     - {medio: International Crisis Group, fecha: 2026-10-01, titulo: "CrisisWatch – Europa y Asia Central, septiembre de 2026 (Kosovo)", url: "https://www.crisisgroup.org/sites/default/files/crisiswatch/crisiswatch-september-2026-europe-and-central-asia.pdf"}
   coincidencias:
-    fuertes: [Kurti, Thaci, Thaçi, KFOR]
-    lugares: [Kosovo, Pristina, Kosovar*]
+    lugares: [Kosovo, Pristina, Kosovar*, Kurti, Thaci, Thaçi, KFOR]
 
 - id: georgia-abjasia-osetia
   nombre: "Georgia: Abjasia y Osetia del Sur"
@@ -1132,12 +1311,17 @@ conflictos:
   partes:
     - {nombre: Gobierno de Colombia, paises: [COL]}
   zonas: []
+  regiones:
+    - nota: "Ataques con drones del ELN y disidencias (Catatumbo)"
+      lugares: {COL: [Norte de Santander]}
+      fuentes:
+        - {medio: Vanguardia (Colombia), fecha: 2026-10-10, titulo: "Drones explosivos en el Catatumbo: así han evolucionado los ataques del ELN y disidencias de las FARC", url: "https://www.vanguardia.com/colombia/2026/10/10/drones-explosivos-en-el-catatumbo-asi-han-evolucionado-los-ataques-del-eln-y-disidencias-de-las-farc/"}
   fuentes:
     - {medio: Infobae, fecha: 2026-09-23, titulo: "Colombia busca activar el TIAR contra ELN, disidencias de las Farc y Clan del Golfo", url: "https://www.infobae.com/colombia/2026/09/23/colombia-busca-activar-el-tiar-contra-eln-disidencias-de-las-farc-y-clan-del-golfo/"}
     - {medio: Wikipedia, fecha: 2026-10-13, titulo: "List of ongoing armed conflicts (Colombian conflict, víctimas 2026) – consultado", url: "https://en.wikipedia.org/wiki/List_of_ongoing_armed_conflicts"}
   coincidencias:
     fuertes: [ELN, National Liberation Army, Ejército de Liberación Nacional, FARC dissidents, disidencias de las FARC, disidencia*, Clan del Golfo, Gulf Clan, Catatumbo, Segunda Marquetalia]
-    lugares: [Colombia, Colombian, colombian*, Bogotá, Bogota, Cauca, Antioquia, Norte de Santander, Arauca, Nariño]
+    lugares: [Colombia, Colombian, colombian*, Cauca, Antioquia, Norte de Santander, Arauca, Nariño]
     paises_nombre: [COL]
     paises_gdelt: [COL]
 
@@ -1155,6 +1339,12 @@ conflictos:
   partes:
     - {nombre: Gobierno de Ecuador, paises: [ECU]}
   zonas: []
+  regiones:
+    - nota: "Provincias bajo estado de excepción por violencia criminal"
+      lugares: {ECU: [El Oro, Esmeraldas, Guayas, Los Ríos, Manabí, Pichincha, Santa Elena, Santo Domingo de los Tsáchilas]}
+      precision: "También rige en tres cantones de Azuay, Bolívar y Cotopaxi, que no se muestran"
+      fuentes:
+        - {medio: Infobae, fecha: 2026-09-16, titulo: "El presidente de Ecuador decretó un nuevo estado de excepción y oficializó el tercer toque de queda del año", url: "https://www.infobae.com/america/america-latina/2026/09/16/el-presidente-de-ecuador-decreto-un-nuevo-estado-de-excepcion-y-oficializo-el-tercer-toque-de-queda-del-ano/"}
   fuentes:
     - {medio: Infobae, fecha: 2026-09-16, titulo: "El presidente de Ecuador decretó un nuevo estado de excepción y oficializó el tercer toque de queda del año", url: "https://www.infobae.com/america/america-latina/2026/09/16/el-presidente-de-ecuador-decreto-un-nuevo-estado-de-excepcion-y-oficializo-el-tercer-toque-de-queda-del-ano/"}
   coincidencias:
@@ -1206,4 +1396,5 @@ conflictos:
     - {medio: Infobae, fecha: 2026-10-13, titulo: "Malvinas: venció el ultimátum de la Argentina al Reino Unido y es inminente el pedido de arbitraje al Tribunal del Mar", url: "https://www.infobae.com/politica/2026/10/13/malvinas-vencio-el-ultimatum-de-la-argentina-al-reino-unido-y-es-inminente-el-pedido-de-arbitraje-al-tribunal-del-mar/"}
     - {medio: Infobae, fecha: 2026-09-30, titulo: "Malvinas: el Reino Unido rechazó el arbitraje que pide Argentina para frenar Sea Lion", url: "https://www.infobae.com/politica/2026/09/30/malvinas-el-reino-unido-rechazo-el-arbitraje-que-pide-argentina-para-frenar-sea-lion-y-advirtio-que-la-ofensiva-afecta-la-relacion-bilateral/"}
   coincidencias:
-    fuertes: [Malvinas, Falklands, Falkland Islands, Islas Malvinas, Sea Lion project, proyecto Sea Lion, Navitas, Port Stanley, Puerto Argentino]
+    lugares: [Malvinas, Islas Malvinas]
+    fuertes: [Falklands, Falkland Islands, Sea Lion project, proyecto Sea Lion, Navitas, Port Stanley, Puerto Argentino]

@@ -1,7 +1,8 @@
 """Geolocalización responsable.
 
 Se distinguen tres cosas:
-  - lugar del hecho: dónde ocurrió, según la codificación de eventos de GDELT (ActionGeo) o una
+  - lugar del hecho: dónde ocurrió, según la codificación de eventos de GDELT (ActionGeo), un lugar
+    que el geocodificador de GDELT (GKG) identificó en el artículo y que el titular nombra, o una
     ciudad/provincia del país escenario nombrada en el titular. Con su precisión declarada.
   - países mencionados: los que aparecen en el texto o en los metadatos de GDELT.
   - país del medio: dónde tiene sede la fuente (configuración de fuentes o dominio nacional).
@@ -26,6 +27,18 @@ NOMBRES_AMBIGUOS = {normalizar(x) for x in [
     "Washington", "Jordan", "Georgia", "Chad", "Niger", "Guinea", "Sudan", "Congo", "Israel",
     "Lebanon", "Palestine", "Gaza", "Taiwan", "China", "India", "Peace", "Hamas", "Military",
 ]}
+# Homónimos: el diccionario (Natural Earth) solo tiene el lugar de otro país que el que suele
+# aparecer en las noticias (Pokrovsk de Yakutia, Rusia, frente a Pokrovsk de Donetsk, Ucrania).
+# No se usan desde el diccionario; sí desde el geocodificador de GDELT, que ya los desambiguó.
+HOMONIMOS = {normalizar(x) for x in ["Pokrovsk"]}
+# Lugares que en los titulares suelen nombrar a un gobierno, no al sitio de un hecho.
+METONIMIAS = {normalizar(x) for x in ["Kremlin", "White House", "Pentagon", "Capitol", "Downing Street",
+                                      "Elysee", "Élysée", "Vatican", "Wall Street", "Brussels", "Bruselas"]}
+
+
+def _clave_lugar(texto: str) -> str:
+    """Normaliza un nombre de lugar para compararlo con el titular (sin apóstrofos ni guiones)."""
+    return re.sub(r"['’ʼ`-]", "", normalizar(texto or "")).strip()
 CCTLD = {"ua": "UKR", "ru": "RUS", "il": "ISR", "ir": "IRN", "sa": "SAU", "pk": "PAK", "in": "IND",
          "af": "AFG", "sy": "SYR", "iq": "IRQ", "lb": "LBN", "ye": "YEM", "eg": "EGY", "sd": "SDN",
          "et": "ETH", "ng": "NGA", "ke": "KEN", "so": "SOM", "za": "ZAF", "cn": "CHN", "tw": "TWN",
@@ -52,7 +65,7 @@ class Geografia:
         for l in lugares:
             for n in l["n"]:
                 nn = normalizar(n)
-                if len(nn) < 4 or nn in NOMBRES_AMBIGUOS:
+                if len(nn) < 4 or nn in NOMBRES_AMBIGUOS or nn in HOMONIMOS:
                     continue
                 self.indice.setdefault(nn, []).append(l)
         self.indice_paises: dict[str, str] = {}
@@ -103,6 +116,31 @@ class Geografia:
                 "precision": "ciudad" if l["t"] == "ciudad" else "provincia",
                 "metodo": "titular"}
 
+    def lugar_gkg_en_titular(self, art: dict, textos: list[str], paises_permitidos: set[str]) -> dict | None:
+        """Lugar que GDELT (GKG) geocodificó en el artículo y que además nombra el titular."""
+        candidatos = [l for l in art.get("lugares_mencionados") or []
+                      if l.get("tipo") in (2, 3, 4, 5) and l.get("coord") and None not in l["coord"]
+                      and (not paises_permitidos or l.get("pais") in paises_permitidos)]
+        if not candidatos:
+            return None
+        posiciones: dict[str, int] = {}
+        for t in textos:
+            for pos, g in self._ngramas(t):
+                posiciones.setdefault(_clave_lugar(g), pos)
+        hallados = []
+        for l in candidatos:
+            nombre = (l.get("nombre") or "").split(",")[0].strip()
+            clave = _clave_lugar(nombre)
+            if (len(clave) >= 4 and clave in posiciones and clave not in NOMBRES_AMBIGUOS
+                    and clave not in METONIMIAS):
+                hallados.append((posiciones[clave], nombre, l))
+        if not hallados:
+            return None
+        _, nombre, l = min(hallados, key=lambda x: x[0])
+        return {"nombre": nombre, "pais": l["pais"], "coord": l["coord"],
+                "precision": "ciudad" if l.get("tipo") in (3, 4) else "provincia",
+                "metodo": "gkg_titular"}
+
     def pais_de_dominio(self, dominio: str) -> str | None:
         tld = (dominio or "").rsplit(".", 1)[-1]
         return CCTLD.get(tld)
@@ -122,7 +160,8 @@ def ubicar_articulo(art: dict, geo_evento: dict | None, escenario: set[str], g: 
     if geo_evento and (not escenario or geo_evento["pais"] in escenario):
         return {**{k: geo_evento[k] for k in ("nombre", "pais", "coord", "precision")},
                 "metodo": "gdelt_evento"}
-    lugar = g.lugar_en_texto(textos, escenario)
+    # Primero el diccionario (Natural Earth); si no encuentra nada, lo que GDELT geocodificó.
+    lugar = g.lugar_en_texto(textos, escenario) or g.lugar_gkg_en_titular(art, textos, escenario)
     if lugar:
         return lugar
     mencionados = [p for p in (art.get("paises_mencionados") or []) + g.paises_en_texto(*textos)
