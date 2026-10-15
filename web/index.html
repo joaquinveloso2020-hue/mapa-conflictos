@@ -55,6 +55,7 @@
         <label class="interruptor"><input type="checkbox" data-capa="eventos" checked><span>Noticias</span></label>
         <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked><span>Zonas afectadas según fuentes</span></label>
         <label class="interruptor"><input type="checkbox" data-capa="zonas" checked><span>Zonas en disputa</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="elecciones" checked><span>Elecciones nacionales<small>Próximos 12 meses (Wikipedia)</small></span></label>
         <label class="interruptor"><input type="checkbox" data-capa="regiones"><span>Provincias con noticias<small>Tono uniforme al acercar</small></span></label>
         <label class="interruptor"><input type="checkbox" data-capa="candidatos"><span>Situaciones detectadas<small>Automáticas, sin verificar</small></span></label>
       </div>
@@ -80,6 +81,7 @@
       <nav class="pestanas" role="tablist">
         <button type="button" role="tab" aria-selected="true" data-pestana="novedades" id="tab-novedades">Novedades</button>
         <button type="button" role="tab" aria-selected="false" data-pestana="conflictos" id="tab-conflictos">Conflictos</button>
+        <button type="button" role="tab" aria-selected="false" data-pestana="elecciones" id="tab-elecciones">Elecciones</button>
         <button type="button" role="tab" aria-selected="false" data-pestana="fuentes" id="tab-fuentes">Estado</button>
       </nav>
       <div id="contenido-panel" class="contenido-panel" role="tabpanel"></div>
@@ -95,6 +97,7 @@
       <h3>Cómo usarlo</h3>
       <ul>
         <li>Tocá un país, un punto o una región para ver sus novedades. Al elegir un conflicto, el mapa se enfoca en él.</li>
+        <li>La urna sobre un país indica una elección nacional próxima; tocala para ver la fecha, qué se elige y la fuente.</li>
         <li>Las categorías de abajo son la leyenda y también el filtro: tocá una para mostrarla u ocultarla. "Cómo leer el mapa" explica cada símbolo.</li>
         <li>Al alejar, el mapa se ve como un globo; al acercar aparecen provincias, ciudades, ríos y rutas. El botón con el globo vuelve a la vista mundial.</li>
         <li>Los grupos de noticias muestran una cantidad, no un nivel de gravedad. Si están en el mismo lugar, al tocarlos se listan en el panel.</li>
@@ -119,6 +122,8 @@
       <p>Se separan la <strong>fecha de publicación</strong> (cuando la fuente la informa), la <strong>fecha de detección</strong> (cuando el sistema la encontró) y la <strong>fecha del hecho</strong> (solo si está disponible, con precisión de día). Para filtrar se usa la publicación y, si falta, la detección.</p>
       <h3>Traducción y resúmenes</h3>
       <p>Los textos se traducen automáticamente con modelos abiertos (Argos Translate) que corren en el servidor, sin costo. La calidad puede ser irregular; siempre se conserva el original. Los resúmenes son el extracto que publica el propio medio, traducido y atribuido. Si solo hay titular, no se inventa un resumen.</p>
+      <h3>Elecciones</h3>
+      <p>La pestaña <strong>Elecciones</strong> y las urnas del mapa muestran las elecciones nacionales (presidenciales, legislativas y referendos) de los próximos 12 meses. Las urnas rellenas son las de los próximos 30 días; al alejar solo se ven las de los próximos 60 días. El calendario se toma de los artículos “national electoral calendar” de Wikipedia en inglés (licencia CC BY-SA 4.0) y se actualiza solo cada 6 horas. <strong>No es una fuente oficial</strong>: cada ficha enlaza el artículo y la fuente que cita Wikipedia, y puede faltar alguna elección. Las elecciones indirectas (las elige un parlamento u otro órgano) y las que aún no tienen fecha aparecen en la lista, no en el mapa.</p>
       <h3>Mapa base</h3>
       <p>El relieve y la vista satelital son imágenes Blue Marble de la NASA (servicio GIBS). El detalle al acercar (costas precisas, ríos, rutas y ciudades) viene de OpenFreeMap, con datos de OpenStreetMap. Ambos servicios son gratuitos y no requieren clave. Si alguno no responde, el mapa sigue funcionando con una base propia de Natural Earth.</p>
       <h3>Cobertura y límites</h3>
