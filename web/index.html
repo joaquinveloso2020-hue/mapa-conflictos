@@ -37,30 +37,39 @@
           <button type="button" role="radio" aria-checked="false" data-horas="72">72 h</button>
         </div>
         <button id="btn-capas" class="boton-suave" type="button" aria-expanded="false" aria-controls="popover-capas">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>Capas
-        </button>
-        <button id="btn-leyenda" class="boton-suave" type="button" aria-expanded="false" aria-controls="popover-leyenda">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.2"/><circle cx="6" cy="17" r="2.2"/><path d="M11 7h9M11 17h9"/></svg>Símbolos
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/></svg>Mapa y capas
         </button>
       </div>
       <div id="popover-capas" class="popover" hidden>
-        <p class="popover-titulo">Qué ver en el mapa</p>
-        <label class="interruptor"><input type="checkbox" data-capa="paises" checked><span>Países con conflictos</span></label>
-        <label class="interruptor"><input type="checkbox" data-capa="eventos" checked><span>Novedades (puntos)</span></label>
-        <label class="interruptor"><input type="checkbox" data-capa="regiones" checked><span>Regiones con novedades<small>Al acercar el mapa</small></span></label>
-        <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked><span>Regiones afectadas según fuentes<small>Rayadas; al acercar o al elegir un conflicto</small></span></label>
+        <p class="popover-titulo">Mapa base</p>
+        <div class="opciones-base" role="radiogroup" aria-label="Mapa base">
+          <label class="opcion-base"><input type="radio" name="base" value="relieve" checked><span class="muestra muestra-relieve"></span><span>Relieve</span></label>
+          <label class="opcion-base"><input type="radio" name="base" value="satelite"><span class="muestra muestra-satelite"></span><span>Satélite</span></label>
+          <label class="opcion-base"><input type="radio" name="base" value="simple"><span class="muestra muestra-simple"></span><span>Simple</span></label>
+        </div>
+        <label class="interruptor"><input type="checkbox" data-opcion="globo" checked><span>Globo al alejar</span></label>
+        <label class="interruptor"><input type="checkbox" data-opcion="detalle" checked><span>Detalle al acercar<small>Costas, ríos, rutas y ciudades (OpenFreeMap)</small></span></label>
+        <p id="estado-base" class="estado-base"></p>
+        <p class="popover-titulo">Datos</p>
+        <label class="interruptor"><input type="checkbox" data-capa="paises" checked><span>Países involucrados</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="eventos" checked><span>Noticias</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked><span>Zonas afectadas según fuentes</span></label>
         <label class="interruptor"><input type="checkbox" data-capa="zonas" checked><span>Zonas en disputa</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="regiones"><span>Provincias con noticias<small>Tono uniforme al acercar</small></span></label>
         <label class="interruptor"><input type="checkbox" data-capa="candidatos"><span>Situaciones detectadas<small>Automáticas, sin verificar</small></span></label>
-        <label class="interruptor"><input type="checkbox" data-capa="base"><span>Mapa base detallado<small>Rutas y ciudades (OpenFreeMap)</small></span></label>
-      </div>
-      <div id="popover-leyenda" class="popover" hidden>
-        <p class="popover-titulo">Símbolos</p>
-        <div id="leyenda"></div>
       </div>
     </header>
 
-    <!-- Categorías: leyenda y filtro a la vez -->
-    <nav id="leyenda-categorias" class="leyenda-cat" aria-label="Categorías: tocá para mostrar u ocultar"></nav>
+    <!-- Leyenda: las categorías también filtran; "Cómo leer el mapa" explica cada símbolo -->
+    <section id="leyenda-mapa" class="leyenda-mapa" aria-label="Leyenda">
+      <div id="leyenda-simbolos" class="leyenda-simbolos" hidden><div id="leyenda" class="leyenda"></div></div>
+      <div class="leyenda-fila">
+        <nav id="leyenda-categorias" class="leyenda-cat" aria-label="Categorías: tocá para mostrar u ocultar"></nav>
+        <button id="btn-simbolos" class="leyenda-mas" type="button" aria-expanded="false" aria-controls="leyenda-simbolos" title="Cómo leer el mapa">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Cómo leer el mapa</span>
+        </button>
+      </div>
+    </section>
 
     <button id="btn-panel" class="tirador-panel" type="button" aria-expanded="true" aria-controls="panel" title="Ocultar el panel">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
@@ -86,8 +95,9 @@
       <h3>Cómo usarlo</h3>
       <ul>
         <li>Tocá un país, un punto o una región para ver sus novedades. Al elegir un conflicto, el mapa se enfoca en él.</li>
-        <li>Las categorías de abajo son la leyenda y también el filtro: tocá una para mostrarla u ocultarla.</li>
-        <li>Acercá el mapa para ver provincias, ciudades y regiones afectadas. El botón con el globo vuelve a la vista mundial.</li>
+        <li>Las categorías de abajo son la leyenda y también el filtro: tocá una para mostrarla u ocultarla. "Cómo leer el mapa" explica cada símbolo.</li>
+        <li>Al alejar, el mapa se ve como un globo; al acercar aparecen provincias, ciudades, ríos y rutas. El botón con el globo vuelve a la vista mundial.</li>
+        <li>Los grupos de noticias muestran una cantidad, no un nivel de gravedad. Si están en el mismo lugar, al tocarlos se listan en el panel.</li>
         <li>Los puntos y grupos que laten tienen novedades de las últimas 3 horas.</li>
       </ul>
       <h3>Categorías y colores</h3>
@@ -109,6 +119,8 @@
       <p>Se separan la <strong>fecha de publicación</strong> (cuando la fuente la informa), la <strong>fecha de detección</strong> (cuando el sistema la encontró) y la <strong>fecha del hecho</strong> (solo si está disponible, con precisión de día). Para filtrar se usa la publicación y, si falta, la detección.</p>
       <h3>Traducción y resúmenes</h3>
       <p>Los textos se traducen automáticamente con modelos abiertos (Argos Translate) que corren en el servidor, sin costo. La calidad puede ser irregular; siempre se conserva el original. Los resúmenes son el extracto que publica el propio medio, traducido y atribuido. Si solo hay titular, no se inventa un resumen.</p>
+      <h3>Mapa base</h3>
+      <p>El relieve y la vista satelital son imágenes Blue Marble de la NASA (servicio GIBS). El detalle al acercar (costas precisas, ríos, rutas y ciudades) viene de OpenFreeMap, con datos de OpenStreetMap. Ambos servicios son gratuitos y no requieren clave. Si alguno no responde, el mapa sigue funcionando con una base propia de Natural Earth.</p>
       <h3>Cobertura y límites</h3>
       <p>Se consultan GDELT (archivos cada 15 minutos) y feeds RSS de medios en varios idiomas y fuentes oficiales. <strong>No se capturan todos los conflictos ni todas las noticias del mundo.</strong> La clasificación automática puede equivocarse. Un conflicto no se da por terminado por falta de noticias: solo una revisión humana del registro cambia su estado.</p>
     </div>
@@ -116,6 +128,7 @@
 
   <noscript><p class="aviso-js">Esta página necesita JavaScript para mostrar el mapa.</p></noscript>
   <script src="vendor/maplibre-gl.js"></script>
+  <script src="js/cartografia.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
