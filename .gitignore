@@ -7,8 +7,12 @@ __pycache__/
 .venv/
 node_modules/
 *.tmp
-# Capas generadas por scripts/preparar_regiones.py (se generan en GitHub Actions)
+# Capas y tipografía generadas por scripts/preparar_regiones.py (se generan en GitHub Actions)
 web/geo/regiones.geojson
 web/geo/mares.geojson
 web/geo/ciudades.geojson
+web/geo/limites.geojson
+web/geo/mares-et.geojson
+web/fonts/Noto Sans */
+web/fonts/OFL-Noto-Sans.txt
 colector/recursos/regiones.json
