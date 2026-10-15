@@ -167,3 +167,37 @@ def test_tokenizador_bpe_ida_y_vuelta(tmp_path):
     piezas = t.codificar("hello, world")
     assert "@@" in " ".join(piezas)
     assert t.decodificar(piezas) == "hello, world"
+
+
+def test_lugar_gkg_desambigua_homonimos(conf):
+    """El titular dice 'Pokrovsk': el diccionario solo tiene el de Rusia; GDELT ya ubicó el de Ucrania."""
+    from colector.geografia import Geografia, ubicar_articulo
+    g = Geografia(conf.paises)
+    art = {"titulo_es": "El ejército ucraniano destruyó 68 ocupantes en dirección Pokrovsk", "paises_mencionados": ["UKR"],
+           "lugares_mencionados": [{"nombre": "Pokrovs'k, Donets'ka Oblast', Ukraine", "pais": "UKR", "tipo": 4,
+                                    "coord": [37.18, 48.28]}]}
+    lugar = ubicar_articulo(art, None, {"UKR", "RUS"}, g)
+    assert lugar["pais"] == "UKR" and lugar["metodo"] == "gkg_titular" and lugar["precision"] == "ciudad"
+    # Sin datos de GDELT no se adivina: queda a nivel país.
+    sin_gkg = ubicar_articulo({k: v for k, v in art.items() if k != "lugares_mencionados"}, None, {"UKR", "RUS"}, g)
+    assert sin_gkg["precision"] == "pais" and sin_gkg["pais"] == "UKR"
+
+
+def test_regiones_documentadas_del_registro(conf):
+    """Cada grupo de regiones del registro se resuelve a divisiones admin-1 y tiene fuente fechada."""
+    import os
+
+    import pytest
+
+    from colector.config import DIR_RECURSOS, _indice_regiones, _resolver_regiones
+    if not os.path.exists(os.path.join(DIR_RECURSOS, "regiones.json")):
+        pytest.skip("Falta colector/recursos/regiones.json (python scripts/preparar_regiones.py)")
+    c = conf.conflicto("ucrania-rusia")
+    assert c.regiones and all(g["fuentes"] and g["fuentes"][0]["fecha"] for g in c.regiones)
+    assert "UKR-327" in c.regiones[0]["ids"]  # Donetsk
+    assert "regiones" in c.publico()
+    indice = _indice_regiones()
+    with pytest.raises(ValueError):
+        _resolver_regiones("x", [{"nota": "n", "lugares": {"UKR": ["Lugar inventado"]}, "fuente": {"fecha": "2026-01-01"}}], indice)
+    with pytest.raises(ValueError):
+        _resolver_regiones("x", [{"nota": "n", "lugares": {"UKR": ["Donetsk"]}}], indice)  # sin fuente
