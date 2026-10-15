@@ -112,7 +112,6 @@
         version: 8,
         glyphs: op.base + 'fonts/{fontstack}/{range}.pbf',
         projection: { type: estado.globo ? 'globe' : 'mercator' },
-        sky: { 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 3, 0.6, 5.5, 0] },
         sources: {
           'base-paises': { type: 'geojson', data: op.paises, attribution: 'Geografía: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>' },
           'base-limites': { type: 'geojson', data: limites },
@@ -245,6 +244,8 @@
         paint: { 'text-color': P.ciudad, 'text-halo-color': P.halo, 'text-halo-width': 1.4 } },
     ];
     capas.forEach((c) => mapa.addLayer(c));
+    // La atmósfera se agrega recién con las capas: antes se vería un arco de luz sin el globo.
+    mapa.setSky({ 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 3, 0.6, 5.5, 0] });
 
     const CAPAS_OFM = capas.filter((c) => c.source === 'ofm').map((c) => c.id);
     const visible = (id, on) => mapa.getLayer(id) && mapa.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');

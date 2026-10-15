@@ -317,7 +317,7 @@
   // Relleno de los países escenario: tenue para que se siga viendo la geografía, y más tenue al acercar.
   // En modo foco se refuerzan los países del conflicto elegido y se apagan los demás.
   function opacidadPaises() {
-    const foco = ['match', ['get', 'foco'], 0, 0.2, 2, 1.25, 1];
+    const foco = ['match', ['get', 'foco'], 0, 0.2, 2, 1.1, 1];
     const hover = ['case', ['boolean', ['feature-state', 'hover'], false], 1.5, 1];
     const k = base && base.estado.modo === 'satelite' ? 0.8 : 1;
     return ['interpolate', ['linear'], ['zoom'], 1.5, ['*', 0.24 * k, foco, hover], 4, ['*', 0.15 * k, foco, hover], 7, ['*', 0.06 * k, foco, hover]];
@@ -1156,7 +1156,7 @@
         <li>Las etiquetas de verificación cuentan orígenes; no confirman hechos.</li>
         <li>La actualización programada de GitHub Actions puede demorarse en horas de alta demanda.</li>
       </ul></details></section>`));
-    cont.appendChild(el(`<p class="meta-zona" style="margin:12px 4px">Datos: ${esc(g.cita || 'The GDELT Project')}. Geografía: Natural Earth (dominio público). Mapa: MapLibre GL JS. Traducción: Argos Translate.</p>`));
+    cont.appendChild(el(`<p class="meta-zona" style="margin:12px 4px">Datos: ${esc(g.cita || 'The GDELT Project')}. Geografía: Natural Earth (dominio público). Mapa: MapLibre GL JS; relieve e imagen satelital de NASA GIBS (Blue Marble; ASTER GDEM, de METI y NASA); detalle de OpenFreeMap con datos de © OpenStreetMap. Traducción: Argos Translate.</p>`));
   }
 
   function abrirVista(v) {
