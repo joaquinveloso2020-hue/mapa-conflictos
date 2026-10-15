@@ -32,13 +32,14 @@ GitHub Actions (cada 15 min, cron)                       GitHub Pages
 
 ## Usar la web
 
-- **Período**: últimas 24 h o 72 h. **Categorías**: guerra entre Estados, guerra civil, otros conflictos armados, disputas territoriales, tensiones diplomáticas, sanciones/conflictos económicos. Los colores identifican categorías, no gravedad.
-- **Capas**: países coloreados (relleno = escenario, borde = participa, rayado = varias categorías), acontecimientos (puntos agrupados al alejar), zonas en disputa (Natural Earth; no indican control militar), situaciones detectadas sin verificar y mapa base detallado.
+- **Período**: últimas 24 h o 72 h. **Categorías** (fila de abajo del mapa, que es leyenda y filtro a la vez: clic para mostrar u ocultar, doble clic para ver solo una): guerra entre Estados, guerra civil, otros conflictos armados, disputas territoriales, tensiones diplomáticas, sanciones/conflictos económicos. Los colores identifican categorías, no gravedad. Si un país es escenario de varias categorías, se colorea con la que tiene más novedades en el período.
+- **Capas** (botón *Capas*): países coloreados (relleno = escenario, borde = participa), novedades (puntos agrupados al alejar; los que laten tienen novedades de las últimas 3 horas; las ubicadas solo a nivel país aparecen al acercar), zonas en disputa (Natural Earth; no indican control militar), situaciones detectadas sin verificar y mapa base detallado. El botón *Símbolos* explica cada símbolo.
+- **Modo foco**: al elegir un conflicto, el mapa atenúa el resto y muestra solo sus países, novedades y zonas. *Volver* o Esc sale del foco; el botón del globo vuelve a la vista mundial. En computadora, la flecha al costado del panel lo oculta para ver el mapa completo.
 - **Zonas específicas** (al acercar el mapa): provincias o regiones de los países con conflictos armados. *Regiones con acontecimientos* se calcula sola en cada actualización según dónde se ubican las noticias del período (más intenso = más acontecimientos). *Regiones afectadas según fuentes* (rayadas, con borde) son las que el registro documenta con una fuente fechada (CrisisWatch, ISW, etc.), e incluyen áreas marítimas como el mar Rojo o el estrecho de Taiwán. Ninguna indica control territorial ni frentes de combate. Clic en una región abre su ficha con las noticias ubicadas allí y las fuentes; la ficha de cada conflicto lista sus zonas y las regiones con más acontecimientos.
 - **Buscar** un país, conflicto o región en el cuadro de búsqueda. Clic en un país, punto o conflicto abre su **ficha**: qué está pasando (resumen del registro con fuentes), quiénes participan, países y últimas noticias con enlaces originales.
 - **Etiquetas**: *Reporte preliminar* (un solo origen), *Varias fuentes independientes* (no significa "confirmado"), *Declaración de parte* (solo fuentes oficiales o estatales de una parte), *Versiones contrapuestas*.
 - **Fechas**: se separan publicación, detección y (cuando existe) fecha del hecho.
-- **Estado**: la pastilla superior muestra la última actualización exitosa; si la recopilación falla o se demora, lo indica (nunca dice "en vivo"). La pestaña *Fuentes y estado* detalla cada fuente.
+- **Estado**: la pastilla superior muestra la última actualización exitosa; si la recopilación falla o se demora, lo indica (nunca dice "en vivo"). La pestaña *Estado* detalla cada fuente.
 
 ## Alertas por Telegram
 
@@ -63,7 +64,7 @@ Cada aviso incluye conflicto, novedad breve en español, fuente, fecha disponibl
 - **Registro de conflictos**: `config/conflictos.yaml`. Cada entrada tiene categoría, actores, países, fuentes fechadas y fecha de revisión. Editalo desde la web de GitHub (lápiz ✏️) para agregar, actualizar o cerrar un conflicto. La web marca "revisión pendiente" a los 90 días. Un conflicto **no** se cierra solo por falta de noticias.
 - **Regiones afectadas de un conflicto**: en `config/conflictos.yaml`, clave `regiones` de cada conflicto. Cada grupo lleva una `nota` (qué se informó), los `lugares` por país (nombres de provincias de Natural Earth, se aceptan nombres alternativos), opcionalmente `mares`, y **al menos una fuente fechada**. Si un nombre no existe, la validación (`python -m colector validar` y las pruebas de GitHub) lo indica. Si se agrega un conflicto armado en un país nuevo, regenerá las capas con `python scripts/preparar_regiones.py`.
 - **Candidatos**: la capa "Situaciones detectadas" muestra posibles situaciones nuevas según reglas explícitas. La ficha incluye un borrador para copiar al registro tras verificarlo.
-- **Fuentes**: `config/fuentes.yaml` (RSS, GDELT y dominios oficiales/estatales). Si una fuente falla seguido, la pestaña *Fuentes y estado* lo muestra; se puede quitar o corregir su URL.
+- **Fuentes**: `config/fuentes.yaml` (RSS, GDELT y dominios oficiales/estatales). Si una fuente falla seguido, la pestaña *Estado* lo muestra; se puede quitar o corregir su URL.
 - **Ver qué pasó en un ciclo**: pestaña *Actions* del repositorio → "Actualizar mapa". El resumen de cada ejecución no contiene datos privados.
 - **Ejecutar un ciclo a mano**: *Actions* → "Actualizar mapa" → *Run workflow*.
 - **Si se desactiva el cron** (60 días sin actividad): *Actions* → "Actualizar mapa" → *Enable workflow*.
