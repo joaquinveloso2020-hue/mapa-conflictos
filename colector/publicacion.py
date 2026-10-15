@@ -52,7 +52,7 @@ def vistas_eventos(estado: dict, conf, ahora: datetime) -> list[dict]:
 
 
 def publicar(estado: dict, conf, vistas: list[dict], candidatos: dict, informe: dict,
-             directorio: str, ahora: datetime) -> dict:
+             directorio: str, ahora: datetime, elecciones: dict | None = None) -> dict:
     hace24 = (ahora - timedelta(hours=24)).isoformat()
     por_conflicto: dict[str, list[dict]] = {}
     for v in vistas:
@@ -114,5 +114,8 @@ def publicar(estado: dict, conf, vistas: list[dict], candidatos: dict, informe: 
         "eventos": eventos_pub, "articulos": articulos_pub,
     })
     _escribir(directorio, "candidatos.json", {"generado": generado, "candidatos": cand_pub})
+    if elecciones is not None:
+        _escribir(directorio, "elecciones.json", elecciones)
     _escribir(directorio, "estado.json", informe)
-    return {"eventos": len(eventos_pub), "articulos": len(articulos_pub), "candidatos": len(cand_pub)}
+    return {"eventos": len(eventos_pub), "articulos": len(articulos_pub), "candidatos": len(cand_pub),
+            "elecciones": len((elecciones or {}).get("elecciones") or [])}
