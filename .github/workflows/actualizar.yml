@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["web/**", "colector/**", "config/**", "requirements.txt", ".github/workflows/actualizar.yml"]
+    paths: ["web/**", "colector/**", "config/**", "scripts/**", "requirements.txt", ".github/workflows/actualizar.yml"]
 
 permissions:
   contents: write   # guardar la rama "estado"
@@ -45,6 +45,35 @@ jobs:
 
       - name: Dependencias
         run: pip install -r requirements.txt
+
+      - name: Recuperar capas de regiones
+        id: cache-regiones
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
+
+      - name: Generar capas de regiones (Natural Earth)
+        id: gen-regiones
+        if: steps.cache-regiones.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: python scripts/preparar_regiones.py && echo "listas=1" >> "$GITHUB_OUTPUT"
+
+      - name: Guardar capas de regiones
+        if: steps.gen-regiones.outputs.listas == '1'
+        continue-on-error: true
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            web/geo/regiones.geojson
+            web/geo/mares.geojson
+            web/geo/ciudades.geojson
+            colector/recursos/regiones.json
+          key: regiones-v1-${{ hashFiles('scripts/preparar_regiones.py', 'config/conflictos.yaml') }}
 
       - name: Configurar Pages
         id: pages
