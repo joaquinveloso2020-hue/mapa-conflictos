@@ -12,6 +12,7 @@ import pytest
 
 from colector.cifrado import descifrar, nueva_clave
 from colector.ciclo import Ciclo
+from colector import elecciones
 from colector.fuente_gdelt import FLUJOS
 from tests.fakes import Respuesta, SesionFalsa, fila_evento, fila_gkg, rfc822, rss, ts_franja, zip_texto
 
@@ -91,8 +92,16 @@ def test_ciclos_completos(entorno):
     # El usuario vincula el bot ANTES del primer ciclo.
     s.telegram_actualizaciones.append({"update_id": 1, "message": {"chat": {"id": 999, "type": "private"},
                                                                     "text": "/vincular codigo-prueba-42"}})
+    # Calendario electoral ficticio (misma sintaxis que Wikipedia).
+    s.rutas[elecciones.url_api(2026)] = Respuesta(200, js={"parse": {"title": "2026 national electoral calendar", "revid": 7,
+        "wikitext": "==November==\n* 8 November: [[Elections in Chile|Chile]], [[Prueba|President]]<ref>{{cite web|url=https://prueba.example/cl}}</ref>\n"}})
     info = nuevo_ciclo(entorno, t0).ejecutar()
     assert info["publicado"]["eventos"] >= 1
+    # Elecciones: se publican aparte; la página del año siguiente (404 en la prueba) se informa como advertencia.
+    el = leer(entorno, "elecciones.json")
+    assert [(x["pais"], x["fecha"], x["cargos"]) for x in el["elecciones"]] == [("CHL", "2026-11-08", "Presidente")]
+    assert el["fuente"]["licencia"] == "CC BY-SA 4.0" and el["elecciones"][0]["fuentes"] == ["https://prueba.example/cl"]
+    assert info["elecciones"]["proximas"] == 1 and info["elecciones"]["errores"]
     ev = leer(entorno, "eventos.json")
     arts = ev["articulos"]
     # Deduplicación por URL canónica: n1 llegó por RSS y por GDELT y es un solo artículo.
