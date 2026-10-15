@@ -11,7 +11,8 @@ import os
 from datetime import datetime, timedelta
 
 ARCHIVOS_GZ = ("articulos", "eventos", "traducciones", "vistos")
-ARCHIVOS_JSON = ("fuentes", "gdelt", "robots", "avisos", "telegram", "ciclos", "candidatos", "informe", "meta")
+ARCHIVOS_JSON = ("fuentes", "gdelt", "robots", "avisos", "telegram", "ciclos", "candidatos", "informe", "meta",
+                 "elecciones")
 CAMPOS_PRIVADOS_ARTICULO = ("resumen_privado",)
 
 
