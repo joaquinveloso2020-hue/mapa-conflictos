@@ -419,16 +419,17 @@
     m.addLayer({ id: 'candidatos-borde', type: 'line', source: 'paises', filter: ['in', ['get', 'id'], ['literal', []]],
       paint: { 'line-color': '#8a8a8a', 'line-width': 1.8, 'line-dasharray': [2, 2] } }, 'ancla-zonas');
     // Nombres de países (propios, en español): con zoom bajo, los grandes y los de conflictos; al acercar, todos.
+    // (MapLibre evalúa el zoom de los filtros en números enteros: desde zoom 4 se ven todos).
     m.addLayer({ id: 'etiquetas-paises', type: 'symbol', source: 'etiquetas', maxzoom: 9,
-      filter: ['any', ['==', ['get', 'conflicto'], 1], ['>=', ['get', 'tam'], ['step', ['zoom'], 3, 2.4, 2, 3.4, 1, 4.4, 0]]],
+      filter: ['any', ['==', ['get', 'conflicto'], 1], ['>=', ['get', 'tam'], ['step', ['zoom'], 3, 2.4, 2, 3, 1, 4, 0]]],
       layout: { 'text-field': ['upcase', ['get', 'nombre']], 'text-font': F.medio, 'text-letter-spacing': 0.08, 'text-max-width': 7,
         'text-size': ['interpolate', ['linear'], ['zoom'], 1, ['+', 9, ['*', 0.6, ['get', 'tam']]], 5, ['+', 11.5, ['*', 0.9, ['get', 'tam']]]],
         'text-variable-anchor': ['bottom', 'top', 'left', 'right'], 'text-radial-offset': 0.45, 'text-justify': 'auto', 'text-padding': 3,
         'symbol-sort-key': ['-', 10, ['+', ['*', 4, ['get', 'conflicto']], ['get', 'tam']]] },
       paint: { 'text-color': B.etiqueta, 'text-halo-color': B.halo, 'text-halo-width': 1.5,
         'text-opacity': ['case', ['==', ['get', 'foco'], 0], 0.45, 1] } });
-    // Próximas elecciones nacionales: una urna por país, debajo y a un lado del nombre (no tapa la pastilla
-    // de noticias del país). Al alejar, solo las de los próximos 60 días; al acercar, las de 12 meses.
+    // Próximas elecciones nacionales: una urna justo sobre el punto del nombre del país (la pastilla de noticias
+    // va debajo y el nombre se corre a un costado). Al alejar, solo las de los próximos 60 días; al acercar, 12 meses.
     m.addSource('elecciones', { type: 'geojson', data: vacio() });
     // Noticias del país sin lugar preciso: pastilla neutra debajo del nombre (no es un lugar exacto).
     // No se superpone a los grupos ni a los puntos: si no hay lugar, se oculta hasta acercar (primero las de más noticias).
@@ -440,9 +441,8 @@
     // Las urnas van encima de las pastillas de país (estas se ocultan si no hay lugar) y debajo de las noticias.
     m.addLayer({ id: 'elecciones', type: 'symbol', source: 'elecciones',
       filter: ['<=', ['get', 'dias'], ['step', ['zoom'], 60, 2.6, 400]],
-      layout: { 'icon-image': ['case', ['<=', ['get', 'dias'], 30], 'urna-pronto', 'urna'], 'icon-anchor': 'top',
-        'icon-offset': ['match', ['get', 'pastilla'], 1, ['literal', [-21, 5]], 2, ['literal', [-24, 5]], 3, ['literal', [-27, 5]], ['literal', [0, 5]]],
-        'icon-allow-overlap': false, 'icon-padding': 1, 'symbol-sort-key': ['get', 'dias'] } });
+      layout: { 'icon-image': ['case', ['<=', ['get', 'dias'], 30], 'urna-pronto', 'urna'], 'icon-anchor': 'bottom',
+        'icon-offset': [0, -1], 'icon-allow-overlap': false, 'icon-padding': 1, 'symbol-sort-key': ['get', 'dias'] } });
     // Pulso de las novedades recientes (debajo de los puntos y de los grupos que las contienen).
     m.addLayer({ id: 'eventos-pulso', type: 'circle', source: 'eventos', filter: ['>', ['get', 'rec'], 0],
       paint: { 'circle-radius': radioPulso(0), 'circle-color': ['case', ['has', 'point_count'], P.grupo, color], 'circle-opacity': 0,
@@ -607,13 +607,11 @@
       .filter(([iso]) => et[iso]).map(([iso, ids]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: et[iso] },
         properties: { pais: iso, n: ids.length } })) });
     // Elecciones: la más próxima de cada país (las indirectas y las sin fecha solo van en las listas).
-    const digPastilla = (n) => (n < 10 ? 1 : n < 100 ? 2 : 3);
     m.getSource('elecciones').setData({ type: 'FeatureCollection', features: Object.entries(E.idx.eleccionesPorPais)
       .map(([iso, lista]) => [iso, lista.filter((e) => e.fecha && !e.indirecta)])
       .filter(([iso, lista]) => lista.length && et[iso])
       .map(([iso, lista]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: et[iso] },
-        properties: { pais: iso, dias: Math.max(0, diasEleccion(lista[0]).ini),
-          pastilla: E.capas.eventos && porPais[iso] ? digPastilla(porPais[iso].length) : 0 } })) });
+        properties: { pais: iso, dias: Math.max(0, diasEleccion(lista[0]).ini) } })) });
     actualizarRegiones(evs);
     // Zonas en disputa: en modo foco, solo las del conflicto elegido.
     const filtroZonas = cf ? ['in', ['get', 'id'], ['literal', cf.zonas || []]] : null;
@@ -1579,7 +1577,7 @@
     }));
     $$('input[data-capa]').forEach((cb) => cb.addEventListener('change', () => {
       E.capas[cb.dataset.capa] = cb.checked;
-      if (cb.dataset.capa === 'eventos' || cb.dataset.capa === 'elecciones') actualizarMapa(); else visibilidad();
+      visibilidad();
     }));
     $$('input[name="base"]').forEach((r) => r.addEventListener('change', () => {
       if (!base || !r.checked) return;
