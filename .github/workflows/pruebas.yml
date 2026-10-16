@@ -4,7 +4,7 @@ name: Pruebas
 on:
   push:
     branches: [main]
-    paths: ["colector/**", "config/**", "tests/**", "scripts/**", "requirements*.txt"]
+    paths: ["colector/**", "config/**", "tests/**", "scripts/**", "web/**", "requirements*.txt", ".github/workflows/pruebas.yml"]
   pull_request:
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ permissions:
 jobs:
   pruebas:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
@@ -65,3 +65,10 @@ jobs:
 
       - run: python -m colector validar
       - run: python -m pytest -q
+
+      # Interfaz en Chromium sin pantalla y sin red externa (Playwright es software libre; no usa servicios pagos).
+      - name: Prueba de la interfaz (fichas de elecciones)
+        run: |
+          pip install playwright==1.56.0
+          python -m playwright install --with-deps --only-shell chromium
+          python -m pytest -q tests/test_interfaz_elecciones.py
