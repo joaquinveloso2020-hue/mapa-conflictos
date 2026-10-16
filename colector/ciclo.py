@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-from . import almacen, config, fuente_gdelt, fuente_rss, red, urls
+from . import almacen, config, elecciones, fuente_gdelt, fuente_rss, red, urls
 from .agrupacion import Agrupador, Origenes, tokens_articulo
 from .cifrado import ErrorCifrado, cifrar, derivar_clave, descifrar
 from .clasificacion import Prefiltro, clasificar, es_ajeno, marcas
@@ -49,7 +49,7 @@ class Ciclo:
         self.sin_red = sin_red
         self.conf = config.cargar(url_sitio)
         self.estado = almacen.cargar(dir_estado)
-        for clave in ("fuentes", "gdelt", "robots", "avisos", "telegram", "candidatos", "meta"):
+        for clave in ("fuentes", "gdelt", "robots", "avisos", "telegram", "candidatos", "meta", "elecciones"):
             self.estado.setdefault(clave, {})
         self.sesion = sesion or red.crear_sesion(self.conf.usuario_agente)
         self.geo = Geografia(self.conf.paises)
@@ -62,6 +62,7 @@ class Ciclo:
         self.geo_url: dict = {}
         self.nuevos: list[str] = []
         self.inicio = time.monotonic()
+        self.doc_elecciones: dict | None = None
 
     # --------------------------------------------------------------- utilidades
     def _etapa(self, nombre: str, funcion, *args, **kwargs):
@@ -332,6 +333,26 @@ class Ciclo:
                                              if x in self.estado["articulos"]])
         return tocados
 
+    # ------------------------------------------------------------- elecciones
+    def preparar_elecciones(self) -> dict:
+        """Refresca el calendario electoral (Wikipedia, como mucho cada 6 h) y arma el archivo público."""
+        cache = self.estado.setdefault("elecciones", {})
+        informe = {"consultado": False, "errores": []}
+        if not self.sin_red:
+            informe = elecciones.actualizar(cache, self.sesion, self.ahora)
+        self.doc_elecciones = elecciones.documento(cache, self.conf.paises, self.ahora)
+        actualizado = self.doc_elecciones.get("actualizado")
+        if informe["errores"]:
+            self.informe["advertencias"].append(
+                "Calendario electoral: no se pudo consultar Wikipedia (" + "; ".join(informe["errores"])[:160]
+                + "). Se muestra el último calendario obtenido.")
+        if not self.sin_red and (not actualizado or datetime.fromisoformat(actualizado) < self.ahora - timedelta(days=3)):
+            self.informe["advertencias"].append("El calendario electoral no se actualiza desde hace más de 3 días."
+                                                if actualizado else "Todavía no se obtuvo el calendario electoral.")
+        return {"actualizado": actualizado, "consultado": informe["consultado"],
+                "proximas": len(self.doc_elecciones["elecciones"]), "sin_ubicar": self.doc_elecciones["sin_ubicar"],
+                "errores": informe["errores"]}
+
     # -------------------------------------------------------------- telegram
     def telegram(self, vistas: list[dict], candidatos: dict, info: dict) -> dict:
         from .telegram_bot import Bot, ErrorTelegram
@@ -456,12 +477,14 @@ class Ciclo:
         # Traducir titulares de los candidatos (solo los que se publican).
         claves_cand = [k for c in candidatos.values() for k in c["articulos"] if k in self.estado["articulos"]]
         self._etapa("traducir_candidatos", self.traducir_espanol, claves_cand)
+        resumen_elecciones = self._etapa("elecciones", self.preparar_elecciones)
         info = self._informe(len(claves), len(asignados), vistas)
+        info["elecciones"] = resumen_elecciones or {"errores": ["falló la etapa"]}
         tg = self._etapa("telegram", self.telegram, vistas, candidatos, info)
         info["telegram"] = tg or {"configurado": bool(os.environ.get("TELEGRAM_BOT_TOKEN")), "errores": ["falló la etapa"]}
         info["duracion_s"] = round(time.monotonic() - self.inicio, 1)
         publicado = self._etapa("publicar", publicar, self.estado, self.conf, vistas, candidatos, info,
-                                self.dir_salida, self.ahora)
+                                self.dir_salida, self.ahora, self.doc_elecciones)
         info["publicado"] = publicado
         # Copia del informe en la rama "estado" (diagnóstico público, sin datos privados).
         self.estado["informe"] = {k: v for k, v in info.items() if k != "fuentes"} | {

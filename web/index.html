@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mapa de conflictos</title>
-  <meta name="description" content="Mapa mundial de conflictos y tensiones geopolíticas vigentes, con novedades recientes de medios y fuentes oficiales.">
+  <meta name="description" content="Mapa mundial de conflictos y tensiones geopolíticas vigentes, con novedades recientes de medios y fuentes oficiales, y las elecciones nacionales de los próximos 12 meses.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230072B2'/%3E%3Cpath d='M4 16h24M16 2c5 5 5 23 0 28M16 2c-5 5-5 23 0 28' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="vendor/maplibre-gl.css">
@@ -55,6 +55,7 @@
         <label class="interruptor"><input type="checkbox" data-capa="eventos" checked><span>Noticias</span></label>
         <label class="interruptor"><input type="checkbox" data-capa="afectadas" checked><span>Zonas afectadas según fuentes</span></label>
         <label class="interruptor"><input type="checkbox" data-capa="zonas" checked><span>Zonas en disputa</span></label>
+        <label class="interruptor"><input type="checkbox" data-capa="elecciones" checked><span>Elecciones nacionales<small>Próximos 12 meses (Wikipedia)</small></span></label>
         <label class="interruptor"><input type="checkbox" data-capa="regiones"><span>Provincias con noticias<small>Tono uniforme al acercar</small></span></label>
         <label class="interruptor"><input type="checkbox" data-capa="candidatos"><span>Situaciones detectadas<small>Automáticas, sin verificar</small></span></label>
       </div>
@@ -80,6 +81,7 @@
       <nav class="pestanas" role="tablist">
         <button type="button" role="tab" aria-selected="true" data-pestana="novedades" id="tab-novedades">Novedades</button>
         <button type="button" role="tab" aria-selected="false" data-pestana="conflictos" id="tab-conflictos">Conflictos</button>
+        <button type="button" role="tab" aria-selected="false" data-pestana="elecciones" id="tab-elecciones">Elecciones</button>
         <button type="button" role="tab" aria-selected="false" data-pestana="fuentes" id="tab-fuentes">Estado</button>
       </nav>
       <div id="contenido-panel" class="contenido-panel" role="tabpanel"></div>
@@ -91,10 +93,11 @@
     <h2 id="titulo-ayuda">Cómo funciona este mapa</h2>
     <div class="texto-ayuda">
       <h3>Qué muestra</h3>
-      <p>Conflictos y tensiones <strong>vigentes</strong> según un registro respaldado por fuentes fechadas, y las novedades de las últimas 24 o 72 horas. No es un archivo histórico.</p>
+      <p>Conflictos y tensiones <strong>vigentes</strong> según un registro respaldado por fuentes fechadas, las novedades de las últimas 24 o 72 horas y las elecciones nacionales de los próximos 12 meses. No es un archivo histórico.</p>
       <h3>Cómo usarlo</h3>
       <ul>
         <li>Tocá un país, un punto o una región para ver sus novedades. Al elegir un conflicto, el mapa se enfoca en él.</li>
+        <li>La urna sobre un país indica una elección nacional próxima; tocala para ver la fecha, qué se elige y la fuente.</li>
         <li>Las categorías de abajo son la leyenda y también el filtro: tocá una para mostrarla u ocultarla. "Cómo leer el mapa" explica cada símbolo.</li>
         <li>Al alejar, el mapa se ve como un globo; al acercar aparecen provincias, ciudades, ríos y rutas. El botón con el globo vuelve a la vista mundial.</li>
         <li>Los grupos de noticias muestran una cantidad, no un nivel de gravedad. Si están en el mismo lugar, al tocarlos se listan en el panel.</li>
@@ -119,6 +122,8 @@
       <p>Se separan la <strong>fecha de publicación</strong> (cuando la fuente la informa), la <strong>fecha de detección</strong> (cuando el sistema la encontró) y la <strong>fecha del hecho</strong> (solo si está disponible, con precisión de día). Para filtrar se usa la publicación y, si falta, la detección.</p>
       <h3>Traducción y resúmenes</h3>
       <p>Los textos se traducen automáticamente con modelos abiertos (Argos Translate) que corren en el servidor, sin costo. La calidad puede ser irregular; siempre se conserva el original. Los resúmenes son el extracto que publica el propio medio, traducido y atribuido. Si solo hay titular, no se inventa un resumen.</p>
+      <h3>Elecciones</h3>
+      <p>La pestaña <strong>Elecciones</strong> y las urnas del mapa muestran las elecciones nacionales (presidenciales, legislativas y referendos) de los próximos 12 meses. Las urnas rellenas son las de los próximos 30 días; al alejar solo se ven las de los próximos 60 días. El calendario se toma de los artículos “national electoral calendar” de Wikipedia en inglés (licencia CC BY-SA 4.0) y se actualiza solo cada 6 horas. <strong>No es una fuente oficial</strong>: cada ficha enlaza el artículo y la fuente que cita Wikipedia, y puede faltar alguna elección. Las elecciones indirectas (las elige un parlamento u otro órgano) y las que aún no tienen fecha aparecen en la lista, no en el mapa.</p>
       <h3>Mapa base</h3>
       <p>El relieve y la vista satelital son imágenes Blue Marble de la NASA (servicio GIBS). El detalle al acercar (costas precisas, ríos, rutas y ciudades) viene de OpenFreeMap, con datos de OpenStreetMap. Ambos servicios son gratuitos y no requieren clave. Si alguno no responde, el mapa sigue funcionando con una base propia de Natural Earth.</p>
       <h3>Cobertura y límites</h3>

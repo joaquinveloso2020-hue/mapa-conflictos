@@ -41,12 +41,14 @@
       pastilla: 'rgba(255,255,255,0.95)', pastillaBorde: 'rgba(50,54,62,0.5)', pastillaTexto: '#22262c',
       puntoBorde: '#ffffff', aproxRelleno: 'rgba(255,255,255,0.96)', resaltado: '#111111',
       region: '#4b463f', limiteRegion: 'rgba(45,42,37,0.35)',
-      rayadoDoc: 'rgba(20,20,20,0.55)', bordeDoc: 'rgba(20,20,20,0.7)', rayadoZona: 'rgba(255,255,255,0.8)', bordeZona: 'rgba(255,255,255,0.95)' },
+      rayadoDoc: 'rgba(20,20,20,0.55)', bordeDoc: 'rgba(20,20,20,0.7)', rayadoZona: 'rgba(255,255,255,0.8)', bordeZona: 'rgba(255,255,255,0.95)',
+      urna: '#33407a', urnaFondo: '#ffffff', urnaHalo: 'rgba(255,255,255,0.9)' },
     oscuro: { grupo: '#eef0f3', grupoTexto: '#15191e', grupoBorde: 'rgba(15,19,24,0.9)',
       pastilla: 'rgba(28,33,40,0.94)', pastillaBorde: 'rgba(220,225,232,0.45)', pastillaTexto: '#eef0f3',
       puntoBorde: '#10151b', aproxRelleno: 'rgba(20,25,31,0.95)', resaltado: '#ffffff',
       region: '#c9c3b8', limiteRegion: 'rgba(230,225,215,0.28)',
-      rayadoDoc: 'rgba(240,240,240,0.45)', bordeDoc: 'rgba(240,240,240,0.65)', rayadoZona: 'rgba(170,205,240,0.75)', bordeZona: 'rgba(190,220,250,0.9)' },
+      rayadoDoc: 'rgba(240,240,240,0.45)', bordeDoc: 'rgba(240,240,240,0.65)', rayadoZona: 'rgba(170,205,240,0.75)', bordeZona: 'rgba(190,220,250,0.9)',
+      urna: '#dfe4fb', urnaFondo: '#1a1f2e', urnaHalo: 'rgba(12,16,24,0.85)' },
   };
   // Sobre la imagen satelital se usan los colores claros sobre oscuro.
   const paleta = () => PALETAS[temaOscuro() || (base && base.estado.modo === 'satelite') ? 'oscuro' : 'claro'];
@@ -65,15 +67,48 @@
   const fechaCorta = (iso) => (iso ? df.format(new Date(iso.length === 10 ? iso + 'T12:00:00Z' : iso)) : '—');
   function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; }
 
+  // Fechas de elecciones: son días del calendario (sin hora); se comparan con la fecha local de hoy.
+  const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const mesCorto = (i) => MESES[i].slice(0, 3);
+  const diaUTC = (iso) => { const [y, m, d] = iso.split('-').map(Number); return Date.UTC(y, m - 1, d); };
+  function hoyUTC() { const h = new Date(); return Date.UTC(h.getFullYear(), h.getMonth(), h.getDate()); }
+  function diasEleccion(e) {
+    if (!e.fecha) return { ini: 9999, fin: 9999 };
+    const h = hoyUTC();
+    if (e.precision === 'mes') {
+      const [y, m] = e.fecha.split('-').map(Number);
+      return { ini: Math.round((diaUTC(e.fecha) - h) / 864e5), fin: Math.round((Date.UTC(y, m, 0) - h) / 864e5) };
+    }
+    return { ini: Math.round((diaUTC(e.fecha) - h) / 864e5), fin: Math.round((diaUTC(e.fin || e.fecha) - h) / 864e5) };
+  }
+  function fechaEleccion(e, conAnio = true) {
+    if (!e.fecha) return 'Fecha sin confirmar (' + e.anio + ')';
+    const [y, m, d] = e.fecha.split('-').map(Number);
+    if (e.precision === 'mes') return MESES[m - 1].replace(/^./, (c) => c.toUpperCase()) + (conAnio ? ' de ' + y : '') + ' (día sin confirmar)';
+    let t = d + ' ' + mesCorto(m - 1);
+    if (e.fin) { const [, m2, d2] = e.fin.split('-').map(Number); t = m2 === m ? d + '–' + d2 + ' ' + mesCorto(m - 1) : t + ' – ' + d2 + ' ' + mesCorto(m2 - 1); }
+    return t + (conAnio ? ' ' + y : '');
+  }
+  function cuandoEleccion(e) {
+    const { ini, fin } = diasEleccion(e);
+    if (!e.fecha) return '';
+    if (ini <= 0 && fin >= 0) return e.precision === 'mes' ? 'este mes' : 'hoy';
+    if (e.precision === 'mes') return 'en ' + Math.max(1, Math.round(ini / 30)) + (Math.round(ini / 30) > 1 ? ' meses' : ' mes');
+    if (ini === 1) return 'mañana';
+    return ini < 60 ? 'en ' + ini + ' días' : 'en ' + Math.round(ini / 30) + ' meses';
+  }
+  const dominio = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
+
   // ------------------------------------------------------------------ estado
   const E = {
-    datos: { estado: null, conflictos: null, eventos: null, candidatos: null },
+    datos: { estado: null, conflictos: null, eventos: null, candidatos: null, elecciones: null },
     geo: { paises: null, zonas: null, regiones: null, mares: null, ciudades: null },
     idx: {},
     reg: { info: {}, cajas: {}, porPais: {}, deEvento: {}, conteo: {}, listo: false }, // regiones admin-1
     horas: 24,
     categorias: new Set(),
-    capas: { paises: true, eventos: true, zonas: true, regiones: false, afectadas: true, candidatos: false },
+    capas: { paises: true, eventos: true, zonas: true, regiones: false, afectadas: true, candidatos: false, elecciones: true },
+    tipoEleccion: 'todas',
     pestana: 'novedades',
     vista: null, // {tipo:'conflicto'|'pais'|'region'|'candidato', id}
     eventoAbierto: null,
@@ -106,11 +141,13 @@
   }
 
   async function cargarDatos() {
-    const [estado, conflictos, eventos, candidatos] = await Promise.all([
+    const [estado, conflictos, eventos, candidatos, elecciones] = await Promise.all([
       cargarJSON('datos/estado.json'), cargarJSON('datos/conflictos.json'),
       cargarJSON('datos/eventos.json'), cargarJSON('datos/candidatos.json').catch(() => ({ candidatos: [] })),
+      cargarJSON('datos/elecciones.json').catch(() => ({ elecciones: [] })),
     ]);
-    E.datos = { estado, conflictos, eventos, candidatos };
+    if (!Array.isArray(elecciones.elecciones)) elecciones.elecciones = [];
+    E.datos = { estado, conflictos, eventos, candidatos, elecciones };
     E.generado = estado.generado;
     indexar();
   }
@@ -126,6 +163,10 @@
       idx.evento[ev.id] = ev;
       (idx.eventosPorConflicto[ev.conflicto] = idx.eventosPorConflicto[ev.conflicto] || []).push(ev);
     }
+    // Elecciones que no terminaron (el archivo se genera cada ciclo; esto cubre el día de la elección).
+    idx.elecciones = E.datos.elecciones.elecciones.filter((e) => diasEleccion(e).fin >= 0);
+    idx.eleccionesPorPais = {};
+    for (const e of idx.elecciones) if (e.pais) (idx.eleccionesPorPais[e.pais] = idx.eleccionesPorPais[e.pais] || []).push(e);
     E.idx = idx;
     if (!E.categorias.size) Object.keys(E.datos.conflictos.categorias).forEach((c) => E.categorias.add(c));
   }
@@ -187,7 +228,24 @@
     [10.5, 13, 15.5].forEach((r, i) => { res['grupo' + (i + 1)] = circulo(r, Q.grupo, Q.grupoBorde, 1.6); });
     [20, 26, 32].forEach((a, i) => { res['pastilla' + (i + 1)] = pastilla(a, 16, Q.pastilla, Q.pastillaBorde); });
     res.candidato = circulo(9, Q.pastilla, Q.pastillaBorde, 1.6);
+    res['urna-pronto'] = urna(true, Q);
+    res.urna = urna(false, Q);
     return res;
+  }
+  // Urna de votación: rellena si la elección es en los próximos 30 días; contorno si es más adelante.
+  function urna(rellena, Q) {
+    return lienzo(20, 20, (x) => {
+      const caja = () => { x.beginPath(); if (x.roundRect) x.roundRect(3, 9, 14, 9, 2); else x.rect(3, 9, 14, 9); };
+      const papel = () => { x.beginPath(); x.rect(6.5, 2.5, 7, 8); };
+      x.lineJoin = 'round';
+      // Halo para que se lea sobre el relieve o la imagen satelital.
+      x.lineWidth = 4; x.strokeStyle = Q.urnaHalo; caja(); x.stroke(); papel(); x.stroke();
+      x.lineWidth = 1.5;
+      papel(); x.fillStyle = Q.urnaFondo; x.fill(); x.strokeStyle = Q.urna; x.stroke();
+      x.beginPath(); x.moveTo(8.5, 5.5); x.lineTo(11.5, 5.5); x.stroke();
+      caja(); x.fillStyle = rellena ? Q.urna : Q.urnaFondo; x.fill(); x.stroke();
+      x.beginPath(); x.moveTo(6.5, 12); x.lineTo(13.5, 12); x.lineWidth = 1.6; x.strokeStyle = rellena ? Q.urnaFondo : Q.urna; x.stroke();
+    });
   }
   function instalarIconos() {
     const m = E.mapa;
@@ -292,8 +350,9 @@
     const cab = $('#controles');
     const caja = cab ? cab.getBoundingClientRect() : { bottom: 140, right: 360 };
     if (esMovil()) {
+      // Altura final del panel (no la de la animación en curso).
       const p = $('#panel');
-      const alto = p ? p.getBoundingClientRect().height : window.innerHeight * 0.44;
+      const alto = p && p.classList.contains('contraido') ? 120 : window.innerHeight * 0.44;
       return { top: Math.min(caja.bottom + 10, window.innerHeight * 0.3), bottom: Math.min(alto + 54, window.innerHeight * 0.62), left: 14, right: 14 };
     }
     const derecha = panelVisible() ? 384 + 40 : 40;
@@ -360,14 +419,18 @@
     m.addLayer({ id: 'candidatos-borde', type: 'line', source: 'paises', filter: ['in', ['get', 'id'], ['literal', []]],
       paint: { 'line-color': '#8a8a8a', 'line-width': 1.8, 'line-dasharray': [2, 2] } }, 'ancla-zonas');
     // Nombres de países (propios, en español): con zoom bajo, los grandes y los de conflictos; al acercar, todos.
+    // (MapLibre evalúa el zoom de los filtros en números enteros: desde zoom 4 se ven todos).
     m.addLayer({ id: 'etiquetas-paises', type: 'symbol', source: 'etiquetas', maxzoom: 9,
-      filter: ['any', ['==', ['get', 'conflicto'], 1], ['>=', ['get', 'tam'], ['step', ['zoom'], 3, 2.4, 2, 3.4, 1, 4.4, 0]]],
+      filter: ['any', ['==', ['get', 'conflicto'], 1], ['>=', ['get', 'tam'], ['step', ['zoom'], 3, 2.4, 2, 3, 1, 4, 0]]],
       layout: { 'text-field': ['upcase', ['get', 'nombre']], 'text-font': F.medio, 'text-letter-spacing': 0.08, 'text-max-width': 7,
         'text-size': ['interpolate', ['linear'], ['zoom'], 1, ['+', 9, ['*', 0.6, ['get', 'tam']]], 5, ['+', 11.5, ['*', 0.9, ['get', 'tam']]]],
         'text-variable-anchor': ['bottom', 'top', 'left', 'right'], 'text-radial-offset': 0.45, 'text-justify': 'auto', 'text-padding': 3,
         'symbol-sort-key': ['-', 10, ['+', ['*', 4, ['get', 'conflicto']], ['get', 'tam']]] },
       paint: { 'text-color': B.etiqueta, 'text-halo-color': B.halo, 'text-halo-width': 1.5,
         'text-opacity': ['case', ['==', ['get', 'foco'], 0], 0.45, 1] } });
+    // Próximas elecciones nacionales: una urna justo sobre el punto del nombre del país (la pastilla de noticias
+    // va debajo y el nombre se corre a un costado). Al alejar, solo las de los próximos 60 días; al acercar, 12 meses.
+    m.addSource('elecciones', { type: 'geojson', data: vacio() });
     // Noticias del país sin lugar preciso: pastilla neutra debajo del nombre (no es un lugar exacto).
     // No se superpone a los grupos ni a los puntos: si no hay lugar, se oculta hasta acercar (primero las de más noticias).
     m.addLayer({ id: 'eventos-pais', type: 'symbol', source: 'eventos-pais', minzoom: 1.6,
@@ -375,6 +438,11 @@
         'icon-allow-overlap': false, 'icon-padding': 2, 'text-field': ['to-string', ['get', 'n']], 'text-font': F.medio, 'text-size': 10.5,
         'text-anchor': 'top', 'text-offset': [0, 0.86], 'text-allow-overlap': false, 'symbol-sort-key': ['-', 0, ['get', 'n']] },
       paint: { 'text-color': P.pastillaTexto } });
+    // Las urnas van encima de las pastillas de país (estas se ocultan si no hay lugar) y debajo de las noticias.
+    m.addLayer({ id: 'elecciones', type: 'symbol', source: 'elecciones',
+      filter: ['<=', ['get', 'dias'], ['step', ['zoom'], 60, 2.6, 400]],
+      layout: { 'icon-image': ['case', ['<=', ['get', 'dias'], 30], 'urna-pronto', 'urna'], 'icon-anchor': 'bottom',
+        'icon-offset': [0, -1], 'icon-allow-overlap': false, 'icon-padding': 1, 'symbol-sort-key': ['get', 'dias'] } });
     // Pulso de las novedades recientes (debajo de los puntos y de los grupos que las contienen).
     m.addLayer({ id: 'eventos-pulso', type: 'circle', source: 'eventos', filter: ['>', ['get', 'rec'], 0],
       paint: { 'circle-radius': radioPulso(0), 'circle-color': ['case', ['has', 'point_count'], P.grupo, color], 'circle-opacity': 0,
@@ -538,6 +606,12 @@
     m.getSource('eventos-pais').setData({ type: 'FeatureCollection', features: Object.entries(porPais)
       .filter(([iso]) => et[iso]).map(([iso, ids]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: et[iso] },
         properties: { pais: iso, n: ids.length } })) });
+    // Elecciones: la más próxima de cada país (las indirectas y las sin fecha solo van en las listas).
+    m.getSource('elecciones').setData({ type: 'FeatureCollection', features: Object.entries(E.idx.eleccionesPorPais)
+      .map(([iso, lista]) => [iso, lista.filter((e) => e.fecha && !e.indirecta)])
+      .filter(([iso, lista]) => lista.length && et[iso])
+      .map(([iso, lista]) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: et[iso] },
+        properties: { pais: iso, dias: Math.max(0, diasEleccion(lista[0]).ini) } })) });
     actualizarRegiones(evs);
     // Zonas en disputa: en modo foco, solo las del conflicto elegido.
     const filtroZonas = cf ? ['in', ['get', 'id'], ['literal', cf.zonas || []]] : null;
@@ -592,6 +666,7 @@
     vis(['zonas-relleno', 'zonas-borde'], E.capas.zonas);
     vis(['candidatos-borde', 'candidatos-punto'], E.capas.candidatos && !focoActual());
     vis(['regiones-actividad'], E.capas.regiones);
+    vis(['elecciones'], E.capas.elecciones && !focoActual());
     vis(['regiones-doc', 'regiones-doc-borde', 'mares-doc', 'mares-doc-borde'], E.capas.afectadas);
     if (m.getLayer('regiones-limites')) m.setLayerZoomRange('regiones-limites', 3.5, base && base.estado.detalle && !base.estado.falloDetalle && base.estado.modo !== 'simple' ? 6.5 : 24);
     if (m.getLayer('paises-escenario')) m.setPaintProperty('paises-escenario', 'fill-opacity', opacidadPaises());
@@ -651,11 +726,18 @@
     if (evs.length) abrirVista({ tipo: 'lugar', ids: evs.map((e) => e.id), id: evs[0].id });
   }
 
+  function popupElecciones(iso) {
+    const lista = (E.idx.eleccionesPorPais[iso] || []).slice(0, 3);
+    return `<div class="popup-titulo">Elecciones en ${esc(nombrePais(iso))}</div><div class="popup-sub">`
+      + lista.map((e) => `${esc(fechaEleccion(e, false))} · ${esc(e.cargos)}${cuandoEleccion(e) ? ' · ' + esc(cuandoEleccion(e)) : ''}`).join('<br>')
+      + '<br>Según el calendario de Wikipedia · clic para ver la fuente</div>';
+  }
+
   function interacciones() {
     const m = E.mapa;
     const popup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 12, maxWidth: '290px' });
     const capasPais = ['paises-toque'];
-    const capasHover = ['candidatos-punto', 'eventos-punto', 'grupos', 'eventos-pais', 'zonas-relleno', 'mares-doc', 'regiones-toque', ...capasPais];
+    const capasHover = ['candidatos-punto', 'eventos-punto', 'grupos', 'eventos-pais', 'elecciones', 'zonas-relleno', 'mares-doc', 'regiones-toque', ...capasPais];
     let paisHover = null;
     const marcarPais = (id) => {
       if (paisHover === id) return;
@@ -686,6 +768,8 @@
           html = `<div class="popup-titulo">${x.properties.point_count} novedades cercanas</div><div class="popup-sub">${m.getZoom() >= ZOOM_GRUPOS - 0.5 ? 'Clic para verlas en el panel' : 'Clic para acercar'} · el número es una cantidad, no una medida de gravedad</div>`;
         } else if (x.layer.id === 'eventos-pais') {
           html = `<div class="popup-titulo">${x.properties.n} novedad(es) en ${esc(nombrePais(x.properties.pais))}</div><div class="popup-sub">Ubicadas solo a nivel país: no indican un lugar exacto.</div>`;
+        } else if (x.layer.id === 'elecciones') {
+          html = popupElecciones(x.properties.pais);
         } else if (x.layer.id === 'candidatos-punto') {
           const c = (E.datos.candidatos.candidatos || []).find((v) => v.id === x.properties.id);
           if (c) html = `<div class="popup-titulo">${esc(c.nombre)}</div><div class="popup-sub">Detectado automáticamente · sin verificar</div>`;
@@ -698,9 +782,10 @@
         } else if (pais) {
           const id = pais.properties.id;
           const cs = (E.idx.paisConflictos[id] || []).filter((r) => E.categorias.has(E.idx.conflicto[r.id].categoria));
+          const prox = E.capas.elecciones ? (E.idx.eleccionesPorPais[id] || [])[0] : null;
           html = `<div class="popup-titulo">${esc(nombrePais(id))}</div>` + (cs.length
             ? '<div class="popup-sub">' + cs.slice(0, 4).map((r) => `<span style="color:${colorCat(E.idx.conflicto[r.id].categoria)}">●</span> ${esc(E.idx.conflicto[r.id].nombre)}${r.rol === 'participante' ? ' (participa)' : ''}`).join('<br>') + (cs.length > 4 ? '<br>…' : '') + '</div>'
-            : '');
+            : '') + (prox ? `<div class="popup-sub">Próxima elección: ${esc(fechaEleccion(prox, false))} · ${esc(prox.cargos)}</div>` : '');
         }
       }
       if (html && puedeHover()) popup.setLngLat(e.lngLat).setHTML(html).addTo(m);
@@ -728,7 +813,7 @@
       } else if (x.layer.id === 'eventos-punto') {
         const ids = [...new Set(f.filter((g) => g.layer.id === 'eventos-punto').map((g) => g.properties.id))];
         if (ids.length > 1) abrirLugar(ids); else abrirEvento(ids[0]);
-      } else if (x.layer.id === 'eventos-pais') {
+      } else if (x.layer.id === 'eventos-pais' || x.layer.id === 'elecciones') {
         abrirVista({ tipo: 'pais', id: x.properties.pais });
       } else if (x.layer.id === 'candidatos-punto') {
         abrirVista({ tipo: 'candidato', id: x.properties.id });
@@ -741,7 +826,7 @@
       } else {
         const pais = f.find((g) => capasPais.includes(g.layer.id));
         const id = pais && pais.properties.id;
-        if (id && (E.idx.paisConflictos[id] || []).length) abrirVista({ tipo: 'pais', id });
+        if (id && ((E.idx.paisConflictos[id] || []).length || (E.capas.elecciones && E.idx.eleccionesPorPais[id]))) abrirVista({ tipo: 'pais', id });
       }
     });
   }
@@ -887,6 +972,7 @@
     if (E.vista) return renderVista(cont);
     if (E.pestana === 'novedades') renderNovedades(cont);
     else if (E.pestana === 'conflictos') renderConflictos(cont);
+    else if (E.pestana === 'elecciones') renderElecciones(cont);
     else renderFuentes(cont);
   }
 
@@ -952,6 +1038,66 @@
       fila.onclick = abrir; fila.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } };
       cont.appendChild(fila);
     }
+  }
+
+  // ---------------------------------------------------------- elecciones
+  const TIPOS_ELECCION = { todas: 'Todas', ejecutivo: 'Presidenciales', legislativo: 'Legislativas', referendo: 'Referendos' };
+  function filaEleccion(e, conPais = true) {
+    const sinDia = !e.fecha || e.precision !== 'dia';
+    const [, m, d] = e.fecha ? e.fecha.split('-').map(Number) : [0, 0, 0];
+    const notas = [e.indirecta ? 'indirecta: no hay voto popular' : '', e.territorio ? 'territorio' : '',
+      e.precision === 'mes' ? 'día sin confirmar' : ''].filter(Boolean);
+    const fila = el(`<div class="fila-eleccion${e.pais ? '' : ' sin-mapa'}" ${e.pais ? 'tabindex="0" role="button"' : ''}>
+      <div class="fecha-el">${e.fecha ? (sinDia ? `<b>${esc(mesCorto(m - 1))}</b>` : `<b>${d}</b><span>${esc(mesCorto(m - 1))}</span>`) : '<b>?</b>'}</div>
+      <div><div class="nombre">${esc(conPais ? e.pais_nombre : e.cargos)}</div>
+        <div class="sub">${conPais ? esc(e.cargos) : esc(fechaEleccion(e))}${notas.length ? ' · ' + esc(notas.join(' · ')) : ''}</div></div>
+      <div class="cuenta">${esc(cuandoEleccion(e))}</div></div>`);
+    if (e.pais) {
+      const abrir = () => abrirVista({ tipo: 'pais', id: e.pais });
+      fila.onclick = abrir; fila.onkeydown = (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abrir(); } };
+    }
+    return fila;
+  }
+  function notaFuenteElecciones() {
+    const d = E.datos.elecciones;
+    const act = d.actualizado ? 'actualizado ' + relativo(d.actualizado) : 'todavía sin actualizar';
+    return el(`<p class="meta-zona" style="margin:4px 4px 10px">Según los calendarios electorales nacionales de Wikipedia (${esc(act)}, licencia ${esc((d.fuente || {}).licencia || 'CC BY-SA 4.0')}). No es una fuente oficial: cada ficha enlaza la fuente citada. Puede no incluir todas las elecciones.</p>`);
+  }
+  function renderElecciones(cont) {
+    const todas = E.idx.elecciones;
+    const lista = todas.filter((e) => E.tipoEleccion === 'todas' || (e.tipos || []).includes(E.tipoEleccion));
+    const cab = el(`<div class="encabezado-lista"><span><strong>${lista.length}</strong> elecciones nacionales · 12 meses</span></div>`);
+    cont.appendChild(cab);
+    const chips = el(`<div class="chips-filtro">${Object.entries(TIPOS_ELECCION).map(([k, t]) => `<button type="button" class="chip-filtro" data-tipo="${k}" aria-pressed="${E.tipoEleccion === k}">${t}</button>`).join('')}</div>`);
+    $$('button', chips).forEach((b) => { b.onclick = () => { E.tipoEleccion = b.dataset.tipo; renderPanel(); }; });
+    cont.appendChild(chips);
+    cont.appendChild(notaFuenteElecciones());
+    if (!todas.length) {
+      cont.appendChild(el('<p class="alerta info">Todavía no hay un calendario electoral publicado. Se obtiene de Wikipedia en el próximo ciclo de actualización.</p>'));
+      return;
+    }
+    if (!lista.length) cont.appendChild(mensajeVacio('No hay elecciones de este tipo en los próximos 12 meses.'));
+    let grupo = null;
+    for (const e of lista) {
+      const g = e.fecha ? (() => { const [y, m] = e.fecha.split('-').map(Number); return MESES[m - 1].replace(/^./, (c) => c.toUpperCase()) + ' ' + y; })()
+        : 'Fecha sin confirmar · ' + e.anio;
+      if (g !== grupo) { cont.appendChild(el(`<p class="separador">${esc(g)}</p>`)); grupo = g; }
+      cont.appendChild(filaEleccion(e));
+    }
+  }
+  function seccionElecciones(iso) {
+    const lista = E.idx.eleccionesPorPais[iso] || [];
+    if (!lista.length) return null;
+    const s = el(`<section><h4>Próximas elecciones nacionales</h4><div class="lista-el"></div></section>`);
+    const le = $('.lista-el', s);
+    for (const e of lista) {
+      le.appendChild(filaEleccion(e, false));
+      const enlaces = [`<a href="${esc(e.articulo)}" target="_blank" rel="noopener">Artículo en Wikipedia</a>`]
+        .concat((e.fuentes || []).slice(0, 2).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">Fuente citada: ${esc(dominio(u))}</a>`));
+      le.appendChild(el(`<p class="enlaces-el">${enlaces.join(' · ')}</p>`));
+    }
+    s.appendChild(notaFuenteElecciones());
+    return s;
   }
 
   function renderVista(cont) {
@@ -1087,7 +1233,10 @@
       <section class="regiones-pais"></section>
       <section><h4>Novedades ubicadas en el país (${E.horas} h)</h4><div class="lista-eventos"></div></section></div>`);
     const lc = $('.lista-conf', f);
-    if (!rels.length) lc.appendChild(mensajeVacio('Sin conflictos del registro en las categorías elegidas.'));
+    const secEl = seccionElecciones(iso);
+    if (secEl) lc.parentElement.after(secEl);
+    if (!rels.length && secEl) lc.parentElement.remove();
+    else if (!rels.length) lc.appendChild(mensajeVacio('Sin conflictos del registro en las categorías elegidas.'));
     for (const r of rels) {
       const c = E.idx.conflicto[r.id];
       const n = conteosConflicto(c).np;
@@ -1139,6 +1288,9 @@
       <dt>Feeds RSS</dt><dd>${r.ok || 0} de ${r.total || 0} disponibles${r.error ? ' · ' + r.error + ' con error' : ''}${r.bloqueadas ? ' · ' + r.bloqueadas + ' bloqueadas por robots.txt' : ''}</dd>
       <dt>GDELT</dt><dd>${ultimoG ? 'último archivo ' + esc(absoluto(ultimoG)) : 'sin archivos procesados'}${g.archivos_faltantes ? ' · ' + g.archivos_faltantes + ' faltantes' : ''}</dd>
       <dt>Traducción</dt><dd>${esc(t.motor || '—')}: ${t.traducidos || 0} nuevas, ${t.desde_cache || 0} reutilizadas, ${t.fallidos || 0} fallidas${(t.sin_modelo || []).length ? ' · sin modelo: ' + esc(t.sin_modelo.join(', ')) : ''}</dd>
+      <dt>Calendario electoral</dt><dd>${(() => { const d = E.datos.elecciones || {}; const x = est.elecciones || {};
+        return d.actualizado ? 'Wikipedia, actualizado ' + esc(relativo(d.actualizado)) + ' · ' + E.idx.elecciones.length + ' elecciones en 12 meses' + ((x.errores || []).length ? ' · última consulta con errores' : '')
+          : 'todavía sin datos'; })()}</dd>
       <dt>Alertas Telegram</dt><dd>${tg.configurado ? (tg.vinculado ? 'activas' + (tg.pausado ? ' (en pausa)' : '') : 'bot configurado, chat sin vincular') : 'no configuradas'}</dd>
     </dl>`));
     if ((est.advertencias || []).length) cont.appendChild(el(`<div class="alerta info"><strong>Advertencias del último ciclo</strong><ul>${est.advertencias.map((a) => `<li>${esc(a)}</li>`).join('')}</ul></div>`));
@@ -1156,13 +1308,15 @@
         <li>Las etiquetas de verificación cuentan orígenes; no confirman hechos.</li>
         <li>La actualización programada de GitHub Actions puede demorarse en horas de alta demanda.</li>
       </ul></details></section>`));
-    cont.appendChild(el(`<p class="meta-zona" style="margin:12px 4px">Datos: ${esc(g.cita || 'The GDELT Project')}. Geografía: Natural Earth (dominio público). Mapa: MapLibre GL JS; relieve e imagen satelital de NASA GIBS (Blue Marble; ASTER GDEM, de METI y NASA); detalle de OpenFreeMap con datos de © OpenStreetMap. Traducción: Argos Translate.</p>`));
+    cont.appendChild(el(`<p class="meta-zona" style="margin:12px 4px">Datos: ${esc(g.cita || 'The GDELT Project')}. Calendario electoral: Wikipedia (CC BY-SA 4.0). Geografía: Natural Earth (dominio público). Mapa: MapLibre GL JS; relieve e imagen satelital de NASA GIBS (Blue Marble; ASTER GDEM, de METI y NASA); detalle de OpenFreeMap con datos de © OpenStreetMap. Traducción: Argos Translate.</p>`));
   }
 
   function abrirVista(v) {
     E.vista = v; E.eventoAbierto = null; E.limiteLista = 40;
     renderPanel();
     panelNormal();
+    // En el celular, con el panel expandido no se vería el mapa volar: se baja a la mitad.
+    if (esMovil() && $('#panel').classList.contains('expandido')) estadoPanel('normal');
     actualizarMapa();
     if (v.tipo === 'lugar') { /* la cámara ya está sobre el lugar */ }
     else if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
@@ -1341,7 +1495,8 @@
       const confs = E.datos.conflictos.conflictos.filter((c) => norm(c.nombre).includes(q) || c.actores.some((a) => norm(a).includes(q)))
         .map((c) => ({ tipo: 'conflicto', id: c.id, texto: c.nombre, sub: CORTO[c.categoria] || nombreCat(c.categoria), color: colorCat(c.categoria) }));
       const paises = Object.entries(E.datos.conflictos.paises).filter(([, n]) => norm(n).includes(q))
-        .map(([iso, n]) => ({ tipo: 'pais', id: iso, texto: n, sub: (E.idx.paisConflictos[iso] || []).length ? (E.idx.paisConflictos[iso].length + ' conflicto(s)') : 'país' }));
+        .map(([iso, n]) => ({ tipo: 'pais', id: iso, texto: n, sub: (E.idx.paisConflictos[iso] || []).length ? (E.idx.paisConflictos[iso].length + ' conflicto(s)')
+          : (E.idx.eleccionesPorPais[iso] ? 'elección ' + fechaEleccion(E.idx.eleccionesPorPais[iso][0], false) : 'país') }));
       const regiones = Object.values(E.reg.info).filter((r) => norm(r.n).includes(q))
         .map((r) => ({ tipo: 'region', id: r.id, texto: r.n, sub: 'región · ' + nombrePais(r.p), n: (E.reg.conteo[r.id] || {}).n || 0 }))
         .sort((a, b) => b.n - a.n);
@@ -1398,6 +1553,7 @@
       <div class="item"><svg width="26" height="22" aria-hidden="true"><circle cx="13" cy="11" r="10" fill="${P.grupo}" stroke="${P.grupoBorde}" stroke-width="1.5"/><text x="13" y="15" font-size="10" font-weight="600" text-anchor="middle" fill="${P.grupoTexto}">12</text></svg><span><b>Grupo</b> de noticias cercanas (cantidad, no gravedad)</span></div>
       <div class="item"><svg width="26" height="18" aria-hidden="true"><rect x="2" y="1" width="22" height="16" rx="8" fill="${P.pastilla}" stroke="${P.pastillaBorde}"/><text x="13" y="13" font-size="10" font-weight="600" text-anchor="middle" fill="${P.pastillaTexto}">7</text></svg><span>Noticias del país <b>sin lugar preciso</b> (al alejar, se ocultan si taparían otros símbolos)</span></div>
       <div class="item"><svg width="26" height="16" aria-hidden="true"><rect x="1" y="1" width="24" height="14" fill="none" stroke="${temaOscuro() ? '#bcdcfa' : '#3a6f9e'}" stroke-width="1.4" stroke-dasharray="1.5 2.5"/></svg><span><b>Zona en disputa</b> de soberanía</span></div>
+      <div class="item"><svg width="26" height="18" viewBox="0 0 26 18" aria-hidden="true"><rect x="2.5" y="8" width="9" height="7" rx="1.5" fill="${P.urna}" stroke="${P.urna}"/><rect x="4.5" y="2.5" width="5" height="6" fill="${P.urnaFondo}" stroke="${P.urna}"/><rect x="14.5" y="8" width="9" height="7" rx="1.5" fill="${P.urnaFondo}" stroke="${P.urna}"/><rect x="16.5" y="2.5" width="5" height="6" fill="${P.urnaFondo}" stroke="${P.urna}"/></svg><span><b>Elección nacional</b> · rellena: en los próximos 30 días; contorno: más adelante</span></div>
       <p class="nota">Los colores son categorías, no gravedad. Las zonas no indican control territorial ni frentes de combate. Los puntos que laten tienen noticias de las últimas ${HORAS_RECIENTE} horas.</p>`;
   }
 
@@ -1447,6 +1603,7 @@
       renderPanel(); panelNormal();
     }));
     $('#btn-ayuda').addEventListener('click', () => $('#dialogo-ayuda').showModal());
+    window.addEventListener('resize', medirCabecera);
     $('#asa').addEventListener('click', () => {
       const p = $('#panel');
       if (p.classList.contains('contraido')) estadoPanel('normal');
@@ -1472,7 +1629,13 @@
       if (E.eventoAbierto) { E.eventoAbierto = null; renderPanel(); }
     });
   }
+  // En el celular, el panel expandido llega hasta debajo de la cabecera (no se esconde detrás).
+  function medirCabecera() {
+    const c = $('#controles');
+    if (c) document.documentElement.style.setProperty('--alto-cabecera', Math.round(c.getBoundingClientRect().bottom) + 'px');
+  }
   function estadoPanel(modo) {
+    medirCabecera();
     const p = $('#panel');
     p.classList.toggle('contraido', modo === 'contraido');
     p.classList.toggle('expandido', modo === 'expandido');
@@ -1490,7 +1653,7 @@
     const min = ultimo ? (Date.now() - ultimo) / 60000 : Infinity;
     const hace = ultimo ? (min < 60 ? Math.max(1, Math.round(min)) + ' min' : Math.round(min / 60) + ' h') : '';
     if (!ultimo) return { nivel: 'error', corto: 'Sin datos', detalle: 'Todavía no hubo una recopilación exitosa.' };
-    if (min > 90) return { nivel: 'error', corto: `Desactualizado · ${hace}`, detalle: `Los datos están desactualizados: la última recopilación exitosa fue ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}). La recopilación automática puede estar fallando.` };
+    if (min > 90) return { nivel: 'error', corto: `Atrasado · ${hace}`, detalle: `Los datos están desactualizados: la última recopilación exitosa fue ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}). La recopilación automática puede estar fallando.` };
     if (min > 35) return { nivel: 'aviso', corto: `Demorado · ${hace}`, detalle: `La última recopilación exitosa fue ${relativo(est.ultimo_exito)}. Las ejecuciones programadas pueden demorarse.` };
     if (!est.ciclo_ok) return { nivel: 'aviso', corto: 'Con fallas', detalle: 'El último ciclo tuvo fallas; se muestran los datos de la última recopilación exitosa.' };
     return { nivel: 'ok', corto: `Hace ${hace}`, detalle: `Actualizado ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}).${(est.advertencias || []).length ? ' Hay advertencias menores sobre algunas fuentes (ver abajo).' : ''}` };

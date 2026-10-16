@@ -140,7 +140,7 @@ jobs:
           # Si el ciclo no pudo generar datos, se publica el sitio con un estado que lo indica.
           mkdir -p web/datos
           test -f web/datos/estado.json || echo '{"generado":null,"ultimo_exito":null,"ciclo_ok":false,"advertencias":["El ciclo no generó datos."],"errores":[]}' > web/datos/estado.json
-          for f in conflictos eventos candidatos; do test -f web/datos/$f.json || echo '{}' > web/datos/$f.json; done
+          for f in conflictos eventos candidatos elecciones; do test -f web/datos/$f.json || echo '{}' > web/datos/$f.json; done
 
       - name: Subir sitio
         if: always()
