@@ -166,7 +166,11 @@
     // Elecciones que no terminaron (el archivo se genera cada ciclo; esto cubre el día de la elección).
     idx.elecciones = E.datos.elecciones.elecciones.filter((e) => diasEleccion(e).fin >= 0);
     idx.eleccionesPorPais = {};
-    for (const e of idx.elecciones) if (e.pais) (idx.eleccionesPorPais[e.pais] = idx.eleccionesPorPais[e.pais] || []).push(e);
+    idx.eleccion = {};
+    for (const e of idx.elecciones) {
+      idx.eleccion[e.id] = e;
+      if (e.pais) (idx.eleccionesPorPais[e.pais] = idx.eleccionesPorPais[e.pais] || []).push(e);
+    }
     E.idx = idx;
     if (!E.categorias.size) Object.keys(E.datos.conflictos.categorias).forEach((c) => E.categorias.add(c));
   }
@@ -654,7 +658,8 @@
     if (!m || !E.mapaListo) return;
     const v = E.vista;
     if (m.getLayer('regiones-sel')) m.setFilter('regiones-sel', ['in', ['get', 'id'], ['literal', v && v.tipo === 'region' ? [v.id] : []]]);
-    m.setFilter('paises-resaltado', ['==', ['get', 'id'], v && v.tipo === 'pais' ? v.id : '__ninguno__']);
+    const iso = !v ? null : v.tipo === 'pais' ? v.id : v.tipo === 'eleccion' ? (E.idx.eleccion[v.id] || {}).pais : null;
+    m.setFilter('paises-resaltado', ['==', ['get', 'id'], iso || '__ninguno__']);
   }
 
   function visibilidad() {
@@ -1042,21 +1047,53 @@
 
   // ---------------------------------------------------------- elecciones
   const TIPOS_ELECCION = { todas: 'Todas', ejecutivo: 'Presidenciales', legislativo: 'Legislativas', referendo: 'Referendos' };
-  function filaEleccion(e, conPais = true) {
+  // Cada fila abre la ficha de la elección. No depende de que el país o territorio tenga polígono en el mapa.
+  function filaEleccion(e, conPais = true, desde = null) {
     const sinDia = !e.fecha || e.precision !== 'dia';
     const [, m, d] = e.fecha ? e.fecha.split('-').map(Number) : [0, 0, 0];
     const notas = [e.indirecta ? 'indirecta: no hay voto popular' : '', e.territorio ? 'territorio' : '',
-      e.precision === 'mes' ? 'día sin confirmar' : ''].filter(Boolean);
-    const fila = el(`<div class="fila-eleccion${e.pais ? '' : ' sin-mapa'}" ${e.pais ? 'tabindex="0" role="button"' : ''}>
+      e.precision === 'mes' ? 'día sin confirmar' : '', e.pais ? '' : 'sin ubicación en el mapa'].filter(Boolean);
+    const fila = el(`<div class="fila-eleccion" tabindex="0" role="button" data-eleccion="${esc(e.id)}">
       <div class="fecha-el">${e.fecha ? (sinDia ? `<b>${esc(mesCorto(m - 1))}</b>` : `<b>${d}</b><span>${esc(mesCorto(m - 1))}</span>`) : '<b>?</b>'}</div>
       <div><div class="nombre">${esc(conPais ? e.pais_nombre : e.cargos)}</div>
         <div class="sub">${conPais ? esc(e.cargos) : esc(fechaEleccion(e))}${notas.length ? ' · ' + esc(notas.join(' · ')) : ''}</div></div>
       <div class="cuenta">${esc(cuandoEleccion(e))}</div></div>`);
-    if (e.pais) {
-      const abrir = () => abrirVista({ tipo: 'pais', id: e.pais });
-      fila.onclick = abrir; fila.onkeydown = (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abrir(); } };
-    }
+    const abrir = () => abrirVista({ tipo: 'eleccion', id: e.id, desde });
+    fila.onclick = abrir; fila.onkeydown = (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); abrir(); } };
     return fila;
+  }
+  function enlacesEleccion(e) {
+    return [{ texto: 'Artículo en Wikipedia', url: e.articulo }]
+      .concat((e.fuentes || []).map((u) => ({ texto: 'Fuente citada: ' + dominio(u), url: u })))
+      .concat(e.calendario ? [{ texto: 'Calendario electoral de Wikipedia', url: e.calendario }] : [])
+      .filter((x) => x.url);
+  }
+  function fichaEleccion(cont, e) {
+    if (!e) return cont.appendChild(mensajeVacio('Esta elección ya no figura en el calendario publicado: puede haberse realizado o haber cambiado su fecha.'));
+    const cuando = cuandoEleccion(e);
+    const ubicacion = e.pais ? nombrePais(e.pais) + ' (se resalta al abrir esta ficha)'
+      : 'Sin ubicación en el mapa: «' + e.pais_en + '» no figura entre los países de la base cartográfica. La ficha y sus enlaces se pueden consultar igual.';
+    const f = el(`<div class="ficha"><span class="categoria-ficha"><i style="background:${paleta().urna}"></i>Elección nacional${e.territorio ? ' · territorio' : ''}</span>
+      <h2>${esc(e.pais_nombre)}</h2>
+      <p class="meta-zona">${esc(e.cargos)}</p>
+      <dl class="kv">
+        <dt>Fecha</dt><dd>${esc(fechaEleccion(e))}${cuando ? ' · ' + esc(cuando) : ''}</dd>
+        <dt>Votación</dt><dd>${e.indirecta ? 'Indirecta: la decide un órgano, no hay voto popular' : 'Directa'}</dd>
+        <dt>Mapa</dt><dd>${esc(ubicacion)}</dd>
+      </dl>
+      <section><h4>Enlaces</h4><ul class="enlaces-ficha">${enlacesEleccion(e).map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.texto)} ↗</a></li>`).join('')}</ul></section>
+    </div>`);
+    if (e.pais) {
+      const otras = (E.idx.eleccionesPorPais[e.pais] || []).filter((x) => x.id !== e.id);
+      const s = el(`<section>${otras.length ? `<h4>Otras elecciones en ${esc(nombrePais(e.pais))}</h4>` : ''}<div class="lista-el"></div></section>`);
+      otras.forEach((x) => $('.lista-el', s).appendChild(filaEleccion(x, false, E.vista)));
+      const b = el(`<button class="mas" type="button">Ver la ficha de ${esc(nombrePais(e.pais))}</button>`);
+      b.onclick = () => abrirVista({ tipo: 'pais', id: e.pais });
+      s.appendChild(b);
+      f.appendChild(s);
+    }
+    f.appendChild(notaFuenteElecciones());
+    cont.appendChild(f);
   }
   function notaFuenteElecciones() {
     const d = E.datos.elecciones;
@@ -1091,7 +1128,7 @@
     const s = el(`<section><h4>Próximas elecciones nacionales</h4><div class="lista-el"></div></section>`);
     const le = $('.lista-el', s);
     for (const e of lista) {
-      le.appendChild(filaEleccion(e, false));
+      le.appendChild(filaEleccion(e, false, E.vista));
       const enlaces = [`<a href="${esc(e.articulo)}" target="_blank" rel="noopener">Artículo en Wikipedia</a>`]
         .concat((e.fuentes || []).slice(0, 2).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">Fuente citada: ${esc(dominio(u))}</a>`));
       le.appendChild(el(`<p class="enlaces-el">${enlaces.join(' · ')}</p>`));
@@ -1103,13 +1140,14 @@
   function renderVista(cont) {
     const v = E.vista;
     const volver = el('<button class="volver" type="button">← Volver</button>');
-    volver.onclick = cerrarVista;
+    volver.onclick = v.desde ? () => abrirVista(v.desde) : cerrarVista;
     cont.appendChild(volver);
     if (v.tipo === 'region') return fichaRegion(cont, v.id);
     if (v.tipo === 'conflicto') return fichaConflicto(cont, E.idx.conflicto[v.id]);
     if (v.tipo === 'pais') return fichaPais(cont, v.id);
     if (v.tipo === 'candidato') return fichaCandidato(cont, (E.datos.candidatos.candidatos || []).find((c) => c.id === v.id));
     if (v.tipo === 'lugar') return fichaLugar(cont, v);
+    if (v.tipo === 'eleccion') return fichaEleccion(cont, E.idx.eleccion[v.id]);
   }
 
   // Varias novedades ubicadas en el mismo lugar (o tan cerca que no se separan al acercar).
@@ -1315,8 +1353,10 @@
     E.vista = v; E.eventoAbierto = null; E.limiteLista = 40;
     renderPanel();
     panelNormal();
-    // En el celular, con el panel expandido no se vería el mapa volar: se baja a la mitad.
-    if (esMovil() && $('#panel').classList.contains('expandido')) estadoPanel('normal');
+    // En el celular, con el panel expandido no se vería el mapa volar: se baja a la mitad (salvo que no haya
+    // nada que mostrar en el mapa, como una elección en un territorio sin ubicación).
+    const sinMapa = v.tipo === 'eleccion' && !(E.idx.eleccion[v.id] || {}).pais;
+    if (esMovil() && !sinMapa && $('#panel').classList.contains('expandido')) estadoPanel('normal');
     actualizarMapa();
     if (v.tipo === 'lugar') { /* la cámara ya está sobre el lugar */ }
     else if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
@@ -1328,6 +1368,7 @@
       else encuadrar(c.paises_escenario);
     } else if (v.tipo === 'pais') encuadrar([v.id]);
     else if (v.tipo === 'candidato') { const c = (E.datos.candidatos.candidatos || []).find((x) => x.id === v.id); if (c) encuadrar([c.pais]); }
+    else if (v.tipo === 'eleccion' && !sinMapa) encuadrar([E.idx.eleccion[v.id].pais]);
     const cp = $('#contenido-panel');
     if (cp) cp.scrollTop = 0;
   }
@@ -1500,7 +1541,9 @@
       const regiones = Object.values(E.reg.info).filter((r) => norm(r.n).includes(q))
         .map((r) => ({ tipo: 'region', id: r.id, texto: r.n, sub: 'región · ' + nombrePais(r.p), n: (E.reg.conteo[r.id] || {}).n || 0 }))
         .sort((a, b) => b.n - a.n);
-      opciones = [...confs.slice(0, 6), ...paises.sort((a, b) => (b.sub === 'país' ? 0 : 1) - (a.sub === 'país' ? 0 : 1)).slice(0, 5), ...regiones.slice(0, 5)];
+      const sinMapa = E.idx.elecciones.filter((e) => !e.pais && norm(e.pais_nombre + ' ' + e.pais_en).includes(q))
+        .map((e) => ({ tipo: 'eleccion', id: e.id, texto: e.pais_nombre, sub: 'elección ' + fechaEleccion(e, false) + ' · sin mapa', color: paleta().urna }));
+      opciones = [...confs.slice(0, 6), ...paises.sort((a, b) => (b.sub === 'país' ? 0 : 1) - (a.sub === 'país' ? 0 : 1)).slice(0, 5), ...sinMapa.slice(0, 3), ...regiones.slice(0, 5)];
       lista.innerHTML = opciones.length ? opciones.map((o, i) => `<li role="option" id="op-${i}" aria-selected="false"><span class="punto" style="background:${o.color || 'var(--superficie-3)'}"></span>${esc(o.texto)}<span class="tipo">${esc(o.sub)}</span></li>`).join('') : '<li role="option" aria-disabled="true">Sin resultados</li>';
       lista.hidden = false; input.setAttribute('aria-expanded', 'true');
       $$('li[id]', lista).forEach((li, i) => li.addEventListener('mousedown', (e) => { e.preventDefault(); elegir(opciones[i]); }));
