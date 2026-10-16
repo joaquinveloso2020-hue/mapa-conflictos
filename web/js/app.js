@@ -350,8 +350,9 @@
     const cab = $('#controles');
     const caja = cab ? cab.getBoundingClientRect() : { bottom: 140, right: 360 };
     if (esMovil()) {
+      // Altura final del panel (no la de la animación en curso).
       const p = $('#panel');
-      const alto = p ? p.getBoundingClientRect().height : window.innerHeight * 0.44;
+      const alto = p && p.classList.contains('contraido') ? 120 : window.innerHeight * 0.44;
       return { top: Math.min(caja.bottom + 10, window.innerHeight * 0.3), bottom: Math.min(alto + 54, window.innerHeight * 0.62), left: 14, right: 14 };
     }
     const derecha = panelVisible() ? 384 + 40 : 40;
@@ -1316,6 +1317,8 @@
     E.vista = v; E.eventoAbierto = null; E.limiteLista = 40;
     renderPanel();
     panelNormal();
+    // En el celular, con el panel expandido no se vería el mapa volar: se baja a la mitad.
+    if (esMovil() && $('#panel').classList.contains('expandido')) estadoPanel('normal');
     actualizarMapa();
     if (v.tipo === 'lugar') { /* la cámara ya está sobre el lugar */ }
     else if (v.tipo === 'region') encuadrarCaja(E.reg.cajas[v.id], 6.5);
@@ -1602,6 +1605,7 @@
       renderPanel(); panelNormal();
     }));
     $('#btn-ayuda').addEventListener('click', () => $('#dialogo-ayuda').showModal());
+    window.addEventListener('resize', medirCabecera);
     $('#asa').addEventListener('click', () => {
       const p = $('#panel');
       if (p.classList.contains('contraido')) estadoPanel('normal');
@@ -1627,7 +1631,13 @@
       if (E.eventoAbierto) { E.eventoAbierto = null; renderPanel(); }
     });
   }
+  // En el celular, el panel expandido llega hasta debajo de la cabecera (no se esconde detrás).
+  function medirCabecera() {
+    const c = $('#controles');
+    if (c) document.documentElement.style.setProperty('--alto-cabecera', Math.round(c.getBoundingClientRect().bottom) + 'px');
+  }
   function estadoPanel(modo) {
+    medirCabecera();
     const p = $('#panel');
     p.classList.toggle('contraido', modo === 'contraido');
     p.classList.toggle('expandido', modo === 'expandido');
@@ -1645,7 +1655,7 @@
     const min = ultimo ? (Date.now() - ultimo) / 60000 : Infinity;
     const hace = ultimo ? (min < 60 ? Math.max(1, Math.round(min)) + ' min' : Math.round(min / 60) + ' h') : '';
     if (!ultimo) return { nivel: 'error', corto: 'Sin datos', detalle: 'Todavía no hubo una recopilación exitosa.' };
-    if (min > 90) return { nivel: 'error', corto: `Desactualizado · ${hace}`, detalle: `Los datos están desactualizados: la última recopilación exitosa fue ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}). La recopilación automática puede estar fallando.` };
+    if (min > 90) return { nivel: 'error', corto: `Atrasado · ${hace}`, detalle: `Los datos están desactualizados: la última recopilación exitosa fue ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}). La recopilación automática puede estar fallando.` };
     if (min > 35) return { nivel: 'aviso', corto: `Demorado · ${hace}`, detalle: `La última recopilación exitosa fue ${relativo(est.ultimo_exito)}. Las ejecuciones programadas pueden demorarse.` };
     if (!est.ciclo_ok) return { nivel: 'aviso', corto: 'Con fallas', detalle: 'El último ciclo tuvo fallas; se muestran los datos de la última recopilación exitosa.' };
     return { nivel: 'ok', corto: `Hace ${hace}`, detalle: `Actualizado ${relativo(est.ultimo_exito)} (${absoluto(est.ultimo_exito)}).${(est.advertencias || []).length ? ' Hay advertencias menores sobre algunas fuentes (ver abajo).' : ''}` };
