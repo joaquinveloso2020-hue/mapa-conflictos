@@ -351,7 +351,7 @@ class Ciclo:
                                                 if actualizado else "Todavía no se obtuvo el calendario electoral.")
         return {"actualizado": actualizado, "consultado": informe["consultado"],
                 "proximas": len(self.doc_elecciones["elecciones"]), "sin_ubicar": self.doc_elecciones["sin_ubicar"],
-                "errores": informe["errores"]}
+                "duplicados_omitidos": self.doc_elecciones["duplicados_omitidos"], "errores": informe["errores"]}
 
     # -------------------------------------------------------------- telegram
     def telegram(self, vistas: list[dict], candidatos: dict, info: dict) -> dict:

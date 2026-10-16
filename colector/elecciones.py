@@ -351,61 +351,115 @@ def actualizar(cache: dict, sesion, ahora: datetime, forzar: bool = False) -> di
     return informe
 
 
+# ----------------------------------------------------------------------------- duplicados
+ORDEN_PRECISION = {"dia": 0, "mes": 1, "anio": 2}
+
+
+def _clave_proceso(e: dict) -> tuple:
+    """Mismo proceso electoral: mismo país, mismo artículo de Wikipedia, mismo cargo (con su vuelta o fase),
+    mismo año y mismo tipo de votación."""
+    return (normalizar(e["pais_en"]), normalizar(e["articulo"].replace("_", " ")), normalizar(e["cargos_en"]),
+            int(e["anio"]), bool(e.get("indirecta")))
+
+
+def _cubre(precisa: dict, vaga: dict) -> bool:
+    """La entrada precisa fecha la misma elección que la vaga: el día cae en ese mes, o el día o el mes en
+    ese año (la clave ya exige el mismo año)."""
+    if vaga["precision"] == "mes":
+        return precisa["precision"] == "dia" and (precisa.get("fecha") or "")[:7] == (vaga.get("fecha") or "")[:7]
+    if vaga["precision"] == "anio":
+        return precisa["precision"] in ("dia", "mes")
+    return False
+
+
+def deduplicar(entradas: list[dict]) -> tuple[list[dict], int]:
+    """Wikipedia a veces lista la misma elección con fecha y otra vez en "fecha desconocida" (o solo con el
+    mes). Se conserva la entrada más precisa con sus fuentes; si la vaga citaba otras, se agregan después.
+    No se fusionan cargos distintos (1.ª y 2.ª vuelta), fechas distintas (fases o elecciones sucesivas del
+    mismo órgano) ni años distintos; si la entrada vaga podría corresponder a más de una precisa, se
+    conservan todas. Devuelve copias: no modifica la caché."""
+    entradas = [dict(e) for e in entradas]
+    grupos: dict[tuple, list[int]] = {}
+    for i, e in enumerate(entradas):
+        grupos.setdefault(_clave_proceso(e), []).append(i)
+    descartadas: set[int] = set()
+    for indices in grupos.values():
+        if len(indices) < 2:
+            continue
+        # Primero las de solo mes (contra las de día) y después las de solo año, así una elección con mes,
+        # día y "fecha desconocida" termina en una única entrada.
+        for i in sorted((k for k in indices if entradas[k]["precision"] != "dia"),
+                        key=lambda k: ORDEN_PRECISION[entradas[k]["precision"]]):
+            vaga = entradas[i]
+            candidatas = [j for j in indices if j != i and j not in descartadas and _cubre(entradas[j], vaga)]
+            if len(candidatas) != 1:
+                continue
+            precisa = entradas[candidatas[0]]
+            precisa["fuentes"] = list(dict.fromkeys((precisa.get("fuentes") or []) + (vaga.get("fuentes") or [])))[:3]
+            descartadas.add(i)
+    return [e for i, e in enumerate(entradas) if i not in descartadas], len(descartadas)
+
+
 # ----------------------------------------------------------------------------- publicación
 def _id(e: dict) -> str:
     base = f"{e.get('pais') or e['pais_en']}-{e.get('fecha') or e['anio']}-{e['cargos_en']}"
     return re.sub(r"[^a-z0-9]+", "-", normalizar(base)).strip("-")[:90]
 
 
-def publicables(cache: dict, paises: dict, ahora: datetime) -> tuple[list[dict], list[str]]:
-    """Elecciones desde hoy hasta HORIZONTE_DIAS, ordenadas por fecha. También devuelve los nombres
-    de países que no se pudieron ubicar en el mapa (se publican igual, sin símbolo)."""
+def publicables(cache: dict, paises: dict, ahora: datetime) -> tuple[list[dict], list[str], int]:
+    """Elecciones desde hoy hasta HORIZONTE_DIAS, ordenadas por fecha, sin duplicados. También devuelve los
+    nombres de países que no se pudieron ubicar en el mapa (se publican igual, con ficha pero sin símbolo)
+    y la cantidad de duplicados omitidos."""
     indice = IndicePaises(paises)
     hoy = ahora.date()
     tope = hoy + timedelta(days=HORIZONTE_DIAS)
-    salida, sin_pais, vistos = [], [], set()
+    todas = []
     for anio, datos in sorted((cache.get("anios") or {}).items()):
         titulo = datos.get("titulo") or PAGINA.format(anio=anio)
-        for e in datos.get("entradas") or []:
-            if e["precision"] == "dia":
-                inicio = date.fromisoformat(e["fecha"])
-                fin = date.fromisoformat(e["fin"]) if e.get("fin") else inicio
-                if fin < hoy or inicio > tope:
-                    continue
-            elif e["precision"] == "mes":
-                inicio = date.fromisoformat(e["fecha"])
-                ultimo_dia = (inicio.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
-                if ultimo_dia < hoy or inicio > tope:
-                    continue
-            elif int(e["anio"]) < hoy.year or int(e["anio"]) > tope.year:
+        todas.extend({**e, "_calendario": titulo} for e in datos.get("entradas") or [])
+    # Antes de recortar por fecha: la entrada precisa puede caer fuera del horizonte y aun así fechar la vaga.
+    todas, duplicados = deduplicar(todas)
+    salida, sin_pais, vistos = [], [], set()
+    for e in todas:
+        titulo = e["_calendario"]
+        if e["precision"] == "dia":
+            inicio = date.fromisoformat(e["fecha"])
+            fin = date.fromisoformat(e["fin"]) if e.get("fin") else inicio
+            if fin < hoy or inicio > tope:
                 continue
-            iso3 = indice.iso3(e["pais_en"])
-            if not iso3 and e["pais_en"] not in sin_pais:
-                sin_pais.append(e["pais_en"])
-            p = paises.get(iso3) or {}
-            pub = {
-                "pais": iso3, "pais_nombre": p.get("nombre") or e["pais_en"], "pais_en": e["pais_en"],
-                "territorio": bool(e.get("territorio")),
-                "fecha": e.get("fecha"), "fin": e.get("fin"), "precision": e["precision"], "anio": int(e["anio"]),
-                "texto_fecha": e.get("texto_fecha"),
-                "cargos": traducir_cargos(e["cargos_en"]), "cargos_en": e["cargos_en"], "tipos": tipos(e["cargos_en"]),
-                "indirecta": bool(e.get("indirecta")),
-                "articulo": URL_PAGINA.format(titulo=quote(e["articulo"].replace(" ", "_"))),
-                "calendario": URL_PAGINA.format(titulo=quote(titulo.replace(" ", "_"))),
-                "fuentes": e.get("fuentes") or [],
-            }
-            pub["id"] = _id(pub)
-            if pub["id"] in vistos:
+        elif e["precision"] == "mes":
+            inicio = date.fromisoformat(e["fecha"])
+            ultimo_dia = (inicio.replace(day=28) + timedelta(days=4)).replace(day=1) - timedelta(days=1)
+            if ultimo_dia < hoy or inicio > tope:
                 continue
-            vistos.add(pub["id"])
-            salida.append(pub)
-    orden = {"dia": 0, "mes": 1, "anio": 2}
-    salida.sort(key=lambda x: (x["fecha"] or f"{x['anio']}-12-31", orden[x["precision"]], x["pais_nombre"]))
-    return salida, sin_pais
+        elif int(e["anio"]) < hoy.year or int(e["anio"]) > tope.year:
+            continue
+        iso3 = indice.iso3(e["pais_en"])
+        if not iso3 and e["pais_en"] not in sin_pais:
+            sin_pais.append(e["pais_en"])
+        p = paises.get(iso3) or {}
+        pub = {
+            "pais": iso3, "pais_nombre": p.get("nombre") or e["pais_en"], "pais_en": e["pais_en"],
+            "territorio": bool(e.get("territorio")),
+            "fecha": e.get("fecha"), "fin": e.get("fin"), "precision": e["precision"], "anio": int(e["anio"]),
+            "texto_fecha": e.get("texto_fecha"),
+            "cargos": traducir_cargos(e["cargos_en"]), "cargos_en": e["cargos_en"], "tipos": tipos(e["cargos_en"]),
+            "indirecta": bool(e.get("indirecta")),
+            "articulo": URL_PAGINA.format(titulo=quote(e["articulo"].replace(" ", "_"))),
+            "calendario": URL_PAGINA.format(titulo=quote(titulo.replace(" ", "_"))),
+            "fuentes": e.get("fuentes") or [],
+        }
+        pub["id"] = _id(pub)
+        if pub["id"] in vistos:
+            continue
+        vistos.add(pub["id"])
+        salida.append(pub)
+    salida.sort(key=lambda x: (x["fecha"] or f"{x['anio']}-12-31", ORDEN_PRECISION[x["precision"]], x["pais_nombre"]))
+    return salida, sin_pais, duplicados
 
 
 def documento(cache: dict, paises: dict, ahora: datetime) -> dict:
-    lista, sin_pais = publicables(cache, paises, ahora)
+    lista, sin_pais, duplicados = publicables(cache, paises, ahora)
     paginas = [{"anio": int(a), "titulo": d.get("titulo"), "revid": d.get("revid"), "obtenido": d.get("obtenido"),
                 "url": URL_PAGINA.format(titulo=quote((d.get("titulo") or PAGINA.format(anio=a)).replace(" ", "_")))}
                for a, d in sorted((cache.get("anios") or {}).items())]
@@ -417,5 +471,6 @@ def documento(cache: dict, paises: dict, ahora: datetime) -> dict:
         "fuente": {"nombre": "Wikipedia en inglés, calendarios electorales nacionales", "licencia": LICENCIA,
                    "paginas": paginas},
         "sin_ubicar": sin_pais,
+        "duplicados_omitidos": duplicados,
         "elecciones": lista,
     }

@@ -129,9 +129,14 @@ def main(salida: str) -> None:
                            "calendario": "https://ejemplo.invalid/calendario", "fuentes": ["https://ejemplo.invalid/fuente"]})
     elecciones.append({**elecciones[0], "id": "prueba-sin-fecha", "pais": "ITA", "pais_nombre": "Italia", "fecha": None,
                        "precision": "anio", "cargos": "[PRUEBA] Parlamento", "tipos": ["legislativo"]})
+    # Territorio sin polígono en la base cartográfica: tiene ficha y enlaces aunque no tenga símbolo en el mapa.
+    f = (ahora + timedelta(days=40)).date()
+    elecciones.append({**elecciones[0], "id": "prueba-territorio", "pais": None, "pais_nombre": "[PRUEBA] Territorio sin mapa",
+                       "pais_en": "[PRUEBA] Territory", "territorio": True, "fecha": f.isoformat(), "precision": "dia",
+                       "anio": f.year, "cargos": "[PRUEBA] Presidente", "tipos": ["ejecutivo"]})
     json.dump({"generado": ahora.isoformat(), "horizonte_dias": 365, "actualizado": ahora.isoformat(),
                "fuente": {"nombre": "[PRUEBA] calendario ficticio", "licencia": "CC BY-SA 4.0", "paginas": []},
-               "sin_ubicar": [], "elecciones": elecciones},
+               "sin_ubicar": ["[PRUEBA] Territory"], "duplicados_omitidos": 0, "elecciones": elecciones},
               open(os.path.join(datos, "elecciones.json"), "w"), ensure_ascii=False)
     json.dump({"generado": ahora.isoformat(), "ultimo_exito": (ahora - timedelta(minutes=9)).isoformat(),
                "ciclo_ok": True, "duracion_s": 123, "advertencias": ["[PRUEBA] 2 de 58 feeds RSS fallaron en este ciclo."],
