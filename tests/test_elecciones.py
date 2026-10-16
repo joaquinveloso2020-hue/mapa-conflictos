@@ -109,6 +109,91 @@ def test_publicables_horizonte_paises_y_traduccion(paises):
     assert not any(x["pais"] == "USA" for x in doc2["elecciones"])
 
 
+# Mismo formato que el calendario real de 2027: la elección aparece con fecha y otra vez en "Unknown date".
+PAGINA_DUPLICADOS_2027 = """==January==
+* 30 January: [[Elections in Brazil|Brazil]], [[2027 Prueba election|President (1st round)]]
+* January: [[Elections in Peru|Peru]], [[2027 Prueba Peru election|Congress]]<ref>{{cite web|url=https://prueba.example/peru-mes}}</ref>
+* 12 January: [[Elections in Peru|Peru]], [[2027 Prueba Peru election|Congress]]
+==February==
+* 27 February: [[Elections in Brazil|Brazil]], [[2027 Prueba election|President (2nd round)]]
+* February: [[Elections in Chile|Chile]], [[2027 Prueba Chile election|Senate]]
+* 4 February: [[Elections in Chile|Chile]], [[2027 Prueba Chile election|Senate]]
+* 18 February: [[Elections in Chile|Chile]], [[2027 Prueba Chile election|Senate]]
+==September==
+* 28 September: [[Elections in Slovakia|Slovakia]], [[Next Slovak parliamentary election|Parliament]]<ref>{{cite web|url=https://prueba.example/eslovaquia-fecha}}</ref>
+==Unknown date==
+* [[Elections in Slovakia|Slovakia]], [[Next Slovak parliamentary election|Parliament]]<ref>{{cite web|url=https://prueba.example/eslovaquia-sin-fecha}}</ref>
+* [[Elections in Brazil|Brazil]], [[2027 Prueba election|President (2nd round)]]
+* [[Elections in Peru|Peru]], [[2027 Prueba Peru election|Congress]]
+* [[Elections in India|India]], [[2027 Rajya Sabha elections|Council of States]]
+* [[Elections in Italy|Italy]], [[Next Italian general election|Chamber of Deputies and Senate]]
+==Indirect elections==
+* 3 April, 9 May: [[Elections in India|India]], [[2027 Rajya Sabha elections|Council of States]]
+"""
+
+
+def _doc_con(paginas: dict, ahora=AHORA, paises_base=None):
+    cache = {"anios": {str(a): {"titulo": f"{a} national electoral calendar", "entradas": el.parsear(t, a)}
+                       for a, t in paginas.items()}, "ultimo_ok": ahora.isoformat()}
+    return el.documento(cache, paises_base, ahora), cache
+
+
+def test_no_duplica_la_misma_eleccion_con_y_sin_fecha(paises):
+    doc, cache = _doc_con({2027: PAGINA_DUPLICADOS_2027}, paises_base=paises)
+    lista = doc["elecciones"]
+    por_pais = lambda iso: [x for x in lista if x["pais"] == iso]
+    # Eslovaquia: una sola entrada, la de día, con sus fuentes primero y la de la entrada omitida después.
+    svk = por_pais("SVK")
+    assert len(svk) == 1
+    assert svk[0]["precision"] == "dia" and svk[0]["fecha"] == "2027-09-28"
+    assert svk[0]["id"] == "svk-2027-09-28-parliament"
+    assert svk[0]["fuentes"] == ["https://prueba.example/eslovaquia-fecha", "https://prueba.example/eslovaquia-sin-fecha"]
+    assert svk[0]["articulo"] == "https://en.wikipedia.org/wiki/Next_Slovak_parliamentary_election"
+    # Mes, día y "fecha desconocida" del mismo proceso: queda la de día, con la fuente que solo citaba la de mes.
+    per = por_pais("PER")
+    assert [(x["precision"], x["fecha"]) for x in per] == [("dia", "2027-01-12")]
+    assert per[0]["fuentes"] == ["https://prueba.example/peru-mes"]
+    # Distintas vueltas no se fusionan entre sí; la 2.ª vuelta sin fecha se absorbe en la 2.ª vuelta con fecha.
+    bra = por_pais("BRA")
+    assert [(x["cargos_en"], x["fecha"]) for x in bra] == [("President (1st round)", "2027-01-30"),
+                                                           ("President (2nd round)", "2027-02-27")]
+    # Si el mes podría ser cualquiera de dos fechas, no se adivina: se conservan las tres entradas.
+    assert [(x["precision"], x["fecha"]) for x in por_pais("CHL")] == [
+        ("mes", "2027-02-01"), ("dia", "2027-02-04"), ("dia", "2027-02-18")]
+    # Indirectas con varias fechas: no se fusionan entre sí ni con la directa "sin fecha" del mismo órgano.
+    ind = por_pais("IND")
+    assert sorted((x["indirecta"], x["fecha"] or "") for x in ind) == [(False, ""), (True, "2027-04-03"), (True, "2027-05-09")]
+    # Sin pares: Italia queda igual.
+    assert [x["precision"] for x in por_pais("ITA")] == ["anio"]
+    assert doc["duplicados_omitidos"] == 4
+    assert len({x["id"] for x in lista}) == len(lista)
+    # La caché conserva lo que publicó Wikipedia, sin las fuentes agregadas.
+    crudas = [x for x in cache["anios"]["2027"]["entradas"] if x["pais_en"] == "Slovakia"]
+    assert len(crudas) == 2 and crudas[0]["fuentes"] == ["https://prueba.example/eslovaquia-fecha"]
+
+
+def test_duplicado_con_la_fecha_precisa_fuera_del_horizonte(paises):
+    # Hoy es 15/10/2026: el 28/9/2027 queda dentro de los 365 días, pero con un horizonte más corto la entrada
+    # con fecha se recorta y la de "fecha desconocida" no debe reaparecer sola como si fuera otra elección.
+    original = el.HORIZONTE_DIAS
+    try:
+        el.HORIZONTE_DIAS = 200
+        doc, _ = _doc_con({2027: PAGINA_DUPLICADOS_2027}, paises_base=paises)
+    finally:
+        el.HORIZONTE_DIAS = original
+    assert not any(x["pais"] == "SVK" for x in doc["elecciones"])
+
+
+def test_territorio_sin_mapa_conserva_ficha_y_enlaces(paises):
+    doc, _ = _doc_con({2026: PAGINA_PRUEBA_2026}, paises_base=paises)
+    tr = next(x for x in doc["elecciones"] if x["pais_en"] == "Transnistria")
+    assert tr["pais"] is None and tr["territorio"] is True
+    assert tr["pais_nombre"] == "Transnistria" and tr["id"] == "transnistria-2026-10-20-president"
+    assert tr["articulo"] == "https://en.wikipedia.org/wiki/2026_Transnistrian_presidential_election"
+    assert tr["calendario"] == "https://en.wikipedia.org/wiki/2026_national_electoral_calendar"
+    assert tr["cargos"] == "Presidente"
+
+
 def _respuesta(texto, revid=1):
     return Respuesta(200, js={"parse": {"title": "2026 national electoral calendar", "revid": revid, "wikitext": texto}})
 
