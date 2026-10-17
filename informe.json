@@ -1,0 +1,181 @@
+{
+ "generado": "2026-10-17T21:56:56.773024+00:00",
+ "ciclo_id": "202610172156",
+ "advertencias": [
+  "Sin modelo de traducción para: hr, mr, sr"
+ ],
+ "errores": [],
+ "etapas": {
+  "reglas": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "modelos": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "rss": {
+   "ok": true,
+   "segundos": 3.3
+  },
+  "gdelt": {
+   "ok": true,
+   "segundos": 0.3
+  },
+  "incorporar": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "pivote_ingles": {
+   "ok": true,
+   "segundos": 7.0
+  },
+  "pivote_es_en": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "clasificar": {
+   "ok": true,
+   "segundos": 0.2
+  },
+  "traducir_espanol": {
+   "ok": true,
+   "segundos": 0.8
+  },
+  "enriquecer": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "agrupar": {
+   "ok": true,
+   "segundos": 0.2
+  },
+  "vistas": {
+   "ok": true,
+   "segundos": 0.8
+  },
+  "descubrir": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "traducir_candidatos": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "elecciones": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "telegram": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "publicar": {
+   "ok": true,
+   "segundos": 0.4
+  }
+ },
+ "gdelt": {
+  "ultimo_archivo": "20261017214500",
+  "archivos_ok": 3,
+  "archivos_pendientes": 5,
+  "archivos_faltantes": 0,
+  "registros_gkg": 0,
+  "filas_invalidas": 0,
+  "errores": [],
+  "cita": "The GDELT Project (https://www.gdeltproject.org/)"
+ },
+ "ciclo_ok": true,
+ "ultimo_exito": "2026-10-17T21:56:56.773024+00:00",
+ "resumen_fuentes": {
+  "total": 53,
+  "ok": 53,
+  "error": 0,
+  "bloqueadas": 0
+ },
+ "traduccion": {
+  "motor": "Argos Translate (modelos abiertos ejecutados localmente)",
+  "traducidos": 5,
+  "desde_cache": 1,
+  "fallidos": 0,
+  "sin_modelo": [
+   "hr",
+   "mr",
+   "sr"
+  ],
+  "errores": [],
+  "modelos_instalados": [
+   "ar_en",
+   "bg_en",
+   "bn_en",
+   "ca_en",
+   "cs_en",
+   "da_en",
+   "de_en",
+   "el_en",
+   "en_es",
+   "es_en",
+   "et_en",
+   "fa_en",
+   "fi_en",
+   "fr_en",
+   "gl_en",
+   "he_en",
+   "hi_en",
+   "hu_en",
+   "id_en",
+   "it_en",
+   "ja_en",
+   "ko_en",
+   "lt_en",
+   "lv_en",
+   "ms_en",
+   "nb_en",
+   "nl_en",
+   "pl_en",
+   "pt_en",
+   "pt_es",
+   "ro_en",
+   "ru_en",
+   "sk_en",
+   "sl_en",
+   "sq_en",
+   "sv_en",
+   "sw_en",
+   "th_en",
+   "tr_en",
+   "uk_en",
+   "ur_en",
+   "vi_en",
+   "zh_en"
+  ]
+ },
+ "articulos_nuevos": 6,
+ "articulos_asignados": 1,
+ "eventos_72h": 7452,
+ "conflictos_registro": 50,
+ "elecciones": {
+  "actualizado": "2026-10-17T17:10:01.748056+00:00",
+  "consultado": false,
+  "proximas": 57,
+  "sin_ubicar": [
+   "Transnistria"
+  ],
+  "duplicados_omitidos": 1,
+  "errores": []
+ },
+ "telegram": {
+  "configurado": false,
+  "vinculado": false,
+  "enviados_ciclo": 0,
+  "errores": []
+ },
+ "duracion_s": 12.7,
+ "publicado": {
+  "eventos": 3209,
+  "articulos": 7037,
+  "candidatos": 32,
+  "elecciones": 57
+ },
+ "fuentes_con_error": []
+}
