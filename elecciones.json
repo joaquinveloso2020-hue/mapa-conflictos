@@ -1,0 +1,1956 @@
+{
+ "anios": {
+  "2026": {
+   "revid": 1382799185,
+   "titulo": "2026 national electoral calendar",
+   "obtenido": "2026-10-31T11:53:23.270473+00:00",
+   "entradas": [
+    {
+     "pais_en": "Benin",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Beninese parliamentary election",
+     "fuentes": [
+      "https://lebeninoislibere.bj/benin-le-calendrier-des-elections-communales-et-legislatives-devoile/,%20https://lebeninoislibere.bj/benin-le-calendrier-des-elections-communales-et-legislatives-devoile/"
+     ],
+     "fecha": "2026-01-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Myanmar",
+     "territorio": false,
+     "cargos_en": "Parliament (2nd phase)",
+     "articulo": "2025–26 Myanmar general election",
+     "fuentes": [
+      "https://www.irrawaddy.com/news/politics/myanmar-juntas-phase-2-vote-plan-includes-scores-of-resistance-strongholds.html"
+     ],
+     "fecha": "2026-01-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Uganda",
+     "territorio": false,
+     "cargos_en": "President and Parliament",
+     "articulo": "2026 Ugandan general election",
+     "fuentes": [
+      "https://eagle.co.ug/2025/11/03/ec-confirms-polling-dates-for-presidential-and-parliamentary-elections-on-january-15/"
+     ],
+     "fecha": "2026-01-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Portugal",
+     "territorio": false,
+     "cargos_en": "President (1st round)",
+     "articulo": "2026 Portuguese presidential election",
+     "fuentes": [
+      "https://www.publico.pt/2025/09/14/politica/noticia/eleicoes-presidenciais-deverao-marcadas-18-janeiro-2026-2147140",
+      "http://www.theportugalnews.com/news/2025-10-30/presidential-elections-are-scheduled/909563"
+     ],
+     "fecha": "2026-01-18",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Myanmar",
+     "territorio": false,
+     "cargos_en": "Parliament (3rd phase)",
+     "articulo": "2025–26 Myanmar general election",
+     "fuentes": [
+      "https://npnewsmm.com/news/691991ad6ea4dd3f1b3023d5"
+     ],
+     "fecha": "2026-01-25",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Costa Rica",
+     "territorio": false,
+     "cargos_en": "President and Parliament",
+     "articulo": "2026 Costa Rican general election",
+     "fuentes": [
+      "https://crhoy.com/tse-fija-cronograma-para-elecciones-nacionales-de-2026/"
+     ],
+     "fecha": "2026-02-01",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Tokelau",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Tokelauan general election",
+     "fuentes": [
+      "https://www.rnz.co.nz/international/pacific-news/586003/tokelau-heads-to-the-polls-after-storm-delays"
+     ],
+     "fecha": "2026-02-06",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Japan",
+     "territorio": false,
+     "cargos_en": "House of Representatives",
+     "articulo": "2026 Japanese general election",
+     "fuentes": [
+      "https://mainichi.jp/english/articles/20260119/p2g/00m/0na/031000c"
+     ],
+     "fecha": "2026-02-08",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Portugal",
+     "territorio": false,
+     "cargos_en": "President (2nd round)",
+     "articulo": "2026 Portuguese presidential election",
+     "fuentes": [
+      "https://apnews.com/article/portugal-presidential-election-candidates-populist-runoff-9c9976eaff53e70f28050a3556288622"
+     ],
+     "fecha": "2026-02-08",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Thailand",
+     "territorio": false,
+     "cargos_en": "House of Representatives and Constitutional referendum",
+     "articulo": "2026 Thai general election",
+     "fuentes": [
+      "https://www.bangkokpost.com/thailand/general/3157000/election-commission-sets-feb-8-as-general-election-date"
+     ],
+     "fecha": "2026-02-08",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Barbados",
+     "territorio": false,
+     "cargos_en": "House of Assembly",
+     "articulo": "2026 Barbadian general election",
+     "fuentes": [
+      "https://nationnews.com/2026/01/17/general-election-in-barbados-on/",
+      "https://web.archive.org/web/20260118215059/https://nationnews.com/2026/01/17/general-election-in-barbados-on/"
+     ],
+     "fecha": "2026-02-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bangladesh",
+     "territorio": false,
+     "cargos_en": "Parliament and Constitutional referendum",
+     "articulo": "2026 Bangladeshi general election",
+     "fuentes": [
+      "https://www.thedailystar.net/news/bangladesh/elections/news/national-election-referendum-february-12-4056066"
+     ],
+     "fecha": "2026-02-12",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Laos",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Laotian parliamentary election",
+     "fuentes": [
+      "https://kpl.gov.la/En/detail.aspx?id=95854"
+     ],
+     "fecha": "2026-02-22",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Nepal",
+     "territorio": false,
+     "cargos_en": "House of Representatives",
+     "articulo": "2026 Nepalese general election",
+     "fuentes": [
+      "https://www.aljazeera.com/news/2025/9/13/nepal-sets-march-5-vote-restrictions-eased-as-interim-govt-takes-charge"
+     ],
+     "fecha": "2026-03-05",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Colombia",
+     "territorio": false,
+     "cargos_en": "House of Representatives and Senate",
+     "articulo": "2026 Colombian parliamentary election",
+     "fuentes": [
+      "https://www.infobae.com/colombia/2025/03/06/registrador-presenta-el-calendario-para-las-elecciones-del-2026/"
+     ],
+     "fecha": "2026-03-08",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Referendums",
+     "articulo": "2026 Swiss referendums",
+     "fuentes": [
+      "https://lenews.ch/2025/11/07/swiss-voters-to-decide-on-four-issues-in-march-2026/"
+     ],
+     "fecha": "2026-03-08",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Kazakhstan",
+     "territorio": false,
+     "cargos_en": "Constitutional referendum",
+     "articulo": "2026 Kazakh constitutional referendum",
+     "fuentes": [
+      "https://qazinform.com/news/kazakhstan-to-hold-constitutional-referendum-in-march-1f67d2"
+     ],
+     "fecha": "2026-03-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "North Korea",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 North Korean parliamentary election",
+     "fuentes": [
+      "https://www.koreatimes.co.kr/foreignaffairs/northkorea/20260304/n-korea-to-elect-representatives-to-supreme-peoples-assembly-this-month-following-key-party-congress"
+     ],
+     "fecha": "2026-03-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Republic of the Congo",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Republic of the Congo presidential election",
+     "fuentes": [
+      "https://brazzavilleinsider.com/brazzaville-sets-its-clock-for-2026-ballot/"
+     ],
+     "fecha": "2026-03-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Vietnam",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Vietnamese legislative election",
+     "fuentes": [
+      "https://vietnamnews.vn/politics-laws/1718049/na-approves-shortened-term-sets-2026-election-date.html"
+     ],
+     "fecha": "2026-03-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Slovenia",
+     "territorio": false,
+     "cargos_en": "National Assembly",
+     "articulo": "2026 Slovenian parliamentary election",
+     "fuentes": [
+      "https://connectingregion.com/news/slovenia-sets-march-22-2026-as-the-date-for-general-election/"
+     ],
+     "fecha": "2026-03-22",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Italy",
+     "territorio": false,
+     "cargos_en": "Constitutional referendum",
+     "articulo": "2026 Italian constitutional referendum",
+     "fuentes": [
+      "https://www.ansa.it/english/news/politics/2026/01/12/judiciary-reform-referendum-to-take-place-march-22-23_e647e479-940e-40b4-8d96-bf6ad8fe7445.html"
+     ],
+     "fecha": "2026-03-22",
+     "fin": "2026-03-23",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Denmark",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Danish general election",
+     "fuentes": [
+      "https://www.politico.eu/article/mette-frederiksen-denmark-hold-snap-election-march-24/"
+     ],
+     "fecha": "2026-03-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Faroe Islands",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Faroese general election",
+     "fuentes": [
+      "https://local.fo/faroe-prime-minister-johannesen-calls-snap-election/"
+     ],
+     "fecha": "2026-03-26",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Maldives",
+     "territorio": false,
+     "cargos_en": "Constitutional referendum",
+     "articulo": "2026 Maldivian constitutional referendum",
+     "fuentes": [
+      "https://edition.mv/news/48365"
+     ],
+     "fecha": "2026-04-04",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Djibouti",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Djiboutian presidential election",
+     "fuentes": [
+      "https://dawan.africa/news/djibouti-installs-electoral-commission-paving-way-for-april-presidential-vote"
+     ],
+     "fecha": "2026-04-10",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Benin",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Beninese presidential election",
+     "fuentes": [
+      "https://wadr.org/benin-cena-releases-2026-general-election-timetable/"
+     ],
+     "fecha": "2026-04-12",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Hungary",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Hungarian parliamentary election",
+     "fuentes": [
+      "https://apnews.com/article/hungary-election-scheduled-orban-challenge-magyar-71b54205f00252ca7c466eb5407a2aa1"
+     ],
+     "fecha": "2026-04-12",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Peru",
+     "territorio": false,
+     "cargos_en": "President (1st round), Chamber of Deputies and Senate",
+     "articulo": "2026 Peruvian general election",
+     "fuentes": [
+      "https://apnews.com/article/peru-elections-declared-2026-president-boluarte-dabea7cd70b6288542317b080b99c8aa"
+     ],
+     "fecha": "2026-04-12",
+     "fin": "2026-04-13",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bulgaria",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Bulgarian parliamentary election",
+     "fuentes": [
+      "https://www.politico.eu/article/bulgaria-ilijana-iotova-holds-snap-election-april/"
+     ],
+     "fecha": "2026-04-19",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Central African Republic",
+     "territorio": false,
+     "cargos_en": "National Assembly (second round)",
+     "articulo": "2025–26 Central African general election",
+     "fuentes": [],
+     "fecha": "2026-04-26",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Antigua and Barbuda",
+     "territorio": false,
+     "cargos_en": "House of Representatives",
+     "articulo": "2026 Antiguan general election",
+     "fuentes": [
+      "https://antiguanewsroom.com/breaking-antigua-and-barbuda-will-go-to-the-polls-on-april-30/"
+     ],
+     "fecha": "2026-04-30",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Niue",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Niuean general election",
+     "fuentes": [
+      "https://tvniue.com/general-election-on-saturday-2nd-may/"
+     ],
+     "fecha": "2026-05-02",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bahamas",
+     "territorio": false,
+     "cargos_en": "House of Assembly",
+     "articulo": "2026 Bahamian general election",
+     "fuentes": [
+      "https://www.elections.gov.bs/en/elections/2026"
+     ],
+     "fecha": "2026-05-12",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Cape Verde",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Cape Verdean parliamentary election",
+     "fuentes": [
+      "https://english.news.cn/20260120/07bc85e2b2c14c1cba263e5cb30c6385/c.html"
+     ],
+     "fecha": "2026-05-17",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Cyprus",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Cypriot legislative election",
+     "fuentes": [
+      "https://cyprus-mail.com/2025/05/20/parliamentary-elections-set-for-may-24-next-year"
+     ],
+     "fecha": "2026-05-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Malta",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Maltese general election",
+     "fuentes": [
+      "https://timesofmalta.com/article/abela-announces-election-date.1126985"
+     ],
+     "fecha": "2026-05-30",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Colombia",
+     "territorio": false,
+     "cargos_en": "President (1st round)",
+     "articulo": "2026 Colombian presidential election",
+     "fuentes": [
+      "https://www.eltiempo.com/politica/elecciones-colombia-2026/calendario-electoral-2026-en-colombia-estas-son-las-fechas-oficiales-segun-la-registraduria-nacional-3472814"
+     ],
+     "fecha": "2026-05-31",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Guinea",
+     "territorio": false,
+     "cargos_en": "National Assembly",
+     "articulo": "2026 Guinean parliamentary election",
+     "fuentes": [
+      "https://walpmedia.info/urgentreport-des-elections-legislatives-et-communales/"
+     ],
+     "fecha": "2026-05-31",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Ethiopia",
+     "territorio": false,
+     "cargos_en": "House of Peoples' Representatives",
+     "articulo": "2026 Ethiopian general election",
+     "fuentes": [
+      "https://eastleighvoice.co.ke/ethiopia/230279/ethiopia-sets-june-1-2026-for-general-election-amid-credibility-concerns"
+     ],
+     "fecha": "2026-06-01",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Armenia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Armenian parliamentary election",
+     "fuentes": [
+      "https://caliber.az/en/post/armenia-reveals-next-parliamentary-elections-date"
+     ],
+     "fecha": "2026-06-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Jersey",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Jersey general election",
+     "fuentes": [],
+     "fecha": "2026-06-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Kosovo",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Kosovan parliamentary election",
+     "fuentes": [
+      "https://www.lemonde.fr/en/international/article/2026/03/06/deadlock-pushes-koso-toward-third-election-in-a-year_6751151_4.html"
+     ],
+     "fecha": "2026-06-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Peru",
+     "territorio": false,
+     "cargos_en": "President (2nd round)",
+     "articulo": "2026 Peruvian general election",
+     "fuentes": [],
+     "fecha": "2026-06-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Referendums",
+     "articulo": "2026 Swiss referendums",
+     "fuentes": [
+      "https://lenews.ch/2026/02/12/votes-to-limit-immigration-and-reform-civil-service-reform-on-june-14-2026/"
+     ],
+     "fecha": "2026-06-14",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Colombia",
+     "territorio": false,
+     "cargos_en": "President (2nd round)",
+     "articulo": "2026 Colombian presidential election",
+     "fuentes": [
+      "https://www.cnn.com/2026/05/31/americas/colombia-runoff-espriella-cepeda-latam-intl"
+     ],
+     "fecha": "2026-06-21",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "New Caledonia",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 New Caledonian legislative election",
+     "fuentes": [
+      "https://www.lemonde.fr/politique/article/2026/05/07/nouvelle-caledonie-la-convocation-des-elections-provinciales-le-28-juin-marque-l-echec-du-projet-bougival_6686596_823448.html"
+     ],
+     "fecha": "2026-06-28",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Algeria",
+     "territorio": false,
+     "cargos_en": "People's National Assembly",
+     "articulo": "2026 Algerian parliamentary election",
+     "fuentes": [
+      "https://www.bloomberg.com/news/articles/2026-04-06/algeria-sets-july-parliament-vote-as-president-gets-more-powers"
+     ],
+     "fecha": "2026-07-02",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Slovakia",
+     "territorio": false,
+     "cargos_en": "Referendum",
+     "articulo": "2026 Slovak referendum",
+     "fuentes": [],
+     "fecha": "2026-07-04",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "São Tomé and Príncipe",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 São Toméan presidential election",
+     "fuentes": [
+      "https://www.stp-press.st/2026/01/24/presidente-marca-eleicoes-presidenciais-para-19-de-julho-e-legislativas-regional-e-autarquicas-para-27-de-setembro/"
+     ],
+     "fecha": "2026-07-19",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Cook Islands",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Cook Islands general election",
+     "fuentes": [
+      "https://www.cookislandsnews.com/internal/national/politics/parliament/cook-islands-general-election-set-for-august-12/"
+     ],
+     "fecha": "2026-08-12",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Zambia",
+     "territorio": false,
+     "cargos_en": "President and Parliament",
+     "articulo": "2026 Zambian general election",
+     "fuentes": [
+      "https://www.aa.com.tr/en/africa/zambia-invites-eu-as-observer-to-2026-general-elections/3575445"
+     ],
+     "fecha": "2026-08-13",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Kazakhstan",
+     "territorio": false,
+     "cargos_en": "Kurultai",
+     "articulo": "2026 Kazakh legislative election",
+     "fuentes": [
+      "https://astanatimes.com/2026/07/kazakhstan-sets-august-23-date-for-kurultai-elections/"
+     ],
+     "fecha": "2026-08-23",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Iceland",
+     "territorio": false,
+     "cargos_en": "Referendum",
+     "articulo": "2026 Icelandic European Union membership negotiations referendum",
+     "fuentes": [
+      "https://www.ruv.is/english/468993"
+     ],
+     "fecha": "2026-08-29",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Guinea-Bissau",
+     "territorio": false,
+     "cargos_en": "Constitutional referendum",
+     "articulo": "2026 Guinea-Bissau constitutional referendum",
+     "fuentes": [],
+     "fecha": "2026-08-30",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Sweden",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Swedish general election",
+     "fuentes": [
+      "https://www.politico.eu/article/sweden-braces-for-election-hacks-ahead-of-2026-vote/"
+     ],
+     "fecha": "2026-09-13",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "South Ossetia",
+     "territorio": true,
+     "cargos_en": "President",
+     "articulo": "2026 South Ossetian presidential election",
+     "fuentes": [
+      "https://georgiatoday.ge/south-ossetias-de-facto-presidential-election-set-for-september-18/"
+     ],
+     "fecha": "2026-09-18",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Russia",
+     "territorio": false,
+     "cargos_en": "State Duma",
+     "articulo": "2026 Russian legislative election",
+     "fuentes": [
+      "https://most.ks.ua/en/news/url/okupanti-gotujut-vibori-do-derzhdumi-rf-na-livoberezhzhi-hersonschini-nazvano-datu-golosuvannja/"
+     ],
+     "fecha": "2026-09-18",
+     "fin": "2026-09-20",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Morocco",
+     "territorio": false,
+     "cargos_en": "House of Representatives",
+     "articulo": "2026 Moroccan general election",
+     "fuentes": [
+      "https://www.moroccoworldnews.com/2026/03/281668/morocco-sets-september-23-as-date-for-parliamentary-elections/"
+     ],
+     "fecha": "2026-09-23",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Isle of Man",
+     "territorio": true,
+     "cargos_en": "House of Keys",
+     "articulo": "2026 Manx general election",
+     "fuentes": [
+      "https://www.manxradio.com/news/isle-of-man-news/countdown-begins-to-isle-of-mans-2026-general-election/"
+     ],
+     "fecha": "2026-09-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "São Tomé and Príncipe",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 São Toméan parliamentary election",
+     "fuentes": [
+      "https://www.stp-press.st/2026/01/24/presidente-marca-eleicoes-presidenciais-para-19-de-julho-e-legislativas-regional-e-autarquicas-para-27-de-setembro/"
+     ],
+     "fecha": "2026-09-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Referendums",
+     "articulo": "2026 Swiss referendums",
+     "fuentes": [],
+     "fecha": "2026-09-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Latvia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Latvian parliamentary election",
+     "fuentes": [
+      "https://www.cvk.lv/lv/15-saeimas-velesanas/"
+     ],
+     "fecha": "2026-10-03",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bosnia and Herzegovina",
+     "territorio": false,
+     "cargos_en": "Presidency and House of Representatives",
+     "articulo": "2026 Bosnian general election",
+     "fuentes": [
+      "https://www.izbori.ba/en/elections/2026"
+     ],
+     "fecha": "2026-10-04",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Brazil",
+     "territorio": false,
+     "cargos_en": "President (1st round), Chamber of Deputies and Senate",
+     "articulo": "2026 Brazilian general election",
+     "fuentes": [
+      "https://www.tse.jus.br/eleicoes/eleicoes-2026"
+     ],
+     "fecha": "2026-10-04",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Czech Republic",
+     "territorio": false,
+     "cargos_en": "Senate (1st round)",
+     "articulo": "2026 Czech Senate election",
+     "fuentes": [
+      "https://www.idnes.cz/volby/komunalni-volby-2026-kdy-budou-a-jak-se-v-nich-davaji-preferencni-hlasy.A251105_145218_volby_wall"
+     ],
+     "fecha": "2026-10-09",
+     "fin": "2026-10-10",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Slovenia",
+     "territorio": false,
+     "cargos_en": "Referendums",
+     "articulo": "2026 Slovenian referendum",
+     "fuentes": [],
+     "fecha": "2026-10-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Czech Republic",
+     "territorio": false,
+     "cargos_en": "Senate (2nd round)",
+     "articulo": "2026 Czech Senate election",
+     "fuentes": [],
+     "fecha": "2026-10-16",
+     "fin": "2026-10-17",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bulgaria",
+     "territorio": false,
+     "cargos_en": "President (1st round)",
+     "articulo": "2026 Bulgarian presidential election",
+     "fuentes": [
+      "https://bntnews.bg/news/prezidentskite-izbori-shte-se-provedat-na-25-oktomvri-1405400news.html"
+     ],
+     "fecha": "2026-10-25",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Serbia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Serbian parliamentary election",
+     "fuentes": [
+      "https://www.lemonde.fr/en/international/article/2026/09/08/serbia-to-hold-snap-parliamentary-elections-on-october-25_6757315_4.html"
+     ],
+     "fecha": "2026-10-25",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Brazil",
+     "territorio": false,
+     "cargos_en": "President (2nd round)",
+     "articulo": "2026 Brazilian general election",
+     "fuentes": [],
+     "fecha": "2026-10-25",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Israel",
+     "territorio": false,
+     "cargos_en": "Knesset",
+     "articulo": "2026 Israeli legislative election",
+     "fuentes": [
+      "https://www.timesofisrael.com/judge-sets-date-for-next-scheduled-elections-for-october-2026/"
+     ],
+     "fecha": "2026-10-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bulgaria,",
+     "territorio": false,
+     "cargos_en": "President (2nd round)",
+     "articulo": "2026 Bulgarian presidential election",
+     "fuentes": [],
+     "fecha": "2026-11-01",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "United States",
+     "territorio": false,
+     "cargos_en": "Senate and House of Representatives",
+     "articulo": "2026 United States Senate elections",
+     "fuentes": [
+      "https://www.ncsbe.gov/news/events/election-day-2026-general-election"
+     ],
+     "fecha": "2026-11-03",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Grenada",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Grenadian general election",
+     "fuentes": [],
+     "fecha": "2026-11-05",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "New Zealand",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 New Zealand general election",
+     "fuentes": [
+      "https://www.rnz.co.nz/news/political/584623/christopher-luxon-announces-election-date-for-7-november"
+     ],
+     "fecha": "2026-11-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Cape Verde",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Cape Verdean presidential election",
+     "fuentes": [
+      "https://english.news.cn/20260120/07bc85e2b2c14c1cba263e5cb30c6385/c.html"
+     ],
+     "fecha": "2026-11-15",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Spain",
+     "territorio": false,
+     "cargos_en": "Senate and Congress of Deputies",
+     "articulo": "2026 Spanish general election",
+     "fuentes": [],
+     "fecha": "2026-11-29",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Referendums",
+     "articulo": "2026 Swiss referendums",
+     "fuentes": [],
+     "fecha": "2026-11-29",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Gambia",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Gambian presidential election",
+     "fuentes": [
+      "https://thepoint.gm/africa/gambia/headlines/2026-presidential-election-set-for-dec-5-iec-chairman"
+     ],
+     "fecha": "2026-12-05",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Northern Cyprus",
+     "territorio": true,
+     "cargos_en": "Assembly of the Republic",
+     "articulo": "2026 Northern Cypriot parliamentary election",
+     "fuentes": [
+      "https://6aralik.com/en/north-cyprus-election-2026"
+     ],
+     "fecha": "2026-12-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Fiji",
+     "territorio": false,
+     "cargos_en": "Constitutional referendum",
+     "articulo": "2026 Fijian constitutional referendum",
+     "fuentes": [
+      "https://fijisun.com.fj/news/nation/fiji-referendum-vote-set-for-december-9"
+     ],
+     "fecha": "2026-12-09",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Transnistria",
+     "territorio": true,
+     "cargos_en": "President",
+     "articulo": "2026 Transnistrian presidential election",
+     "fuentes": [
+      "https://noi.md/md/politica/noul-lider-nerecunoscut-al-regiunii-transnistrene-urmeaza-sa-fie-ales-in-decembrie-2026"
+     ],
+     "fecha": "2026-12-13",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "South Sudan",
+     "territorio": false,
+     "cargos_en": "President, Assembly and Council of States",
+     "articulo": "2026 South Sudanese general election",
+     "fuentes": [
+      "https://apnews.com/article/south-sudan-election-3a72362c73baaae10ae57bdf086b2df0"
+     ],
+     "fecha": "2026-12-22",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Serbia",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Serbian presidential election",
+     "fuentes": [],
+     "fecha": "2026-12-26",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Iran",
+     "territorio": false,
+     "cargos_en": "Supreme Leader",
+     "articulo": "2026 Iranian supreme leader election",
+     "fuentes": [
+      "https://apnews.com/article/iran-israel-us-march-8-2026-f0b20dbffaea9351ae1e54183ffe53ff"
+     ],
+     "fecha": "2026-03-03",
+     "fin": "2026-03-08",
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "India",
+     "territorio": false,
+     "cargos_en": "Council of States",
+     "articulo": "2026 Rajya Sabha elections",
+     "fuentes": [
+      "https://www.etvbharat.com/en/bharat/elections-to-rajya-sabha-seats-falling-vacant-across-states-to-be-held-on-march-16-election-commission-enn26021801378"
+     ],
+     "fecha": "2026-03-16",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "India",
+     "territorio": false,
+     "cargos_en": "Council of States",
+     "articulo": "2026 Rajya Sabha elections",
+     "fuentes": [
+      "https://www.etvbharat.com/en/bharat/elections-to-rajya-sabha-seats-falling-vacant-across-states-to-be-held-on-march-16-election-commission-enn26021801378"
+     ],
+     "fecha": "2026-06-18",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "India",
+     "territorio": false,
+     "cargos_en": "Council of States",
+     "articulo": "2026 Rajya Sabha elections",
+     "fuentes": [
+      "https://www.etvbharat.com/en/bharat/elections-to-rajya-sabha-seats-falling-vacant-across-states-to-be-held-on-march-16-election-commission-enn26021801378"
+     ],
+     "fecha": "2026-10-16",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "North Korea",
+     "territorio": false,
+     "cargos_en": "President of the State Affairs",
+     "articulo": "15th Supreme People's Assembly",
+     "fuentes": [
+      "https://www.reuters.com/world/asia-pacific/north-koreas-kim-jong-un-reappointed-president-state-affairs-kcna-says-2026-03-22/"
+     ],
+     "fecha": "2026-03-22",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Laos",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Laotian presidential election",
+     "fuentes": [
+      "https://english.news.cn/asiapacific/20260323/d260f3fbbd7c4550bb0f251de6457a7d/c.html"
+     ],
+     "fecha": "2026-03-23",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Myanmar",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Myanmar presidential election",
+     "fuentes": [],
+     "fecha": "2026-03-30",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Myanmar",
+     "territorio": false,
+     "cargos_en": "Vice President",
+     "articulo": "2026 Myanmar presidential election",
+     "fuentes": [
+      "https://www.dw.com/en/myanmar-clears-path-for-junta-leader-to-become-president/a-76588540"
+     ],
+     "fecha": "2026-04-03",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Vietnam",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Vietnamese presidential election",
+     "fuentes": [],
+     "fecha": "2026-04-07",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Iraq",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Iraqi presidential election",
+     "fuentes": [
+      "https://www.kurdistan24.net/en/story/907256/slug"
+     ],
+     "fecha": "2026-04-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Hungary",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Hungarian presidential election",
+     "fuentes": [],
+     "fecha": "2026-08-11",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Bangladesh",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Bangladeshi presidential election",
+     "fuentes": [],
+     "fecha": "2026-08-20",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Estonia",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Estonian presidential election",
+     "fuentes": [
+      "https://news.err.ee/1609937210/riigikogu-presidential-election-votes-set-for-early-september"
+     ],
+     "fecha": "2026-09-02",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "France",
+     "territorio": false,
+     "cargos_en": "Senate (series 2)",
+     "articulo": "2026 French Senate election",
+     "fuentes": [],
+     "fecha": "2026-09-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Kosovo",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2026 Kosovan presidential election",
+     "fuentes": [
+      "https://balkaninsight.com/2026/09/23/kosovo-court-orders-mps-to-elect-president-by-october-6/bi/"
+     ],
+     "fecha": "2026-10-06",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Federal Council",
+     "articulo": "2026 Swiss Federal Council election",
+     "fuentes": [
+      "https://www.afp.com/en/swiss-president-quit-government",
+      "https://www.swissinfo.ch/eng/various/federal-councillor-guy-parmelin-is-to-step-down-at-the-end-of-2026-after-eleven-years-in-office/92155514"
+     ],
+     "fecha": "2026-12-09",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2026,
+     "indirecta": true
+    }
+   ]
+  },
+  "2027": {
+   "revid": 1382641230,
+   "titulo": "2027 national electoral calendar",
+   "obtenido": "2026-10-31T11:53:23.270473+00:00",
+   "entradas": [
+    {
+     "pais_en": "Nigeria",
+     "territorio": false,
+     "cargos_en": "President, Senate and House of Representatives",
+     "articulo": "2027 Nigerian general election",
+     "fuentes": [],
+     "fecha": "2027-01-16",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Kyrgyzstan",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Kyrgyz presidential election",
+     "fuentes": [
+      "https://timesca.com/kyrgyzstan-sets-date-for-2027-presidential-election/"
+     ],
+     "fecha": "2027-01-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "El Salvador",
+     "territorio": false,
+     "cargos_en": "President and Legislative Assembly",
+     "articulo": "2027 Salvadoran presidential election",
+     "fuentes": [
+      "https://lanoticiasv.com/el-tse-reafirma-que-las-elecciones-de-2027-se-realizaran-el-28-de-febrero/"
+     ],
+     "fecha": "2027-02-28",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Estonia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Estonian parliamentary election",
+     "fuentes": [],
+     "fecha": "2027-03-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Micronesia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Micronesian general election",
+     "fuentes": [],
+     "fecha": "2027-03-02",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Somaliland",
+     "territorio": true,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Somaliland parliamentary election",
+     "fuentes": [],
+     "fecha": "2027-03-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Gambia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Gambian parliamentary election",
+     "fuentes": [
+      "https://www.africa-press.net/gambia/all-news/iec-announces-2026-2027-election-dates"
+     ],
+     "fecha": "2027-04-10",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "France",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 French presidential election",
+     "fuentes": [
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F34852/5_0?lang=en"
+     ],
+     "fecha": "2027-04-18",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Finland",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Finnish parliamentary election",
+     "fuentes": [
+      "https://vaalit.fi/en/schedule-in-the-parliamentary-elections"
+     ],
+     "fecha": "2027-04-18",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Andorra",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Andorran parliamentary election",
+     "fuentes": [],
+     "fecha": "2027-04-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Burundi",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Burundian presidential election",
+     "fuentes": [
+      "https://burundi-news.com/articles/en/ceni-unveils-2027-presidential-election-calendar.html"
+     ],
+     "fecha": "2027-05-03",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Mexico",
+     "territorio": false,
+     "cargos_en": "Chamber of Deputies",
+     "articulo": "2027 Mexican legislative election",
+     "fuentes": [
+      "https://www.infobae.com/mexico/2025/12/08/elecciones-2027-estos-son-los-perfiles-que-comienzan-a-perfilarse-como-favoritos/"
+     ],
+     "fecha": "2027-06-06",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Guatemala",
+     "territorio": false,
+     "cargos_en": "President and Congress",
+     "articulo": "2027 Guatemalan general election",
+     "fuentes": [
+      "https://www.prensalibre.com/guatemala/politica/elecciones-2027-cuando-sera-la-primera-y-segunda-vuelta-cuando-aplicara-la-ley-seca-y-otras-fechas-importantes/"
+     ],
+     "fecha": "2027-06-27",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Mongolia",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Mongolian presidential election",
+     "fuentes": [],
+     "fecha": "2027-06-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Kenya",
+     "territorio": false,
+     "cargos_en": "President, National Assembly and Senate",
+     "articulo": "2027 Kenyan general election",
+     "fuentes": [
+      "https://hivileo.co.ke/iebc-announces-2027-election-date-and-campaign-schedule/"
+     ],
+     "fecha": "2027-08-10",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Angola",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Angolan general election",
+     "fuentes": [
+      "https://vozdeangola.com/politica/item/10135-angolanas-e-angolanos-todos-ao-voto-e-o-lema-das-eleicoes-gerais-de-2027"
+     ],
+     "fecha": "2027-08-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Slovakia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Slovak parliamentary election",
+     "fuentes": [],
+     "fecha": "2027-09-28",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Argentina",
+     "territorio": false,
+     "cargos_en": "President, Senate and Chamber of Deputies",
+     "articulo": "2027 Argentine general election",
+     "fuentes": [],
+     "fecha": "2027-10-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Switzerland",
+     "territorio": false,
+     "cargos_en": "Council of States and National Council",
+     "articulo": "2027 Swiss federal election",
+     "fuentes": [
+      "https://www.bk.admin.ch/ch/f/pore/va/vab_1_3_3_1.html",
+      "https://web.archive.org/web/20200812183940/https://www.bk.admin.ch/ch/f/pore/va/vab_1_3_3_1.html"
+     ],
+     "fecha": "2027-10-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Oman",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Omani general election",
+     "fuentes": [],
+     "fecha": "2027-10-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Marshall Islands",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Marshallese general election",
+     "fuentes": [],
+     "fecha": "2027-11-01",
+     "fin": null,
+     "precision": "mes",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Bahrain",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Bahraini general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Cameroon",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2026 Cameroonian parliamentary election",
+     "fuentes": [
+      "https://panafricanvisions.com/2026/07/cameroon-sdf-rejects-any-delay-to-legislative-and-municipal-elections/"
+     ],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Dominica",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Dominican general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Equatorial Guinea",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Equatorial Guinean parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Fiji",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Fijian general election",
+     "fuentes": [
+      "https://fijisun.com.fj/news/nation/fiji-referendum-vote-set-for-december-9"
+     ],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Greece",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Greek parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "India",
+     "territorio": false,
+     "cargos_en": "Council of States",
+     "articulo": "2027 Rajya Sabha elections",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Italy",
+     "territorio": false,
+     "cargos_en": "Chamber of Deputies and Senate",
+     "articulo": "Next Italian general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Lesotho",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Lesotho general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Libya",
+     "territorio": false,
+     "cargos_en": "President and Parliament",
+     "articulo": "Next Libyan presidential election",
+     "fuentes": [
+      "https://middle-east-online.com/en/libya-sets-2027-election-goal-washington-presses-national-unity"
+     ],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Madagascar",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Malagasy presidential election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Montenegro",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Montenegrin parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Papua New Guinea",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Papua New Guinean general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Poland",
+     "territorio": false,
+     "cargos_en": "Sejm and Senate",
+     "articulo": "Next Polish parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Republic of the Congo",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Republic of the Congo parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Saint Kitts and Nevis",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "Next Saint Kitts and Nevis general election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Slovenia",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Slovenian presidential election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Tajikistan",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 Tajik presidential election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Timor-Leste",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 East Timorese presidential election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Tunisia",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Tunisian parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "United Arab Emirates",
+     "territorio": false,
+     "cargos_en": "Parliament",
+     "articulo": "2027 Emirati parliamentary election",
+     "fuentes": [],
+     "fecha": null,
+     "fin": null,
+     "precision": "anio",
+     "anio": 2027,
+     "indirecta": false
+    },
+    {
+     "pais_en": "Germany",
+     "territorio": false,
+     "cargos_en": "President",
+     "articulo": "2027 German presidential election",
+     "fuentes": [],
+     "fecha": "2027-01-30",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": true
+    },
+    {
+     "pais_en": "Netherlands",
+     "territorio": false,
+     "cargos_en": "Senate",
+     "articulo": "Senate (Netherlands)",
+     "fuentes": [],
+     "fecha": "2027-05-24",
+     "fin": null,
+     "precision": "dia",
+     "anio": 2027,
+     "indirecta": true
+    }
+   ]
+  }
+ },
+ "consultado": "2026-10-31T11:53:23.270473+00:00",
+ "ultimo_ok": "2026-10-31T11:53:23.270473+00:00"
+}
