@@ -1,0 +1,190 @@
+{
+ "generado": "2026-11-14T06:57:36.508405+00:00",
+ "ciclo_id": "202611140657",
+ "advertencias": [
+  "4109 titulares de GDELT en otros idiomas no se tradujeron por el tope del ciclo",
+  "Sin modelo de traducción para: axe, bs, guj, hr, hy, mal, mr, ne, pan, sr, te"
+ ],
+ "errores": [],
+ "etapas": {
+  "reglas": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "modelos": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "rss": {
+   "ok": true,
+   "segundos": 3.2
+  },
+  "gdelt": {
+   "ok": true,
+   "segundos": 4.3
+  },
+  "incorporar": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "pivote_ingles": {
+   "ok": true,
+   "segundos": 28.3
+  },
+  "pivote_es_en": {
+   "ok": true,
+   "segundos": 12.6
+  },
+  "clasificar": {
+   "ok": true,
+   "segundos": 8.0
+  },
+  "traducir_espanol": {
+   "ok": true,
+   "segundos": 11.0
+  },
+  "enriquecer": {
+   "ok": true,
+   "segundos": 0.2
+  },
+  "agrupar": {
+   "ok": true,
+   "segundos": 0.6
+  },
+  "vistas": {
+   "ok": true,
+   "segundos": 0.2
+  },
+  "descubrir": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "traducir_candidatos": {
+   "ok": true,
+   "segundos": 0.6
+  },
+  "elecciones": {
+   "ok": true,
+   "segundos": 0.2
+  },
+  "telegram": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "publicar": {
+   "ok": true,
+   "segundos": 0.2
+  }
+ },
+ "gdelt": {
+  "ultimo_archivo": "20261114064500",
+  "archivos_ok": 32,
+  "archivos_pendientes": 16,
+  "archivos_faltantes": 0,
+  "registros_gkg": 13620,
+  "filas_invalidas": 0,
+  "errores": [],
+  "cita": "The GDELT Project (https://www.gdeltproject.org/)"
+ },
+ "ciclo_ok": true,
+ "ultimo_exito": "2026-11-14T06:57:36.508405+00:00",
+ "resumen_fuentes": {
+  "total": 53,
+  "ok": 53,
+  "error": 0,
+  "bloqueadas": 0
+ },
+ "traduccion": {
+  "motor": "Argos Translate (modelos abiertos ejecutados localmente)",
+  "traducidos": 2142,
+  "desde_cache": 38,
+  "fallidos": 0,
+  "sin_modelo": [
+   "axe",
+   "bs",
+   "guj",
+   "hr",
+   "hy",
+   "mal",
+   "mr",
+   "ne",
+   "pan",
+   "sr",
+   "te"
+  ],
+  "errores": [],
+  "modelos_instalados": [
+   "ar_en",
+   "bg_en",
+   "bn_en",
+   "ca_en",
+   "cs_en",
+   "da_en",
+   "de_en",
+   "el_en",
+   "en_es",
+   "es_en",
+   "et_en",
+   "fa_en",
+   "fi_en",
+   "fr_en",
+   "gl_en",
+   "he_en",
+   "hi_en",
+   "hu_en",
+   "id_en",
+   "it_en",
+   "ja_en",
+   "ko_en",
+   "lt_en",
+   "lv_en",
+   "ms_en",
+   "nb_en",
+   "nl_en",
+   "pl_en",
+   "pt_en",
+   "pt_es",
+   "ro_en",
+   "ru_en",
+   "sk_en",
+   "sl_en",
+   "sq_en",
+   "sv_en",
+   "sw_en",
+   "th_en",
+   "tr_en",
+   "uk_en",
+   "ur_en",
+   "vi_en",
+   "zh_en"
+  ]
+ },
+ "articulos_nuevos": 7658,
+ "articulos_asignados": 187,
+ "eventos_72h": 5702,
+ "conflictos_registro": 50,
+ "elecciones": {
+  "actualizado": "2026-11-14T06:57:36.508405+00:00",
+  "consultado": true,
+  "proximas": 56,
+  "sin_ubicar": [
+   "Transnistria"
+  ],
+  "duplicados_omitidos": 0,
+  "errores": []
+ },
+ "telegram": {
+  "configurado": false,
+  "vinculado": false,
+  "enviados_ciclo": 0,
+  "errores": []
+ },
+ "duracion_s": 69.7,
+ "publicado": {
+  "eventos": 2976,
+  "articulos": 6649,
+  "candidatos": 20,
+  "elecciones": 56
+ },
+ "fuentes_con_error": []
+}
