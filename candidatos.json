@@ -1,0 +1,140 @@
+{
+ "cand-BEL": {
+  "id": "cand-BEL",
+  "pais": "BEL",
+  "nombre": "Actividad armada reportada en Bélgica",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-19T23:39:30.773867+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 13,
+  "senal_gdelt_franjas": 13,
+  "origenes_independientes": 26,
+  "origenes_extranjeros": 21,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "5a2c32176a8c2a6a",
+   "28bb2002c5b61dbf",
+   "b1776d4566ea53ab",
+   "ddb941b649bde144",
+   "1e356a039e15a314",
+   "289a9c6f7751fecc",
+   "a19f34fa6144bd71",
+   "b889274c2a1301a3"
+  ],
+  "reglas": "Señal GDELT: 13 dominios en 13 franjas; artículos: 26 orígenes (21 de otros países) en 3 día(s)."
+ },
+ "cand-MAR": {
+  "id": "cand-MAR",
+  "pais": "MAR",
+  "nombre": "Actividad armada reportada en Marruecos",
+  "estado": "detectado",
+  "primera_deteccion": "2026-11-19T08:01:19.581187+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 10,
+  "senal_gdelt_franjas": 9,
+  "origenes_independientes": 4,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 2,
+  "articulos": [
+   "c18497f1d92cb62c",
+   "f8d4cdfecc81ae73",
+   "f3eb7212a1ee3bf0",
+   "3f1080d20a2cac28"
+  ],
+  "reglas": "Señal GDELT: 10 dominios en 9 franjas; artículos: 4 orígenes (3 de otros países) en 2 día(s)."
+ },
+ "cand-FIN": {
+  "id": "cand-FIN",
+  "pais": "FIN",
+  "nombre": "Actividad armada reportada en Finlandia",
+  "estado": "detectado",
+  "primera_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 23,
+  "senal_gdelt_franjas": 10,
+  "origenes_independientes": 6,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 1,
+  "articulos": [
+   "f5b4705fd6ca3130",
+   "404a060e5a9d9c28",
+   "a55873d331bde89e",
+   "50b51f266bdfca7e",
+   "12405d1e0d7dcdf2",
+   "f1856c5389270889"
+  ],
+  "reglas": "Señal GDELT: 23 dominios en 10 franjas; artículos: 6 orígenes (3 de otros países) en 1 día(s)."
+ },
+ "cand-SWE": {
+  "id": "cand-SWE",
+  "pais": "SWE",
+  "nombre": "Actividad armada reportada en Suecia",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 34,
+  "senal_gdelt_franjas": 30,
+  "origenes_independientes": 8,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "9f39eac980c9e807",
+   "f9cb08ca1488fb55",
+   "59a132964900e3ed",
+   "200e4324a0d3f693",
+   "bec5f8705d8d6354",
+   "2f51ac48b152e238",
+   "166018dac9c7ce72",
+   "96a67ccd00df0967"
+  ],
+  "reglas": "Señal GDELT: 34 dominios en 30 franjas; artículos: 8 orígenes (3 de otros países) en 3 día(s)."
+ },
+ "cand-DEU": {
+  "id": "cand-DEU",
+  "pais": "DEU",
+  "nombre": "Actividad armada reportada en Alemania",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-21T10:18:22.981548+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 49,
+  "senal_gdelt_franjas": 32,
+  "origenes_independientes": 10,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "5ce1d89487bc37eb",
+   "7ba9de40897baf8c",
+   "c71b854e963affca",
+   "e4c615ef3811322f",
+   "eeb9c737be8c0db4",
+   "6d1c8b51e5e8eb03",
+   "aa490445add115f6",
+   "22beed00ab501c5a"
+  ],
+  "reglas": "Señal GDELT: 49 dominios en 32 franjas; artículos: 10 orígenes (3 de otros países) en 3 día(s)."
+ },
+ "cand-POL": {
+  "id": "cand-POL",
+  "pais": "POL",
+  "nombre": "Actividad armada reportada en Polonia",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-20T21:30:44.362278+00:00",
+  "ultima_deteccion": "2026-11-21T17:39:48.450011+00:00",
+  "senal_gdelt_dominios": 49,
+  "senal_gdelt_franjas": 27,
+  "origenes_independientes": 12,
+  "origenes_extranjeros": 5,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "e8a8b132dac87f77",
+   "d55ea05677d83f6f",
+   "0bba42393efe9ee9",
+   "bb0ea95c9edc9190",
+   "10c3d89bdfbe4694",
+   "cb4a18c71be639c8",
+   "150ab76bf9d18114",
+   "5a759056068b335c"
+  ],
+  "reglas": "Señal GDELT: 49 dominios en 27 franjas; artículos: 12 orígenes (5 de otros países) en 3 día(s)."
+ }
+}

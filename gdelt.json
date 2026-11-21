@@ -1,0 +1,7911 @@
+{
+ "procesados": {
+  "export": {
+   "20261119233000": "ok",
+   "20261119231500": "ok",
+   "20261119230000": "ok",
+   "20261119224500": "ok",
+   "20261119223000": "ok",
+   "20261119221500": "ok",
+   "20261119220000": "ok",
+   "20261119214500": "ok",
+   "20261120041500": "ok",
+   "20261120040000": "ok",
+   "20261120034500": "ok",
+   "20261120033000": "ok",
+   "20261120031500": "ok",
+   "20261120030000": "ok",
+   "20261120024500": "ok",
+   "20261120023000": "ok",
+   "20261120210000": "ok",
+   "20261120204500": "ok",
+   "20261120203000": "ok",
+   "20261120201500": "ok",
+   "20261120200000": "ok",
+   "20261120194500": "ok",
+   "20261120193000": "ok",
+   "20261120191500": "ok",
+   "20261121100000": "ok",
+   "20261121094500": "ok",
+   "20261121093000": "ok",
+   "20261121091500": "ok",
+   "20261121090000": "ok",
+   "20261121084500": "ok",
+   "20261121083000": "ok",
+   "20261121081500": "ok",
+   "20261121173000": "ok",
+   "20261121170000": "ok",
+   "20261121164500": "ok",
+   "20261121163000": "ok",
+   "20261121161500": "ok",
+   "20261121160000": "ok",
+   "20261121154500": "ok",
+   "20261121153000": "ok"
+  },
+  "gkg": {
+   "20261119231500": "ok",
+   "20261119230000": "ok",
+   "20261119224500": "ok",
+   "20261119223000": "ok",
+   "20261119221500": "ok",
+   "20261119220000": "ok",
+   "20261119214500": "ok",
+   "20261119213000": "ok",
+   "20261120041500": "ok",
+   "20261120040000": "ok",
+   "20261120034500": "ok",
+   "20261120033000": "ok",
+   "20261120031500": "ok",
+   "20261120030000": "ok",
+   "20261120024500": "ok",
+   "20261120023000": "ok",
+   "20261120211500": "ok",
+   "20261120210000": "ok",
+   "20261120204500": "ok",
+   "20261120203000": "ok",
+   "20261120201500": "ok",
+   "20261120200000": "ok",
+   "20261120194500": "ok",
+   "20261120193000": "ok",
+   "20261121100000": "ok",
+   "20261121094500": "ok",
+   "20261121093000": "ok",
+   "20261121091500": "ok",
+   "20261121090000": "ok",
+   "20261121084500": "ok",
+   "20261121083000": "ok",
+   "20261121081500": "ok",
+   "20261121173000": "ok",
+   "20261121171500": "ok",
+   "20261121170000": "ok",
+   "20261121164500": "ok",
+   "20261121163000": "ok",
+   "20261121161500": "ok",
+   "20261121160000": "ok",
+   "20261121154500": "ok"
+  },
+  "t_export": {
+   "20261119231500": "ok",
+   "20261119230000": "ok",
+   "20261119224500": "ok",
+   "20261119223000": "ok",
+   "20261119221500": "ok",
+   "20261119220000": "ok",
+   "20261119214500": "ok",
+   "20261119213000": "ok",
+   "20261120041500": "ok",
+   "20261120031500": "ok",
+   "20261120030000": "ok",
+   "20261120024500": "ok",
+   "20261120023000": "ok",
+   "20261120021500": "ok",
+   "20261120020000": "ok",
+   "20261120014500": "ok",
+   "20261120203000": "ok",
+   "20261120201500": "ok",
+   "20261120200000": "ok",
+   "20261120194500": "ok",
+   "20261120193000": "ok",
+   "20261120191500": "ok",
+   "20261120190000": "ok",
+   "20261120184500": "ok",
+   "20261121094500": "ok",
+   "20261121093000": "ok",
+   "20261121091500": "ok",
+   "20261121090000": "ok",
+   "20261121084500": "ok",
+   "20261121083000": "ok",
+   "20261121081500": "ok",
+   "20261121080000": "ok",
+   "20261121163000": "ok",
+   "20261121161500": "ok",
+   "20261121160000": "ok",
+   "20261121154500": "ok",
+   "20261121153000": "ok",
+   "20261121151500": "ok",
+   "20261121150000": "ok",
+   "20261121144500": "ok"
+  },
+  "t_gkg": {
+   "20261119224500": "ok",
+   "20261119223000": "ok",
+   "20261119221500": "ok",
+   "20261119220000": "ok",
+   "20261119214500": "ok",
+   "20261119213000": "ok",
+   "20261119211500": "ok",
+   "20261119210000": "ok",
+   "20261120033000": "ok",
+   "20261120031500": "ok",
+   "20261120030000": "ok",
+   "20261120024500": "ok",
+   "20261120023000": "ok",
+   "20261120021500": "ok",
+   "20261120020000": "ok",
+   "20261120014500": "ok",
+   "20261120203000": "ok",
+   "20261120201500": "ok",
+   "20261120200000": "ok",
+   "20261120194500": "ok",
+   "20261120193000": "ok",
+   "20261120191500": "ok",
+   "20261120190000": "ok",
+   "20261120184500": "ok",
+   "20261121093000": "ok",
+   "20261121091500": "ok",
+   "20261121090000": "ok",
+   "20261121084500": "ok",
+   "20261121083000": "ok",
+   "20261121081500": "ok",
+   "20261121080000": "ok",
+   "20261121074500": "ok",
+   "20261121164500": "ok",
+   "20261121163000": "ok",
+   "20261121161500": "ok",
+   "20261121160000": "ok",
+   "20261121154500": "ok",
+   "20261121153000": "ok",
+   "20261121151500": "ok",
+   "20261121150000": "ok"
+  }
+ },
+ "descubrimiento": {
+  "20261118183000": {
+   "BHR": [
+    "bankingnews.gr",
+    "iheart.com",
+    "theindianawaaz.com"
+   ],
+   "KWT": [
+    "theindianawaaz.com"
+   ],
+   "IRN": [
+    "iheart.com",
+    "sigmalive.com",
+    "theindianawaaz.com"
+   ],
+   "CAN": [
+    "canadianmanufacturing.com",
+    "columbian.com"
+   ],
+   "USA": [
+    "columbian.com",
+    "fox13seattle.com",
+    "idahopress.com",
+    "latintimes.com",
+    "news247.gr",
+    "newsroomamerica.com",
+    "nypost.com",
+    "richmondregister.com",
+    "riotimesonline.com",
+    "thenextweb.com",
+    "tmz.com",
+    "wmtw.com",
+    "wnd.com",
+    "yahoo.com"
+   ],
+   "GBR": [
+    "bdnews24.com",
+    "cp24.com",
+    "dailymail.com",
+    "kmib.co.kr",
+    "leicestermercury.co.uk",
+    "shootinguk.co.uk",
+    "sputnikportal.rs",
+    "thejc.com"
+   ],
+   "KOR": [
+    "military.com"
+   ],
+   "SOM": [
+    "horseedmedia.net"
+   ],
+   "ZAF": [
+    "sundayworld.co.za"
+   ],
+   "PRK": [
+    "military.com"
+   ],
+   "CHN": [
+    "military.com"
+   ],
+   "POL": [
+    "latintimes.com",
+    "msk.ru",
+    "pravda.sk"
+   ],
+   "KEN": [
+    "riotimesonline.com"
+   ],
+   "ISR": [
+    "antiwar.com",
+    "miragenews.com",
+    "zhurnal.mk"
+   ],
+   "RUS": [
+    "2paragraphs.com",
+    "abcnyheter.no",
+    "aol.co.uk",
+    "fondsk.ru",
+    "mail.ru",
+    "pravda.sk",
+    "themoscowtimes.com",
+    "wnd.com"
+   ],
+   "BGD": [
+    "bdnews24.com"
+   ],
+   "UKR": [
+    "20minutos.es",
+    "2paragraphs.com",
+    "abcnyheter.no",
+    "fondsk.ru",
+    "kh.ua",
+    "latintimes.com",
+    "spiegel.de"
+   ],
+   "YEM": [
+    "aljazeera.net",
+    "alquds.co.uk",
+    "investmentwatchblog.com"
+   ],
+   "LBN": [
+    "newsroomamerica.com"
+   ],
+   "BEL": [
+    "dailymail.com"
+   ],
+   "MHL": [
+    "investmentwatchblog.com"
+   ],
+   "MEX": [
+    "latintimes.com",
+    "riotimesonline.com"
+   ],
+   "TJK": [
+    "themoscowtimes.com"
+   ],
+   "VNM": [
+    "military.com"
+   ],
+   "PHL": [
+    "wnd.com"
+   ],
+   "SDN": [
+    "miragenews.com"
+   ],
+   "SYR": [
+    "miragenews.com",
+    "wnd.com"
+   ],
+   "CHE": [
+    "telegraf.rs"
+   ],
+   "COG": [
+    "r7.com"
+   ],
+   "SLV": [
+    "biobiochile.cl"
+   ],
+   "HRV": [
+    "delo.si",
+    "morh.hr",
+    "sputnikportal.rs"
+   ],
+   "ECU": [
+    "confirmado.net"
+   ],
+   "MUS": [
+    "20minutos.es"
+   ],
+   "ROU": [
+    "click.ro",
+    "lagazzettadelmezzogiorno.it"
+   ],
+   "SAU": [
+    "alquds.co.uk"
+   ]
+  },
+  "20261118181500": {
+   "USA": [
+    "breitbart.com",
+    "catcountry1029.com",
+    "crescent-news.com",
+    "dakotawarcollege.com",
+    "eveningnews24.co.uk",
+    "fool.com",
+    "foxnews.com",
+    "ibtimes.co.in",
+    "kdat.com",
+    "legalnewsline.com",
+    "mississippivalleypublishing.com",
+    "qgazette.com"
+   ],
+   "RUS": [
+    "wjcl.com"
+   ],
+   "CHN": [
+    "breitbart.com",
+    "fool.com",
+    "ibtimes.co.in",
+    "portlandmercury.com"
+   ],
+   "CAN": [
+    "cheknews.ca",
+    "fool.com"
+   ],
+   "GBR": [
+    "aol.co.uk",
+    "bmmagazine.co.uk",
+    "dailyrecord.co.uk"
+   ],
+   "IND": [
+    "freepressjournal.in",
+    "hindustantimes.com",
+    "moneycontrol.com"
+   ],
+   "KOR": [
+    "gamerant.com"
+   ],
+   "CUB": [
+    "foxnews.com"
+   ],
+   "SAU": [
+    "arabnews.com"
+   ],
+   "BGD": [
+    "thehindu.com"
+   ],
+   "ISR": [
+    "foxnews.com"
+   ],
+   "ZAF": [
+    "politicsweb.co.za"
+   ],
+   "PSE": [
+    "globalarabnetwork.com"
+   ],
+   "YEM": [
+    "arabnews.com"
+   ],
+   "NGA": [
+    "vanguardngr.com"
+   ],
+   "PRI": [
+    "rawstory.com"
+   ]
+  },
+  "20261118180000": {
+   "USA": [
+    "13wham.com",
+    "belfastlive.co.uk",
+    "capeandislands.org",
+    "chicagotribune.com",
+    "fox26houston.com",
+    "kctv5.com",
+    "mississippivalleypublishing.com",
+    "officer.com",
+    "tribune242.com",
+    "wrganews.com"
+   ],
+   "UKR": [
+    "londonlovesbusiness.com",
+    "netscape.com"
+   ],
+   "NLD": [
+    "nltimes.nl"
+   ],
+   "BEL": [
+    "nltimes.nl"
+   ],
+   "ESP": [
+    "thepeoplesperson.com"
+   ],
+   "IND": [
+    "indiatimes.com",
+    "pakistantelegraph.com"
+   ],
+   "CAN": [
+    "dailymail.com",
+    "saltwire.com"
+   ],
+   "GBR": [
+    "dailymail.com",
+    "glasgowtimes.co.uk",
+    "londonlovesbusiness.com",
+    "newsx.com"
+   ],
+   "RUS": [
+    "ibtimes.com",
+    "londonlovesbusiness.com",
+    "nltimes.nl"
+   ],
+   "NGA": [
+    "punchng.com"
+   ],
+   "ISR": [
+    "ainonline.com"
+   ],
+   "IRL": [
+    "aol.co.uk",
+    "fox35orlando.com",
+    "irishtimes.com"
+   ],
+   "IRN": [
+    "pakistantoday.com.pk",
+    "stripes.com",
+    "theamericanconservative.com"
+   ],
+   "SAU": [
+    "pakistantoday.com.pk",
+    "theamericanconservative.com"
+   ],
+   "BHR": [
+    "stripes.com"
+   ],
+   "LBN": [
+    "stripes.com"
+   ],
+   "KWT": [
+    "stripes.com"
+   ],
+   "GUM": [
+    "ibtimes.com"
+   ],
+   "VNM": [
+    "ibtimes.com"
+   ]
+  },
+  "20261118174500": {
+   "USA": [
+    "aawsat.com",
+    "baptistnews.com",
+    "bostonglobe.com",
+    "cedarnews.net",
+    "cities929.com",
+    "fox21online.com",
+    "ivn.us",
+    "jpost.com",
+    "kmuw.org",
+    "newschannel10.com",
+    "newsroomamerica.com",
+    "philstar.com",
+    "rollingstone.com",
+    "telegraph.co.uk",
+    "wabi.tv",
+    "wabx.net",
+    "wgauradio.com",
+    "wset.com"
+   ],
+   "FRA": [
+    "dailymail.com"
+   ],
+   "GBR": [
+    "dailymail.com",
+    "dsnews.ua",
+    "express.co.uk",
+    "inewsgr.com"
+   ],
+   "ISR": [
+    "baptistnews.com",
+    "jpost.com",
+    "middleeasteye.net",
+    "telegraph.co.uk"
+   ],
+   "NGA": [
+    "leadership.ng"
+   ],
+   "JOR": [
+    "christiantoday.com"
+   ],
+   "HTI": [
+    "euronews.com",
+    "wgauradio.com"
+   ],
+   "GRC": [
+    "historyextra.com",
+    "newpost.gr",
+    "tvxs.gr"
+   ],
+   "GHA": [
+    "com.gh"
+   ],
+   "SAU": [
+    "jpost.com",
+    "newsyemen.net"
+   ],
+   "IRN": [
+    "aawsat.com",
+    "informer.rs",
+    "jpost.com",
+    "khabaragency.net",
+    "middleeasteye.net"
+   ],
+   "IRQ": [
+    "jpost.com"
+   ],
+   "BHR": [
+    "samaa.tv"
+   ],
+   "LBN": [
+    "irishexaminer.com"
+   ],
+   "KWT": [
+    "samaa.tv"
+   ],
+   "BRB": [
+    "express.co.uk"
+   ],
+   "PHL": [
+    "philstar.com"
+   ],
+   "RUS": [
+    "eesti.ca",
+    "inewsgr.com",
+    "telegraph.co.uk"
+   ],
+   "UKR": [
+    "24tv.ua",
+    "bbc.co.uk",
+    "eesti.ca",
+    "rferl.org",
+    "ukrinform.ua"
+   ],
+   "ECU": [
+    "joplinglobe.com"
+   ],
+   "YEM": [
+    "khabaragency.net",
+    "newsyemen.net",
+    "okaz.com.sa"
+   ],
+   "ESP": [
+    "hispanidad.com",
+    "huelvainformacion.es",
+    "lavozdegalicia.es"
+   ],
+   "ITA": [
+    "vesti-online.com"
+   ],
+   "LBY": [
+    "com.uy"
+   ],
+   "BRA": [
+    "acritica.com",
+    "em.com.br"
+   ],
+   "COL": [
+    "eltiempo.com"
+   ],
+   "MMR": [
+    "eltiempo.com"
+   ],
+   "ARG": [
+    "elliberal.com.ar"
+   ],
+   "IND": [
+    "punjabkesari.com"
+   ],
+   "MAR": [
+    "alquds.com"
+   ],
+   "MUS": [
+    "eltiempo.com"
+   ],
+   "GMB": [
+    "lastampa.it"
+   ],
+   "ROU": [
+    "stirileprotv.ro"
+   ],
+   "TUR": [
+    "haberport.com"
+   ]
+  },
+  "20261119074500": {
+   "PAK": [
+    "dailypakistan.com.pk",
+    "news.cn",
+    "winnipegfreepress.com"
+   ],
+   "UKR": [
+    "aa.com.tr",
+    "antena3.ro",
+    "danas.rs",
+    "dw.com",
+    "elnuevosiglo.com.co",
+    "express.co.uk",
+    "gazetaby.com",
+    "interfax.com.ua",
+    "irishtimes.com",
+    "nos.nl",
+    "zn.ua"
+   ],
+   "ZAF": [
+    "timeslive.co.za"
+   ],
+   "CHN": [
+    "dnews.gr",
+    "politico.eu",
+    "thedailybeast.com"
+   ],
+   "CAN": [
+    "punchng.com",
+    "punjabijagran.com",
+    "thedailybeast.com"
+   ],
+   "BGD": [
+    "bhaskar.com",
+    "mzamin.com",
+    "thehindu.com"
+   ],
+   "USA": [
+    "dailymail.com",
+    "thecollegefix.com",
+    "thedailybeast.com",
+    "tuftsdaily.com"
+   ],
+   "FRA": [
+    "finanznachrichten.de"
+   ],
+   "IND": [
+    "aninews.in"
+   ],
+   "GBR": [
+    "countytimes.co.uk"
+   ],
+   "RUS": [
+    "danas.rs",
+    "digi24.ro",
+    "gazetaby.com",
+    "interfax.com.ua",
+    "irishtimes.com",
+    "letemps.ch",
+    "mail.ru",
+    "nos.nl",
+    "zn.ua"
+   ],
+   "IRN": [
+    "balkanweb.com",
+    "elnuevosiglo.com.co",
+    "ynetnews.com"
+   ],
+   "ISR": [
+    "aa.com.tr",
+    "sana.sy"
+   ],
+   "JOR": [
+    "naturalnews.com"
+   ],
+   "SDN": [
+    "aa.com.tr"
+   ],
+   "NGA": [
+    "diepresse.com",
+    "punchng.com"
+   ],
+   "AFG": [
+    "winnipegfreepress.com"
+   ],
+   "PSE": [
+    "aa.com.tr",
+    "sana.sy"
+   ],
+   "ARG": [
+    "zazoom.it"
+   ],
+   "SWE": [
+    "agrodigital.com"
+   ],
+   "CYN": [
+    "haberler.com"
+   ],
+   "ITA": [
+    "punjabijagran.com"
+   ],
+   "SYR": [
+    "rd.nl"
+   ],
+   "GRC": [
+    "dimokratiki.gr",
+    "topontiki.gr"
+   ],
+   "DEU": [
+    "agrodigital.com"
+   ],
+   "MAR": [
+    "perugiatoday.it"
+   ],
+   "SAU": [
+    "negocios.com"
+   ],
+   "YEM": [
+    "haberler.com"
+   ],
+   "TUR": [
+    "aydinses.com"
+   ],
+   "PRT": [
+    "zn.ua"
+   ]
+  },
+  "20261119073000": {
+   "BGD": [
+    "dailymirror.lk",
+    "indiatimes.com",
+    "punjabkesari.com",
+    "thedailystar.net"
+   ],
+   "NZL": [
+    "co.nz"
+   ],
+   "USA": [
+    "dailymirror.lk",
+    "daytondailynews.com",
+    "haitisun.com",
+    "irishmirror.ie",
+    "pjmedia.com",
+    "thestar.com.my",
+    "wlos.com",
+    "woay.com"
+   ],
+   "GRC": [
+    "athensvoice.gr",
+    "irishmirror.ie"
+   ],
+   "GBR": [
+    "novinky.cz",
+    "pjmedia.com",
+    "thenews.com.pk"
+   ],
+   "IND": [
+    "hindustantimes.com",
+    "indiatimes.com",
+    "livelaw.in"
+   ],
+   "CAN": [
+    "brandonsun.com",
+    "tsn.ca"
+   ],
+   "IDN": [
+    "straitstimes.com"
+   ],
+   "TCD": [
+    "themediaonline.co.za"
+   ],
+   "GHA": [
+    "com.gh"
+   ],
+   "VEN": [
+    "dailymirror.lk"
+   ],
+   "IRN": [
+    "dailymirror.lk",
+    "pjmedia.com"
+   ],
+   "LKA": [
+    "dailymirror.lk"
+   ],
+   "THA": [
+    "dailymirror.lk"
+   ],
+   "ISR": [
+    "aero-news.net",
+    "elkosmos.gr",
+    "kaosenlared.net"
+   ],
+   "CHN": [
+    "hankookilbo.com",
+    "khaama.com"
+   ],
+   "FRA": [
+    "com.lb",
+    "sindonews.com"
+   ],
+   "CUB": [
+    "focus.de"
+   ],
+   "ESP": [
+    "elplural.com"
+   ],
+   "KOR": [
+    "kmib.co.kr"
+   ],
+   "HTI": [
+    "kaosenlared.net"
+   ],
+   "MKD": [
+    "athensvoice.gr"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "LVA": [
+    "corriere.it"
+   ],
+   "RUS": [
+    "focus.de",
+    "leparisien.fr",
+    "turkiyegazetesi.com.tr"
+   ],
+   "ECU": [
+    "kaosenlared.net"
+   ],
+   "POL": [
+    "aftenposten.no"
+   ],
+   "SAU": [
+    "inewsgr.com"
+   ],
+   "YEM": [
+    "inewsgr.com",
+    "leparisien.fr"
+   ],
+   "TUR": [
+    "aksam.com.tr"
+   ],
+   "UKR": [
+    "dw.com",
+    "in.ua",
+    "leparisien.fr"
+   ]
+  },
+  "20261119071500": {
+   "BGD": [
+    "orissapost.com",
+    "winnipegfreepress.com"
+   ],
+   "USA": [
+    "atlantanewsfirst.com",
+    "indiacurrents.com",
+    "jpost.com",
+    "livemint.com",
+    "wabi.tv",
+    "wellandtribune.ca"
+   ],
+   "PAK": [
+    "tribune.com.pk"
+   ],
+   "BEN": [
+    "blueprint.ng"
+   ],
+   "ITA": [
+    "repubblica.it"
+   ],
+   "RUS": [
+    "apa.az"
+   ],
+   "NGA": [
+    "blueprint.ng"
+   ],
+   "UKR": [
+    "bnn-news.com"
+   ]
+  },
+  "20261119070000": {
+   "RUS": [
+    "15min.lt",
+    "econotimes.com",
+    "ewn.co.za",
+    "kavkaz-uzel.ru"
+   ],
+   "USA": [
+    "andhrajyothy.com",
+    "arabi21.com",
+    "closerweekly.com",
+    "hanfordsentinel.com",
+    "hindustantimes.com",
+    "interfax.com.ua",
+    "latimes.com",
+    "saratogian.com",
+    "stiripesurse.ro",
+    "zerohedge.com"
+   ],
+   "ZAF": [
+    "businessday.co.za"
+   ],
+   "BHR": [
+    "countercurrents.org"
+   ],
+   "CHN": [
+    "ewn.co.za"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "GBR": [
+    "aljazeera.com",
+    "capital.gr",
+    "interfax.com.ua",
+    "warringtonguardian.co.uk"
+   ],
+   "KHM": [
+    "prokerala.com"
+   ],
+   "SAU": [
+    "middleeasteye.net"
+   ],
+   "NLD": [
+    "aljazeera.com"
+   ],
+   "SDN": [
+    "radiotamazuj.org"
+   ],
+   "BGD": [
+    "aljazeera.com",
+    "internazionale.it"
+   ],
+   "GMB": [
+    "aljazeera.com"
+   ],
+   "FRA": [
+    "2duerighe.com",
+    "closermag.fr",
+    "ici.fr"
+   ],
+   "MEX": [
+    "elfinanciero.com.mx",
+    "lajornadasanluis.com.mx"
+   ],
+   "COL": [
+    "capital.gr",
+    "lafm.com.co"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "IRN": [
+    "bdnews24.com",
+    "capital.gr",
+    "sky.it"
+   ],
+   "CYN": [
+    "capital.gr"
+   ],
+   "VEN": [
+    "capital.gr"
+   ],
+   "IRQ": [
+    "arabi21.com"
+   ],
+   "JPN": [
+    "etnews.com"
+   ],
+   "AFG": [
+    "trend.az"
+   ],
+   "ETH": [
+    "laprensa.hn"
+   ],
+   "IND": [
+    "andhrajyothy.com",
+    "nayaindia.com"
+   ],
+   "ROU": [
+    "corriere.it"
+   ],
+   "UKR": [
+    "24sata.hr",
+    "anna-news.info",
+    "gmx.at",
+    "kavkaz-uzel.ru"
+   ],
+   "SWE": [
+    "e-tlaxcala.mx"
+   ]
+  },
+  "20261119064500": {
+   "BGD": [
+    "hindustantimes.com",
+    "panchjanya.com"
+   ],
+   "PHL": [
+    "bulatlat.com"
+   ],
+   "USA": [
+    "cedarnews.net",
+    "fox8live.com",
+    "heraldcorp.com",
+    "lodinews.com",
+    "mediafax.ro",
+    "newsweek.com",
+    "nvdaily.com",
+    "presstv.co.uk",
+    "wikitree.co.kr"
+   ],
+   "AFG": [
+    "thezimbabwean.co"
+   ],
+   "NGA": [
+    "blueprint.ng",
+    "indiankanoon.org",
+    "thesun.ng"
+   ],
+   "IND": [
+    "hindustantimes.com",
+    "indiankanoon.org"
+   ],
+   "FRA": [
+    "somersetlive.co.uk",
+    "utusan.com.my",
+    "vecernji.ba"
+   ],
+   "RUS": [
+    "generation-nt.com",
+    "glavred.info",
+    "infobae.com",
+    "interfax.ru",
+    "pullmanradio.com",
+    "rtarabic.com",
+    "vesti.ru"
+   ],
+   "GBR": [
+    "perthnow.com.au"
+   ],
+   "ZWE": [
+    "allafrica.com"
+   ],
+   "IRN": [
+    "aaj.tv",
+    "express.pk",
+    "israelinfo.co.il",
+    "presstv.co.uk"
+   ],
+   "GRC": [
+    "perthnow.com.au"
+   ],
+   "SAU": [
+    "aaj.tv",
+    "cyprus-mail.com"
+   ],
+   "YEM": [
+    "cyprus-mail.com"
+   ],
+   "UKR": [
+    "1tv.ru",
+    "diariocorreo.pe",
+    "glavred.info",
+    "infobae.com",
+    "vecernji.ba",
+    "vesti.ru"
+   ],
+   "ETH": [
+    "mediafax.ro"
+   ],
+   "KOR": [
+    "heraldcorp.com",
+    "inews24.com"
+   ],
+   "PRT": [
+    "globalmedia.mx"
+   ],
+   "COL": [
+    "lanacion.com.co",
+    "mediafax.ro"
+   ],
+   "PAK": [
+    "express.pk"
+   ],
+   "POL": [
+    "fakt.pl"
+   ],
+   "DEU": [
+    "rtarabic.com"
+   ],
+   "BRA": [
+    "globo.com"
+   ],
+   "ESP": [
+    "marca.com"
+   ],
+   "HTI": [
+    "mediafax.ro"
+   ],
+   "MEX": [
+    "elfinanciero.com.mx"
+   ],
+   "JPN": [
+    "wikitree.co.kr"
+   ],
+   "CHN": [
+    "com.py",
+    "gazeta.pl",
+    "inews24.com",
+    "sigmalive.com"
+   ],
+   "MKD": [
+    "time.mk"
+   ],
+   "HND": [
+    "diario1.com"
+   ],
+   "BLR": [
+    "thejasnews.com"
+   ],
+   "MMR": [
+    "lanacion.com.co"
+   ],
+   "CHE": [
+    "com.uy"
+   ],
+   "SLV": [
+    "globalmedia.mx"
+   ]
+  },
+  "20261119063000": {
+   "USA": [
+    "elcolombiano.com",
+    "foxnews.com",
+    "hotair.com",
+    "ntvbd.com",
+    "pilotonline.com",
+    "prensalibre.com",
+    "sedaliademocrat.com"
+   ],
+   "IRN": [
+    "econotimes.com",
+    "hotair.com",
+    "ntvbd.com",
+    "prensalibre.com"
+   ],
+   "IND": [
+    "deccanchronicle.com",
+    "thenewsminute.com"
+   ],
+   "NGA": [
+    "thenationonlineng.net",
+    "vanguardngr.com"
+   ],
+   "BGD": [
+    "news.az",
+    "ntvbd.com"
+   ],
+   "ISR": [
+    "israelnationalnews.com",
+    "lasexta.com",
+    "mondafrique.com",
+    "suprobhat.com"
+   ],
+   "NZL": [
+    "pragativadi.com"
+   ],
+   "UGA": [
+    "observer.ug"
+   ],
+   "TUR": [
+    "econotimes.com"
+   ],
+   "SRB": [
+    "danas.rs",
+    "ntvbd.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "ERI": [
+    "delo.si"
+   ],
+   "TZA": [
+    "delo.si"
+   ],
+   "KHM": [
+    "suprobhat.com"
+   ],
+   "CHN": [
+    "zazoom.it"
+   ],
+   "BRA": [
+    "r7.com"
+   ],
+   "KOS": [
+    "krytykapolityczna.pl"
+   ],
+   "KOR": [
+    "hankookilbo.com"
+   ],
+   "CAN": [
+    "gujaratsamachar.com"
+   ],
+   "MAR": [
+    "eldiario.es"
+   ],
+   "DEU": [
+    "elconfidencial.com",
+    "vz.ru"
+   ],
+   "FRA": [
+    "lasexta.com",
+    "senego.com"
+   ],
+   "POL": [
+    "newsweek.pl"
+   ],
+   "UKR": [
+    "delo.si",
+    "farmer.pl",
+    "glavcom.ua",
+    "ilpost.it",
+    "korrespondent.net",
+    "laprovinciacr.it",
+    "mail.ru"
+   ],
+   "RUS": [
+    "korrespondent.net",
+    "mail.ru",
+    "vz.ru"
+   ],
+   "ESP": [
+    "elconfidencialdigital.com"
+   ],
+   "BOL": [
+    "eju.tv",
+    "prensalibre.com"
+   ],
+   "COL": [
+    "minuto30.com"
+   ],
+   "PAK": [
+    "eldiario.es"
+   ],
+   "PER": [
+    "elconfidencialdigital.com"
+   ],
+   "SAU": [
+    "akhbaregy.com"
+   ]
+  },
+  "20261119061500": {
+   "CHN": [
+    "theepochtimes.com"
+   ],
+   "SGP": [
+    "theepochtimes.com"
+   ],
+   "USA": [
+    "abcnews.com",
+    "inquisitr.com",
+    "kdhnews.com",
+    "lawofficer.com",
+    "mamamia.com.au",
+    "nbcchicago.com"
+   ],
+   "RUS": [
+    "dailykos.com",
+    "interfax.ru",
+    "teleport2001.ru",
+    "theepochtimes.com",
+    "topky.sk",
+    "ziuaveche.ro"
+   ],
+   "VNM": [
+    "theepochtimes.com"
+   ],
+   "ESP": [
+    "dailymail.com"
+   ],
+   "GBR": [
+    "dailymail.com"
+   ],
+   "IRN": [
+    "aawsat.com",
+    "bloomberght.com",
+    "defimedia.info",
+    "trend.az"
+   ],
+   "UKR": [
+    "actualidad-rt.com",
+    "dailykos.com",
+    "lrt.lt",
+    "vedomosti.ru"
+   ],
+   "ISR": [
+    "ammonnews.net",
+    "bloomberght.com",
+    "defimedia.info",
+    "pajhwok.com",
+    "ziuaveche.ro"
+   ],
+   "FRA": [
+    "bearingarms.com",
+    "dna.fr"
+   ],
+   "IND": [
+    "orissapost.com"
+   ],
+   "GMB": [
+    "pajhwok.com"
+   ],
+   "ITA": [
+    "perfil.com",
+    "ziuaveche.ro"
+   ],
+   "UZB": [
+    "astanatv.kz"
+   ],
+   "SAU": [
+    "punjabkesari.in",
+    "tayyar.org"
+   ],
+   "DJI": [
+    "cross.bg"
+   ],
+   "MDA": [
+    "ziuaveche.ro"
+   ],
+   "EST": [
+    "24tv.ua"
+   ],
+   "CZE": [
+    "24tv.ua"
+   ],
+   "HND": [
+    "abriendobrecha.tv"
+   ],
+   "FIN": [
+    "actualno.com"
+   ],
+   "SYR": [
+    "tayyar.org"
+   ]
+  },
+  "20261119060000": {
+   "IND": [
+    "co.tt",
+    "hindustantimes.com",
+    "khaskhabar.com",
+    "livehindustan.com",
+    "theregister.com"
+   ],
+   "NGA": [
+    "leadership.ng"
+   ],
+   "SAU": [
+    "surinametimes.com"
+   ],
+   "CHN": [
+    "theyeshivaworld.com",
+    "zazoom.it"
+   ],
+   "AFG": [
+    "foxbaltimore.com"
+   ],
+   "USA": [
+    "alquds.com",
+    "arlnow.com",
+    "day.az",
+    "elpais.com",
+    "fox17.com",
+    "jpost.com",
+    "niacouncil.org",
+    "thenewsherald.com",
+    "youralaskalink.com"
+   ],
+   "ESP": [
+    "diariodesevilla.es",
+    "elpais.com",
+    "timesofmalta.com"
+   ],
+   "KEN": [
+    "the-star.co.ke"
+   ],
+   "IRN": [
+    "day.az",
+    "niacouncil.org"
+   ],
+   "GBR": [
+    "bournemouthecho.co.uk",
+    "theguardian.com",
+    "timesofmalta.com",
+    "tivysideadvertiser.co.uk"
+   ],
+   "GHA": [
+    "businessghana.com"
+   ],
+   "ISR": [
+    "alquds.com",
+    "jpost.com",
+    "theyeshivaworld.com"
+   ],
+   "MEX": [
+    "havanatimes.org"
+   ],
+   "NIC": [
+    "prensarural.org"
+   ],
+   "COL": [
+    "elheraldo.co",
+    "lafm.com.co",
+    "prensarural.org"
+   ],
+   "GMB": [
+    "the-star.co.ke"
+   ],
+   "TWN": [
+    "khaskhabar.com"
+   ],
+   "JPN": [
+    "khaskhabar.com"
+   ],
+   "AZE": [
+    "day.az",
+    "org.ar"
+   ],
+   "CAN": [
+    "ess.fi",
+    "koreatimes.com"
+   ],
+   "RUS": [
+    "drimble.nl",
+    "koreatimes.com",
+    "ria.ru"
+   ],
+   "NLD": [
+    "lanzadigital.com"
+   ],
+   "KOR": [
+    "koreatimes.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "UKR": [
+    "drimble.nl"
+   ],
+   "PRT": [
+    "r7.com"
+   ]
+  },
+  "20261119054500": {
+   "CZE": [
+    "reflex.cz"
+   ],
+   "FRA": [
+    "com.lb"
+   ],
+   "UKR": [
+    "rbc.ua",
+    "sb.by"
+   ],
+   "USA": [
+    "boursorama.com",
+    "inewsgr.com",
+    "playground.ru",
+    "rbc.ua",
+    "sindonews.com"
+   ],
+   "RUS": [
+    "lastampa.it",
+    "rbc.ua",
+    "sindonews.com"
+   ],
+   "TWN": [
+    "rbc.ua"
+   ],
+   "JPN": [
+    "etoday.co.kr"
+   ],
+   "BGD": [
+    "prabhatkhabar.com"
+   ],
+   "IND": [
+    "naidunia.com",
+    "prabhatkhabar.com"
+   ],
+   "ISR": [
+    "com.do",
+    "com.lb",
+    "elpais.com"
+   ],
+   "HRV": [
+    "dnevnik.hr"
+   ],
+   "IRN": [
+    "com.do",
+    "shorouknews.com"
+   ],
+   "KOR": [
+    "hankookilbo.com"
+   ],
+   "PRK": [
+    "munhwa.com"
+   ],
+   "YEM": [
+    "haberler.com"
+   ],
+   "LBN": [
+    "com.lb"
+   ],
+   "PSE": [
+    "elpais.com"
+   ],
+   "DEU": [
+    "freitag.de"
+   ],
+   "ITA": [
+    "nicematin.com"
+   ],
+   "SAU": [
+    "nyheter24.se"
+   ],
+   "SLV": [
+    "com.do"
+   ]
+  },
+  "20261119170000": {
+   "CHN": [
+    "620ckrm.com",
+    "bilkulonline.com",
+    "christianitydaily.com"
+   ],
+   "CAN": [
+    "620ckrm.com"
+   ],
+   "GBR": [
+    "inverness-courier.co.uk",
+    "theguardian.com"
+   ],
+   "GMB": [
+    "npr.org"
+   ],
+   "USA": [
+    "fox32chicago.com",
+    "greeleytribune.com",
+    "journal-advocate.com",
+    "kut.org",
+    "kxkx.com",
+    "newsroomamerica.com",
+    "newsweek.com",
+    "winknews.com",
+    "wowo.com",
+    "wpxnradio.com",
+    "wwmt.com"
+   ],
+   "BHS": [
+    "tribune242.com"
+   ],
+   "NZL": [
+    "co.nz"
+   ],
+   "PAK": [
+    "bilkulonline.com",
+    "cyprus-mail.com"
+   ],
+   "IRN": [
+    "bilkulonline.com"
+   ],
+   "NGA": [
+    "premiumtimesng.com"
+   ],
+   "ZWE": [
+    "salisburyjournal.co.uk"
+   ],
+   "BGD": [
+    "aol.co.uk",
+    "bilkulonline.com",
+    "npr.org"
+   ],
+   "VEN": [
+    "drudge.com"
+   ],
+   "ESP": [
+    "naharnet.com"
+   ],
+   "HUN": [
+    "hungarytoday.hu"
+   ],
+   "JPN": [
+    "kut.org"
+   ],
+   "PHL": [
+    "kut.org"
+   ],
+   "IRL": [
+    "breakingnews.ie"
+   ],
+   "RUS": [
+    "military-history.org"
+   ]
+  },
+  "20261119164500": {
+   "SYR": [
+    "foxnews.com"
+   ],
+   "ARG": [
+    "buenosairesherald.com"
+   ],
+   "USA": [
+    "abc13.com",
+    "abcnews4.com",
+    "breakingdefense.com",
+    "cleveland19.com",
+    "deathpenaltyinfo.org",
+    "el-balad.com",
+    "fool.com",
+    "kunm.org",
+    "manchestereveningnews.co.uk",
+    "mondoweiss.net",
+    "radaronline.com"
+   ],
+   "ITA": [
+    "coosavalleynews.com"
+   ],
+   "BGD": [
+    "aninews.in"
+   ],
+   "SAU": [
+    "straitstimes.com"
+   ],
+   "ISR": [
+    "i24news.tv"
+   ],
+   "CUB": [
+    "cubaheadlines.com"
+   ],
+   "GBR": [
+    "aol.co.uk",
+    "manchestereveningnews.co.uk",
+    "news-medical.net"
+   ],
+   "MAR": [
+    "dailymail.com"
+   ],
+   "ESP": [
+    "dailymail.com"
+   ],
+   "FRA": [
+    "oxfordmail.co.uk"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "MLI": [
+    "straitstimes.com"
+   ],
+   "IND": [
+    "aninews.in"
+   ],
+   "CHN": [
+    "radaronline.com"
+   ],
+   "PER": [
+    "odnako.org"
+   ],
+   "SWE": [
+    "co.nz"
+   ],
+   "UKR": [
+    "cubaheadlines.com"
+   ],
+   "YEM": [
+    "manilatimes.net"
+   ],
+   "RUS": [
+    "internazionale.it"
+   ]
+  },
+  "20261119163000": {
+   "USA": [
+    "abc7ny.com",
+    "aol.com",
+    "capitolfax.com",
+    "clevelandjewishnews.com",
+    "dailymail.com",
+    "fox10phoenix.com",
+    "fox19.com",
+    "goss.ie",
+    "indianewengland.com",
+    "kimt.com",
+    "naharnet.com",
+    "newschannel9.com",
+    "newyorktheatreguide.com",
+    "nypost.com",
+    "politicspa.com",
+    "rawstory.com",
+    "timesleader.com",
+    "tribuneindia.com",
+    "tspr.org",
+    "wfdd.org"
+   ],
+   "PAK": [
+    "ianslive.in",
+    "journalismpakistan.com"
+   ],
+   "ERI": [
+    "allafrica.com"
+   ],
+   "GBR": [
+    "army-technology.com",
+    "firstthings.com",
+    "goss.ie",
+    "huntspost.co.uk",
+    "irishecho.com",
+    "scottishconstructionnow.com",
+    "standard.co.uk"
+   ],
+   "IRQ": [
+    "rawstory.com"
+   ],
+   "PHL": [
+    "theguidon.com"
+   ],
+   "UKR": [
+    "crooksandliars.com",
+    "israelnationalnews.com",
+    "thedailybeast.com"
+   ],
+   "ITA": [
+    "firstthings.com",
+    "newyorktheatreguide.com"
+   ],
+   "IND": [
+    "indiatimes.com",
+    "webindia123.com"
+   ],
+   "IRL": [
+    "irishecho.com",
+    "irishmirror.ie"
+   ],
+   "MCO": [
+    "tatler.com"
+   ],
+   "ETH": [
+    "allafrica.com"
+   ],
+   "BGD": [
+    "aol.com",
+    "oneindia.com"
+   ],
+   "RUS": [
+    "co.nz",
+    "crooksandliars.com"
+   ],
+   "ISR": [
+    "kimt.com"
+   ],
+   "NZL": [
+    "co.nz"
+   ],
+   "KWT": [
+    "naharnet.com"
+   ],
+   "LTU": [
+    "delfi.lt"
+   ],
+   "EGY": [
+    "israelnationalnews.com"
+   ],
+   "CHN": [
+    "ianslive.in"
+   ],
+   "YEM": [
+    "naharnet.com"
+   ],
+   "DEU": [
+    "crooksandliars.com"
+   ],
+   "CUB": [
+    "abc7ny.com"
+   ],
+   "VEN": [
+    "thedailybeast.com"
+   ]
+  },
+  "20261119161500": {
+   "PAK": [
+    "philenews.com",
+    "samaa.tv"
+   ],
+   "GRC": [
+    "dailypress.com"
+   ],
+   "JOR": [
+    "eldiario.ec",
+    "somersetlive.co.uk"
+   ],
+   "BGD": [
+    "freemalaysiatoday.com",
+    "miragenews.com"
+   ],
+   "ISR": [
+    "elwatannews.com",
+    "hotair.com",
+    "rador.ro",
+    "raya.ps",
+    "uol.com.br"
+   ],
+   "USA": [
+    "98kupd.com",
+    "dailymail.com",
+    "democracynow.org",
+    "duluthnewstribune.com",
+    "hotair.com",
+    "insurancejournal.com",
+    "kfgo.com",
+    "news247.gr",
+    "plovdiv24.bg",
+    "screenrant.com",
+    "sungazette.com",
+    "telegraph.co.uk",
+    "tvtechnology.com",
+    "whec.com"
+   ],
+   "VEN": [
+    "democracynow.org"
+   ],
+   "YEM": [
+    "moneycontrol.com"
+   ],
+   "SDN": [
+    "dabangasudan.org"
+   ],
+   "CAN": [
+    "chch.com"
+   ],
+   "JEY": [
+    "sungazette.com"
+   ],
+   "PRT": [
+    "diariodeleon.es",
+    "theportugalnews.com"
+   ],
+   "CHN": [
+    "bnionline.net",
+    "braunschweiger-zeitung.de",
+    "inewsgr.com",
+    "news247.gr"
+   ],
+   "RUS": [
+    "24tv.ua",
+    "bnionline.net",
+    "jowhar.com",
+    "kitabat.com",
+    "lasexta.com",
+    "plovdiv24.bg"
+   ],
+   "ROU": [
+    "gx94radio.com",
+    "lbc.co.uk"
+   ],
+   "GBR": [
+    "15min.lt",
+    "birminghammail.co.uk"
+   ],
+   "MMR": [
+    "bnionline.net",
+    "correiodobrasil.com.br"
+   ],
+   "IRN": [
+    "balochwarna.com",
+    "raya.ps"
+   ],
+   "SAU": [
+    "larepublica.co",
+    "moneycontrol.com",
+    "sana.sy"
+   ],
+   "CHE": [
+    "bnionline.net"
+   ],
+   "JPN": [
+    "miragenews.com"
+   ],
+   "BEL": [
+    "miragenews.com"
+   ],
+   "GMB": [
+    "helsinkitimes.com",
+    "infobae.com"
+   ],
+   "UKR": [
+    "24tv.ua",
+    "jowhar.com",
+    "ukrinform.ua"
+   ],
+   "HTI": [
+    "radioamerica.net",
+    "telegraph.co.uk"
+   ],
+   "LBR": [
+    "allafrica.com"
+   ],
+   "IND": [
+    "akilanews.com"
+   ],
+   "MKD": [
+    "com.mk"
+   ],
+   "DEU": [
+    "globovision.com"
+   ],
+   "ESP": [
+    "cronicadecantabria.com"
+   ],
+   "HRV": [
+    "index.hr"
+   ],
+   "ITA": [
+    "irpinianews.it"
+   ],
+   "TWN": [
+    "larepublica.co"
+   ],
+   "NLD": [
+    "dagsavisen.no"
+   ],
+   "SWE": [
+    "mundomaritimo.cl",
+    "newsinfo.ru"
+   ],
+   "MEX": [
+    "lajornadadeoriente.com.mx"
+   ],
+   "FIN": [
+    "newsinfo.ru"
+   ],
+   "FRA": [
+    "mignews.com"
+   ],
+   "IRQ": [
+    "mignews.com"
+   ]
+  },
+  "20261119160000": {
+   "CHN": [
+    "kenyastar.com",
+    "netzwoche.ch",
+    "portfolio.hu"
+   ],
+   "COD": [
+    "allafrica.com"
+   ],
+   "LKA": [
+    "tamilguardian.com"
+   ],
+   "USA": [
+    "ajc.com",
+    "aporrea.org",
+    "express.co.uk",
+    "independent.co.uk",
+    "kdhnews.com",
+    "newsroomamerica.com",
+    "pocketgamer.com",
+    "pr-inside.com",
+    "theaviationist.com",
+    "wcax.com"
+   ],
+   "AZE": [
+    "trend.az"
+   ],
+   "JOR": [
+    "arabnews.com"
+   ],
+   "BGR": [
+    "bgnes.com"
+   ],
+   "ROU": [
+    "bgnes.com"
+   ],
+   "RUS": [
+    "aaj.tv",
+    "adevarul.ro",
+    "capital.gr",
+    "com.uy",
+    "euronews.com",
+    "georgiatoday.ge",
+    "hartvannederland.nl",
+    "interfax.ru",
+    "mirror.co.uk",
+    "tamilguardian.com"
+   ],
+   "GBR": [
+    "express.co.uk",
+    "jornaldebrasilia.com.br",
+    "lacerca.com",
+    "metro.co.uk",
+    "oldham-chronicle.co.uk"
+   ],
+   "NGA": [
+    "nationalaccordnewspaper.com"
+   ],
+   "OMN": [
+    "arabnews.com"
+   ],
+   "KEN": [
+    "hapakenya.com"
+   ],
+   "FRA": [
+    "bt.dk",
+    "energyland.info",
+    "foreignpolicy.com"
+   ],
+   "IRN": [
+    "afr.net",
+    "alquds.co.uk",
+    "globalist.it"
+   ],
+   "KOR": [
+    "mirror.co.uk"
+   ],
+   "IRL": [
+    "rte.ie"
+   ],
+   "LBN": [
+    "rte.ie"
+   ],
+   "BHS": [
+    "longislandpress.com"
+   ],
+   "MLT": [
+    "timesofmalta.com"
+   ],
+   "NLD": [
+    "saltwire.com"
+   ],
+   "ISR": [
+    "alquds.co.uk",
+    "bbc.com",
+    "bursa.ro",
+    "jutarnji.hr",
+    "knews.kg",
+    "pilotonline.com",
+    "shorouknews.com"
+   ],
+   "JPN": [
+    "mirror.co.uk"
+   ],
+   "IND": [
+    "tamilguardian.com"
+   ],
+   "ALB": [
+    "zazoom.it"
+   ],
+   "BRA": [
+    "estadao.com.br",
+    "tsn.ua"
+   ],
+   "MEX": [
+    "elimparcial.com",
+    "quadratin.com.mx"
+   ],
+   "VEN": [
+    "aporrea.org"
+   ],
+   "ARG": [
+    "mdzol.com",
+    "minutouno.com"
+   ],
+   "UKR": [
+    "adevarul.ro",
+    "euronews.com",
+    "hartvannederland.nl",
+    "mansethaber.com"
+   ],
+   "CHE": [
+    "24heures.ch"
+   ],
+   "TUR": [
+    "jagran.com"
+   ],
+   "ITA": [
+    "quotidianopiemontese.it"
+   ],
+   "SWE": [
+    "cadena3.com",
+    "mdzol.com"
+   ],
+   "COL": [
+    "lapatria.com"
+   ],
+   "MKD": [
+    "mkd.mk",
+    "news.bg"
+   ],
+   "ESP": [
+    "infodefensa.com",
+    "laverdad.es",
+    "ligury.com"
+   ],
+   "DZA": [
+    "mansheet.net"
+   ],
+   "NZL": [
+    "otempo.com.br"
+   ],
+   "BOL": [
+    "eju.tv"
+   ],
+   "BGD": [
+    "jutarnji.hr"
+   ],
+   "IRQ": [
+    "non14.net"
+   ],
+   "SEN": [
+    "lesoleil.sn"
+   ],
+   "MMR": [
+    "larazon.es"
+   ],
+   "SOM": [
+    "lequotidien.lu"
+   ],
+   "CHL": [
+    "mdzol.com"
+   ],
+   "SRB": [
+    "jutarnji.hr"
+   ],
+   "SAU": [
+    "slaati.com"
+   ],
+   "PAN": [
+    "aporrea.org"
+   ]
+  },
+  "20261119154500": {
+   "BGD": [
+    "elpais.com",
+    "thedailystar.net"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "GBR": [
+    "fides.org",
+    "interviewmagazine.com",
+    "london-now.co.uk"
+   ],
+   "USA": [
+    "aol.com",
+    "coolhunting.com",
+    "dailycampus.com",
+    "dailymail.com",
+    "elpais.com",
+    "realitytea.com",
+    "sun-sentinel.com",
+    "themainewire.com",
+    "theyeshivaworld.com",
+    "vesti.bg"
+   ],
+   "ISR": [
+    "dailymail.com",
+    "grenadachronicle.com",
+    "radiofarda.com",
+    "thedailystar.net",
+    "theyeshivaworld.com",
+    "wafa.ps"
+   ],
+   "GRD": [
+    "grenadachronicle.com"
+   ],
+   "CAN": [
+    "interviewmagazine.com"
+   ],
+   "GMB": [
+    "elpais.com"
+   ],
+   "IRN": [
+    "elnortedecastilla.es",
+    "ncr-iran.org",
+    "radiofarda.com",
+    "sondakika.com",
+    "theyeshivaworld.com"
+   ],
+   "UKR": [
+    "aa.com.tr",
+    "euronews.com",
+    "iz.ru",
+    "pressorg24.com",
+    "theguardian.com",
+    "zn.ua"
+   ],
+   "HTI": [
+    "haitiantimes.com",
+    "rtvslo.si"
+   ],
+   "IND": [
+    "indiatimes.com",
+    "thehindu.com"
+   ],
+   "JPN": [
+    "indiatimes.com"
+   ],
+   "EGY": [
+    "dailycampus.com",
+    "vetogate.com"
+   ],
+   "PSE": [
+    "wafa.ps"
+   ],
+   "DNK": [
+    "perthnow.com.au"
+   ],
+   "RUS": [
+    "politika.rs",
+    "pressorg24.com",
+    "rts.rs",
+    "spbvedomosti.ru",
+    "wtop.com"
+   ],
+   "VEN": [
+    "the-star.co.ke"
+   ],
+   "BRA": [
+    "ig.com.br",
+    "paranashop.com.br",
+    "prensa-latina.cu"
+   ],
+   "ESP": [
+    "elnortedecastilla.es",
+    "mundiario.com"
+   ],
+   "AFG": [
+    "khaama.com"
+   ],
+   "MUS": [
+    "palermomania.it"
+   ],
+   "CIV": [
+    "fratmat.info"
+   ],
+   "ROU": [
+    "cancan.ro"
+   ],
+   "LUX": [
+    "lessentiel.lu"
+   ],
+   "IRQ": [
+    "aljazeera.net",
+    "mk.ru"
+   ],
+   "PRT": [
+    "barlavento.pt"
+   ],
+   "SAU": [
+    "politika.rs"
+   ],
+   "PRY": [
+    "com.py"
+   ],
+   "PAK": [
+    "khaama.com"
+   ],
+   "POL": [
+    "dzieje.pl"
+   ]
+  },
+  "20261119153000": {
+   "ARG": [
+    "thepinknews.com"
+   ],
+   "IND": [
+    "idrw.org",
+    "indiatimes.com",
+    "moneycontrol.com",
+    "vaartha.com"
+   ],
+   "GBR": [
+    "aol.co.uk",
+    "dailymail.com",
+    "itongadol.com",
+    "news8000.com"
+   ],
+   "FRA": [
+    "burundi-agnews.org",
+    "dailymail.com",
+    "tgrthaber.com"
+   ],
+   "USA": [
+    "amsterdamnews.com",
+    "bleedingcool.com",
+    "dnews.gr",
+    "flyingmag.com",
+    "gsp.ro",
+    "ibtimes.co.uk",
+    "ibtimes.com",
+    "local12.com",
+    "pnn.ps",
+    "rock1015.com",
+    "thepinknews.com",
+    "vlasti.net",
+    "wesh.com",
+    "wgal.com"
+   ],
+   "NGA": [
+    "allafrica.com"
+   ],
+   "BGD": [
+    "dnews.gr",
+    "dominicanrepublicpost.com",
+    "livehindustan.com",
+    "netnewsledger.com"
+   ],
+   "BHS": [
+    "tribune242.com"
+   ],
+   "BRB": [
+    "barbadostoday.bb"
+   ],
+   "SAU": [
+    "businessworld.in",
+    "nile.eg"
+   ],
+   "GRC": [
+    "bankingnews.gr",
+    "bleedingcool.com",
+    "newpost.gr"
+   ],
+   "RUS": [
+    "dailymail.com",
+    "elpais.com",
+    "expert.ru",
+    "glavred.info",
+    "informer.rs",
+    "recorderonline.com",
+    "rttnews.com",
+    "tyzden.sk",
+    "ujszo.com",
+    "uralpress.ru"
+   ],
+   "BEN": [
+    "allafrica.com"
+   ],
+   "CAN": [
+    "vancouversun.com"
+   ],
+   "MOZ": [
+    "thesouthafrican.com"
+   ],
+   "ISR": [
+    "alquds.com",
+    "ammonnews.net",
+    "dailyherald.com",
+    "lecourrier-dalgerie.com",
+    "news.az",
+    "pnn.ps",
+    "republika.co.id",
+    "theintercept.com",
+    "zazoom.it"
+   ],
+   "IRL": [
+    "irishtimes.com"
+   ],
+   "CIV": [
+    "frontpageafricaonline.com"
+   ],
+   "LBR": [
+    "frontpageafricaonline.com"
+   ],
+   "IRN": [
+    "emaratalyoum.com",
+    "irannewsupdate.com",
+    "kikar.co.il",
+    "pnn.ps",
+    "tgrthaber.com",
+    "theintercept.com"
+   ],
+   "PSE": [
+    "alfajertv.com",
+    "theintercept.com"
+   ],
+   "LVA": [
+    "recorderonline.com"
+   ],
+   "GMB": [
+    "aaj.tv",
+    "day.az",
+    "dire.it",
+    "dominicanrepublicpost.com"
+   ],
+   "PAK": [
+    "idrw.org"
+   ],
+   "SEN": [
+    "leral.net"
+   ],
+   "IRQ": [
+    "alquds.com"
+   ],
+   "LBY": [
+    "antimafiaduemila.com"
+   ],
+   "COL": [
+    "eluniversal.com.co",
+    "itongadol.com"
+   ],
+   "UKR": [
+    "biobiochile.cl",
+    "dnes.bg",
+    "elpais.com",
+    "glavred.info",
+    "informer.rs",
+    "limburger.nl",
+    "obozrevatel.com",
+    "tyzden.sk",
+    "ujszo.com"
+   ],
+   "YEM": [
+    "alquds.com"
+   ],
+   "ARM": [
+    "day.az"
+   ],
+   "AZE": [
+    "day.az"
+   ],
+   "BRA": [
+    "com.bo",
+    "dnoticias.pt",
+    "globo.com",
+    "observador.pt"
+   ],
+   "CHN": [
+    "askanews.it",
+    "dnews.gr",
+    "vlasti.net"
+   ],
+   "SGP": [
+    "zazoom.it"
+   ],
+   "DEU": [
+    "aaj.tv",
+    "globo.com"
+   ],
+   "VNM": [
+    "pnn.ps"
+   ],
+   "KWT": [
+    "pnn.ps"
+   ],
+   "ITA": [
+    "dire.it"
+   ],
+   "LBN": [
+    "itongadol.com"
+   ],
+   "SVK": [
+    "tyzden.sk"
+   ],
+   "MLI": [
+    "ilgazzettino.it"
+   ],
+   "MMR": [
+    "larepublica.pe"
+   ],
+   "ZAF": [
+    "askanews.it"
+   ],
+   "ROU": [
+    "blackseanews.net"
+   ]
+  },
+  "20261119151500": {
+   "AFG": [
+    "timesca.com"
+   ],
+   "USA": [
+    "5-tv.ru",
+    "elpatagonico.com",
+    "geo.tv",
+    "kval.com",
+    "my1035.com",
+    "nbcmontana.com",
+    "restaurantnewsrelease.com",
+    "siliconvalley.com",
+    "wdrv.com"
+   ],
+   "CHN": [
+    "933thedrive.com",
+    "aa.com.tr"
+   ],
+   "TUR": [
+    "euobserver.com"
+   ],
+   "BGD": [
+    "arabnews.com",
+    "bdnews24.com"
+   ],
+   "KAZ": [
+    "timesca.com"
+   ],
+   "IRL": [
+    "liverpoolecho.co.uk"
+   ],
+   "IND": [
+    "liverpoolecho.co.uk",
+    "sanjeevnitoday.com",
+    "siasat.com",
+    "thehindu.com"
+   ],
+   "CRI": [
+    "iheart.com"
+   ],
+   "PAK": [
+    "geo.tv"
+   ],
+   "RWA": [
+    "gazeta-pravda.ru",
+    "wri.org"
+   ],
+   "GRC": [
+    "decaturdaily.com"
+   ],
+   "IRN": [
+    "geo.tv",
+    "hurriyetdailynews.com",
+    "korrespondent.net",
+    "shafaqna.com",
+    "trthaber.com",
+    "ynet.co.il"
+   ],
+   "ISR": [
+    "geo.tv",
+    "shafaqna.com",
+    "weser-kurier.de"
+   ],
+   "DEU": [
+    "5-tv.ru",
+    "h.ua",
+    "irishsun.com"
+   ],
+   "RUS": [
+    "20minutos.es",
+    "dagelijksestandaard.nl",
+    "extra.ec",
+    "irishsun.com",
+    "zerohedge.com"
+   ],
+   "SAU": [
+    "zerohedge.com"
+   ],
+   "UKR": [
+    "actualno.com",
+    "gazeta-pravda.ru",
+    "zerohedge.com"
+   ],
+   "HRV": [
+    "sbonline.net"
+   ],
+   "FRA": [
+    "euronews.com",
+    "lanacion.com.ar",
+    "tdg.ch"
+   ],
+   "CHE": [
+    "tdg.ch"
+   ],
+   "MEX": [
+    "lopezdoriga.com",
+    "tvazteca.com"
+   ],
+   "ECU": [
+    "extra.ec"
+   ],
+   "SSD": [
+    "dhakatimes24.com"
+   ],
+   "HTI": [
+    "diariopanorama.com"
+   ],
+   "ITA": [
+    "italiachiamaitalia.it",
+    "zazoom.it"
+   ],
+   "PSE": [
+    "lanacion.com.ar"
+   ],
+   "MUS": [
+    "com.uy"
+   ],
+   "AZE": [
+    "kavkaz-uzel.ru"
+   ],
+   "SWE": [
+    "elpatagonico.com"
+   ],
+   "YEM": [
+    "gn-online.de"
+   ]
+  },
+  "20261119150000": {
+   "BRA": [
+    "estadao.com.br"
+   ],
+   "RUS": [
+    "fontanka.ru",
+    "life.ru",
+    "trud-ost.ru",
+    "visir.is",
+    "vz.ru",
+    "zn.ua"
+   ],
+   "BOL": [
+    "infobae.com"
+   ],
+   "UKR": [
+    "alhurra.com",
+    "bfm.ru",
+    "capital.gr",
+    "eurointegration.com.ua",
+    "obozrevatel.com",
+    "vz.ru"
+   ],
+   "GBR": [
+    "infobae.com"
+   ],
+   "KOR": [
+    "vz.ru"
+   ],
+   "BIH": [
+    "avaz.ba"
+   ],
+   "CHN": [
+    "ekstrabladet.dk",
+    "eurointegration.com.ua",
+    "life.ru"
+   ],
+   "COL": [
+    "diariodelhuila.com",
+    "lafm.com.co"
+   ],
+   "LTU": [
+    "eurointegration.com.ua"
+   ],
+   "NLD": [
+    "drimble.nl",
+    "naftemporiki.gr"
+   ],
+   "ROU": [
+    "maszol.ro"
+   ],
+   "ITA": [
+    "ilgiornale.it"
+   ],
+   "ARG": [
+    "rionegro.com.ar",
+    "urgente24.com"
+   ],
+   "MDA": [
+    "eurointegration.com.ua",
+    "ziarulnational.md"
+   ],
+   "IRN": [
+    "com.mk",
+    "hispantv.com",
+    "nile.eg"
+   ],
+   "IND": [
+    "cgkhabar.com"
+   ],
+   "USA": [
+    "natemat.pl",
+    "tamilmurasu.com.sg"
+   ],
+   "ISR": [
+    "isra.com"
+   ],
+   "BGD": [
+    "gosc.pl"
+   ],
+   "GRC": [
+    "com.mk",
+    "pelop.gr"
+   ],
+   "MEX": [
+    "jornada.com.mx"
+   ],
+   "DEU": [
+    "eurointegration.com.ua",
+    "euronews.com",
+    "tagesspiegel.de"
+   ],
+   "POL": [
+    "eurointegration.com.ua",
+    "natemat.pl"
+   ],
+   "PRT": [
+    "canaln.pe"
+   ],
+   "YEM": [
+    "hispantv.com",
+    "nos.nl"
+   ]
+  },
+  "20261119144500": {
+   "ISR": [
+    "aa.com.tr",
+    "israelinfo.co.il",
+    "mzamin.com"
+   ],
+   "STP": [
+    "jornaltropical.st"
+   ],
+   "PRT": [
+    "jornaltropical.st"
+   ],
+   "RUS": [
+    "antaranews.com",
+    "bankingnews.gr",
+    "bnkomi.ru",
+    "com.do",
+    "diariodelsur.com.co",
+    "magyarhirlap.hu",
+    "newsbomb.gr",
+    "runews24.ru",
+    "sfin.ro",
+    "sibdepo.ru"
+   ],
+   "TWN": [
+    "sfin.ro"
+   ],
+   "DNK": [
+    "nra.lv"
+   ],
+   "BGD": [
+    "mzamin.com",
+    "ntvbd.com"
+   ],
+   "BRA": [
+    "com.uy",
+    "gazetadopovo.com.br",
+    "pbagora.com.br"
+   ],
+   "CHE": [
+    "laprovinciadicomo.it"
+   ],
+   "UKR": [
+    "com.do",
+    "diariodelsur.com.co",
+    "magyarhirlap.hu",
+    "metronieuws.nl",
+    "pozri.sk",
+    "vz.ru"
+   ],
+   "GBR": [
+    "edaily.co.kr"
+   ],
+   "CHN": [
+    "newsbomb.gr",
+    "runews24.ru"
+   ],
+   "HKG": [
+    "newsbomb.gr"
+   ],
+   "JPN": [
+    "newsbomb.gr"
+   ],
+   "MEX": [
+    "netnoticias.mx"
+   ],
+   "TUR": [
+    "n-tv.de"
+   ],
+   "SRB": [
+    "kurir.rs"
+   ],
+   "BIH": [
+    "glassrpske.com"
+   ],
+   "ITA": [
+    "glassrpske.com",
+    "leggo.it",
+    "politika.rs",
+    "tecnicadellascuola.it"
+   ],
+   "ESP": [
+    "elfaradio.com"
+   ],
+   "FRA": [
+    "ici.fr",
+    "magyarhirlap.hu"
+   ],
+   "SWE": [
+    "publico.es"
+   ],
+   "IND": [
+    "antaranews.com"
+   ],
+   "IRN": [
+    "dagospia.com",
+    "korrespondent.net",
+    "mzamin.com"
+   ],
+   "USA": [
+    "diariodelsur.com.co",
+    "korrespondent.net",
+    "losandes.com.ar",
+    "mzamin.com",
+    "nra.lv"
+   ],
+   "GMB": [
+    "glassrpske.com"
+   ],
+   "DEU": [
+    "24tv.ua",
+    "nrhz.de"
+   ],
+   "KHM": [
+    "mzamin.com"
+   ],
+   "NLD": [
+    "ansa.it"
+   ],
+   "PAK": [
+    "punjabkesari.in"
+   ]
+  },
+  "20261119143000": {
+   "ITA": [
+    "adevarul.ro",
+    "charhdikala.com",
+    "hoy.es",
+    "zazoom.it"
+   ],
+   "DEU": [
+    "autobild.de",
+    "raya.com"
+   ],
+   "ALB": [
+    "mapo.al"
+   ],
+   "COL": [
+    "pulzo.com",
+    "razonpublica.com"
+   ],
+   "ISR": [
+    "alquds.co.uk",
+    "huffingtonpost.gr",
+    "sana.sy"
+   ],
+   "CHN": [
+    "evrensel.net"
+   ],
+   "IND": [
+    "akilanews.com",
+    "pressnote.in"
+   ],
+   "TCA": [
+    "mersinhaber.com"
+   ],
+   "CHE": [
+    "autobild.de"
+   ],
+   "RUS": [
+    "aif.ru",
+    "h.ua",
+    "huffingtonpost.gr",
+    "jutarnji.hr",
+    "lenta.ru",
+    "m24.ru",
+    "ziare.com",
+    "zn.ua"
+   ],
+   "SVK": [
+    "gazeta-pravda.ru"
+   ],
+   "ETH": [
+    "sana.sy"
+   ],
+   "UKR": [
+    "evrensel.net",
+    "h.ua",
+    "lb.ua",
+    "lenta.ru",
+    "m24.ru",
+    "ostro.org",
+    "zn.ua"
+   ],
+   "GBR": [
+    "zn.ua"
+   ],
+   "ROU": [
+    "ziare.com"
+   ],
+   "SWE": [
+    "eldiario.es",
+    "elpueblodigital.uy"
+   ],
+   "USA": [
+    "alquds.co.uk",
+    "ekantipur.com",
+    "yeniakit.com.tr"
+   ],
+   "ESP": [
+    "zazoom.it"
+   ],
+   "MEX": [
+    "esdiario.com"
+   ],
+   "TUR": [
+    "1in.am"
+   ],
+   "SRB": [
+    "lb.ua"
+   ],
+   "BGD": [
+    "akilanews.com"
+   ],
+   "AFG": [
+    "observador.pt"
+   ],
+   "IRN": [
+    "hnonline.sk"
+   ]
+  },
+  "20261119233000": {
+   "USA": [
+    "alternet.org",
+    "armytimes.com",
+    "bakersfieldnow.com",
+    "boston.com",
+    "dailycaller.com",
+    "independent.co.uk",
+    "ketv.com",
+    "mesabitribune.com",
+    "newschannel5.com",
+    "nydailynews.com",
+    "nypost.com",
+    "post-gazette.com",
+    "redstate.com",
+    "wjcl.com",
+    "wtov9.com"
+   ],
+   "PRT": [
+    "liverpoolecho.co.uk"
+   ],
+   "ISR": [
+    "israelnationalnews.com",
+    "nypost.com"
+   ],
+   "CAN": [
+    "newsweek.com"
+   ],
+   "CHN": [
+    "jamestown.org"
+   ],
+   "SGP": [
+    "jamestown.org"
+   ],
+   "CYM": [
+    "catholicworldreport.com"
+   ],
+   "CUB": [
+    "catholicworldreport.com"
+   ],
+   "HTI": [
+    "aa.com.tr"
+   ],
+   "IRN": [
+    "dailycaller.com",
+    "redstate.com"
+   ],
+   "RUS": [
+    "nypost.com"
+   ],
+   "UKR": [
+    "nypost.com"
+   ]
+  },
+  "20261119231500": {
+   "CAN": [
+    "brandonsun.com",
+    "cbc.ca",
+    "edmontonsun.com",
+    "winnipegfreepress.com"
+   ],
+   "AUT": [
+    "leadertelegram.com"
+   ],
+   "DEU": [
+    "globo.com",
+    "klops.ru",
+    "leadertelegram.com",
+    "mk.ru",
+    "onet.pl"
+   ],
+   "USA": [
+    "6abc.com",
+    "fingerlakes1.com",
+    "fitsnews.com",
+    "ichannela.com",
+    "in.ua",
+    "israelnationalnews.com",
+    "kroc.com",
+    "mysuncoast.com",
+    "sweetwaternow.com",
+    "tmz.com",
+    "westword.com",
+    "wmbfnews.com"
+   ],
+   "CHE": [
+    "fingerlakes1.com"
+   ],
+   "FRA": [
+    "bignewsnetwork.com",
+    "cbc.ca",
+    "meganoticias.mx"
+   ],
+   "ZWE": [
+    "wsoctv.com"
+   ],
+   "SLV": [
+    "bignewsnetwork.com"
+   ],
+   "DNK": [
+    "leadertelegram.com"
+   ],
+   "HTI": [
+    "bignewsnetwork.com"
+   ],
+   "ISR": [
+    "israelnationalnews.com"
+   ],
+   "SSD": [
+    "crossmap.com"
+   ],
+   "UKR": [
+    "espreso.tv",
+    "express.pk",
+    "klops.ru",
+    "krcgtv.com",
+    "regionews.ua",
+    "russiatoday.ru"
+   ],
+   "GUM": [
+    "guampdn.com"
+   ],
+   "VNM": [
+    "canberratimes.com.au"
+   ],
+   "BRA": [
+    "estadao.com.br",
+    "globo.com"
+   ],
+   "POL": [
+    "fakt.pl"
+   ],
+   "CHN": [
+    "ichannela.com"
+   ],
+   "COL": [
+    "elnuevodia.com.co",
+    "extra.ec"
+   ],
+   "ARG": [
+    "lagaceta.com.ar"
+   ],
+   "RUS": [
+    "pulsoslp.com.mx"
+   ],
+   "SAU": [
+    "alriyadh.com"
+   ]
+  },
+  "20261119230000": {
+   "CAN": [
+    "cp24.com"
+   ],
+   "GBR": [
+    "express.co.uk",
+    "noticiasrcn.com",
+    "pagesix.com",
+    "ynet.co.il"
+   ],
+   "USA": [
+    "binnews.com",
+    "cedarnews.net",
+    "channel3000.com",
+    "fox4news.com",
+    "foxnews.com",
+    "kvoa.com",
+    "newsbusters.org",
+    "orlandosentinel.com",
+    "oslobodjenje.ba",
+    "outdoorlife.com",
+    "vanityfair.com",
+    "wwaytv3.com"
+   ],
+   "ESP": [
+    "diariopalentino.es",
+    "pjmedia.com"
+   ],
+   "IRN": [
+    "lebanon24.com",
+    "ynetnews.com"
+   ],
+   "UKR": [
+    "manilatimes.net",
+    "tetova1.mk"
+   ],
+   "RUS": [
+    "lebanon24.com",
+    "manilatimes.net",
+    "oslobodjenje.ba"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "MNE": [
+    "elciudadano.com",
+    "politika.rs"
+   ],
+   "SDN": [
+    "alquds.co.uk"
+   ],
+   "COL": [
+    "elciudadano.com",
+    "elpais.com.co"
+   ],
+   "ARG": [
+    "tn.com.ar"
+   ],
+   "CHL": [
+    "elciudadano.com"
+   ],
+   "CHN": [
+    "gazetadopovo.com.br",
+    "lebanon24.com",
+    "ohmynews.com"
+   ],
+   "HTI": [
+    "diariodigitalrd.com",
+    "idnes.cz",
+    "nos.nl"
+   ],
+   "ISR": [
+    "fj-p.com"
+   ],
+   "FRA": [
+    "tsa-algerie.com"
+   ],
+   "IDN": [
+    "liputan6.com"
+   ],
+   "PSE": [
+    "fj-p.com"
+   ],
+   "YEM": [
+    "klix.ba",
+    "lebanon24.com"
+   ]
+  },
+  "20261119224500": {
+   "USA": [
+    "abcnews.com",
+    "aol.co.uk",
+    "cedarnews.net",
+    "fox5dc.com",
+    "foxnews.com",
+    "kiro7.com",
+    "kwtx.com",
+    "net.ph",
+    "newsday.com",
+    "wjla.com",
+    "wtaq.com"
+   ],
+   "NGA": [
+    "pmnewsnigeria.com"
+   ],
+   "SYR": [
+    "wjla.com"
+   ],
+   "ZAF": [
+    "sundayworld.co.za"
+   ],
+   "CAN": [
+    "calgarysun.com",
+    "ottawacitizen.com"
+   ],
+   "BEN": [
+    "pmnewsnigeria.com"
+   ],
+   "KWT": [
+    "arabtimesonline.com"
+   ],
+   "ISR": [
+    "antiwar.com",
+    "investmentwatchblog.com"
+   ],
+   "PSE": [
+    "antiwar.com"
+   ],
+   "GBR": [
+    "harvard.edu",
+    "rtarabic.com"
+   ],
+   "COL": [
+    "diariodelsur.com.co",
+    "dominicantoday.com",
+    "martinoticias.com",
+    "pulzo.com"
+   ],
+   "IND": [
+    "theindianawaaz.com"
+   ],
+   "NOR": [
+    "govinfosecurity.com"
+   ],
+   "PHL": [
+    "net.ph"
+   ],
+   "SLE": [
+    "fox5dc.com"
+   ],
+   "SAU": [
+    "rtarabic.com",
+    "samaa.tv"
+   ],
+   "IRN": [
+    "investmentwatchblog.com"
+   ],
+   "YEM": [
+    "sana.sy"
+   ],
+   "MUS": [
+    "nacion.com"
+   ],
+   "BEL": [
+    "rtcg.me"
+   ],
+   "BRA": [
+    "conjur.com.br",
+    "globo.com"
+   ],
+   "UKR": [
+    "fedpress.ru",
+    "rtarabic.com"
+   ],
+   "CAF": [
+    "jeuneafrique.com"
+   ],
+   "CHL": [
+    "eleconomista.com.ar"
+   ],
+   "ITA": [
+    "ansa.it"
+   ],
+   "BGD": [
+    "newsmaxbalkans.al"
+   ],
+   "MEX": [
+    "quadratin.com.mx"
+   ],
+   "ROU": [
+    "stiripesurse.ro"
+   ],
+   "TUR": [
+    "haqqin.az",
+    "lenta.ru"
+   ],
+   "RUS": [
+    "informpskov.ru",
+    "rtarabic.com"
+   ]
+  },
+  "20261119223000": {
+   "IND": [
+    "pakobserver.net"
+   ],
+   "GBR": [
+    "aljazeera.net",
+    "alsahwayemen.net",
+    "fnnews.com",
+    "mentalfloss.com",
+    "wessexscene.co.uk"
+   ],
+   "USA": [
+    "cedarnews.net",
+    "chicagocrusader.com",
+    "dailygazette.com",
+    "dailymail.com",
+    "fnnews.com",
+    "frognews.bg",
+    "idahopress.com",
+    "kotaradio.com",
+    "lifenews.com",
+    "marinij.com",
+    "money.pl",
+    "naturalnews.com",
+    "nypost.com",
+    "scientificamerican.com",
+    "tsn.ua",
+    "wboc.com",
+    "wchstv.com",
+    "wdet.org",
+    "wpr.org",
+    "wvmetronews.com",
+    "wxyz.com",
+    "zazoom.it"
+   ],
+   "SAU": [
+    "pakobserver.net"
+   ],
+   "IRN": [
+    "pakistantoday.com.pk"
+   ],
+   "PAK": [
+    "channelnewsasia.com",
+    "ismatimes.com"
+   ],
+   "YEM": [
+    "aljazeera.net",
+    "lankanewspapers.com"
+   ],
+   "SGP": [
+    "channelnewsasia.com"
+   ],
+   "PHL": [
+    "aol.com"
+   ],
+   "ISR": [
+    "inn.co.il",
+    "naturalnews.com"
+   ],
+   "NPL": [
+    "rediff.com"
+   ],
+   "SWE": [
+    "tvazteca.com"
+   ],
+   "BEL": [
+    "euronews.com"
+   ],
+   "BGD": [
+    "aljazeera.net",
+    "voakorea.com"
+   ],
+   "MUS": [
+    "co.cr"
+   ],
+   "LTU": [
+    "novini.bg"
+   ],
+   "CHN": [
+    "fnnews.com"
+   ],
+   "UKR": [
+    "evrensel.net",
+    "fnnews.com",
+    "mail.ru",
+    "nos.nl",
+    "profile.ru"
+   ],
+   "IRL": [
+    "franceinfo.fr"
+   ],
+   "COL": [
+    "elheraldo.co",
+    "frognews.bg"
+   ],
+   "MMR": [
+    "aljazeera.net"
+   ],
+   "IRQ": [
+    "kitabat.com"
+   ],
+   "TUR": [
+    "evrensel.net",
+    "haberport.com"
+   ],
+   "FRA": [
+    "zazoom.it"
+   ],
+   "DZA": [
+    "franceinfo.fr"
+   ],
+   "HTI": [
+    "jornaldebrasilia.com.br"
+   ],
+   "NIC": [
+    "com.ni"
+   ],
+   "RUS": [
+    "jornaldebrasilia.com.br",
+    "mail.ru",
+    "vesti.ru",
+    "vz.ru"
+   ],
+   "JPN": [
+    "aljazeera.net"
+   ],
+   "MLI": [
+    "inn.co.il"
+   ],
+   "QAT": [
+    "elimparcial.com"
+   ],
+   "DEU": [
+    "nos.nl"
+   ]
+  },
+  "20261119221500": {
+   "USA": [
+    "2paragraphs.com",
+    "arkansasonline.com",
+    "gazette.com",
+    "holosameryky.com",
+    "hot97.com",
+    "macombdaily.com",
+    "nbclosangeles.com",
+    "negocios.com",
+    "pagesix.com",
+    "postandcourier.com",
+    "presstelegram.com",
+    "sbsun.com",
+    "suntimes.com",
+    "telemundo52.com",
+    "theblaze.com",
+    "thehollywoodgossip.com"
+   ],
+   "ITA": [
+    "firenzepost.it",
+    "quicomo.it",
+    "stripes.com"
+   ],
+   "CHN": [
+    "independent.co.uk"
+   ],
+   "RUS": [
+    "cedarnews.net",
+    "divyabhaskar.co.in",
+    "independent.co.uk",
+    "military.com",
+    "obozrevatel.com",
+    "trud.ru"
+   ],
+   "COL": [
+    "correiobraziliense.com.br",
+    "latintimes.com"
+   ],
+   "VEN": [
+    "latintimes.com",
+    "que.es"
+   ],
+   "CAN": [
+    "torontosun.com"
+   ],
+   "IND": [
+    "co.nz",
+    "divyabhaskar.co.in",
+    "indiatimes.com"
+   ],
+   "FRA": [
+    "co.nz",
+    "ibtimes.co.uk"
+   ],
+   "GBR": [
+    "jpost.com"
+   ],
+   "UKR": [
+    "divyabhaskar.co.in",
+    "gazeta.pl",
+    "independent.co.uk",
+    "negocios.com",
+    "obozrevatel.com",
+    "standardmedia.co.ke",
+    "wnd.com"
+   ],
+   "PAK": [
+    "eurasiareview.com"
+   ],
+   "ISR": [
+    "latintimes.com",
+    "palinfo.com"
+   ],
+   "ESP": [
+    "heraldo.es",
+    "latribunadealbacete.es",
+    "telemetro.com"
+   ],
+   "ABW": [
+    "uol.com.br"
+   ],
+   "PSE": [
+    "palinfo.com"
+   ],
+   "BGD": [
+    "tageblatt.lu"
+   ],
+   "KOR": [
+    "hankookilbo.com"
+   ],
+   "DEU": [
+    "divyabhaskar.co.in",
+    "trud.ru"
+   ],
+   "SAU": [
+    "uol.com.br"
+   ],
+   "JPN": [
+    "edaily.co.kr"
+   ],
+   "BLR": [
+    "sb.by"
+   ],
+   "MEX": [
+    "elpais.com"
+   ],
+   "SLV": [
+    "notimerica.com"
+   ],
+   "NLD": [
+    "tuttonapoli.net"
+   ]
+  },
+  "20261119220000": {
+   "USA": [
+    "cedarnews.net",
+    "chicagotribune.com",
+    "click2houston.com",
+    "dailymail.com",
+    "fox21online.com",
+    "instinctmagazine.com",
+    "laopinion.com",
+    "nydailynews.com",
+    "nypost.com",
+    "portlandmercury.com",
+    "riotimesonline.com",
+    "theadvocate.com",
+    "wdtv.com",
+    "wset.com",
+    "wwmt.com",
+    "yourdemocracy.net"
+   ],
+   "ESP": [
+    "riotimesonline.com"
+   ],
+   "SLV": [
+    "riotimesonline.com"
+   ],
+   "VEN": [
+    "dailybulletin.com",
+    "laopinion.com",
+    "riotimesonline.com"
+   ],
+   "HTI": [
+    "jamaicaobserver.com",
+    "riotimesonline.com"
+   ],
+   "SDN": [
+    "riotimesonline.com"
+   ],
+   "IND": [
+    "deshbandhu.co.in",
+    "thefrontierpost.com"
+   ],
+   "CYM": [
+    "ncregister.com"
+   ],
+   "MEX": [
+    "kvia.com"
+   ],
+   "ETH": [
+    "riotimesonline.com"
+   ],
+   "GTM": [
+    "nacion.com",
+    "riotimesonline.com"
+   ],
+   "KEN": [
+    "riotimesonline.com"
+   ],
+   "ITA": [
+    "jewishaz.com"
+   ],
+   "ZAF": [
+    "riotimesonline.com"
+   ],
+   "NGA": [
+    "riotimesonline.com"
+   ],
+   "SYR": [
+    "shafaqna.com"
+   ],
+   "IRN": [
+    "yourdemocracy.net"
+   ],
+   "IRQ": [
+    "cedarnews.net",
+    "yourdemocracy.net"
+   ],
+   "THA": [
+    "houstonpublicmedia.org"
+   ],
+   "FRA": [
+    "contextotucuman.com"
+   ],
+   "CHN": [
+    "contextotucuman.com"
+   ],
+   "RUS": [
+    "14ymedio.com",
+    "aif.ru",
+    "interfax.com.ua"
+   ],
+   "UKR": [
+    "aif.ru",
+    "fraza.ua",
+    "globo.com",
+    "trthaber.com"
+   ],
+   "BGD": [
+    "mzamin.com"
+   ],
+   "BRA": [
+    "globo.com"
+   ],
+   "ECU": [
+    "eltelegrafo.com.ec"
+   ],
+   "PAN": [
+    "midiario.com"
+   ],
+   "SWE": [
+    "lineadirectaportal.com"
+   ],
+   "JPN": [
+    "eltelegrafo.com.ec",
+    "inosmi.ru"
+   ],
+   "ARG": [
+    "24baires.com"
+   ],
+   "SAU": [
+    "ntn24.com"
+   ]
+  },
+  "20261119214500": {
+   "USA": [
+    "berkshireeagle.com",
+    "dailymail.com",
+    "mprnews.org",
+    "nbcphiladelphia.com",
+    "newsroomamerica.com",
+    "nj1015.com",
+    "radaronline.com",
+    "republicanherald.com",
+    "rstreet.org",
+    "sfist.com",
+    "sonomasun.com",
+    "theacorn.com",
+    "theepochtimes.com",
+    "theoaklandpress.com",
+    "tribuneindia.com",
+    "voiceonline.com",
+    "wdbj7.com",
+    "wnypapers.com",
+    "wsbtv.com"
+   ],
+   "EGY": [
+    "rollcall.com"
+   ],
+   "NGA": [
+    "premiumtimesng.com"
+   ],
+   "AFG": [
+    "radaronline.com"
+   ],
+   "CAN": [
+    "thecarillon.com",
+    "voiceonline.com"
+   ],
+   "LBR": [
+    "newsroomamerica.com"
+   ],
+   "MEX": [
+    "dailymail.com",
+    "e-radio.gr",
+    "newsroomamerica.com"
+   ],
+   "ZWE": [
+    "salisburyjournal.co.uk"
+   ],
+   "DEU": [
+    "1011now.com"
+   ],
+   "IND": [
+    "tribuneindia.com",
+    "webindia123.com"
+   ],
+   "GBR": [
+    "oxfordstudent.com"
+   ],
+   "RUS": [
+    "adevarul.ro",
+    "alquds.com",
+    "mail.ru",
+    "rg.ru",
+    "villagevoice.com"
+   ],
+   "GRC": [
+    "villagevoice.com"
+   ],
+   "VEN": [
+    "breitbart.com"
+   ],
+   "ISR": [
+    "oxfordstudent.com"
+   ],
+   "LVA": [
+    "villagevoice.com"
+   ],
+   "UKR": [
+    "dialog.ua",
+    "glavcom.ua",
+    "pressorg24.com",
+    "webindia123.com"
+   ],
+   "PHL": [
+    "dailymail.com"
+   ],
+   "ROU": [
+    "adevarul.ro"
+   ],
+   "MLI": [
+    "alquds.com"
+   ],
+   "PRY": [
+    "tn.com.ar"
+   ],
+   "PAN": [
+    "com.pa"
+   ],
+   "BRA": [
+    "canaltech.com.br",
+    "rondoniadinamica.com"
+   ],
+   "COL": [
+    "elpais.com.co"
+   ],
+   "SWE": [
+    "eldia.com",
+    "elpais.com.co"
+   ],
+   "KOR": [
+    "hani.co.kr"
+   ],
+   "PRT": [
+    "rtve.es"
+   ],
+   "DNK": [
+    "jyllands-posten.dk"
+   ],
+   "SAU": [
+    "haberler.com"
+   ],
+   "ARG": [
+    "tn.com.ar"
+   ],
+   "ECU": [
+    "extra.ec"
+   ],
+   "TUR": [
+    "euronews.com",
+    "mail.ru",
+    "yenikonya.com.tr"
+   ],
+   "ITA": [
+    "tn.com.ar"
+   ],
+   "HRV": [
+    "jutarnji.hr"
+   ],
+   "GEO": [
+    "iz.ru"
+   ],
+   "ESP": [
+    "elmundo.es"
+   ],
+   "VNM": [
+    "fakti.bg"
+   ],
+   "JPN": [
+    "vloranews.com"
+   ],
+   "NOR": [
+    "dialog.ua"
+   ]
+  },
+  "20261119213000": {
+   "UKR": [
+    "aktuality.sk",
+    "blic.rs",
+    "glavred.info",
+    "liga.net",
+    "lrt.lt",
+    "novosti.rs",
+    "onalert.gr",
+    "turkiyegazetesi.com.tr"
+   ],
+   "USA": [
+    "glavred.info",
+    "tribune.gr",
+    "turkiyegazetesi.com.tr"
+   ],
+   "MDG": [
+    "afrik-foot.com"
+   ],
+   "BEL": [
+    "francesoir.fr"
+   ],
+   "COL": [
+    "perfil.com",
+    "pulzo.com"
+   ],
+   "VEN": [
+    "perfil.com"
+   ],
+   "MEX": [
+    "nacion.com"
+   ],
+   "ARG": [
+    "perfil.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "FRA": [
+    "leparisien.fr"
+   ],
+   "AUT": [
+    "liga.net"
+   ],
+   "NOR": [
+    "mail.ru"
+   ],
+   "GTM": [
+    "lahora.gt"
+   ],
+   "IRN": [
+    "glassrpske.com",
+    "lefigaro.fr"
+   ],
+   "SWE": [
+    "europapress.es"
+   ],
+   "ESP": [
+    "europapress.es"
+   ],
+   "RUS": [
+    "daily.com.ua",
+    "mail.ru",
+    "unian.net"
+   ],
+   "TUR": [
+    "mail.ru"
+   ],
+   "ISR": [
+    "bokra.net",
+    "glassrpske.com"
+   ],
+   "CHN": [
+    "tribune.gr"
+   ]
+  },
+  "20261120041500": {
+   "CIV": [
+    "news.cn"
+   ],
+   "USA": [
+    "6abc.com",
+    "alternet.org",
+    "brownpoliticalreview.org",
+    "nbcdfw.com",
+    "nbcnewyork.com",
+    "newarkpostonline.com",
+    "newsminer.com",
+    "northcentralpa.com",
+    "nydailynews.com",
+    "nypost.com",
+    "wach.com",
+    "wdsu.com"
+   ],
+   "FRA": [
+    "hindustantimes.com"
+   ],
+   "HTI": [
+    "ibtimes.co.uk"
+   ],
+   "COL": [
+    "ibtimes.co.uk"
+   ],
+   "JOR": [
+    "breitbart.com"
+   ],
+   "POL": [
+    "wjcl.com"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "IND": [
+    "bhaskar.com",
+    "digitimes.com",
+    "freepressjournal.in",
+    "hindustantimes.com",
+    "kenyastar.com",
+    "punjabkesari.in",
+    "rediff.com"
+   ],
+   "GBR": [
+    "hindustantimes.com",
+    "politico.eu"
+   ],
+   "CAN": [
+    "hindustantimes.com"
+   ],
+   "FJI": [
+    "islandsbusiness.com"
+   ],
+   "RUS": [
+    "hindustantimes.com",
+    "mail.ru",
+    "vz.ru"
+   ],
+   "GMB": [
+    "sbs.com.au"
+   ],
+   "IDN": [
+    "dealstreetasia.com",
+    "viva.co.id"
+   ],
+   "MWI": [
+    "malawi24.com"
+   ],
+   "CHN": [
+    "europesun.com",
+    "newsru.co.il"
+   ],
+   "UKR": [
+    "europesun.com",
+    "newstomato.com",
+    "patrika.com",
+    "vz.ru"
+   ],
+   "SGP": [
+    "digitimes.com"
+   ],
+   "IRN": [
+    "brownpoliticalreview.org",
+    "indiatimes.com",
+    "inn.co.il",
+    "kmib.co.kr",
+    "newsru.co.il"
+   ],
+   "HKG": [
+    "aristeguinoticias.com"
+   ],
+   "AUT": [
+    "meinbezirk.at"
+   ],
+   "PSE": [
+    "alquds.com"
+   ],
+   "ISR": [
+    "alquds.com",
+    "indiatimes.com",
+    "newsru.co.il"
+   ],
+   "SAU": [
+    "bbc.com",
+    "trend.az"
+   ],
+   "YEM": [
+    "newsru.co.il"
+   ],
+   "KOR": [
+    "investimentosenoticias.com.br",
+    "newstomato.com",
+    "viva.co.id"
+   ],
+   "PER": [
+    "larepublica.pe"
+   ],
+   "LBN": [
+    "newsru.co.il"
+   ]
+  },
+  "20261120040000": {
+   "NZL": [
+    "co.nz"
+   ],
+   "CAN": [
+    "discoverairdrie.com",
+    "kptv.com"
+   ],
+   "GBR": [
+    "cranbrooktownsman.com",
+    "ksl.com"
+   ],
+   "IDN": [
+    "boredpanda.com"
+   ],
+   "USA": [
+    "boredpanda.com",
+    "dunyanews.tv",
+    "fox26houston.com",
+    "fox29.com",
+    "fox4news.com",
+    "kalb.com",
+    "kptv.com",
+    "kvoa.com",
+    "kyuk.org",
+    "nbcmontana.com",
+    "wbrz.com",
+    "ynetnews.com"
+   ],
+   "ISR": [
+    "c4isrnet.com",
+    "ynetnews.com"
+   ],
+   "BGD": [
+    "theshillongtimes.com"
+   ],
+   "ALB": [
+    "org.au"
+   ],
+   "NGA": [
+    "blueprint.ng"
+   ],
+   "GRC": [
+    "theshillongtimes.com",
+    "ynetnews.com"
+   ],
+   "KOR": [
+    "latimes.com"
+   ],
+   "MLT": [
+    "maritime-executive.com"
+   ],
+   "OMN": [
+    "gulfnews.com"
+   ],
+   "CUB": [
+    "sitkasentinel.com"
+   ],
+   "IND": [
+    "theshillongtimes.com"
+   ]
+  },
+  "20261120034500": {
+   "IRN": [
+    "investmentwatchblog.com",
+    "politicaldog101.com"
+   ],
+   "IND": [
+    "indiatimes.com",
+    "siasat.com"
+   ],
+   "USA": [
+    "aol.com",
+    "dailymail.com",
+    "dominicanrepublicpost.com",
+    "hindustantimes.com",
+    "kfvs12.com",
+    "koxe.com",
+    "krdo.com",
+    "lompocrecord.com",
+    "nbcsandiego.com",
+    "newsweek.com",
+    "nola.com",
+    "salinapost.com",
+    "sandiegouniontribune.com"
+   ],
+   "CHN": [
+    "hindustantimes.com"
+   ],
+   "JEY": [
+    "catholicworldreport.com"
+   ],
+   "TUR": [
+    "catholicworldreport.com"
+   ],
+   "GBR": [
+    "aol.com",
+    "mcall.com"
+   ],
+   "ZAF": [
+    "citizen.co.za"
+   ],
+   "JPN": [
+    "dominicanrepublicpost.com",
+    "soompi.com"
+   ],
+   "IRQ": [
+    "strategypage.com"
+   ]
+  },
+  "20261120033000": {
+   "NZL": [
+    "wellingtontimes.com.au"
+   ],
+   "USA": [
+    "9and10news.com",
+    "abc7amarillo.com",
+    "bostonglobe.com",
+    "cbsnews.com",
+    "cp24.com",
+    "fox5dc.com",
+    "hngnews.com",
+    "kelo.com",
+    "mymotherlode.com",
+    "news4sanantonio.com",
+    "theglobeandmail.com",
+    "wflx.com",
+    "wrdw.com"
+   ],
+   "IND": [
+    "deccanchronicle.com"
+   ],
+   "BEL": [
+    "cruiselawnews.com"
+   ],
+   "BGD": [
+    "deccanchronicle.com"
+   ],
+   "GBR": [
+    "cp24.com",
+    "telegraph.co.uk"
+   ],
+   "CAN": [
+    "cp24.com",
+    "theglobeandmail.com"
+   ],
+   "AZE": [
+    "eurasiareview.com"
+   ],
+   "TUR": [
+    "eurasiareview.com"
+   ],
+   "BEN": [
+    "thesun.ng"
+   ],
+   "KOR": [
+    "hani.co.kr"
+   ],
+   "NGA": [
+    "eurasiareview.com",
+    "punchng.com",
+    "thesun.ng"
+   ],
+   "FRA": [
+    "bluemountainsgazette.com.au"
+   ],
+   "IRN": [
+    "telegraph.co.uk"
+   ],
+   "IRQ": [
+    "cbsnews.com"
+   ],
+   "VNM": [
+    "cbsnews.com"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "COL": [
+    "wflx.com"
+   ],
+   "HTI": [
+    "wflx.com"
+   ]
+  },
+  "20261120031500": {
+   "IND": [
+    "gujaratsamachar.com",
+    "mangalorean.com",
+    "openthemagazine.com"
+   ],
+   "ECU": [
+    "eluniverso.com",
+    "latintimes.com"
+   ],
+   "FRA": [
+    "dailymail.com"
+   ],
+   "USA": [
+    "americansongwriter.com",
+    "cbsnews.com",
+    "channel3000.com",
+    "chipchick.com",
+    "idahopress.com",
+    "mangalorean.com",
+    "naturalnews.com",
+    "news-gazette.com",
+    "winnipegfreepress.com",
+    "wsoctv.com",
+    "wwaytv3.com"
+   ],
+   "DEU": [
+    "cruxnow.com"
+   ],
+   "BHR": [
+    "eurasiareview.com"
+   ],
+   "UKR": [
+    "aif.ru",
+    "eurasiareview.com"
+   ],
+   "CHN": [
+    "people.cn"
+   ],
+   "PAK": [
+    "gujaratsamachar.com",
+    "pakobserver.net"
+   ],
+   "BEL": [
+    "cruxnow.com"
+   ],
+   "ISR": [
+    "cruxnow.com",
+    "mangalorean.com"
+   ],
+   "IRN": [
+    "com.uy",
+    "mangalorean.com"
+   ],
+   "GBR": [
+    "dailymail.com",
+    "elpais.com.co",
+    "ilrestodelcarlino.it"
+   ],
+   "RUS": [
+    "eurasiareview.com"
+   ],
+   "MDA": [
+    "eurasiareview.com"
+   ],
+   "SAU": [
+    "netscape.com"
+   ],
+   "SGP": [
+    "sbr.com.sg"
+   ],
+   "MEX": [
+    "theage.com.au"
+   ],
+   "JPN": [
+    "jawapos.com"
+   ],
+   "NLD": [
+    "jawapos.com"
+   ],
+   "EGY": [
+    "allafrica.com"
+   ],
+   "TUR": [
+    "viva.co.id"
+   ],
+   "PER": [
+    "elpopular.pe"
+   ],
+   "CAN": [
+    "gujaratsamachar.com"
+   ],
+   "SWE": [
+    "elpopular.pe"
+   ]
+  },
+  "20261120030000": {
+   "AFG": [
+    "theguardian.com"
+   ],
+   "USA": [
+    "abqjournal.com",
+    "analisisdigital.com.ar",
+    "fnnews.com",
+    "foxnews.com",
+    "hellomagazine.com",
+    "krcrtv.com",
+    "ksbw.com",
+    "kxii.com",
+    "liputan6.com",
+    "rockymounttelegram.com",
+    "vetogate.com",
+    "worldtribune.com"
+   ],
+   "IND": [
+    "indiatimes.com"
+   ],
+   "FRA": [
+    "cavalierdaily.com"
+   ],
+   "ISR": [
+    "al-monitor.com"
+   ],
+   "NZL": [
+    "co.nz"
+   ],
+   "VEN": [
+    "ntn24.com",
+    "zerohedge.com"
+   ],
+   "SAU": [
+    "24tv.ua"
+   ],
+   "IRN": [
+    "lasillarota.com",
+    "vetogate.com"
+   ],
+   "CAN": [
+    "0223.com.ar"
+   ],
+   "MEX": [
+    "lasillarota.com"
+   ],
+   "UKR": [
+    "inewsgr.com",
+    "liputan6.com",
+    "repubblica.it"
+   ],
+   "IDN": [
+    "metrotvnews.com"
+   ],
+   "PAK": [
+    "indiatimes.com"
+   ],
+   "KOR": [
+    "fnnews.com"
+   ],
+   "MNG": [
+    "fnnews.com"
+   ],
+   "RUS": [
+    "inewsgr.com",
+    "punjabkesari.com"
+   ]
+  },
+  "20261120024500": {
+   "PAK": [
+    "andhrajyothy.com",
+    "nbcnews.com"
+   ],
+   "USA": [
+    "929thebull.com",
+    "atlantanewsfirst.com",
+    "azfamily.com",
+    "cardplayer.com",
+    "countercurrents.org",
+    "dailygazette.com",
+    "iheart.com",
+    "journal-advocate.com",
+    "komu.com",
+    "nypost.com",
+    "panow.com",
+    "radaronline.com"
+   ],
+   "NGA": [
+    "blueprint.ng"
+   ],
+   "ARE": [
+    "cointelegraph.com"
+   ],
+   "CAN": [
+    "indiatimes.com",
+    "mtlblog.com"
+   ],
+   "JOR": [
+    "theblaze.com"
+   ],
+   "ISR": [
+    "dailygazette.com",
+    "mail.ru"
+   ],
+   "ITA": [
+    "slate.com"
+   ],
+   "JPN": [
+    "edaily.co.kr",
+    "highsnobiety.com"
+   ],
+   "BGD": [
+    "adn.com"
+   ],
+   "NLD": [
+    "adn.com"
+   ],
+   "AFG": [
+    "nbcnews.com"
+   ],
+   "RUS": [
+    "ilfogliettone.it",
+    "jamaicaobserver.com"
+   ],
+   "UKR": [
+    "jamaicaobserver.com",
+    "ria.ru"
+   ],
+   "IRN": [
+    "nbcnews.com"
+   ],
+   "FRA": [
+    "akhbaregy.com"
+   ],
+   "KOR": [
+    "edaily.co.kr",
+    "wikitree.co.kr"
+   ],
+   "GBR": [
+    "akhbaregy.com",
+    "eltrecetv.com.ar",
+    "indiatimes.com"
+   ],
+   "IND": [
+    "indiatimes.com"
+   ],
+   "MYS": [
+    "edaily.co.kr"
+   ],
+   "ESP": [
+    "edaily.co.kr"
+   ],
+   "MEX": [
+    "globalmedia.mx",
+    "razon.com.mx"
+   ],
+   "GTM": [
+    "globalmedia.mx"
+   ],
+   "PRT": [
+    "globo.com"
+   ],
+   "SAU": [
+    "akhbaregy.com"
+   ]
+  },
+  "20261120023000": {
+   "BGD": [
+    "wrp.org.uk"
+   ],
+   "CAN": [
+    "medicinehatnews.com",
+    "vicnews.com"
+   ],
+   "CHN": [
+    "kiev.ua",
+    "theepochtimes.com"
+   ],
+   "USA": [
+    "arkansasonline.com",
+    "ddaily.co.kr",
+    "electric949.com",
+    "elfinanciero.com.mx",
+    "fox19.com",
+    "lex18.com",
+    "nbcphiladelphia.com",
+    "sfist.com",
+    "shorouknews.com",
+    "wfae.org",
+    "whtc.com",
+    "wsbtv.com"
+   ],
+   "ETH": [
+    "wsbtv.com"
+   ],
+   "NGA": [
+    "punchng.com"
+   ],
+   "HTI": [
+    "wn.com"
+   ],
+   "ISR": [
+    "aa.com.tr",
+    "gazetadopovo.com.br",
+    "wrp.org.uk"
+   ],
+   "DZA": [
+    "aa.com.tr"
+   ],
+   "GMB": [
+    "wrp.org.uk"
+   ],
+   "PSE": [
+    "wrp.org.uk"
+   ],
+   "ARG": [
+    "lanacion.com.ar"
+   ],
+   "COL": [
+    "elpais.com.co",
+    "sintesis.mx"
+   ],
+   "RUS": [
+    "24-ore.com",
+    "daily.com.ua",
+    "iz.ru",
+    "kavkaz-uzel.ru",
+    "lenta.ru",
+    "mail.ru",
+    "profile.ru"
+   ],
+   "EGY": [
+    "elwatannews.com"
+   ],
+   "ESP": [
+    "esdiario.com"
+   ],
+   "UKR": [
+    "kavkaz-uzel.ru",
+    "lenta.ru",
+    "ohmynews.com"
+   ],
+   "CHE": [
+    "ddaily.co.kr"
+   ],
+   "ITA": [
+    "gazetadopovo.com.br"
+   ],
+   "SWE": [
+    "alcalorpolitico.com"
+   ],
+   "IRN": [
+    "brasil247.com"
+   ],
+   "YEM": [
+    "leparisien.fr"
+   ],
+   "IND": [
+    "bhaskar.com"
+   ]
+  },
+  "20261120021500": {
+   "IRN": [
+    "alquds.com",
+    "antaranews.com",
+    "laopinion.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "MLI": [
+    "actuniger.com"
+   ],
+   "UKR": [
+    "eurointegration.com.ua",
+    "laopinion.com",
+    "mail.ru",
+    "unn.ua"
+   ],
+   "SYR": [
+    "mail.ru"
+   ],
+   "ZMB": [
+    "idnes.cz"
+   ],
+   "ARG": [
+    "eleco.com.ar",
+    "tn.com.ar"
+   ],
+   "KOR": [
+    "heraldcorp.com"
+   ],
+   "COL": [
+    "diariodelsur.com.co"
+   ],
+   "CHN": [
+    "lenta.ru",
+    "mail.ru"
+   ],
+   "PAN": [
+    "com.pa"
+   ],
+   "POL": [
+    "eurointegration.com.ua"
+   ],
+   "NOR": [
+    "eurointegration.com.ua"
+   ],
+   "USA": [
+    "eurointegration.com.ua"
+   ],
+   "ECU": [
+    "diariodelsur.com.co"
+   ],
+   "IDN": [
+    "cnnindonesia.com"
+   ],
+   "ISR": [
+    "antaranews.com"
+   ],
+   "FRA": [
+    "sapo.pt"
+   ],
+   "MEX": [
+    "cincoradio.com.mx",
+    "puentelibre.mx"
+   ],
+   "SWE": [
+    "eurointegration.com.ua"
+   ],
+   "ESP": [
+    "eurointegration.com.ua"
+   ],
+   "RUS": [
+    "focus-news.net"
+   ]
+  },
+  "20261120020000": {
+   "GBR": [
+    "globo.com"
+   ],
+   "MEX": [
+    "lajornadasanluis.com.mx"
+   ],
+   "IDN": [
+    "okezone.com"
+   ],
+   "USA": [
+    "24-ore.com",
+    "internetua.com"
+   ],
+   "UKR": [
+    "glavcom.ua",
+    "kmib.co.kr",
+    "pozri.sk"
+   ],
+   "CHN": [
+    "mignews.com",
+    "pozri.sk"
+   ],
+   "COL": [
+    "pulzo.com"
+   ],
+   "IND": [
+    "livehindustan.com",
+    "udayavani.com"
+   ],
+   "ECU": [
+    "eldiario.ec"
+   ],
+   "EGY": [
+    "lajornadadeoriente.com.mx"
+   ],
+   "EST": [
+    "glavcom.ua"
+   ],
+   "VNM": [
+    "kmib.co.kr"
+   ],
+   "YEM": [
+    "shorouknews.com"
+   ],
+   "PER": [
+    "deperu.com"
+   ],
+   "RUS": [
+    "glavcom.ua",
+    "obozrevatel.com"
+   ],
+   "VEN": [
+    "sapo.pt"
+   ]
+  },
+  "20261120014500": {
+   "COL": [
+    "diariolasamericas.com",
+    "elheraldo.co",
+    "eltiempo.com"
+   ],
+   "ECU": [
+    "diariolasamericas.com",
+    "diariolibre.com",
+    "tctelevision.com"
+   ],
+   "UKR": [
+    "heraldcorp.com"
+   ],
+   "ARG": [
+    "eldiarionuevodia.com.ar"
+   ],
+   "ARM": [
+    "eltiempo.com"
+   ],
+   "JOR": [
+    "tctelevision.com"
+   ],
+   "SWE": [
+    "teletica.com",
+    "unoentrerios.com.ar"
+   ],
+   "ESP": [
+    "wikipedia.org"
+   ],
+   "GBR": [
+    "mail.ru"
+   ],
+   "IRN": [
+    "heraldcorp.com"
+   ],
+   "KOR": [
+    "busan.com"
+   ],
+   "LBN": [
+    "infobae.com"
+   ],
+   "SRB": [
+    "blic.rs"
+   ],
+   "SAU": [
+    "diariolasamericas.com",
+    "diariolibre.com"
+   ],
+   "MLI": [
+    "analisidifesa.it"
+   ],
+   "PAN": [
+    "com.pa"
+   ],
+   "PRK": [
+    "ambito.com"
+   ],
+   "RUS": [
+    "analisidifesa.it"
+   ],
+   "PER": [
+    "rpp.pe"
+   ],
+   "VEN": [
+    "info.ve"
+   ]
+  },
+  "20261120210000": {
+   "USA": [
+    "927thedrive.net",
+    "abcnews.com",
+    "bendbulletin.com",
+    "cp24.com",
+    "hotair.com",
+    "insurancejournal.com",
+    "kake.com",
+    "kmbc.com",
+    "mprnews.org",
+    "nydailynews.com",
+    "police1.com",
+    "rawstory.com",
+    "wemu.org",
+    "westkentuckystar.com",
+    "wtop.com",
+    "wyofile.com"
+   ],
+   "GBR": [
+    "metro.co.uk",
+    "newsweek.com"
+   ],
+   "CAN": [
+    "insidehalton.com",
+    "medicinehatnews.com",
+    "tribuneindia.com"
+   ],
+   "MEX": [
+    "kake.com"
+   ],
+   "FRA": [
+    "cyprus-mail.com",
+    "straitstimes.com"
+   ],
+   "PRT": [
+    "newsweek.com"
+   ],
+   "GHA": [
+    "nydailynews.com"
+   ],
+   "IND": [
+    "neindia.com"
+   ],
+   "IRL": [
+    "irishexaminer.com"
+   ],
+   "CHN": [
+    "consortiumnews.com",
+    "theepochtimes.com"
+   ],
+   "ISR": [
+    "jns.org",
+    "wafa.ps"
+   ],
+   "PSE": [
+    "wafa.ps"
+   ],
+   "PAK": [
+    "pakistantoday.com.pk"
+   ],
+   "UKR": [
+    "dailymail.com"
+   ],
+   "RUS": [
+    "hotair.com"
+   ],
+   "POL": [
+    "brandonsun.com",
+    "hotair.com"
+   ],
+   "SAU": [
+    "al-monitor.com"
+   ],
+   "AFG": [
+    "pakistantoday.com.pk"
+   ],
+   "BGD": [
+    "bdnews24.com"
+   ],
+   "DJI": [
+    "al-monitor.com"
+   ]
+  },
+  "20261120204500": {
+   "USA": [
+    "coventrytelegraph.net",
+    "fox32chicago.com",
+    "liherald.com",
+    "miamistudent.net",
+    "parisstaronline.com",
+    "postregister.com",
+    "theheraldghana.com",
+    "torontosun.com",
+    "wdel.com",
+    "yakimaherald.com",
+    "ynetnews.com"
+   ],
+   "GBR": [
+    "coventrytelegraph.net",
+    "express.co.uk",
+    "indianewengland.com",
+    "parisstaronline.com",
+    "standard.co.uk"
+   ],
+   "CAN": [
+    "torontosun.com"
+   ],
+   "HTI": [
+    "haitiantimes.com",
+    "torontosun.com"
+   ],
+   "IND": [
+    "torontosun.com"
+   ],
+   "TTO": [
+    "trinidadexpress.com"
+   ],
+   "ZWE": [
+    "salisburyjournal.co.uk"
+   ],
+   "MEX": [
+    "hollywoodreporter.com"
+   ],
+   "GRL": [
+    "liherald.com"
+   ],
+   "ISR": [
+    "liherald.com",
+    "ynetnews.com"
+   ],
+   "IRN": [
+    "ynetnews.com"
+   ]
+  },
+  "20261120203000": {
+   "GHA": [
+    "nypost.com"
+   ],
+   "CHN": [
+    "investorplace.com"
+   ],
+   "USA": [
+    "antena3.ro",
+    "cedarnews.net",
+    "dailyadvance.com",
+    "dailycardinal.com",
+    "democracynow.org",
+    "eju.tv",
+    "fox29.com",
+    "globalnews.ca",
+    "usmagazine.com",
+    "vetogate.com",
+    "wsbradio.com"
+   ],
+   "AFG": [
+    "aa.com.tr"
+   ],
+   "DEU": [
+    "democracynow.org"
+   ],
+   "ARM": [
+    "democracynow.org"
+   ],
+   "IND": [
+    "heraldgoa.in",
+    "samaa.tv"
+   ],
+   "CUB": [
+    "wlrn.org"
+   ],
+   "GBR": [
+    "channelnewsasia.com",
+    "foreignpolicy.com"
+   ],
+   "RUS": [
+    "aa.com.tr",
+    "capital.gr",
+    "elpais.com",
+    "kavpolit.com",
+    "laregione.ch",
+    "lethbridgeherald.com",
+    "tvzvezda.ru"
+   ],
+   "DNK": [
+    "aa.com.tr",
+    "kavpolit.com",
+    "vilaweb.cat"
+   ],
+   "GMB": [
+    "allafrica.com"
+   ],
+   "UKR": [
+    "aa.com.tr",
+    "abril.com.br",
+    "alo.rs",
+    "antena3.ro",
+    "kavpolit.com",
+    "lahora.gt",
+    "lb.ua",
+    "newsru.co.il"
+   ],
+   "ISR": [
+    "democracynow.org",
+    "news8000.com",
+    "ynet.co.il"
+   ],
+   "CAN": [
+    "lethbridgeherald.com"
+   ],
+   "POL": [
+    "kavpolit.com",
+    "lethbridgeherald.com",
+    "revistaforum.com.br"
+   ],
+   "JEY": [
+    "usmagazine.com"
+   ],
+   "COL": [
+    "eluniversal.com.co"
+   ],
+   "ROU": [
+    "libertatea.ro"
+   ],
+   "GTM": [
+    "gob.gt",
+    "lahora.gt"
+   ],
+   "ITA": [
+    "adnkronos.com"
+   ],
+   "NLD": [
+    "computable.nl"
+   ],
+   "FRA": [
+    "newsmonkey.be",
+    "newsru.co.il"
+   ],
+   "PER": [
+    "globo.com"
+   ],
+   "MEX": [
+    "eldictamen.mx",
+    "elimparcial.com"
+   ],
+   "IRN": [
+    "eju.tv"
+   ],
+   "BRA": [
+    "abril.com.br",
+    "globo.com"
+   ],
+   "PSE": [
+    "com.lb",
+    "eldictamen.mx"
+   ],
+   "SAU": [
+    "montesclaros.com",
+    "yeniakit.com.tr"
+   ],
+   "YEM": [
+    "montesclaros.com",
+    "yeniakit.com.tr"
+   ],
+   "HTI": [
+    "com.do"
+   ],
+   "MAR": [
+    "imolaoggi.it"
+   ]
+  },
+  "20261120201500": {
+   "USA": [
+    "afr.net",
+    "arkansasonline.com",
+    "charlestoncitypaper.com",
+    "firstshowing.net",
+    "foxbangor.com",
+    "gillettenewsrecord.com",
+    "indiatimes.com",
+    "inquirer.com",
+    "norfolkdailynews.com",
+    "whec.com"
+   ],
+   "GHA": [
+    "bbc.com"
+   ],
+   "FRA": [
+    "euronews.com",
+    "indiewire.com",
+    "jo24.net",
+    "lavanguardia.com",
+    "protothema.gr"
+   ],
+   "ISR": [
+    "middleeastmonitor.com",
+    "sana.sy",
+    "theyeshivaworld.com",
+    "torinotoday.it"
+   ],
+   "LSO": [
+    "lestimes.com"
+   ],
+   "RUS": [
+    "adevarul.ro",
+    "kavkaz-uzel.ru",
+    "lestimes.com",
+    "lurer.com",
+    "rtve.es",
+    "wp.pl"
+   ],
+   "GBR": [
+    "bursa.ro",
+    "eunews.it",
+    "london-now.co.uk",
+    "lurer.com"
+   ],
+   "ZAF": [
+    "thestatesmanonline.com"
+   ],
+   "UKR": [
+    "adevarul.ro",
+    "arabnews.com",
+    "bursa.ro",
+    "elfinanciero.com.mx",
+    "gazzettadelsud.it",
+    "nin.rs",
+    "norfolkdailynews.com",
+    "obozrevatel.com",
+    "tsn.ua",
+    "wp.pl"
+   ],
+   "SLV": [
+    "news.az"
+   ],
+   "HTI": [
+    "contextotucuman.com",
+    "elheraldo.co",
+    "news.az"
+   ],
+   "LBN": [
+    "middleeastmonitor.com"
+   ],
+   "HKG": [
+    "labourreview.org"
+   ],
+   "IND": [
+    "nepalnational.com",
+    "tamilguardian.com"
+   ],
+   "BGR": [
+    "realitytea.com"
+   ],
+   "POL": [
+    "elfinanciero.com.mx",
+    "news.az",
+    "obozrevatel.com"
+   ],
+   "JEY": [
+    "gillettenewsrecord.com"
+   ],
+   "ZWE": [
+    "lestimes.com"
+   ],
+   "ITA": [
+    "gazzettadelsud.it",
+    "italiaoggi.it",
+    "riminitoday.it",
+    "torinotoday.it"
+   ],
+   "MAR": [
+    "gazzettadelsud.it"
+   ],
+   "BHR": [
+    "bahrainmirror.com"
+   ],
+   "CHL": [
+    "elmostrador.cl",
+    "galiciaconfidencial.com"
+   ],
+   "CHE": [
+    "italiaoggi.it"
+   ],
+   "ARG": [
+    "cadena3.com"
+   ],
+   "CUB": [
+    "lavanguardia.com"
+   ],
+   "SWE": [
+    "pnt.cl"
+   ],
+   "KOS": [
+    "urgjent.com"
+   ],
+   "MKD": [
+    "libertas.mk"
+   ],
+   "MEX": [
+    "elfinanciero.com.mx",
+    "lopezdoriga.com",
+    "tvazteca.com"
+   ],
+   "IRN": [
+    "ansa.it",
+    "haberler.com"
+   ],
+   "SAU": [
+    "thejasnews.com"
+   ],
+   "SVK": [
+    "parameter.sk"
+   ],
+   "SYR": [
+    "sana.sy"
+   ],
+   "KOR": [
+    "koreatimes.com"
+   ]
+  },
+  "20261120200000": {
+   "ZAF": [
+    "theherald.co.za"
+   ],
+   "USA": [
+    "abc7.com",
+    "aljazeera.com",
+    "allhiphop.com",
+    "amny.com",
+    "arktimes.com",
+    "cedarnews.net",
+    "cltampa.com",
+    "duluthnewstribune.com",
+    "hometownregister.com",
+    "kygl.com",
+    "manar.com",
+    "nortedigital.mx",
+    "obozrevatel.com",
+    "rediff.com",
+    "texarkanagazette.com",
+    "thecamarilloacorn.com",
+    "wfmz.com",
+    "wfsb.com",
+    "wisn.com"
+   ],
+   "CAN": [
+    "cbc.ca",
+    "newsweek.com"
+   ],
+   "CHN": [
+    "thecamarilloacorn.com"
+   ],
+   "MEX": [
+    "thecamarilloacorn.com"
+   ],
+   "PAK": [
+    "euronews.com",
+    "jagran.com",
+    "radio.gov.pk"
+   ],
+   "FRA": [
+    "euronews.com",
+    "gazeta.kg",
+    "newsweek.com"
+   ],
+   "CMR": [
+    "clickorlando.com"
+   ],
+   "GRC": [
+    "clickorlando.com",
+    "huffingtonpost.gr"
+   ],
+   "SRB": [
+    "aljazeera.com"
+   ],
+   "POL": [
+    "gazeta.pl",
+    "obozrevatel.com",
+    "telerama.fr",
+    "winnipegfreepress.com"
+   ],
+   "RUS": [
+    "dgabc.com.br",
+    "manar.com",
+    "obozrevatel.com",
+    "svoboda.org",
+    "winnipegfreepress.com"
+   ],
+   "UKR": [
+    "apa.az",
+    "ara.cat",
+    "bigmir.net",
+    "com.do",
+    "dgabc.com.br",
+    "euronews.com",
+    "obozrevatel.com",
+    "sigmalive.com",
+    "zazoom.it"
+   ],
+   "AZE": [
+    "azg.am"
+   ],
+   "DEU": [
+    "huffingtonpost.gr",
+    "ria.ru"
+   ],
+   "YEM": [
+    "cedarnews.net",
+    "haberler.com"
+   ],
+   "SAU": [
+    "cedarnews.net",
+    "haberler.com",
+    "jagran.com"
+   ],
+   "ISR": [
+    "alquds.co.uk",
+    "itongadol.com",
+    "manar.com",
+    "raya.ps",
+    "sigmalive.com"
+   ],
+   "ROU": [
+    "cotidianul.ro"
+   ],
+   "SWE": [
+    "elpinguino.com"
+   ],
+   "ECU": [
+    "deperu.com",
+    "extra.ec"
+   ],
+   "ITA": [
+    "dagospia.com",
+    "metropolisweb.it"
+   ],
+   "BWA": [
+    "dainiktribuneonline.com"
+   ],
+   "ESP": [
+    "eldiario.es",
+    "laopcion.com.mx"
+   ],
+   "SVN": [
+    "vecer.com"
+   ],
+   "IRN": [
+    "hispantv.com"
+   ],
+   "PSE": [
+    "alquds.co.uk"
+   ],
+   "ALB": [
+    "kohajone.com"
+   ],
+   "DNK": [
+    "politika.rs",
+    "rtsh.al",
+    "sigmalive.com"
+   ],
+   "EST": [
+    "glavcom.ua"
+   ]
+  },
+  "20261120194500": {
+   "CAN": [
+    "chinookobserver.com",
+    "intelligencer.ca"
+   ],
+   "USA": [
+    "bostonmagazine.com",
+    "chinookobserver.com",
+    "dominicanrepublicpost.com",
+    "gazettenet.com",
+    "katu.com",
+    "liverpoolecho.co.uk",
+    "myfox28columbus.com",
+    "nypost.com",
+    "outdoornews.com",
+    "radiofarda.com",
+    "recorderonline.com",
+    "riotimesonline.com",
+    "thechiefleader.com",
+    "wcvb.com",
+    "wowo.com",
+    "wsmv.com"
+   ],
+   "ZAF": [
+    "riotimesonline.com",
+    "rtvslo.si"
+   ],
+   "ECU": [
+    "riotimesonline.com"
+   ],
+   "ETH": [
+    "morningstaronline.co.uk"
+   ],
+   "ITA": [
+    "dire.it",
+    "euobserver.com",
+    "megamodo.com"
+   ],
+   "FRA": [
+    "dailymail.com",
+    "morningstaronline.co.uk",
+    "prabhatkhabar.com"
+   ],
+   "GBR": [
+    "morningstaronline.co.uk",
+    "theage.com.au"
+   ],
+   "KOR": [
+    "superherohype.com"
+   ],
+   "ISR": [
+    "morningstaronline.co.uk",
+    "rte.ie"
+   ],
+   "BRA": [
+    "riotimesonline.com"
+   ],
+   "PAK": [
+    "lhrtimes.com"
+   ],
+   "RUS": [
+    "dominicanrepublicpost.com",
+    "euobserver.com",
+    "hnonline.sk",
+    "sapo.pt"
+   ],
+   "UKR": [
+    "dominicanrepublicpost.com",
+    "euobserver.com",
+    "heute.at",
+    "radiofarda.com",
+    "spnfa.ir",
+    "surinametimes.com"
+   ],
+   "POL": [
+    "dominicanrepublicpost.com",
+    "sapo.pt"
+   ],
+   "VNM": [
+    "bostonmagazine.com"
+   ],
+   "ZWE": [
+    "wmdt.com"
+   ],
+   "GRC": [
+    "3djuegos.com",
+    "bostonmagazine.com",
+    "inewsgr.com"
+   ],
+   "PER": [
+    "bostonmagazine.com",
+    "inewsgr.com"
+   ],
+   "OMN": [
+    "br.az"
+   ],
+   "AZE": [
+    "1news.az"
+   ],
+   "CHN": [
+    "milanofinanza.it",
+    "ticinonews.ch"
+   ],
+   "COL": [
+    "lasillavacia.com"
+   ],
+   "TUR": [
+    "unternehmen-heute.de"
+   ],
+   "ESP": [
+    "ceutaldia.com"
+   ],
+   "COG": [
+    "hi-news.ru"
+   ],
+   "IRN": [
+    "aljazeera.net",
+    "radiofarda.com"
+   ],
+   "DNK": [
+    "euronews.com"
+   ],
+   "ARG": [
+    "perfil.com"
+   ],
+   "BEL": [
+    "editiepajot.com"
+   ],
+   "SLV": [
+    "lanacion.com.ar"
+   ],
+   "HTI": [
+    "elsalvador.com",
+    "globo.com",
+    "lanacion.com.ar"
+   ],
+   "IDN": [
+    "okezone.com"
+   ],
+   "CZE": [
+    "hnonline.sk"
+   ]
+  },
+  "20261120193000": {
+   "USA": [
+    "cbs12.com",
+    "christiandaily.com",
+    "chroniclelive.co.uk",
+    "dailyrecord.co.uk",
+    "dailystar.co.uk",
+    "ecoportal.net",
+    "eldestapeweb.com",
+    "foxcarolina.com",
+    "heritagefl.com",
+    "iheart.com",
+    "local12.com",
+    "newrepublic.com",
+    "wyff4.com"
+   ],
+   "SSD": [
+    "christiandaily.com",
+    "wardheernews.com"
+   ],
+   "MEX": [
+    "lapoliticaonline.com",
+    "wardheernews.com"
+   ],
+   "SAU": [
+    "bignewsnetwork.com"
+   ],
+   "YEM": [
+    "bignewsnetwork.com"
+   ],
+   "SDN": [
+    "christiandaily.com"
+   ],
+   "GBR": [
+    "chroniclelive.co.uk",
+    "dailyrecord.co.uk",
+    "dailystar.co.uk",
+    "heraldscotland.com"
+   ],
+   "PAK": [
+    "arynews.tv"
+   ],
+   "LKA": [
+    "srilankamirror.com"
+   ],
+   "DNK": [
+    "cedarnews.net",
+    "dailymail.com",
+    "iefimerida.gr",
+    "tidende.dk"
+   ],
+   "RUS": [
+    "bt.dk",
+    "focus-news.net",
+    "iefimerida.gr",
+    "iheart.com",
+    "linternaute.com",
+    "mail.ru",
+    "onet.pl",
+    "sandiegouniontribune.com",
+    "tidende.dk",
+    "yam.md"
+   ],
+   "UKR": [
+    "anlatilaninotesi.com.tr",
+    "iheart.com",
+    "interfax.com.ua",
+    "onet.pl",
+    "sandiegouniontribune.com"
+   ],
+   "IND": [
+    "geo.tv",
+    "madhyamam.com"
+   ],
+   "ISR": [
+    "alhurra.com",
+    "haberaktuel.com",
+    "heritagefl.com",
+    "pnn.ps"
+   ],
+   "BGD": [
+    "democracynow.org"
+   ],
+   "NLD": [
+    "banglamirrornews.com"
+   ],
+   "POL": [
+    "focus-news.net",
+    "iheart.com",
+    "onet.pl"
+   ],
+   "DEU": [
+    "reflector.com",
+    "vz.ru"
+   ],
+   "TUR": [
+    "vladtv.com"
+   ],
+   "FRA": [
+    "fontanka.ru",
+    "linternaute.com",
+    "newsbomb.gr",
+    "nicematin.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "CMR": [
+    "rsi.ch"
+   ],
+   "COD": [
+    "allafrica.com"
+   ],
+   "COG": [
+    "allafrica.com"
+   ],
+   "COL": [
+    "hoydiariodelmagdalena.com.co"
+   ],
+   "ARG": [
+    "elesquiu.com"
+   ],
+   "SWE": [
+    "eldiario.es",
+    "mdzol.com"
+   ],
+   "BEL": [
+    "yam.md"
+   ],
+   "HTI": [
+    "com.sv"
+   ],
+   "HND": [
+    "elheraldo.hn"
+   ],
+   "CHE": [
+    "bazonline.ch"
+   ],
+   "IRN": [
+    "alhurra.com"
+   ],
+   "URY": [
+    "lapoliticaonline.com"
+   ],
+   "PSE": [
+    "pnn.ps"
+   ],
+   "CHN": [
+    "zazoom.it"
+   ]
+  },
+  "20261120191500": {
+   "USA": [
+    "abcnews.com",
+    "dailyastorian.com",
+    "eaglecountryonline.com",
+    "edmontonsun.com",
+    "foxbaltimore.com",
+    "kfilradio.com",
+    "kissfm969.com",
+    "lifehacker.com",
+    "punchng.com",
+    "rashtriyakhabar.com",
+    "rawstory.com"
+   ],
+   "ZAF": [
+    "saharareporters.com"
+   ],
+   "ARM": [
+    "armenianweekly.com"
+   ],
+   "AZE": [
+    "armenianweekly.com"
+   ],
+   "SAU": [
+    "klkntv.com"
+   ],
+   "CAN": [
+    "stcatharinesstandard.ca",
+    "winnipegfreepress.com"
+   ],
+   "IRN": [
+    "middleeasteye.net"
+   ],
+   "GBR": [
+    "infovaticana.com",
+    "socialistworker.co.uk",
+    "thecatholicherald.com"
+   ],
+   "KOR": [
+    "indiatimes.com"
+   ],
+   "NGA": [
+    "punchng.com",
+    "saharareporters.com"
+   ],
+   "ISR": [
+    "punchng.com"
+   ],
+   "KEN": [
+    "kenyastar.com"
+   ],
+   "MYS": [
+    "ledevoir.com",
+    "pajhwok.com"
+   ],
+   "NZL": [
+    "co.nz"
+   ],
+   "PER": [
+    "pressenza.com"
+   ],
+   "VNM": [
+    "tuoitre.vn"
+   ],
+   "DNK": [
+    "abcnews.com",
+    "botasot.info",
+    "danas.rs",
+    "sapo.pt",
+    "vz.ru"
+   ],
+   "YEM": [
+    "almontasaf.net",
+    "middleeasteye.net"
+   ],
+   "UKR": [
+    "botasot.info",
+    "korrespondent.net",
+    "proceso.com.mx",
+    "sapo.pt",
+    "standartnews.com",
+    "westfaironline.com",
+    "zn.ua"
+   ],
+   "ZWE": [
+    "thezimbabwemail.com"
+   ],
+   "RUS": [
+    "botasot.info",
+    "msk.ru",
+    "rashtriyakhabar.com",
+    "tf1info.fr",
+    "zn.ua"
+   ],
+   "LVA": [
+    "msk.ru"
+   ],
+   "IND": [
+    "dailynayadiganta.com",
+    "punjabitribuneonline.com"
+   ],
+   "IRQ": [
+    "almadapaper.net"
+   ],
+   "DEU": [
+    "msk.ru",
+    "rtp.pt"
+   ],
+   "MEX": [
+    "ejecentral.com.mx",
+    "novedadesdetabasco.com.mx",
+    "zocalo.com.mx"
+   ],
+   "BRA": [
+    "midianews.com.br",
+    "otempo.com.br"
+   ],
+   "AUT": [
+    "1tv.ru"
+   ],
+   "ECU": [
+    "telesurtv.net"
+   ],
+   "SWE": [
+    "semana.com",
+    "telesurtv.net"
+   ],
+   "ITA": [
+    "lecceprima.it",
+    "quibrescia.it",
+    "wedjfm.com"
+   ],
+   "BLR": [
+    "sana.sy"
+   ],
+   "MMR": [
+    "ultimahora.com"
+   ],
+   "PRY": [
+    "com.py",
+    "ultimahora.com"
+   ],
+   "ESP": [
+    "ultimahora.com"
+   ],
+   "POL": [
+    "tf1info.fr"
+   ],
+   "SLV": [
+    "laprimapagina.it"
+   ],
+   "SYR": [
+    "sana.sy"
+   ]
+  },
+  "20261120190000": {
+   "FRA": [
+    "mondafrique.com",
+    "ta3.com"
+   ],
+   "BRA": [
+    "globo.com"
+   ],
+   "ISR": [
+    "nile.eg",
+    "rtarabic.com",
+    "shorouknews.com"
+   ],
+   "ESP": [
+    "aaj.tv"
+   ],
+   "AFG": [
+    "aaj.tv"
+   ],
+   "CRI": [
+    "com.pa"
+   ],
+   "MEX": [
+    "elgrafico.mx",
+    "netnoticias.mx",
+    "sdpnoticias.com"
+   ],
+   "JPN": [
+    "lavocedivenezia.it"
+   ],
+   "COL": [
+    "pulzo.com"
+   ],
+   "BGR": [
+    "inewsgr.com"
+   ],
+   "HTI": [
+    "diariodigitalrd.com"
+   ],
+   "PSE": [
+    "shorouknews.com"
+   ],
+   "RUS": [
+    "1tv.ru",
+    "kosova.today",
+    "punjabkesari.in",
+    "rtarabic.com",
+    "vanguardia.com"
+   ],
+   "POL": [
+    "libnanews.com"
+   ],
+   "MAR": [
+    "rtarabic.com"
+   ],
+   "QAT": [
+    "libnanews.com"
+   ],
+   "DNK": [
+    "ta3.com"
+   ],
+   "SYR": [
+    "enikos.gr"
+   ],
+   "IND": [
+    "punjabijagran.com"
+   ],
+   "USA": [
+    "punjabijagran.com"
+   ],
+   "UKR": [
+    "kosova.today",
+    "punjabkesari.in",
+    "ziare.com"
+   ]
+  },
+  "20261120184500": {
+   "RUS": [
+    "aktuality.sk",
+    "hotnews.ro",
+    "mediafax.ro",
+    "ria.ru",
+    "tsn.ua",
+    "volynnews.com"
+   ],
+   "BGD": [
+    "lurer.com"
+   ],
+   "COL": [
+    "elespectador.com"
+   ],
+   "FRA": [
+    "excelsior.com.mx"
+   ],
+   "UKR": [
+    "pressorg24.com",
+    "volynnews.com"
+   ],
+   "ITA": [
+    "repubblica.it",
+    "sky.it",
+    "tn.com.ar",
+    "zazoom.it"
+   ],
+   "POL": [
+    "aktuality.sk",
+    "pressorg24.com",
+    "se.pl",
+    "unn.ua"
+   ],
+   "MAR": [
+    "sky.it"
+   ],
+   "SWE": [
+    "esdiario.com"
+   ],
+   "GRC": [
+    "larazon.es"
+   ],
+   "ESP": [
+    "esdiario.com"
+   ],
+   "ARG": [
+    "cadena3.com"
+   ],
+   "IRN": [
+    "alquds.com"
+   ],
+   "AUT": [
+    "lanouvellerepublique.fr"
+   ],
+   "LBN": [
+    "shorouknews.com"
+   ],
+   "ISR": [
+    "shorouknews.com"
+   ],
+   "VEN": [
+    "t13.cl"
+   ],
+   "MEX": [
+    "excelsior.com.mx"
+   ],
+   "USA": [
+    "excelsior.com.mx"
+   ],
+   "AZE": [
+    "lurer.com"
+   ],
+   "CZE": [
+    "aktuality.sk"
+   ],
+   "IND": [
+    "webdunia.com"
+   ],
+   "CHN": [
+    "webdunia.com"
+   ]
+  },
+  "20261121100000": {
+   "BGD": [
+    "aninews.in",
+    "indiatimes.com"
+   ],
+   "DEU": [
+    "wn.com"
+   ],
+   "IND": [
+    "cnbc.com",
+    "legallyindia.com",
+    "thehindu.com"
+   ],
+   "GBR": [
+    "maldonandburnhamstandard.co.uk"
+   ],
+   "BEL": [
+    "vanguardngr.com"
+   ],
+   "NGA": [
+    "vanguardngr.com"
+   ],
+   "ZAF": [
+    "news.cn"
+   ],
+   "USA": [
+    "pakistantimes.com"
+   ],
+   "ISR": [
+    "pakistantimes.com",
+    "wn.com"
+   ],
+   "UKR": [
+    "eaworldview.com",
+    "khaama.com"
+   ],
+   "YEM": [
+    "srilankamirror.com"
+   ],
+   "RUS": [
+    "khaama.com"
+   ]
+  },
+  "20261121094500": {
+   "IRL": [
+    "irishtimes.com"
+   ],
+   "CYN": [
+    "cyprus-mail.com"
+   ],
+   "EST": [
+    "chronicle.lu",
+    "hngn.com"
+   ],
+   "GBR": [
+    "euronews.com",
+    "farminguk.com",
+    "mirror.co.uk",
+    "sluggerotoole.com"
+   ],
+   "ITA": [
+    "capital.gr",
+    "ilmattino.it",
+    "mirror.co.uk"
+   ],
+   "BGD": [
+    "thedailystar.net"
+   ],
+   "CAN": [
+    "capebretonpost.com"
+   ],
+   "USA": [
+    "dailypost.ng",
+    "decaturdaily.com",
+    "dw.com",
+    "gosc.pl",
+    "hottalkradio.com",
+    "kentuckynewera.com",
+    "khaama.com",
+    "sanfordherald.com"
+   ],
+   "NGA": [
+    "dailypost.ng"
+   ],
+   "RUS": [
+    "chronicle.lu",
+    "digi24.ro",
+    "euronews.com",
+    "focus.ua",
+    "hngn.com",
+    "informer.rs",
+    "ipress.ua",
+    "news.az"
+   ],
+   "IRQ": [
+    "dominicanrepublicpost.com",
+    "shorouknews.com"
+   ],
+   "ESP": [
+    "dailymail.com",
+    "lindependant.fr"
+   ],
+   "FRA": [
+    "mirror.co.uk",
+    "mondafrique.com"
+   ],
+   "IND": [
+    "akilanews.com",
+    "dw.com",
+    "livelaw.in",
+    "okaz.com.sa"
+   ],
+   "ISR": [
+    "elnortedecastilla.es",
+    "hngn.com",
+    "sputnikglobe.com"
+   ],
+   "CHE": [
+    "dw.com",
+    "telegrafi.com"
+   ],
+   "PAK": [
+    "tribuneindia.com"
+   ],
+   "SAU": [
+    "aksam.com.tr",
+    "hngn.com"
+   ],
+   "YEM": [
+    "aksalser.com",
+    "hngn.com",
+    "thepressproject.gr"
+   ],
+   "ARM": [
+    "lurer.com"
+   ],
+   "BRA": [
+    "cedarnews.net",
+    "globo.com"
+   ],
+   "PRT": [
+    "trtspor.com.tr"
+   ],
+   "SLV": [
+    "minuto30.com"
+   ],
+   "DNK": [
+    "euronews.com"
+   ],
+   "UKR": [
+    "focus.ua",
+    "haberler.com",
+    "informer.rs",
+    "lindependant.fr",
+    "unian.net",
+    "unian.ua",
+    "unn.ua"
+   ],
+   "SWE": [
+    "laopinion.co"
+   ],
+   "KOS": [
+    "almakos.com"
+   ],
+   "IRN": [
+    "walla.co.il"
+   ],
+   "POL": [
+    "ipress.ua"
+   ],
+   "NOR": [
+    "corriere.it"
+   ],
+   "TUR": [
+    "milliyet.com.tr"
+   ]
+  },
+  "20261121093000": {
+   "UKR": [
+    "akhbaregy.com",
+    "apa.az",
+    "atn.ua",
+    "evrensel.net",
+    "italpress.com",
+    "kyivpost.com",
+    "niezalezna.pl",
+    "ostro.org",
+    "rightspeak.net",
+    "tozsdeforum.hu"
+   ],
+   "RUS": [
+    "24hod.sk",
+    "akhbaregy.com",
+    "apa.az",
+    "hna.de",
+    "irishnews.com",
+    "livemint.com",
+    "niezalezna.pl",
+    "rg.ru",
+    "rightspeak.net",
+    "sapo.pt",
+    "tozsdeforum.hu"
+   ],
+   "CAN": [
+    "bbc.com",
+    "sapo.pt"
+   ],
+   "IND": [
+    "freepressjournal.in",
+    "hindustantimes.com",
+    "indiatimes.com"
+   ],
+   "USA": [
+    "rte.ie",
+    "saratogian.com",
+    "vlasti.net",
+    "yahoo.com"
+   ],
+   "FRA": [
+    "munhwa.com",
+    "rightspeak.net"
+   ],
+   "GBR": [
+    "gazette-news.co.uk",
+    "hindustantimes.com",
+    "internationaltimes.it"
+   ],
+   "MEX": [
+    "entrelineas.com.mx",
+    "yahoo.com"
+   ],
+   "IRL": [
+    "wlrfm.com"
+   ],
+   "CHN": [
+    "businesstoday.in",
+    "diariopanorama.com"
+   ],
+   "NPL": [
+    "com.np"
+   ],
+   "DEU": [
+    "antaranews.com"
+   ],
+   "BEL": [
+    "leccesette.it"
+   ],
+   "JPN": [
+    "rg.ru"
+   ],
+   "ARG": [
+    "com.uy",
+    "perfil.com"
+   ],
+   "DNK": [
+    "cedarnews.net"
+   ],
+   "TUR": [
+    "evrensel.net",
+    "haberturk.com"
+   ],
+   "ITA": [
+    "zazoom.it"
+   ],
+   "SVN": [
+    "vecer.com"
+   ],
+   "PHL": [
+    "perfil.com"
+   ],
+   "GMB": [
+    "malatyaguncel.com"
+   ],
+   "SAU": [
+    "arthosuchak.com"
+   ],
+   "POL": [
+    "niezalezna.pl",
+    "sapo.pt"
+   ],
+   "URY": [
+    "com.uy"
+   ],
+   "YEM": [
+    "rg.ru"
+   ]
+  },
+  "20261121091500": {
+   "GBR": [
+    "nottinghampost.com"
+   ],
+   "PAK": [
+    "news.cn"
+   ],
+   "JPN": [
+    "express.co.uk"
+   ],
+   "IRN": [
+    "samaa.tv",
+    "shorouknews.com"
+   ],
+   "IRQ": [
+    "ksevradio.com"
+   ],
+   "USA": [
+    "samaa.tv"
+   ],
+   "SAU": [
+    "arabtimesonline.com",
+    "haber7.com",
+    "samaa.tv"
+   ],
+   "YEM": [
+    "arabtimesonline.com",
+    "samaa.tv"
+   ],
+   "IND": [
+    "indiatimes.com"
+   ],
+   "ISR": [
+    "jpost.com",
+    "samaa.tv"
+   ],
+   "MWI": [
+    "malawi24.com"
+   ],
+   "RUS": [
+    "actualidad-rt.com",
+    "enikos.gr",
+    "onet.pl",
+    "parismatch.com",
+    "ziare.com"
+   ],
+   "ESP": [
+    "elnortedecastilla.es"
+   ],
+   "MEX": [
+    "actualidad-rt.com"
+   ],
+   "UKR": [
+    "abcnyheter.no",
+    "europapress.es",
+    "haqqin.az",
+    "ladepeche.fr",
+    "onet.pl"
+   ],
+   "ITA": [
+    "charhdikala.com",
+    "haberturk.com",
+    "madata.gr"
+   ],
+   "BGD": [
+    "bdnews24.com"
+   ],
+   "BRA": [
+    "acidadeon.com"
+   ],
+   "FRA": [
+    "lavanguardia.com"
+   ],
+   "PER": [
+    "heraldo.es"
+   ],
+   "CHN": [
+    "onet.pl"
+   ]
+  },
+  "20261121090000": {
+   "IND": [
+    "mid-day.com"
+   ],
+   "IRL": [
+    "irishmirror.ie"
+   ],
+   "SGP": [
+    "jagranjosh.com"
+   ],
+   "USA": [
+    "alquds.com",
+    "cursdeguvernare.ro",
+    "geo.tv",
+    "irishmirror.ie",
+    "keysnews.com"
+   ],
+   "FRA": [
+    "yourdemocracy.net.au"
+   ],
+   "ITA": [
+    "bursadabugun.com",
+    "ofm.co.za"
+   ],
+   "RUS": [
+    "alquds.com",
+    "bankingnews.gr",
+    "frognews.bg",
+    "gazettelive.co.uk",
+    "univision.com",
+    "volynnews.com"
+   ],
+   "PRT": [
+    "sthelensstar.co.uk"
+   ],
+   "UKR": [
+    "bankingnews.gr",
+    "glavcom.ua",
+    "globes.co.il",
+    "inewsgr.com",
+    "nile.eg",
+    "obozrevatel.com",
+    "pravda.sk",
+    "svoboda.org"
+   ],
+   "ISR": [
+    "alquds.com",
+    "sana.sy"
+   ],
+   "BHR": [
+    "deperu.com"
+   ],
+   "TUR": [
+    "haber7.com"
+   ],
+   "GRC": [
+    "patrisnews.com"
+   ],
+   "BOL": [
+    "lostiempos.com"
+   ],
+   "SRB": [
+    "naslovi.net"
+   ],
+   "PER": [
+    "deperu.com"
+   ],
+   "PSE": [
+    "alquds.com",
+    "sana.sy",
+    "shasha.ps"
+   ],
+   "DNK": [
+    "dr.dk"
+   ],
+   "ESP": [
+    "europapress.es"
+   ],
+   "SAU": [
+    "globes.co.il",
+    "sana.sy"
+   ],
+   "YEM": [
+    "sana.sy"
+   ],
+   "SWE": [
+    "ultimahora.es"
+   ],
+   "CHE": [
+    "cedarnews.net"
+   ],
+   "LBY": [
+    "ilfattoquotidiano.it"
+   ],
+   "LBN": [
+    "cedarnews.net"
+   ],
+   "POL": [
+    "glavcom.ua"
+   ]
+  },
+  "20261121084500": {
+   "USA": [
+    "cedarnews.net",
+    "havadiskibris.com",
+    "koco.com",
+    "mzamin.com",
+    "observertoday.com",
+    "telesurtv.net",
+    "thealpenanews.com"
+   ],
+   "MLT": [
+    "timesofmalta.com"
+   ],
+   "DJI": [
+    "middleeasteye.net"
+   ],
+   "GUM": [
+    "guampdn.com"
+   ],
+   "GBR": [
+    "crash.net",
+    "zazoom.it"
+   ],
+   "GRC": [
+    "designboom.com"
+   ],
+   "IDN": [
+    "antaranews.com"
+   ],
+   "IRN": [
+    "presstv.co.uk"
+   ],
+   "IND": [
+    "bbc.com",
+    "indiatimes.com",
+    "rediff.com"
+   ],
+   "ISR": [
+    "havadiskibris.com",
+    "middleeasteye.net",
+    "presstv.co.uk",
+    "sana.sy",
+    "thenorthernecho.co.uk"
+   ],
+   "CHN": [
+    "middleeasteye.net"
+   ],
+   "JPN": [
+    "amur.info",
+    "hankookilbo.com",
+    "walesonline.co.uk"
+   ],
+   "POL": [
+    "co.me",
+    "ilpost.it",
+    "screenrant.com",
+    "tsn.ua"
+   ],
+   "PSE": [
+    "akhbaregy.com",
+    "middleeasteye.net"
+   ],
+   "SYR": [
+    "sana.sy",
+    "tayyar.org"
+   ],
+   "SAU": [
+    "aljazeera.net",
+    "politika.rs",
+    "sana.sy",
+    "today.it"
+   ],
+   "YEM": [
+    "aljazeera.net",
+    "politika.rs",
+    "sana.sy"
+   ],
+   "CHE": [
+    "bergamonews.it",
+    "le360.ma",
+    "polizeinews.ch"
+   ],
+   "FRA": [
+    "aktuality.sk",
+    "vedomosti.ru"
+   ],
+   "IRQ": [
+    "vz.ru"
+   ],
+   "BRA": [
+    "lance.com.br"
+   ],
+   "TUR": [
+    "akhbaregy.com"
+   ],
+   "RUS": [
+    "antena3.ro",
+    "delfi.lv",
+    "hvg.hu",
+    "index.hu",
+    "iz.ru",
+    "le360.ma",
+    "nspm.rs",
+    "solovei.info",
+    "t-l.ru",
+    "tportal.hr",
+    "tsn.ua"
+   ],
+   "SRB": [
+    "nspm.rs"
+   ],
+   "ITA": [
+    "lavocedivenezia.it"
+   ],
+   "UKR": [
+    "iz.ru",
+    "tsn.ua"
+   ],
+   "DNK": [
+    "cedarnews.net",
+    "hvg.hu",
+    "le360.ma"
+   ],
+   "PAK": [
+    "bbc.com"
+   ],
+   "ESP": [
+    "diariodecadiz.es"
+   ],
+   "JOR": [
+    "tayyar.org"
+   ]
+  },
+  "20261121083000": {
+   "BRA": [
+    "thetelegram.com"
+   ],
+   "COL": [
+    "indiatimes.com"
+   ],
+   "USA": [
+    "bdnews24.com",
+    "blueprint.ng",
+    "chosun.com",
+    "haberler.com",
+    "nypost.com",
+    "sozcu.com.tr",
+    "thejournal.ie",
+    "wsws.org"
+   ],
+   "DEU": [
+    "novosti.rs",
+    "wsws.org"
+   ],
+   "ZAF": [
+    "ecr.co.za"
+   ],
+   "CAN": [
+    "punjabijagran.com",
+    "thetelegram.com"
+   ],
+   "MEX": [
+    "netnoticias.mx",
+    "nypost.com",
+    "wsws.org"
+   ],
+   "ISR": [
+    "aawsat.com",
+    "ammonnews.net",
+    "hurriyet.com.tr",
+    "tsa-algerie.com"
+   ],
+   "JPN": [
+    "infobae.com",
+    "strategypage.com"
+   ],
+   "SDN": [
+    "aawsat.com"
+   ],
+   "ETH": [
+    "aawsat.com"
+   ],
+   "ESP": [
+    "infobae.com",
+    "nypost.com"
+   ],
+   "CHN": [
+    "infobae.com",
+    "wsws.org"
+   ],
+   "RUS": [
+    "24tv.ua",
+    "bdnews24.com",
+    "inewsgr.com",
+    "liga.net",
+    "mk.ru",
+    "mskagency.ru",
+    "novosti.rs",
+    "russiatoday.ru",
+    "unian.net",
+    "wp.pl",
+    "wsws.org",
+    "zazoom.it"
+   ],
+   "NGA": [
+    "opinionnigeria.com"
+   ],
+   "BLR": [
+    "sozcu.com.tr"
+   ],
+   "YEM": [
+    "26sep.net",
+    "aaj.tv"
+   ],
+   "UKR": [
+    "business24.ro",
+    "focus.ua",
+    "russiatoday.ru",
+    "unian.net",
+    "unian.ua",
+    "unn.ua",
+    "zazoom.it"
+   ],
+   "SAU": [
+    "26sep.net",
+    "aaj.tv",
+    "avaz.ba",
+    "hnonline.sk"
+   ],
+   "ARM": [
+    "aravot.am"
+   ],
+   "ITA": [
+    "infooggi.it"
+   ],
+   "PSE": [
+    "alhourriah.org",
+    "ammonnews.net",
+    "topontiki.gr"
+   ],
+   "ARG": [
+    "infobae.com"
+   ],
+   "SWE": [
+    "eldia.com",
+    "infobae.com"
+   ],
+   "DNK": [
+    "business24.ro"
+   ],
+   "POL": [
+    "business24.ro",
+    "zazoom.it"
+   ],
+   "BEL": [
+    "sozcu.com.tr"
+   ],
+   "GBR": [
+    "sozcu.com.tr"
+   ],
+   "SLV": [
+    "infobae.com"
+   ],
+   "IRN": [
+    "ammonnews.net",
+    "cedarnews.net",
+    "sofokleous10.gr",
+    "zazoom.it"
+   ],
+   "BIH": [
+    "24tv.ua"
+   ],
+   "QAT": [
+    "cedarnews.net"
+   ],
+   "HTI": [
+    "infobae.com"
+   ],
+   "TUR": [
+    "sofokleous10.gr"
+   ]
+  },
+  "20261121081500": {
+   "HTI": [
+    "businessghana.com"
+   ],
+   "USA": [
+    "ariananews.af",
+    "dailymail.com",
+    "dailynayadiganta.com",
+    "infobae.com",
+    "thedailytimes.com"
+   ],
+   "PAK": [
+    "arynews.tv"
+   ],
+   "ISR": [
+    "arynews.tv",
+    "investmentwatchblog.com",
+    "prokerala.com"
+   ],
+   "IRN": [
+    "investmentwatchblog.com",
+    "naturalnews.com"
+   ],
+   "IND": [
+    "gujaratsamachar.com",
+    "indiankanoon.org",
+    "indiatimes.com",
+    "pakobserver.net"
+   ],
+   "SAU": [
+    "dailynayadiganta.com",
+    "khaskhabar.com",
+    "organiser.org",
+    "pakobserver.net"
+   ],
+   "YEM": [
+    "dailynayadiganta.com",
+    "haberler.com",
+    "organiser.org"
+   ],
+   "UKR": [
+    "24horas.cl",
+    "24tv.ua",
+    "akhbaregy.com",
+    "blic.rs",
+    "kp.ua",
+    "lifo.gr",
+    "newsmaker.md",
+    "ura.news",
+    "zerohedge.com"
+   ],
+   "CHN": [
+    "ariananews.af"
+   ],
+   "ITA": [
+    "riviera24.it"
+   ],
+   "COL": [
+    "semana.com"
+   ],
+   "RUS": [
+    "24tv.ua",
+    "akhbaregy.com",
+    "blic.rs",
+    "infobae.com",
+    "lifo.gr",
+    "lounaeestlane.ee",
+    "newsmaker.md",
+    "ria.ru",
+    "sanluishoy.com.mx",
+    "sib.fm",
+    "stirileprotv.ro",
+    "ura.news",
+    "vz.ru"
+   ],
+   "BGD": [
+    "dailynayadiganta.com"
+   ],
+   "LVA": [
+    "fondsk.ru"
+   ],
+   "GBR": [
+    "sib.fm"
+   ],
+   "DEU": [
+    "ots.at"
+   ],
+   "FRA": [
+    "athensvoice.gr",
+    "thebest.gr"
+   ],
+   "PSE": [
+    "wafa.ps"
+   ],
+   "SWE": [
+    "semana.com"
+   ],
+   "MDA": [
+    "newsmaker.md"
+   ],
+   "MEX": [
+    "lineadirectaportal.com",
+    "planoinformativo.com"
+   ],
+   "ARM": [
+    "pan.am"
+   ],
+   "NLD": [
+    "blic.rs"
+   ],
+   "DNK": [
+    "topky.sk"
+   ],
+   "CHE": [
+    "edaily.co.kr"
+   ],
+   "VNM": [
+    "edaily.co.kr"
+   ]
+  },
+  "20261121080000": {
+   "RUS": [
+    "15min.lt",
+    "focus-news.net",
+    "interfax.ru",
+    "la7.it",
+    "newpost.gr"
+   ],
+   "UKR": [
+    "15min.lt",
+    "focus-news.net",
+    "mail.ru",
+    "naslovi.net",
+    "newpost.gr",
+    "novinky.cz",
+    "radiosvoboda.org",
+    "ukrinform.ua"
+   ],
+   "HRV": [
+    "nacional.hr"
+   ],
+   "BGD": [
+    "tarunmitra.in"
+   ],
+   "CHN": [
+    "notiziegeopolitiche.net"
+   ],
+   "SAU": [
+    "notiziegeopolitiche.net"
+   ],
+   "GRC": [
+    "aixmi-news.gr"
+   ],
+   "DNK": [
+    "naslovi.net"
+   ],
+   "JOR": [
+    "anbaaonline.com"
+   ],
+   "YEM": [
+    "dw.com"
+   ],
+   "IND": [
+    "saamana.com"
+   ],
+   "USA": [
+    "newsbomb.gr"
+   ],
+   "POL": [
+    "kreiszeitung.de",
+    "lenta.ru"
+   ],
+   "PSE": [
+    "shorouknews.com"
+   ],
+   "QAT": [
+    "koreatimes.com"
+   ],
+   "ROU": [
+    "yam.md"
+   ]
+  },
+  "20261121173000": {
+   "IND": [
+    "indiatimes.com"
+   ],
+   "PAK": [
+    "arynews.tv",
+    "thefrontierpost.com"
+   ],
+   "AFG": [
+    "wvmetronews.com"
+   ],
+   "USA": [
+    "catholicculture.org",
+    "kwtx.com",
+    "nypost.com",
+    "wnd.com",
+    "wvmetronews.com"
+   ],
+   "CAN": [
+    "brandonsun.com"
+   ],
+   "FRA": [
+    "thenews.com.pk"
+   ],
+   "JOR": [
+    "tvline.com"
+   ],
+   "HTI": [
+    "greaterbelize.com"
+   ],
+   "SLV": [
+    "greaterbelize.com"
+   ],
+   "GBR": [
+    "investmentwatchblog.com",
+    "nypost.com"
+   ],
+   "JPN": [
+    "thehindu.com"
+   ],
+   "KWT": [
+    "cbsnews.com"
+   ],
+   "PHL": [
+    "manilatimes.net"
+   ],
+   "RUS": [
+    "newsbusters.org"
+   ],
+   "CHN": [
+    "newsbusters.org"
+   ]
+  },
+  "20261121170000": {
+   "USA": [
+    "bundesliga.com",
+    "hngnews.com",
+    "indiatimes.com",
+    "komu.com",
+    "news.az",
+    "wmtv15news.com"
+   ],
+   "CHL": [
+    "yachtsandyachting.com"
+   ],
+   "ITA": [
+    "internazionale.it",
+    "israelnationalnews.com"
+   ],
+   "SLV": [
+    "niagarafallsreview.ca"
+   ],
+   "PSE": [
+    "israelnationalnews.com"
+   ],
+   "ARM": [
+    "panorama.am"
+   ],
+   "AZE": [
+    "panorama.am"
+   ],
+   "IND": [
+    "thehindu.com",
+    "tribune.com.pk"
+   ],
+   "BGD": [
+    "tribune.com.pk"
+   ],
+   "CAN": [
+    "indiablooms.com"
+   ],
+   "JPN": [
+    "yachtsandyachting.com"
+   ],
+   "PAK": [
+    "dailypakistan.com.pk",
+    "newsx.com"
+   ],
+   "RUS": [
+    "israelnationalnews.com",
+    "news.az",
+    "russiaherald.com",
+    "thehindu.com",
+    "thenational.scot"
+   ],
+   "DOM": [
+    "gothamist.com"
+   ],
+   "GBR": [
+    "aol.co.uk"
+   ],
+   "IRN": [
+    "hngnews.com",
+    "news.az",
+    "thehindu.com"
+   ],
+   "ISR": [
+    "hngnews.com",
+    "israelnationalnews.com"
+   ],
+   "DEU": [
+    "israelnationalnews.com"
+   ],
+   "UKR": [
+    "israelnationalnews.com",
+    "thenational.scot"
+   ]
+  },
+  "20261121164500": {
+   "GBR": [
+    "dailystar.co.uk",
+    "rollingstone.com"
+   ],
+   "ROU": [
+    "dailystar.co.uk"
+   ],
+   "USA": [
+    "eturbonews.com",
+    "hotair.com",
+    "inforum.com",
+    "radaronline.com",
+    "ukiahdailyjournal.com"
+   ],
+   "NGA": [
+    "punchng.com"
+   ],
+   "RUS": [
+    "freemalaysiatoday.com",
+    "krcrtv.com",
+    "onenewspage.com",
+    "radaronline.com"
+   ],
+   "ISR": [
+    "jns.org"
+   ],
+   "MYS": [
+    "freemalaysiatoday.com"
+   ],
+   "IDN": [
+    "freemalaysiatoday.com"
+   ],
+   "GHA": [
+    "cbs6albany.com"
+   ],
+   "UKR": [
+    "freemalaysiatoday.com",
+    "krcrtv.com",
+    "radaronline.com"
+   ],
+   "TUR": [
+    "eturbonews.com"
+   ]
+  },
+  "20261121163000": {
+   "PHL": [
+    "verafiles.org"
+   ],
+   "RUS": [
+    "bt.dk",
+    "centrepresseaveyron.fr",
+    "euronews.com",
+    "mirror.co.uk",
+    "novini.bg",
+    "u-f.ru",
+    "vedomosti.ru",
+    "yahoo.com"
+   ],
+   "USA": [
+    "965kvki.com",
+    "citynewsokc.com",
+    "ibtimes.co.uk",
+    "idahopress.com",
+    "kake.com",
+    "livescience.com",
+    "rockymounttelegram.com",
+    "theepochtimes.com",
+    "txktoday.com",
+    "wjla.com",
+    "wkyt.com"
+   ],
+   "CHN": [
+    "mirror.co.uk",
+    "screenrant.com"
+   ],
+   "SAU": [
+    "negocios.com",
+    "screenrant.com"
+   ],
+   "CAN": [
+    "livescience.com",
+    "vernonmorningstar.com"
+   ],
+   "GBR": [
+    "adevarul.ro",
+    "belfastlive.co.uk",
+    "com.do",
+    "fedpress.ru",
+    "london-now.co.uk"
+   ],
+   "ESP": [
+    "zerohedge.com"
+   ],
+   "HTI": [
+    "ibtimes.co.uk"
+   ],
+   "SLV": [
+    "ibtimes.co.uk"
+   ],
+   "ISR": [
+    "cyprus-mail.com",
+    "elpais.com"
+   ],
+   "HKG": [
+    "screenrant.com"
+   ],
+   "PAK": [
+    "prokerala.com"
+   ],
+   "UKR": [
+    "bt.dk",
+    "focus.de",
+    "mirror.co.uk"
+   ],
+   "DEU": [
+    "mult-kor.hu"
+   ],
+   "IND": [
+    "pardaphash.com"
+   ],
+   "ITA": [
+    "adevarul.ro",
+    "formiche.net",
+    "manduriaoggi.it",
+    "mult-kor.hu",
+    "topontiki.gr"
+   ],
+   "MYS": [
+    "thailandblog.nl"
+   ],
+   "ECU": [
+    "teleamazonas.com"
+   ],
+   "BRA": [
+    "adevarul.ro"
+   ],
+   "HRV": [
+    "glassrpske.com"
+   ],
+   "POL": [
+    "filmweb.pl"
+   ],
+   "DNK": [
+    "centrepresseaveyron.fr"
+   ],
+   "PRK": [
+    "mfor.hu"
+   ],
+   "CRI": [
+    "elpais.com"
+   ],
+   "MEX": [
+    "elpais.com",
+    "lasillarota.com",
+    "puentelibre.mx"
+   ],
+   "NOR": [
+    "nettavisen.no"
+   ],
+   "BHR": [
+    "aaj.tv"
+   ],
+   "ROU": [
+    "adevarul.ro"
+   ],
+   "FIN": [
+    "novini.bg"
+   ],
+   "THA": [
+    "thailandblog.nl"
+   ]
+  },
+  "20261121161500": {
+   "GUY": [
+    "kaieteurnewsonline.com"
+   ],
+   "RUS": [
+    "cbc.ca",
+    "dunmowbroadcast.co.uk",
+    "globalnews.ca",
+    "hotnews.ro",
+    "index.hr",
+    "news8000.com",
+    "nypost.com",
+    "telegraph.co.uk",
+    "theintelligencer.net"
+   ],
+   "DEU": [
+    "nypost.com"
+   ],
+   "YEM": [
+    "morungexpress.com"
+   ],
+   "PAK": [
+    "morungexpress.com"
+   ],
+   "UKR": [
+    "cbc.ca",
+    "demokracija.si",
+    "globalnews.ca",
+    "jagran.com",
+    "kremlin.ru",
+    "leparisien.fr",
+    "naslovi.net",
+    "news8000.com"
+   ],
+   "USA": [
+    "abc13.com",
+    "berkshireeagle.com",
+    "kikar.co.il",
+    "ktre.com",
+    "lex18.com",
+    "naftemporiki.gr",
+    "news8000.com",
+    "pakistantoday.com.pk",
+    "sabah.com.tr"
+   ],
+   "IRN": [
+    "cbc.ca",
+    "haberaktuel.com",
+    "kikar.co.il",
+    "pakistantoday.com.pk",
+    "politika.rs",
+    "sabah.com.tr",
+    "telegraph.co.uk"
+   ],
+   "JOR": [
+    "telegraph.co.uk"
+   ],
+   "ISR": [
+    "15min.lt",
+    "arabnews.com",
+    "arn.ps",
+    "kikar.co.il",
+    "kipa.co.il",
+    "shorouknews.com",
+    "telegraph.co.uk"
+   ],
+   "NGA": [
+    "leadership.ng",
+    "pmnewsnigeria.com"
+   ],
+   "FRA": [
+    "cubadebate.cu",
+    "telegraph.co.uk"
+   ],
+   "ARM": [
+    "telegraph.co.uk"
+   ],
+   "POL": [
+    "aol.co.uk",
+    "nczas.info",
+    "telegraph.co.uk"
+   ],
+   "GBR": [
+    "avaz.ba",
+    "listindiario.com",
+    "telegraph.co.uk"
+   ],
+   "FIN": [
+    "globalnews.ca",
+    "teraz.sk"
+   ],
+   "SAU": [
+    "morungexpress.com"
+   ],
+   "CAN": [
+    "pakistantoday.com.pk"
+   ],
+   "IND": [
+    "pakistantoday.com.pk",
+    "palpalindia.com"
+   ],
+   "BRA": [
+    "ebc.com.br",
+    "globo.com"
+   ],
+   "COL": [
+    "vanguardia.com"
+   ],
+   "ITA": [
+    "quotidianodelsud.it",
+    "zazoom.it"
+   ],
+   "ESP": [
+    "elconfidencial.com"
+   ],
+   "KOR": [
+    "wikitree.co.kr"
+   ],
+   "MEX": [
+    "alriyadh.com"
+   ],
+   "ATA": [
+    "listindiario.com"
+   ],
+   "BGR": [
+    "demokracija.si"
+   ]
+  },
+  "20261121160000": {
+   "ZAF": [
+    "riotimesonline.com"
+   ],
+   "JPN": [
+    "gamerant.com"
+   ],
+   "USA": [
+    "finchannel.com",
+    "fox32chicago.com",
+    "independent.co.uk",
+    "riotimesonline.com",
+    "yakimaherald.com"
+   ],
+   "GBR": [
+    "lbc.co.uk"
+   ],
+   "IND": [
+    "business-standard.com",
+    "gulte.com",
+    "hindustantimes.com",
+    "profile.ru"
+   ],
+   "HND": [
+    "finchannel.com"
+   ],
+   "MEX": [
+    "finchannel.com"
+   ],
+   "NLD": [
+    "nltimes.nl"
+   ],
+   "IRN": [
+    "independent.co.uk",
+    "indiatimes.com",
+    "life.ru",
+    "profile.ru",
+    "shafaqna.com"
+   ],
+   "DEU": [
+    "shafaqna.com"
+   ],
+   "EST": [
+    "finchannel.com",
+    "yakimaherald.com"
+   ],
+   "COL": [
+    "riotimesonline.com"
+   ],
+   "RUS": [
+    "finchannel.com",
+    "okaz.com.sa",
+    "privatbankar.hu"
+   ],
+   "NGA": [
+    "riotimesonline.com"
+   ],
+   "ECU": [
+    "riotimesonline.com"
+   ],
+   "TTO": [
+    "riotimesonline.com"
+   ],
+   "CHE": [
+    "inewsgr.com",
+    "npr.org"
+   ],
+   "GTM": [
+    "finchannel.com"
+   ],
+   "SWE": [
+    "elsiglodetorreon.com.mx"
+   ],
+   "FIN": [
+    "dhnet.be",
+    "gp.se",
+    "segabg.com",
+    "vosgesmatin.fr"
+   ],
+   "TUR": [
+    "gp.se"
+   ],
+   "ITA": [
+    "libertatea.ro",
+    "lospiffero.com",
+    "skai.gr"
+   ],
+   "NOR": [
+    "bt.no"
+   ],
+   "CAN": [
+    "akilanews.com"
+   ],
+   "IDN": [
+    "vecer.mk"
+   ],
+   "DNK": [
+    "vosgesmatin.fr"
+   ],
+   "ESP": [
+    "que.es",
+    "vilaweb.cat"
+   ],
+   "UKR": [
+    "arh-info.ru",
+    "segabg.com",
+    "vosgesmatin.fr"
+   ],
+   "GRC": [
+    "enikos.gr"
+   ]
+  },
+  "20261121154500": {
+   "IRN": [
+    "bignewsnetwork.com",
+    "faktor.ba",
+    "russiatoday.ru",
+    "samaa.tv"
+   ],
+   "CHN": [
+    "walesonline.co.uk"
+   ],
+   "MEX": [
+    "thenews.com.pk"
+   ],
+   "JPN": [
+    "pocket-lint.com"
+   ],
+   "FIN": [
+    "dw.com"
+   ],
+   "RUS": [
+    "argumenti.ru",
+    "comandir.com",
+    "dominicanrepublicpost.com",
+    "dw.com",
+    "hindustantimes.com",
+    "jyllands-posten.dk",
+    "sofokleous10.gr"
+   ],
+   "UKR": [
+    "comandir.com",
+    "dw.com",
+    "fontanka.ru",
+    "grenadachronicle.com",
+    "hindustantimes.com",
+    "unian.ua"
+   ],
+   "GBR": [
+    "focus-news.net",
+    "walesonline.co.uk"
+   ],
+   "ISR": [
+    "antaranews.com",
+    "arabnews.com",
+    "dominicanrepublicpost.com",
+    "grenadachronicle.com",
+    "malatyaguncel.com",
+    "mignews.com",
+    "nbcnews.com",
+    "ria.ru",
+    "sana.sy",
+    "ynet.co.il"
+   ],
+   "LBN": [
+    "wn.com"
+   ],
+   "SDN": [
+    "grenadachronicle.com"
+   ],
+   "PAK": [
+    "tribuneindia.com"
+   ],
+   "USA": [
+    "haber7.com",
+    "haberler.com",
+    "suntimes.com"
+   ],
+   "ESP": [
+    "rtve.es"
+   ],
+   "VEN": [
+    "rtve.es"
+   ],
+   "EST": [
+    "eurointegration.com.ua",
+    "fontanka.ru",
+    "sofokleous10.gr"
+   ],
+   "IRL": [
+    "eunews.it"
+   ],
+   "TUR": [
+    "ilsole24ore.com"
+   ],
+   "ECU": [
+    "eldiario.ec"
+   ],
+   "BGD": [
+    "dailynayadiganta.com"
+   ],
+   "DZA": [
+    "alyaoum24.com"
+   ],
+   "SWE": [
+    "lavozdeasturias.es"
+   ],
+   "FRA": [
+    "comandir.com"
+   ],
+   "IND": [
+    "bhaskar.com",
+    "dailynayadiganta.com"
+   ],
+   "ITA": [
+    "hvg.hu",
+    "shorouknews.com"
+   ],
+   "LTU": [
+    "eurointegration.com.ua"
+   ],
+   "SAU": [
+    "ultimasnoticias.com.ve"
+   ]
+  },
+  "20261121153000": {
+   "SAU": [
+    "gdnonline.com",
+    "surinametimes.com"
+   ],
+   "YEM": [
+    "surinametimes.com"
+   ],
+   "USA": [
+    "abc6onyourside.com",
+    "aol.co.uk",
+    "biobiochile.cl",
+    "bookreporter.com",
+    "diariocorreo.com.ec",
+    "divyabhaskar.co.in",
+    "foxnews.com",
+    "news.cn",
+    "wcbm.com"
+   ],
+   "UKR": [
+    "bankingnews.gr",
+    "dw.com",
+    "ellitoral.com",
+    "indiatimes.com",
+    "moneycontrol.com",
+    "news247.gr",
+    "thefrontierpost.com"
+   ],
+   "NER": [
+    "thesun.ng",
+    "vanguardngr.com"
+   ],
+   "HTI": [
+    "ianslive.in"
+   ],
+   "CAN": [
+    "kelownacapnews.com",
+    "moneycontrol.com"
+   ],
+   "FRA": [
+    "africanews.com"
+   ],
+   "DEU": [
+    "news247.gr",
+    "the-star.co.ke",
+    "tv4.se"
+   ],
+   "RUS": [
+    "abcnews.com",
+    "antaranews.com",
+    "bankingnews.gr",
+    "biobiochile.cl",
+    "moneycontrol.com",
+    "news.cn",
+    "thefrontierpost.com",
+    "vanguardngr.com",
+    "vz.ru"
+   ],
+   "GBR": [
+    "foxnews.com",
+    "metro.co.uk",
+    "yourthurrock.com"
+   ],
+   "IND": [
+    "moneycontrol.com",
+    "sentinelassam.com"
+   ],
+   "IRQ": [
+    "thefrontierpost.com"
+   ],
+   "IRN": [
+    "divyabhaskar.co.in",
+    "naslovi.net",
+    "news.cn"
+   ],
+   "ISR": [
+    "antaranews.com",
+    "rte.ie",
+    "wafa.ps"
+   ],
+   "POL": [
+    "moneycontrol.com",
+    "vanguardngr.com"
+   ],
+   "NGA": [
+    "vanguardngr.com"
+   ],
+   "FIN": [
+    "correiodopovo.com.br",
+    "news247.gr",
+    "thefrontierpost.com",
+    "zazoom.it"
+   ],
+   "BRA": [
+    "globo.com"
+   ],
+   "ITA": [
+    "publico.es",
+    "zazoom.it"
+   ],
+   "GRC": [
+    "cyprusnews.eu"
+   ],
+   "DNK": [
+    "biobiochile.cl",
+    "vz.ru"
+   ],
+   "ESP": [
+    "diariodeleon.es",
+    "zazoom.it"
+   ],
+   "MEX": [
+    "laopcion.com.mx"
+   ],
+   "SWE": [
+    "tv4.se"
+   ]
+  },
+  "20261121151500": {
+   "BRA": [
+    "revistaforum.com.br"
+   ],
+   "ESP": [
+    "esdiario.com"
+   ],
+   "ITA": [
+    "dagospia.com",
+    "delo.si",
+    "ilfattoquotidiano.it",
+    "meteoweb.eu"
+   ],
+   "RUS": [
+    "aif.ru",
+    "delo.si",
+    "dnes.bg",
+    "glavred.info",
+    "m24.ru",
+    "mediapool.bg",
+    "prabhasakshi.com",
+    "rg.ru",
+    "runews24.ru"
+   ],
+   "GEO": [
+    "m24.ru"
+   ],
+   "ARG": [
+    "laverdadonline.com"
+   ],
+   "CHE": [
+    "dagospia.com"
+   ],
+   "USA": [
+    "dagelijksestandaard.nl",
+    "prabhasakshi.com",
+    "revistaforum.com.br"
+   ],
+   "DEU": [
+    "m24.ru"
+   ],
+   "UKR": [
+    "aif.ru",
+    "delo.si",
+    "esquerda.net",
+    "srna.rs",
+    "tf1info.fr",
+    "tsn.ua"
+   ],
+   "ROU": [
+    "dnes.bg",
+    "romaniapozitiva.ro"
+   ],
+   "FIN": [
+    "aif.ru",
+    "delo.si",
+    "dnes.bg",
+    "glavred.info",
+    "today.it"
+   ],
+   "TUR": [
+    "haberekspres.com.tr"
+   ],
+   "ISR": [
+    "haberler.com",
+    "winnipegfreepress.com"
+   ],
+   "EGY": [
+    "elwatannews.com"
+   ],
+   "IRN": [
+    "dagelijksestandaard.nl",
+    "haberler.com"
+   ],
+   "CHN": [
+    "ambito.com"
+   ],
+   "PAK": [
+    "jang.com.pk"
+   ],
+   "MEX": [
+    "aif.ru"
+   ]
+  },
+  "20261121150000": {
+   "MAR": [
+    "reggio2000.it",
+    "yabiladi.com"
+   ],
+   "ALB": [
+    "statoquotidiano.it"
+   ],
+   "COL": [
+    "diariodelhuila.com"
+   ],
+   "ISR": [
+    "aljazeera.net",
+    "cretalive.gr",
+    "newsru.co.il",
+    "vol.at"
+   ],
+   "USA": [
+    "aktuality.sk",
+    "cedarnews.net",
+    "elintransigente.com",
+    "inewsgr.com",
+    "novosti.rs"
+   ],
+   "UKR": [
+    "h.ua",
+    "org.ua",
+    "sud.ua"
+   ],
+   "RUS": [
+    "ammonnews.net",
+    "blackseanews.net",
+    "index.hr",
+    "informer.rs",
+    "sigmalive.com"
+   ],
+   "ITA": [
+    "secoloditalia.it",
+    "zazoom.it",
+    "zeri.info"
+   ],
+   "CHN": [
+    "lokmat.com"
+   ],
+   "PSE": [
+    "aljazeera.net"
+   ],
+   "ETH": [
+    "cataniatoday.it"
+   ],
+   "IND": [
+    "akilanews.com",
+    "lokmat.com"
+   ],
+   "MEX": [
+    "teraz.sk"
+   ],
+   "SWE": [
+    "diariolibre.com"
+   ],
+   "ESP": [
+    "elconfidencial.com",
+    "elperiodico.com"
+   ],
+   "FIN": [
+    "cedarnews.net",
+    "naslovi.net",
+    "naszdziennik.pl"
+   ],
+   "GBR": [
+    "aljazeera.net"
+   ],
+   "HUN": [
+    "aljazeera.net"
+   ],
+   "LBN": [
+    "shorouknews.com"
+   ],
+   "DEU": [
+    "aljazeera.net"
+   ],
+   "YEM": [
+    "hispantv.com"
+   ]
+  },
+  "20261121144500": {
+   "IRN": [
+    "albayan.ae",
+    "alquds.co.uk",
+    "b92.net",
+    "dariknews.bg",
+    "inewsgr.com"
+   ],
+   "ISR": [
+    "albayan.ae",
+    "maqar.com",
+    "politika.rs",
+    "ultimahora.com",
+    "walla.co.il"
+   ],
+   "ESP": [
+    "diariosur.es",
+    "elperiodico.cat",
+    "europapress.es"
+   ],
+   "AZE": [
+    "radiofarda.com"
+   ],
+   "BGD": [
+    "bdnews24.com",
+    "ntvbd.com"
+   ],
+   "ITA": [
+    "ilgazzettino.it",
+    "ladigetto.it"
+   ],
+   "UKR": [
+    "albayan.ae",
+    "bursa.ro",
+    "internetua.com",
+    "ntvbd.com",
+    "obozrevatel.com",
+    "yam.md"
+   ],
+   "COL": [
+    "pulzo.com"
+   ],
+   "BRA": [
+    "istoe.com.br"
+   ],
+   "PSE": [
+    "maqar.com",
+    "ultimahora.com"
+   ],
+   "RUS": [
+    "glavcom.ua",
+    "jornaldebrasilia.com.br",
+    "ntvbd.com",
+    "obozrevatel.com",
+    "stiripesurse.ro",
+    "yam.md"
+   ],
+   "DNK": [
+    "naslovi.net"
+   ],
+   "BGR": [
+    "standartnews.com"
+   ],
+   "FRA": [
+    "shorouknews.com",
+    "standartnews.com"
+   ],
+   "MEX": [
+    "hoytamaulipas.net"
+   ],
+   "DEU": [
+    "lr-online.de"
+   ],
+   "CHL": [
+    "almomento.net"
+   ],
+   "IND": [
+    "sanjeevnitoday.com"
+   ],
+   "SWE": [
+    "haberler.com"
+   ],
+   "SDN": [
+    "istoe.com.br"
+   ],
+   "FIN": [
+    "skai.gr"
+   ],
+   "TUR": [
+    "haberler.com",
+    "haberport.com"
+   ]
+  }
+ },
+ "ultimo_archivo": "20261121173000"
+}

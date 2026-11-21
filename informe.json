@@ -1,0 +1,206 @@
+{
+ "generado": "2026-11-21T17:39:48.450011+00:00",
+ "ciclo_id": "202611211739",
+ "advertencias": [
+  "7703 titulares de GDELT en otros idiomas no se tradujeron por el tope del ciclo",
+  "1 de 53 feeds RSS fallaron en este ciclo.",
+  "Sin modelo de traducción para: bs, guj, hr, hy, mal, mk, so, sr, te"
+ ],
+ "errores": [],
+ "etapas": {
+  "reglas": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "modelos": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "rss": {
+   "ok": true,
+   "segundos": 2.6
+  },
+  "gdelt": {
+   "ok": true,
+   "segundos": 5.0
+  },
+  "incorporar": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "pivote_ingles": {
+   "ok": true,
+   "segundos": 32.3
+  },
+  "pivote_es_en": {
+   "ok": true,
+   "segundos": 26.8
+  },
+  "clasificar": {
+   "ok": true,
+   "segundos": 14.8
+  },
+  "traducir_espanol": {
+   "ok": true,
+   "segundos": 33.5
+  },
+  "enriquecer": {
+   "ok": true,
+   "segundos": 0.4
+  },
+  "agrupar": {
+   "ok": true,
+   "segundos": 0.6
+  },
+  "vistas": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "descubrir": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "traducir_candidatos": {
+   "ok": true,
+   "segundos": 0.9
+  },
+  "elecciones": {
+   "ok": true,
+   "segundos": 0.1
+  },
+  "telegram": {
+   "ok": true,
+   "segundos": 0.0
+  },
+  "publicar": {
+   "ok": true,
+   "segundos": 0.1
+  }
+ },
+ "gdelt": {
+  "ultimo_archivo": "20261121173000",
+  "archivos_ok": 32,
+  "archivos_pendientes": 16,
+  "archivos_faltantes": 0,
+  "registros_gkg": 21683,
+  "filas_invalidas": 8,
+  "errores": [],
+  "cita": "The GDELT Project (https://www.gdeltproject.org/)"
+ },
+ "ciclo_ok": true,
+ "ultimo_exito": "2026-11-21T17:39:48.450011+00:00",
+ "resumen_fuentes": {
+  "total": 53,
+  "ok": 52,
+  "error": 1,
+  "bloqueadas": 0
+ },
+ "traduccion": {
+  "motor": "Argos Translate (modelos abiertos ejecutados localmente)",
+  "traducidos": 2774,
+  "desde_cache": 43,
+  "fallidos": 0,
+  "sin_modelo": [
+   "bs",
+   "guj",
+   "hr",
+   "hy",
+   "mal",
+   "mk",
+   "so",
+   "sr",
+   "te"
+  ],
+  "errores": [],
+  "modelos_instalados": [
+   "ar_en",
+   "bg_en",
+   "bn_en",
+   "ca_en",
+   "cs_en",
+   "da_en",
+   "de_en",
+   "el_en",
+   "en_es",
+   "es_en",
+   "et_en",
+   "fa_en",
+   "fi_en",
+   "fr_en",
+   "gl_en",
+   "he_en",
+   "hi_en",
+   "hu_en",
+   "id_en",
+   "it_en",
+   "ja_en",
+   "ko_en",
+   "lt_en",
+   "lv_en",
+   "ms_en",
+   "nb_en",
+   "nl_en",
+   "pl_en",
+   "pt_en",
+   "pt_es",
+   "ro_en",
+   "ru_en",
+   "sk_en",
+   "sl_en",
+   "sq_en",
+   "sv_en",
+   "sw_en",
+   "th_en",
+   "tr_en",
+   "uk_en",
+   "ur_en",
+   "vi_en",
+   "zh_en"
+  ]
+ },
+ "articulos_nuevos": 11870,
+ "articulos_asignados": 594,
+ "eventos_72h": 2344,
+ "conflictos_registro": 50,
+ "elecciones": {
+  "actualizado": "2026-11-21T17:39:48.450011+00:00",
+  "consultado": true,
+  "proximas": 57,
+  "sin_ubicar": [
+   "Alderney",
+   "Sark",
+   "Transnistria"
+  ],
+  "duplicados_omitidos": 0,
+  "errores": []
+ },
+ "telegram": {
+  "configurado": false,
+  "vinculado": false,
+  "enviados_ciclo": 0,
+  "errores": []
+ },
+ "duracion_s": 117.6,
+ "publicado": {
+  "eventos": 1677,
+  "articulos": 2953,
+  "candidatos": 6,
+  "elecciones": 57
+ },
+ "fuentes_con_error": [
+  {
+   "id": "dawn",
+   "nombre": "Dawn (Pakistán)",
+   "tipo": "medio",
+   "idioma": "en",
+   "pais": "PAK",
+   "propiedad": "privada",
+   "licencia": "rss_editor",
+   "extracto": true,
+   "estado": "error",
+   "ultimo_ok": "2026-11-21T10:18:22.981548+00:00",
+   "error": "HTTP 403",
+   "items": 26
+  }
+ ]
+}
