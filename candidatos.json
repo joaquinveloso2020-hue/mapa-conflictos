@@ -1,0 +1,163 @@
+{
+ "cand-FRA": {
+  "id": "cand-FRA",
+  "pais": "FRA",
+  "nombre": "Actividad armada reportada en Francia",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-27T08:48:15.444526+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 52,
+  "senal_gdelt_franjas": 39,
+  "origenes_independientes": 29,
+  "origenes_extranjeros": 17,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "3966430a574c2c32",
+   "d196676ab47a2958",
+   "6f366973a249e78e",
+   "ea2a48453508e00b",
+   "06caa5b9d27816a3",
+   "4faefea3d3e32a63",
+   "ef607d618f2e5770",
+   "9791ee1a0f91b829"
+  ],
+  "reglas": "Señal GDELT: 52 dominios en 39 franjas; artículos: 29 orígenes (17 de otros países) en 3 día(s)."
+ },
+ "cand-PER": {
+  "id": "cand-PER",
+  "pais": "PER",
+  "nombre": "Actividad armada reportada en Perú",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 8,
+  "senal_gdelt_franjas": 9,
+  "origenes_independientes": 14,
+  "origenes_extranjeros": 8,
+  "dias_con_cobertura": 2,
+  "articulos": [
+   "b44724772d8caeaf",
+   "b4d9427fc33ceb37",
+   "caa7670e2244ce32",
+   "6ae18aee47956ebd",
+   "556199b502157c69",
+   "da4d55c93fa12dc0",
+   "8b2942dc4cdc1d38",
+   "b477a33adb99b7a1"
+  ],
+  "reglas": "Señal GDELT: 8 dominios en 9 franjas; artículos: 14 orígenes (8 de otros países) en 2 día(s)."
+ },
+ "cand-GIN": {
+  "id": "cand-GIN",
+  "pais": "GIN",
+  "nombre": "Actividad armada reportada en Guinea",
+  "estado": "detectado",
+  "primera_deteccion": "2026-11-28T01:38:39.312111+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 9,
+  "senal_gdelt_franjas": 9,
+  "origenes_independientes": 4,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 2,
+  "articulos": [
+   "58424146f71fbedd",
+   "14d03d4e2de9fd40",
+   "dca05a7ea8057d40",
+   "8acb42307e9f1fc6"
+  ],
+  "reglas": "Señal GDELT: 9 dominios en 9 franjas; artículos: 4 orígenes (3 de otros países) en 2 día(s)."
+ },
+ "cand-EGY": {
+  "id": "cand-EGY",
+  "pais": "EGY",
+  "nombre": "Actividad armada reportada en Egipto",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-25T23:46:56.200391+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 22,
+  "senal_gdelt_franjas": 15,
+  "origenes_independientes": 68,
+  "origenes_extranjeros": 36,
+  "dias_con_cobertura": 4,
+  "articulos": [
+   "04500b4202c94071",
+   "907c27e1ddc95584",
+   "90347fef02a4126c",
+   "c93a0a37388e2639",
+   "b9b66bc8054a7d8b",
+   "da925b6d6106ac42",
+   "126243790d5fac82",
+   "14022a30d90923aa"
+  ],
+  "reglas": "Señal GDELT: 22 dominios en 15 franjas; artículos: 68 orígenes (36 de otros países) en 4 día(s)."
+ },
+ "cand-POL": {
+  "id": "cand-POL",
+  "pais": "POL",
+  "nombre": "Actividad armada reportada en Polonia",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-27T08:48:15.444526+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 27,
+  "senal_gdelt_franjas": 22,
+  "origenes_independientes": 5,
+  "origenes_extranjeros": 5,
+  "dias_con_cobertura": 2,
+  "articulos": [
+   "9d72f2564025b8b1",
+   "0cff7f57bfeb931f",
+   "ed979c099dbc303d",
+   "0500043444afc990",
+   "943cf6dbcc0e77e9"
+  ],
+  "reglas": "Señal GDELT: 27 dominios en 22 franjas; artículos: 5 orígenes (5 de otros países) en 2 día(s)."
+ },
+ "cand-JPN": {
+  "id": "cand-JPN",
+  "pais": "JPN",
+  "nombre": "Actividad armada reportada en Japón",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 16,
+  "senal_gdelt_franjas": 15,
+  "origenes_independientes": 8,
+  "origenes_extranjeros": 3,
+  "dias_con_cobertura": 4,
+  "articulos": [
+   "2a45d2716c30065e",
+   "96a6dab5771b29a5",
+   "5f8425080c176507",
+   "cc9dded34d4c490f",
+   "9f33bea7cc4a94e7",
+   "4fb9f8cfa2c9ec10",
+   "a82db89845f65441",
+   "965b0d8cdb7d761b"
+  ],
+  "reglas": "Señal GDELT: 16 dominios en 15 franjas; artículos: 8 orígenes (3 de otros países) en 4 día(s)."
+ },
+ "cand-SWE": {
+  "id": "cand-SWE",
+  "pais": "SWE",
+  "nombre": "Actividad armada reportada en Suecia",
+  "estado": "respaldo_suficiente",
+  "primera_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "ultima_deteccion": "2026-11-28T09:30:30.985260+00:00",
+  "senal_gdelt_dominios": 48,
+  "senal_gdelt_franjas": 35,
+  "origenes_independientes": 8,
+  "origenes_extranjeros": 4,
+  "dias_con_cobertura": 3,
+  "articulos": [
+   "5226a9652792bede",
+   "a83da27f92579a50",
+   "21cbee9067d2e068",
+   "eb7d8c6ef68d1878",
+   "96914704d6ca2930",
+   "6bc9cd746cb062ab",
+   "0254a6ec19d9f6f5",
+   "380b45fb0a526b28"
+  ],
+  "reglas": "Señal GDELT: 48 dominios en 35 franjas; artículos: 8 orígenes (4 de otros países) en 3 día(s)."
+ }
+}
